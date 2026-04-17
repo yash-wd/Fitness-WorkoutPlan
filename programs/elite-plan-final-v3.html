@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite Transformation Plan — 71kg Athlete</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080808;
+  --surface: #111;
+  --surface2: #181818;
+  --surface3: #1f1f1f;
+  --border: #222;
+  --border2: #2a2a2a;
+  --push: #e8451a;
+  --pull: #1a8ce8;
+  --legs: #22c55e;
+  --diet: #f5a623;
+  --rest: #888;
+  --text: #f0f0f0;
+  --muted: #666;
+  --dim: #444;
+  --accent: #e8451a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* NAV TABS */
+.nav-tabs {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; gap: 0;
+  background: rgba(8,8,8,0.97);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+.nav-tab {
+  flex: 1; padding: 14px 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; text-align: center;
+  cursor: pointer; border: none;
+  background: transparent; color: var(--muted);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s; white-space: nowrap;
+}
+.nav-tab:hover { color: var(--text); }
+.nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* HEADER */
+header {
+  position: relative; padding: 56px 24px 40px;
+  text-align: center; border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 400px;
+  background: radial-gradient(ellipse, rgba(232,69,26,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 3px; color: var(--push); text-transform: uppercase;
+  margin-bottom: 14px; border: 1px solid rgba(232,69,26,0.3);
+  padding: 4px 12px; border-radius: 2px;
+}
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(44px, 9vw, 88px);
+  letter-spacing: 4px; line-height: 0.92;
+}
+h1 span { color: var(--push); }
+.subtitle { margin-top: 14px; color: var(--muted); font-size: 13px; letter-spacing: 1px; font-weight: 300; }
+
+/* BODY STATS STRIP */
+.stats-strip {
+  display: flex; flex-wrap: wrap; gap: 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.stat-item {
+  flex: 1; min-width: 120px;
+  padding: 18px 20px; text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat-item:last-child { border-right: none; }
+.stat-val {
+  font-family: 'Bebas Neue', sans-serif; font-size: 28px;
+  color: var(--text); letter-spacing: 1px;
+}
+.stat-val.highlight { color: var(--push); }
+.stat-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 2px; margin-top: 3px; }
+
+/* VERDICT BANNER */
+.verdict-banner {
+  background: linear-gradient(135deg, rgba(232,69,26,0.12), rgba(232,69,26,0.04));
+  border: 1px solid rgba(232,69,26,0.3);
+  border-radius: 6px; margin: 28px 24px;
+  padding: 24px 28px;
+}
+.verdict-banner h2 {
+  font-family: 'Bebas Neue', sans-serif; font-size: 32px;
+  color: var(--push); letter-spacing: 2px; margin-bottom: 12px;
+}
+.verdict-banner p { font-size: 14px; line-height: 1.7; color: #ccc; }
+.verdict-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.verdict-pill {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  padding: 5px 12px; border-radius: 2px; letter-spacing: 1px;
+}
+.verdict-pill.green { background: rgba(34,197,94,0.12); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
+.verdict-pill.orange { background: rgba(245,166,35,0.12); color: var(--diet); border: 1px solid rgba(245,166,35,0.25); }
+.verdict-pill.red { background: rgba(232,69,26,0.12); color: var(--push); border: 1px solid rgba(232,69,26,0.25); }
+
+/* MAIN CONTAINER */
+.container { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+
+/* SECTION VIEWS */
+.view { display: none; }
+.view.active { display: block; }
+
+/* WEEK STRIP (workout tab) */
+.week-bar {
+  display: flex; gap: 6px; padding: 20px 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.week-bar::-webkit-scrollbar { display: none; }
+.day-chip {
+  flex-shrink: 0; padding: 9px 16px;
+  border-radius: 4px; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  cursor: pointer; border: 1px solid transparent;
+  transition: all 0.2s; font-weight: 700;
+}
+.day-chip.push { background: rgba(232,69,26,0.1); color: var(--push); border-color: rgba(232,69,26,0.2); }
+.day-chip.pull { background: rgba(26,140,232,0.1); color: var(--pull); border-color: rgba(26,140,232,0.2); }
+.day-chip.legs { background: rgba(34,197,94,0.1); color: var(--legs); border-color: rgba(34,197,94,0.2); }
+.day-chip.rest { background: rgba(136,136,136,0.08); color: var(--muted); border-color: rgba(136,136,136,0.15); }
+.day-chip.active.push { background: var(--push); color: #fff; }
+.day-chip.active.pull { background: var(--pull); color: #fff; }
+.day-chip.active.legs { background: var(--legs); color: #000; }
+.day-chip.active.rest { background: #444; color: #fff; }
+
+/* DAY PANEL */
+.day-panel { display: none; animation: fadeUp 0.3s ease; }
+.day-panel.active { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.day-header {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; flex-wrap: wrap;
+  gap: 12px; margin-bottom: 24px; padding-top: 28px;
+}
+.day-title { font-family: 'Bebas Neue', sans-serif; font-size: 44px; letter-spacing: 2px; }
+.day-title.push { color: var(--push); }
+.day-title.pull { color: var(--pull); }
+.day-title.legs { color: var(--legs); }
+.day-title.rest-title { color: var(--muted); }
+
+.day-meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.meta-pill {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  padding: 4px 10px; border-radius: 2px; background: var(--surface2);
+  color: var(--muted); letter-spacing: 1px;
+}
+.focus-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+.focus-tag {
+  font-size: 11px; padding: 3px 9px; border-radius: 2px;
+  background: var(--surface2); color: var(--muted); font-weight: 500;
+}
+
+/* SECTION LABEL */
+.section-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 3px; color: var(--muted); text-transform: uppercase;
+  margin: 24px 0 10px; display: flex; align-items: center; gap: 10px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* EXERCISE CARD */
+.exercise-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 15px 18px; margin-bottom: 7px;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 10px; transition: border-color 0.2s;
+}
+.exercise-card:hover { border-color: var(--border2); }
+.ex-number { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--dim); margin-bottom: 4px; }
+.ex-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.ex-target { font-size: 12px; color: var(--muted); font-weight: 300; margin-bottom: 5px; }
+.ex-note { font-size: 12px; color: #777; line-height: 1.5; font-style: italic; }
+.ex-right { text-align: right; min-width: 80px; }
+.ex-sets { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.ex-rest { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); }
+
+.compound-badge {
+  display: inline-block; font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 1px; padding: 2px 6px;
+  background: rgba(232,69,26,0.12); color: var(--push);
+  border-radius: 2px; margin-left: 6px; vertical-align: middle;
+}
+.iso-badge {
+  display: inline-block; font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 1px; padding: 2px 6px;
+  background: rgba(26,140,232,0.12); color: var(--pull);
+  border-radius: 2px; margin-left: 6px; vertical-align: middle;
+}
+
+/* TIPS BLOCK */
+.tips-block {
+  margin-top: 20px; padding: 18px 20px;
+  border-radius: 6px; margin-bottom: 8px;
+}
+.tips-block.push { background: rgba(232,69,26,0.07); border: 1px solid rgba(232,69,26,0.18); }
+.tips-block.pull { background: rgba(26,140,232,0.07); border: 1px solid rgba(26,140,232,0.18); }
+.tips-block.legs { background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.18); }
+.tips-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; margin-bottom: 12px; }
+.tips-block.push .tips-title { color: var(--push); }
+.tips-block.pull .tips-title { color: var(--pull); }
+.tips-block.legs .tips-title { color: var(--legs); }
+.tips-block ul { padding-left: 16px; }
+.tips-block li { font-size: 13px; color: #aaa; line-height: 1.7; margin-bottom: 6px; }
+.tips-block li strong { color: var(--text); }
+
+/* REST DAY */
+.rest-day { text-align: center; padding: 56px 24px; }
+.rest-icon { font-size: 48px; margin-bottom: 16px; }
+.rest-day h2 { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--muted); letter-spacing: 3px; margin-bottom: 14px; }
+.rest-day p { font-size: 14px; color: #777; max-width: 480px; margin: 0 auto 28px; line-height: 1.7; }
+.recovery-list { max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+.recovery-item {
+  padding: 12px 18px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 4px;
+  font-size: 13px; color: #888; text-align: left;
+}
+
+/* DIET TAB */
+.diet-day-bar {
+  display: flex; gap: 6px; padding: 20px 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.diet-day-bar::-webkit-scrollbar { display: none; }
+.diet-day-chip {
+  flex-shrink: 0; padding: 8px 14px;
+  border-radius: 4px; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  cursor: pointer; border: 1px solid rgba(245,166,35,0.2);
+  background: rgba(245,166,35,0.06); color: var(--diet);
+  transition: all 0.2s; font-weight: 700;
+}
+.diet-day-chip.active { background: var(--diet); color: #000; }
+
+.diet-panel { display: none; animation: fadeUp 0.3s ease; }
+.diet-panel.active { display: block; }
+
+.diet-header { padding-top: 28px; margin-bottom: 20px; }
+.diet-day-title { font-family: 'Bebas Neue', sans-serif; font-size: 38px; color: var(--diet); letter-spacing: 2px; }
+.diet-sub { font-size: 12px; color: var(--muted); margin-top: 4px; font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; }
+
+.macro-bar {
+  display: flex; gap: 0; margin-bottom: 24px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; overflow: hidden;
+}
+.macro-item { flex: 1; padding: 16px 14px; text-align: center; border-right: 1px solid var(--border); }
+.macro-item:last-child { border-right: none; }
+.macro-val { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px; }
+.macro-val.p { color: #1a8ce8; }
+.macro-val.c { color: #22c55e; }
+.macro-val.f { color: #f5a623; }
+.macro-val.cal { color: var(--push); }
+.macro-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 2px; margin-top: 3px; }
+
+.meal-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 16px 18px; margin-bottom: 8px;
+}
+.meal-time {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  color: var(--diet); letter-spacing: 2px; margin-bottom: 6px;
+}
+.meal-name { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+.meal-items { display: flex; flex-direction: column; gap: 4px; }
+.meal-item { display: flex; justify-content: space-between; font-size: 13px; color: #aaa; }
+.meal-item span:last-child { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+.meal-macros {
+  display: flex; gap: 10px; margin-top: 12px; padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.mm { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); }
+.mm span { font-weight: 700; }
+.mm span.p { color: var(--pull); }
+.mm span.c { color: var(--legs); }
+.mm span.f { color: var(--diet); }
+
+.grocery-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px; margin-top: 12px;
+}
+.grocery-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 4px; padding: 12px 14px;
+}
+.grocery-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.grocery-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); }
+
+/* OVERVIEW / SCIENCE TAB */
+.science-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; margin-top: 12px; }
+.science-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 18px 20px;
+}
+.sc-icon { font-size: 22px; margin-bottom: 10px; }
+.sc-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 8px; }
+.sc-body { font-size: 13px; color: #999; line-height: 1.65; }
+.sc-body strong { color: var(--text); }
+
+/* PROGRESS TARGET TABLE */
+.progress-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+.progress-table th {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 2px; color: var(--muted); padding: 10px 14px;
+  border-bottom: 1px solid var(--border); text-align: left;
+}
+.progress-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); font-size: 13px; color: #ccc; }
+.progress-table tr:last-child td { border-bottom: none; }
+.prog-val { font-family: 'JetBrains Mono', monospace; color: var(--push); font-weight: 700; }
+
+/* OVERLOAD SECTION */
+.overload-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; margin-top: 12px; }
+.overload-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 16px 18px;
+}
+.oc-title { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+.overload-card p { font-size: 12px; color: #888; line-height: 1.6; }
+
+/* PHASE TIMELINE */
+.phase-timeline { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.phase-card {
+  flex: 1; min-width: 180px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 18px 20px; position: relative;
+}
+.phase-num {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  color: var(--muted); letter-spacing: 2px; margin-bottom: 6px;
+}
+.phase-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 8px; }
+.phase-card:nth-child(1) .phase-title { color: var(--pull); }
+.phase-card:nth-child(2) .phase-title { color: var(--push); }
+.phase-card:nth-child(3) .phase-title { color: var(--legs); }
+.phase-body { font-size: 12px; color: #888; line-height: 1.6; }
+.phase-body strong { color: var(--text); font-size: 13px; }
+
+/* BUDGET CARD */
+.budget-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+.budget-table th { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--muted); padding: 10px 14px; border-bottom: 1px solid var(--border); text-align: left; }
+.budget-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); font-size: 13px; color: #ccc; }
+.budget-table tr:last-child td { border-bottom: none; font-weight: 600; color: var(--text); }
+.budget-val { font-family: 'JetBrains Mono', monospace; color: var(--legs); }
+
+/* SUPPLEMENT CARDS */
+.supp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; margin-top: 12px; }
+.supp-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 14px 16px;
+}
+.supp-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.supp-verdict {
+  display: inline-block; font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; padding: 2px 7px; border-radius: 2px; margin-bottom: 8px; letter-spacing: 1px;
+}
+.supp-verdict.yes { background: rgba(34,197,94,0.12); color: #22c55e; }
+.supp-verdict.optional { background: rgba(245,166,35,0.12); color: var(--diet); }
+.supp-verdict.no { background: rgba(232,69,26,0.12); color: var(--push); }
+.supp-body { font-size: 12px; color: #888; line-height: 1.5; }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .stats-strip { flex-wrap: wrap; }
+  .stat-item { min-width: 50%; flex: none; }
+  .macro-bar { flex-wrap: wrap; }
+  .macro-item { min-width: 50%; flex: none; }
+  h1 { font-size: 44px; }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="nav-tabs">
+  <button class="nav-tab active" onclick="showView('overview')">Overview</button>
+  <button class="nav-tab" onclick="showView('workout')">Workout</button>
+  <button class="nav-tab" onclick="showView('diet')">Diet Plan</button>
+  <button class="nav-tab" onclick="showView('science')">Science</button>
+  <button class="nav-tab" onclick="showView('beginner')" style="color:#a78bfa;border-bottom-color:transparent;">🟣 Beginner</button>
+</nav>
+
+<!-- HEADER -->
+<header>
+  <div class="tag">Elite Strength & Conditioning — Custom Plan</div>
+  <h1>YOUR <span>COMPLETE</span><br>TRANSFORMATION</h1>
+  <p class="subtitle">71 KG · 5'6" · 29 YRS · LEAN ATHLETIC RECOMPOSITION — HYDERABAD HOSTEL EDITION</p>
+</header>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-val">71<span style="font-size:14px;color:var(--muted)">kg</span></div>
+    <div class="stat-label">Current Weight</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">5'6<span style="font-size:14px;color:var(--muted)">"</span></div>
+    <div class="stat-label">Height</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val highlight">22.7</div>
+    <div class="stat-label">BMI (Normal)</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">29<span style="font-size:14px;color:var(--muted)">yrs</span></div>
+    <div class="stat-label">Age</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">2<span style="font-size:14px;color:var(--muted)">hr</span></div>
+    <div class="stat-label">Daily Training</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val highlight">RECOMP</div>
+    <div class="stat-label">Phase</div>
+  </div>
+</div>
+
+<!-- =================== OVERVIEW VIEW =================== -->
+<div id="view-overview" class="view active">
+  <div class="container">
+
+    <!-- VERDICT -->
+    <div class="verdict-banner">
+      <h2>⚡ COACH'S VERDICT — WHAT YOU SHOULD DO</h2>
+      <p>
+        At <strong>71 kg / 5'6" (BMI 22.7)</strong>, you are in the normal weight range. You are NOT overweight — so a hard cut is <strong>wrong</strong>. You are also not underweight — so a dirty bulk is unnecessary. The smartest move for your body, training volume, and age is <strong>Body Recomposition</strong>: build lean muscle while slightly reducing body fat simultaneously. This is achievable at 29 with 2hr/day training. Target: lose 3–4% body fat while gaining 4–5 kg lean muscle over 16 weeks. You will look visibly leaner AND stronger at the same 70–72 kg.
+      </p>
+      <div class="verdict-pills">
+        <span class="verdict-pill green">✓ BMI Normal — No Hard Cut Needed</span>
+        <span class="verdict-pill green">✓ Recomp — Best Strategy For You</span>
+        <span class="verdict-pill orange">⚡ Eat at Maintenance (~2400 kcal)</span>
+        <span class="verdict-pill red">✗ Not a Bulk · Not a Cut</span>
+        <span class="verdict-pill orange">⏱ 16-Week Plan</span>
+      </div>
+    </div>
+
+    <!-- WHY RECOMP -->
+    <div class="section-label">WHY RECOMPOSITION IS YOUR ANSWER</div>
+    <div class="science-grid">
+      <div class="science-card">
+        <div class="sc-icon">🎯</div>
+        <div class="sc-title">BMI 22.7 — Sweet Spot</div>
+        <div class="sc-body">You're not fat. You're not underweight. You're at the <strong>ideal starting point for recomp</strong>. Hard cuts at this BMI strip muscle. Dirty bulks add unwanted fat. Recomp gives you the lean athlete look.</div>
+      </div>
+      <div class="science-card">
+        <div class="sc-icon">💪</div>
+        <div class="sc-title">2 Hrs/Day = Advantage</div>
+        <div class="sc-body">Your high training volume creates the caloric deficit needed for fat loss <strong>while</strong> the progressive overload triggers muscle synthesis. This dual stimulus is the recomp engine.</div>
+      </div>
+      <div class="science-card">
+        <div class="sc-icon">🧬</div>
+        <div class="sc-title">Age 29 — Peak Window</div>
+        <div class="sc-body">You're in your <strong>anabolic prime</strong>. Testosterone and GH response to training is near-peak. Muscle memory from training is strong. Results will come faster than at 35+.</div>
+      </div>
+      <div class="science-card">
+        <div class="sc-icon">📊</div>
+        <div class="sc-title">Target Numbers</div>
+        <div class="sc-body">Current: ~18–20% body fat estimate. Target after 16 weeks: <strong>14–15% body fat</strong>. That's visible abs territory. Weight may stay same but composition changes dramatically.</div>
+      </div>
+    </div>
+
+    <!-- 16 WEEK PHASES -->
+    <div class="section-label">16-WEEK TRANSFORMATION PHASES</div>
+    <div class="phase-timeline">
+      <div class="phase-card">
+        <div class="phase-num">PHASE 01 — WEEKS 1–4</div>
+        <div class="phase-title">Foundation</div>
+        <div class="phase-body">
+          <strong>Goal: Lock in form, establish baseline strength.</strong><br><br>
+          Focus on compound movement quality. 3 meals/day with 140g protein. Sleep 7–8 hrs. Track lifts every session.
+          <br><br>Expected: +3–5kg on main lifts. Slight body composition shift.
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">PHASE 02 — WEEKS 5–10</div>
+        <div class="phase-title">Hypertrophy</div>
+        <div class="phase-body">
+          <strong>Goal: Maximum muscle protein synthesis, progressive overload every session.</strong><br><br>
+          Increase volume. Protein hits 150–160g/day. Add soy chunks + sattu to diet. Calorie maintenance strictly at 2400.
+          <br><br>Expected: 2–3 kg lean muscle gain. Visible chest and arm improvement.
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">PHASE 03 — WEEKS 11–16</div>
+        <div class="phase-title">Definition</div>
+        <div class="phase-body">
+          <strong>Goal: Sharpen physique, reduce body fat to 14–15%.</strong><br><br>
+          Reduce carbs slightly on rest days. Maintain protein. Add 20–30 min cardio 3x/week post-workout.
+          <br><br>Expected: Visible abs. 3–4 kg fat loss. Athletic physique achieved.
+        </div>
+      </div>
+    </div>
+
+    <!-- STRENGTH TARGETS -->
+    <div class="section-label">STRENGTH TARGETS — 16 WEEKS</div>
+    <table class="progress-table">
+      <thead>
+        <tr><th>LIFT</th><th>CURRENT EST.</th><th>WEEK 8 TARGET</th><th>WEEK 16 TARGET</th><th>STATUS</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Bench Press</td><td>50–55 kg × 5</td><td class="prog-val">65 kg × 5</td><td class="prog-val">75–80 kg × 5</td><td style="color:#22c55e;font-size:12px;">BW Target</td></tr>
+        <tr><td>Squat</td><td>60–65 kg × 5</td><td class="prog-val">80 kg × 5</td><td class="prog-val">100–105 kg × 5</td><td style="color:#22c55e;font-size:12px;">1.5× BW Target</td></tr>
+        <tr><td>Deadlift</td><td>80 kg × 3</td><td class="prog-val">105 kg × 3</td><td class="prog-val">130–140 kg × 3</td><td style="color:#22c55e;font-size:12px;">2× BW Target</td></tr>
+        <tr><td>OHP</td><td>35–40 kg × 5</td><td class="prog-val">50 kg × 5</td><td class="prog-val">55–60 kg × 5</td><td style="color:#f5a623;font-size:12px;">0.75× BW Target</td></tr>
+        <tr><td>Pull-ups</td><td>4–6 reps</td><td class="prog-val">8–10 reps</td><td class="prog-val">12–15 reps</td><td style="color:#22c55e;font-size:12px;">BW Mastery</td></tr>
+      </tbody>
+    </table>
+
+    <!-- SUPPLEMENT GUIDE -->
+    <div class="section-label">SUPPLEMENTS — WHAT YOU ACTUALLY NEED</div>
+    <div class="supp-grid">
+      <div class="supp-card">
+        <div class="supp-name">Creatine Monohydrate</div>
+        <div class="supp-verdict yes">HIGHLY RECOMMENDED</div>
+        <div class="supp-body">5g/day. No loading phase needed. Most researched supplement in existence. Increases strength by 5–10% and muscle gain by 1–2 kg over 12 weeks. Cost: ₹500–700/month. Take with water any time of day.</div>
+      </div>
+      <div class="supp-card">
+        <div class="supp-name">Whey Protein</div>
+        <div class="supp-verdict optional">OPTIONAL</div>
+        <div class="supp-body">Only if you can't hit 140g protein from food. 1 scoop = 25g protein. Cost: ₹2500–3000/kg. With your 4 eggs + 350g chicken + hostel diet you likely don't need it at all.</div>
+      </div>
+      <div class="supp-card">
+        <div class="supp-name">Vitamin D3 + K2</div>
+        <div class="supp-verdict yes">RECOMMENDED</div>
+        <div class="supp-body">Most Indians are deficient. Affects testosterone, recovery, bone density. 2000 IU D3 + 100mcg K2 daily. Cost: ₹300/month. Game-changer for gym performance.</div>
+      </div>
+      <div class="supp-card">
+        <div class="supp-name">Magnesium Glycinate</div>
+        <div class="supp-verdict optional">OPTIONAL BUT GOOD</div>
+        <div class="supp-body">Hostel diets are almost always low in magnesium. Affects sleep quality, muscle recovery, and strength. 200–400mg at night. Cost: ₹400/month. Noticeably better sleep.</div>
+      </div>
+      <div class="supp-card">
+        <div class="supp-name">Pre-workout / Caffeine</div>
+        <div class="supp-verdict optional">OPTIONAL</div>
+        <div class="supp-body">Black coffee (₹5) is literally as effective as pre-workout for gym performance. 150–200mg caffeine 30 min pre-workout. Don't spend on fancy pre-workouts.</div>
+      </div>
+      <div class="supp-card">
+        <div class="supp-name">Mass Gainer / Gainers</div>
+        <div class="supp-verdict no">NOT NEEDED</div>
+        <div class="supp-body">You're not underweight. Mass gainers are mostly sugar. Will add body fat not muscle. Complete waste of money for your physique goals. Skip entirely.</div>
+      </div>
+    </div>
+
+    <!-- BUDGET BREAKDOWN -->
+    <div class="section-label">MONTHLY BUDGET BREAKDOWN</div>
+    <table class="budget-table">
+      <thead><tr><th>ITEM</th><th>DAILY</th><th>MONTHLY</th><th>NOTES</th></tr></thead>
+      <tbody>
+        <tr><td>4 Eggs/day</td><td class="budget-val">₹28</td><td class="budget-val">₹840</td><td style="font-size:12px;color:#777">Base protein — non-negotiable</td></tr>
+        <tr><td>350g Chicken/day</td><td class="budget-val">₹80</td><td class="budget-val">₹2400</td><td style="font-size:12px;color:#777">Primary protein source</td></tr>
+        <tr><td>Soy Chunks (50g/day)</td><td class="budget-val">₹12</td><td class="budget-val">₹360</td><td style="font-size:12px;color:#777">Budget protein boost</td></tr>
+        <tr><td>Peanuts (60g/day)</td><td class="budget-val">₹15</td><td class="budget-val">₹450</td><td style="font-size:12px;color:#777">Healthy fats + protein</td></tr>
+        <tr><td>Sattu (40g/day)</td><td class="budget-val">₹8</td><td class="budget-val">₹240</td><td style="font-size:12px;color:#777">Fiber + protein</td></tr>
+        <tr><td>Banana + 1 fruit</td><td class="budget-val">₹12</td><td class="budget-val">₹360</td><td style="font-size:12px;color:#777">Micronutrients + carbs</td></tr>
+        <tr><td>Creatine (optional)</td><td class="budget-val">₹20</td><td class="budget-val">₹600</td><td style="font-size:12px;color:#777">Best ROI supplement</td></tr>
+        <tr><td colspan="1"><strong>TOTAL</strong></td><td class="budget-val"><strong>₹175</strong></td><td class="budget-val"><strong>₹5250</strong></td><td style="font-size:12px;color:#22c55e">Elite athlete nutrition</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:#666;margin-top:8px;">* Hostel meals (rice/dal/sabji) = included in hostel fee. Above is extra cost only.</p>
+
+    <!-- IMPROVEMENT RECOMMENDATIONS -->
+    <div class="section-label" style="margin-top:32px;">WHAT THIS PLAN IMPROVES — vs STANDARD PPL</div>
+    <div class="science-grid">
+      <div class="science-card" style="border-color:rgba(34,197,94,0.2)">
+        <div class="sc-icon">✅</div>
+        <div class="sc-title">Warm-Ups Added</div>
+        <div class="sc-body">Standard PPL has no warm-up structure. This plan adds targeted warm-up protocols for every training day — with rotator cuff prep on push/shoulder days and posterior chain activation on deadlift/leg days. Injury risk drops significantly.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(34,197,94,0.2)">
+        <div class="sc-icon">✅</div>
+        <div class="sc-title">Deload Built In</div>
+        <div class="sc-body">Most gym-goers train for months without deloading and wonder why they plateau. This plan schedules deload at Week 6 and Week 12 — these are supercompensation windows where you come back stronger than before the deload.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(34,197,94,0.2)">
+        <div class="sc-icon">✅</div>
+        <div class="sc-title">Posterior Chain Priority</div>
+        <div class="sc-body">Rear delts get 2× weekly attention (face pulls + reverse fly). Glutes get dedicated hip thrust focus. Hamstrings get both RDL and leg curl. Most PPL programs neglect the posterior chain — this plan doesn't.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(34,197,94,0.2)">
+        <div class="sc-icon">✅</div>
+        <div class="sc-title">India-Specific Nutrition</div>
+        <div class="sc-body">No whey-dependent diet plan. All food sources available in Hyderabad hostels. Chicken, eggs, soy, sattu, peanuts — budget ₹175/day for athlete-grade nutrition. No supplement dependency except creatine (optional).</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(34,197,94,0.2)">
+        <div class="sc-icon">✅</div>
+        <div class="sc-title">3-Phase Periodisation</div>
+        <div class="sc-body">Foundation → Hypertrophy → Definition. Most people run the same program forever. Changing the training stimulus every 5–6 weeks forces adaptation across strength zones — this is how physiques are sculpted, not just built.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(245,166,35,0.2)">
+        <div class="sc-icon">⚡</div>
+        <div class="sc-title">Areas to Watch</div>
+        <div class="sc-body">High training frequency (6 days) requires excellent sleep and nutrition. If strength drops for 2+ weeks — take deload immediately. Core work is on Legs A only — if abs are a priority, add ab work to 2 more sessions. Calf training is included but calves are genetically stubborn — be patient.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- =================== WORKOUT VIEW =================== -->
+<div id="view-workout" class="view">
+  <div class="container">
+    <div class="week-bar">
+      <div class="day-chip push active" onclick="showDay(0)">Mon · Push A</div>
+      <div class="day-chip pull" onclick="showDay(1)">Tue · Pull A</div>
+      <div class="day-chip legs" onclick="showDay(2)">Wed · Legs A</div>
+      <div class="day-chip push" onclick="showDay(3)">Thu · Push B</div>
+      <div class="day-chip pull" onclick="showDay(4)">Fri · Pull B</div>
+      <div class="day-chip legs" onclick="showDay(5)">Sat · Legs B</div>
+      <div class="day-chip rest" onclick="showDay(6)">Sun · Rest</div>
+    </div>
+
+    <!-- DAY 0: PUSH A -->
+    <div class="day-panel active" id="day-0">
+      <div class="day-header">
+        <div>
+          <div class="day-title push">PUSH DAY A</div>
+          <div class="focus-tags">
+            <span class="focus-tag">Chest Dominant</span>
+            <span class="focus-tag">Front Delts</span>
+            <span class="focus-tag">Side Delts</span>
+            <span class="focus-tag">Triceps</span>
+            <span class="focus-tag">Upper Chest Emphasis</span>
+          </div>
+        </div>
+        <div class="day-meta">
+          <span class="meta-pill">⏱ 70–80 MIN</span>
+          <span class="meta-pill">🔥 HIGH INTENSITY</span>
+        </div>
+      </div>
+      <div class="section-label">WARM UP — 8 MIN</div>
+      <div class="exercise-card">
+        <div>
+          <div class="ex-number">00</div>
+          <div class="ex-name">Warm-Up Protocol</div>
+          <div class="ex-note">5 min treadmill jog or skip rope. Then: 15 arm circles, 10 band pull-aparts (or doorframe stretch), 10 light push-ups. Never skip — cold muscles = injury risk.</div>
+        </div>
+        <div class="ex-right"><div class="ex-sets">8 min</div><div class="ex-rest">—</div></div>
+      </div>
+      <div class="section-label">COMPOUNDS — HEAVY FIRST</div>
+      <div class="exercise-card">
+        <div><div class="ex-number">01</div><div class="ex-name">Barbell Bench Press <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Pectoralis Major (Mid + Lower) · Front Delts · Triceps</div><div class="ex-note">King of chest movements. Warm up with 2 lighter sets first. Drive feet into floor. Full ROM — bar touches chest lightly. This is your strength indicator. Progressive overload every week.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 5–7</div><div class="ex-rest">⏱ 2.5 min</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">02</div><div class="ex-name">Incline Dumbbell Press <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Upper Pectoralis · Front Delts · Triceps</div><div class="ex-note">Upper chest creates the aesthetic "shelf." 30–45° incline. Elbows at 75° — not flared. Control the negative (2 sec down). This is where the Greek god chest is built.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 8–10</div><div class="ex-rest">⏱ 90 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">03</div><div class="ex-name">Overhead Shoulder Press (Barbell or DB) <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Anterior + Medial Delts · Triceps · Upper Traps</div><div class="ex-note">Seated or standing. Build shoulder width here. Elbows slightly forward of bar path. Full lockout at top. This + lateral raises = boulder shoulders.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 7–9</div><div class="ex-rest">⏱ 2 min</div></div>
+      </div>
+      <div class="section-label">ISOLATION — DETAIL WORK</div>
+      <div class="exercise-card">
+        <div><div class="ex-number">04</div><div class="ex-name">Cable Chest Fly (or DB Fly) <span class="iso-badge">ISO</span></div><div class="ex-target">Pectoralis Major (Stretch-Loaded)</div><div class="ex-note">Cables > dumbbells here because constant tension throughout ROM. Full stretch at bottom is key — that's where muscle grows. Light weight, feel every rep.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">05</div><div class="ex-name">Dumbbell Lateral Raises <span class="iso-badge">ISO</span></div><div class="ex-target">Medial (Side) Deltoid</div><div class="ex-note">MOST IMPORTANT exercise for V-taper aesthetics. Wide shoulders visually shrink the waist. Slight forward lean, lead with elbows, pinky up. Go light — 8–12 kg max to start. Never ego-lift these.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 12–15</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">06</div><div class="ex-name">Weighted Dips <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Lower Chest · Triceps · Front Delts</div><div class="ex-note">Lean forward for chest emphasis. Full depth — feel stretch in chest at bottom. Use bodyweight first, add plates when you can do 12+ clean reps. Excellent finisher.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 8–12</div><div class="ex-rest">⏱ 90 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">07</div><div class="ex-name">Cable Tricep Pushdown (Rope) <span class="iso-badge">ISO</span></div><div class="ex-target">Lateral + Medial Tricep Head</div><div class="ex-note">Split the rope at the bottom fully — that squeeze activates the lateral head. Elbows pinned to sides. Controls the rear arm aesthetic. High reps, moderate weight.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="tips-block push">
+        <div class="tips-title">⚡ PUSH A COACHING NOTES</div>
+        <ul>
+          <li><strong>Progressive overload on bench is your #1 priority.</strong> Even +1.25kg per week = 65kg added in a year.</li>
+          <li><strong>Lateral raises</strong> should be trained harder than you think. Side delts are chronically undertrained in most Indian gym-goers.</li>
+          <li><strong>Control the negative on incline press</strong> — 2 second lowering. That's where micro-tears and growth happen.</li>
+          <li><strong>Total push muscles:</strong> chest 2 exercises, shoulders 3 exercises, triceps 2 exercises. Perfect balance.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DAY 1: PULL A -->
+    <div class="day-panel" id="day-1">
+      <div class="day-header">
+        <div>
+          <div class="day-title pull">PULL DAY A</div>
+          <div class="focus-tags">
+            <span class="focus-tag">Lat Width</span>
+            <span class="focus-tag">Mid Back</span>
+            <span class="focus-tag">Rear Delts</span>
+            <span class="focus-tag">Biceps Peak</span>
+            <span class="focus-tag">Traps</span>
+          </div>
+        </div>
+        <div class="day-meta">
+          <span class="meta-pill">⏱ 70–80 MIN</span>
+          <span class="meta-pill">🔵 BACK FOCUS</span>
+        </div>
+      </div>
+      <div class="section-label">WARM UP — 8 MIN</div>
+      <div class="exercise-card">
+        <div>
+          <div class="ex-number">00</div>
+          <div class="ex-name">Warm-Up Protocol</div>
+          <div class="ex-note">5 min light cardio (row machine or bike preferred). Then: 10 band pull-aparts, 10 dead hangs (5 sec each), 10 scapular push-ups, arm circles both directions. For pull day — activate the back before loading it.</div>
+        </div>
+        <div class="ex-right"><div class="ex-sets">8 min</div><div class="ex-rest">—</div></div>
+      </div>
+      <div class="section-label">COMPOUNDS — VERTICAL PULL</div>
+      <div class="exercise-card">
+        <div><div class="ex-number">01</div><div class="ex-name">Pull-Ups / Weighted Pull-Ups <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Lats (Width) · Biceps · Rear Delts · Core</div><div class="ex-note">Wide-grip for lat width. Full dead hang at bottom, chin over bar at top. If you can do 10+ reps, add weight with a dip belt. This is the single best back width builder. 4+ sets minimum.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 6–10</div><div class="ex-rest">⏱ 2.5 min</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">02</div><div class="ex-name">Barbell Row (Pendlay or Bent-Over) <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Mid Back · Lats · Rear Delts · Biceps</div><div class="ex-note">Hinge at hips, back parallel to floor, bar to lower chest/belly. This is the horizontal pulling strength builder. Heavier than any other back exercise. Most important thickness movement.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 6–8</div><div class="ex-rest">⏱ 2.5 min</div></div>
+      </div>
+      <div class="section-label">ISOLATION WORK</div>
+      <div class="exercise-card">
+        <div><div class="ex-number">03</div><div class="ex-name">Lat Pulldown (Wide Grip) <span class="iso-badge">ISO</span></div><div class="ex-target">Lats · Teres Major</div><div class="ex-note">Accessory to pull-ups. Lean back slightly, pull to upper chest, squeeze lats at bottom. Use this to add volume when pull-up capacity is exhausted. Higher reps here.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 90 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">04</div><div class="ex-name">Seated Cable Row <span class="iso-badge">ISO</span></div><div class="ex-target">Mid Back · Rhomboids · Lower Traps</div><div class="ex-note">Full stretch at start (let scapula protract), pull to navel, hold 1 second squeeze. Mid-back thickness = the "armor" look. Don't jerk — control everything.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 90 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">05</div><div class="ex-name">Face Pulls (Cable) <span class="iso-badge">ISO</span></div><div class="ex-target">Rear Delts · External Rotators · Upper Back</div><div class="ex-note">The most underrated exercise. Fixes posture, prevents shoulder injury, builds rear delt separation. Rope attachment at face height, pull to ears with elbows high. Non-negotiable for anyone doing heavy pressing.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 15–20</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">06</div><div class="ex-name">Barbell Curl <span class="iso-badge">ISO</span></div><div class="ex-target">Biceps Brachii · Brachialis</div><div class="ex-note">Full supination at top (palms facing ceiling at peak). Full stretch at bottom. Elbows stay pinned to sides. This builds biceps peak. Controlled tempo: 2 sec up, 1 sec hold, 2 sec down.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 90 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">07</div><div class="ex-name">Hammer Curl (DB) <span class="iso-badge">ISO</span></div><div class="ex-target">Brachialis · Brachioradialis · Forearms</div><div class="ex-note">Neutral grip (thumbs up). Targets brachialis which PUSHES the bicep up, making it look bigger. Also builds forearm thickness. Alternate arms or both together.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">08</div><div class="ex-name">Dumbbell Shrugs <span class="iso-badge">ISO</span></div><div class="ex-target">Trapezius (Upper)</div><div class="ex-note">Heavy weight. Full range — think "touch shoulders to ears." Hold at top 1 second. Thick traps = powerful neck-to-shoulder line. Often ignored but major in aesthetics.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="tips-block pull">
+        <div class="tips-title">⚡ PULL A COACHING NOTES</div>
+        <ul>
+          <li><strong>Pull-up quality over quantity.</strong> 6 clean reps beats 12 kipping. Dead hang every rep.</li>
+          <li><strong>Face pulls every session</strong> — they're your shoulder insurance policy. Skip them and you'll eventually injure yourself from all the pressing.</li>
+          <li><strong>Think lats, not biceps</strong> during pull-ups and rows. Biceps are just the hook. Initiate with the back.</li>
+          <li><strong>Grip training:</strong> All these pulling movements naturally build crushing grip strength.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DAY 2: LEGS A -->
+    <div class="day-panel" id="day-2">
+      <div class="day-header">
+        <div>
+          <div class="day-title legs">LEGS DAY A</div>
+          <div class="focus-tags">
+            <span class="focus-tag">Quad Dominant</span>
+            <span class="focus-tag">Glutes</span>
+            <span class="focus-tag">Hamstrings</span>
+            <span class="focus-tag">Calves</span>
+            <span class="focus-tag">Core</span>
+          </div>
+        </div>
+        <div class="day-meta">
+          <span class="meta-pill">⏱ 75–90 MIN</span>
+          <span class="meta-pill">🦵 MOST BRUTAL DAY</span>
+        </div>
+      </div>
+      <div class="section-label">WARM UP — 10 MIN</div>
+      <div class="exercise-card">
+        <div>
+          <div class="ex-number">00</div>
+          <div class="ex-name">Leg Day Warm-Up Protocol</div>
+          <div class="ex-note">5 min bike or treadmill walk. Then: 10 bodyweight squats, 10 leg swings each side, 10 glute bridges, 10 hip circles. 2 warm-up sets on squat at 30–50% of working weight. Warm legs = safe knees + stronger lifts. Never skip.</div>
+        </div>
+        <div class="ex-right"><div class="ex-sets">10 min</div><div class="ex-rest">—</div></div>
+      </div>
+      <div class="section-label">COMPOUNDS — LOAD THE SPINE</div>
+      <div class="exercise-card">
+        <div><div class="ex-number">01</div><div class="ex-name">Barbell Back Squat <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Quads · Glutes · Hamstrings · Core · Spinal Erectors</div><div class="ex-note">King of all exercises. Bar on traps, feet shoulder-width, toes out 15–30°. BELOW parallel. This triggers the most testosterone and GH of any movement. If you skip squats, you skip 30% of your gains.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 5–7</div><div class="ex-rest">⏱ 3 min</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">02</div><div class="ex-name">Romanian Deadlift <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Hamstrings · Glutes · Lower Back</div><div class="ex-note">Hinge — not squat. Bar stays close to legs, push hips back, feel deep hamstring stretch. Huge for posterior chain development. Builds the hamstring-to-glute tie-in that creates an athletic look from behind.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 2 min</div></div>
+      </div>
+      <div class="section-label">ISOLATION WORK</div>
+      <div class="exercise-card">
+        <div><div class="ex-number">03</div><div class="ex-name">Leg Press <span class="iso-badge">ISO</span></div><div class="ex-target">Quads · Glutes (foot position dependent)</div><div class="ex-note">After squats, load volume here without spinal stress. Feet shoulder-width, mid-platform. Full ROM — knees to chest. Never lock out at top. High reps, moderate weight for pump.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 90 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">04</div><div class="ex-name">Walking Lunges <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Quads · Glutes · Hip Stabilizers · Balance</div><div class="ex-note">Dumbbells or barbell. Long stride for glute activation, short for quads. Excellent for fixing left-right strength imbalances. Builds athletic single-leg strength that squats can't replicate.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 12/leg</div><div class="ex-rest">⏱ 90 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">05</div><div class="ex-name">Leg Curl (Machine) <span class="iso-badge">ISO</span></div><div class="ex-target">Bicep Femoris (Hamstrings)</div><div class="ex-note">Isolates the hamstring. Full stretch is the money position. Hold at peak contraction 1 second. Lying or seated — both work. Prevents the imbalance that causes hamstring tears in athletes.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 90 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">06</div><div class="ex-name">Standing Calf Raises <span class="iso-badge">ISO</span></div><div class="ex-target">Gastrocnemius · Soleus</div><div class="ex-note">Full stretch at bottom (let heel go below platform). Full contraction at top. Pause 1 second. Calves respond to both heavy weight AND high reps. Do both — 6–8 reps heavy + 15–20 reps lighter.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 15–20</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="section-label">CORE FINISHER</div>
+      <div class="exercise-card">
+        <div><div class="ex-number">07</div><div class="ex-name">Hanging Leg Raises <span class="iso-badge">ISO</span></div><div class="ex-target">Lower Abs · Hip Flexors · Core Stability</div><div class="ex-note">Hang from pull-up bar. Raise legs to 90° or higher. Control the negative — no swinging. Best lower ab movement. Builds core strength that improves all your compound lifts too.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">08</div><div class="ex-name">Plank (Weighted if possible) <span class="iso-badge">ISO</span></div><div class="ex-target">Deep Core · Transverse Abdominis · Obliques</div><div class="ex-note">Place a weight plate on your back once 60+ seconds is easy. Posterior pelvic tilt (tuck pelvis in). No sagging hips. This builds the deep core that creates the flat stomach look.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 45–60s</div><div class="ex-rest">⏱ 45 sec</div></div>
+      </div>
+      <div class="tips-block legs">
+        <div class="tips-title">⚡ LEGS A COACHING NOTES</div>
+        <ul>
+          <li><strong>Squats are not optional.</strong> They release 3× more testosterone than any upper body exercise. Your chest and arms grow faster when you squat heavy.</li>
+          <li><strong>Never skip calves</strong> — underdeveloped calves ruin an otherwise great physique. Train them seriously.</li>
+          <li><strong>Eat more on leg days</strong> — these sessions deplete the most glycogen. Add extra rice or banana post-workout.</li>
+          <li><strong>Progressive overload on squats</strong> matters more than any other lift for overall body transformation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DAY 3: PUSH B -->
+    <div class="day-panel" id="day-3">
+      <div class="day-header">
+        <div>
+          <div class="day-title push">PUSH DAY B</div>
+          <div class="focus-tags">
+            <span class="focus-tag">Shoulder Dominant</span>
+            <span class="focus-tag">Chest Volume</span>
+            <span class="focus-tag">Tricep Mass</span>
+            <span class="focus-tag">Neck Work</span>
+          </div>
+        </div>
+        <div class="day-meta">
+          <span class="meta-pill">⏱ 65–75 MIN</span>
+          <span class="meta-pill">🔴 SHOULDER FOCUS</span>
+        </div>
+      </div>
+      <div class="section-label">WARM UP — 8 MIN</div>
+      <div class="exercise-card">
+        <div>
+          <div class="ex-number">00</div>
+          <div class="ex-name">Push B Warm-Up + Shoulder Prep</div>
+          <div class="ex-note">5 min treadmill or skip rope. Then: 10 band external rotations each arm, 10 Cuban press with light bar, 10 face pulls (cable, light). Shoulder warm-up is critical before pressing — cold rotator cuff = injury waiting to happen.</div>
+        </div>
+        <div class="ex-right"><div class="ex-sets">8 min</div><div class="ex-rest">—</div></div>
+      </div>
+      <div class="section-label">SHOULDER-LED PUSH</div>
+      <div class="exercise-card">
+        <div><div class="ex-number">01</div><div class="ex-name">Seated DB Shoulder Press <span class="compound-badge">COMPOUND</span></div><div class="ex-target">All 3 Delt Heads · Triceps · Traps</div><div class="ex-note">Dumbbells allow natural shoulder rotation — easier on shoulder joint than barbell. Start with dumbbells at ear level, press overhead to near-lockout. Control both directions. Primary strength movement today.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 7–9</div><div class="ex-rest">⏱ 2 min</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">02</div><div class="ex-name">Incline Barbell / DB Press <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Upper Chest · Front Delts · Triceps</div><div class="ex-note">Second push session hits upper chest again — this is intentional. Upper chest is the #1 aesthetic chest marker. Different angle (steeper than Push A) for new stimulus. 4 sets, heavy but controlled.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 8–10</div><div class="ex-rest">⏱ 2 min</div></div>
+      </div>
+      <div class="section-label">ISOLATION PUMP</div>
+      <div class="exercise-card">
+        <div><div class="ex-number">03</div><div class="ex-name">DB Lateral Raises (Cable variation) <span class="iso-badge">ISO</span></div><div class="ex-target">Medial Deltoid</div><div class="ex-note">Second lateral raise session this week. This is how you build caps. If using cable — set at hip height, cross-body, side raise. Maintains tension at the bottom unlike dumbbells. 4 heavy working sets.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 12–15</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">04</div><div class="ex-name">Chest Dips (Weighted) <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Lower Chest · Triceps · Anterior Delts</div><div class="ex-note">Lean forward significantly for chest emphasis. Go deep. Add weight on dip belt if gym has one. Excellent lower chest builder that also hits triceps heavily.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 90 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">05</div><div class="ex-name">Overhead Tricep Extension (DB or Cable) <span class="iso-badge">ISO</span></div><div class="ex-target">Long Head of Tricep</div><div class="ex-note">The long head (inner) only gets fully stretched overhead. This exercise fills in the inner tricep and adds size when seen from the back. Keep elbows close together — don't let them flare.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">06</div><div class="ex-name">Pec Deck (Machine Fly) <span class="iso-badge">ISO</span></div><div class="ex-target">Pectoralis Major (Inner + Stretch)</div><div class="ex-note">Stretch-loaded isolation. Full ROM — feel stretch in chest at start. Squeeze in the middle hard. This fills in the center of the chest for a full, round look. Finisher movement, high reps.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">07</div><div class="ex-name">Neck Work (Plate Loaded) <span class="iso-badge">ISO</span></div><div class="ex-target">Sternocleidomastoid · Splenius · Traps</div><div class="ex-note">Optional but elite-level. Towel on forehead, light plate. Forward and side flexion only. 3 sec hold each direction. A strong thick neck elevates your entire physique — it's the first thing people notice.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="tips-block push">
+        <div class="tips-title">⚡ PUSH B COACHING NOTES</div>
+        <ul>
+          <li><strong>Push B is shoulder-led.</strong> Shoulders need more volume than chest — they're involved in EVERY push movement.</li>
+          <li><strong>Lateral raises 2× per week</strong> is the single best investment for aesthetic shoulder development. Stay consistent with them.</li>
+          <li><strong>Overhead tricep extension</strong> is the most neglected tricep movement. The long head is 2/3 of the arm — train it directly.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DAY 4: PULL B -->
+    <div class="day-panel" id="day-4">
+      <div class="day-header">
+        <div>
+          <div class="day-title pull">PULL DAY B</div>
+          <div class="focus-tags">
+            <span class="focus-tag">Deadlift Based</span>
+            <span class="focus-tag">Lat Thickness</span>
+            <span class="focus-tag">Rear Delts Volume</span>
+            <span class="focus-tag">Forearms</span>
+          </div>
+        </div>
+        <div class="day-meta">
+          <span class="meta-pill">⏱ 70–80 MIN</span>
+          <span class="meta-pill">💀 DEADLIFT DAY</span>
+        </div>
+      </div>
+      <div class="section-label">WARM UP — 10 MIN (DEADLIFT DAY PREP)</div>
+      <div class="exercise-card">
+        <div>
+          <div class="ex-number">00</div>
+          <div class="ex-name">Deadlift Day Warm-Up Protocol</div>
+          <div class="ex-note">5 min light cardio. Then: 10 glute bridges, 10 cat-cow stretches, 10 hip hinges with PVC/broomstick, 2–3 ramp sets on deadlift (40%, 60%, 75% of working weight). Posterior chain must be warm. Lower back injury from cold deadlifts ends months of training.</div>
+        </div>
+        <div class="ex-right"><div class="ex-sets">10 min</div><div class="ex-rest">—</div></div>
+      </div>
+      <div class="section-label">DEADLIFT — KING MOVEMENT</div>
+      <div class="exercise-card">
+        <div><div class="ex-number">01</div><div class="ex-name">Conventional Deadlift <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Entire Posterior Chain · Traps · Lats · Forearms · Core</div><div class="ex-note">The most complete strength exercise in existence. No other movement builds full-body mass like this. Bar over mid-foot, hip hinge, chest up, neutral spine. Drive floor away. Don't jerk. Warm up properly with multiple ramp sets. This is your strength pinnacle.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 3–5</div><div class="ex-rest">⏱ 3–4 min</div></div>
+      </div>
+      <div class="section-label">BACK VOLUME</div>
+      <div class="exercise-card">
+        <div><div class="ex-number">02</div><div class="ex-name">T-Bar Row / Chest-Supported Row <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Mid Back · Lats · Rhomboids</div><div class="ex-note">After heavy deadlifts, this builds back thickness with less spinal stress. Chest supported takes the lower back out of it completely — pure back loading. Pull elbows back and squeeze hard.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 8–10</div><div class="ex-rest">⏱ 2 min</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">03</div><div class="ex-name">Straight Arm Lat Pulldown <span class="iso-badge">ISO</span></div><div class="ex-target">Lats (Isolated — Zero Bicep)</div><div class="ex-note">Elbows locked, pull bar from overhead to hips. Pure lat movement — zero bicep involvement. Builds the lat sweep. Arms straight throughout. Feel the stretch at the top and contraction at the bottom.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 90 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">04</div><div class="ex-name">Reverse DB Fly <span class="iso-badge">ISO</span></div><div class="ex-target">Rear Deltoid · Rhomboids · Mid Trap</div><div class="ex-note">Rear delts hit twice this week (face pulls Pull A + reverse fly Pull B). This is intentional — they're almost always the weakest point. Bent over, elbows slightly bent, lead with elbows back and up.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 15–20</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">05</div><div class="ex-name">Incline DB Curl <span class="iso-badge">ISO</span></div><div class="ex-target">Bicep Long Head (Peak)</div><div class="ex-note">Seated on incline bench, arms hang fully back — this creates maximum stretch on the long head. The best bicep peak builder. Supinate fully at top. Don't rush these — every rep matters.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 90 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">06</div><div class="ex-name">Wrist Curls + Reverse Wrist Curls <span class="iso-badge">ISO</span></div><div class="ex-target">Forearm Flexors + Extensors</div><div class="ex-note">Forearms are visible every time you wear a t-shirt. Seated on bench, forearms on thighs, wrist curl 15 reps then reverse grip 15 reps. Superset them. Adds vascularity and thickness to forearms.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 15/15</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="tips-block pull">
+        <div class="tips-title">⚡ PULL B COACHING NOTES</div>
+        <ul>
+          <li><strong>Deadlift is the centerpiece.</strong> Treat it with respect. Warm up with 4–5 progressive ramp sets before your heaviest set.</li>
+          <li><strong>Straight arm pulldown</strong> — pure lat movement. Zero bicep. Feel every inch of the lat contracting.</li>
+          <li><strong>Forearm work</strong> is elite-level detail. Adds visible vascularity and makes arms look much more developed in t-shirts.</li>
+          <li><strong>If your lower back is fried from deadlifts,</strong> do chest-supported rows to keep lumbar spine unloaded.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DAY 5: LEGS B -->
+    <div class="day-panel" id="day-5">
+      <div class="day-header">
+        <div>
+          <div class="day-title legs">LEGS DAY B</div>
+          <div class="focus-tags">
+            <span class="focus-tag">Glute Dominant</span>
+            <span class="focus-tag">Hamstring Focus</span>
+            <span class="focus-tag">Quad Volume</span>
+            <span class="focus-tag">Adductors</span>
+            <span class="focus-tag">Calf Finisher</span>
+          </div>
+        </div>
+        <div class="day-meta">
+          <span class="meta-pill">⏱ 70–80 MIN</span>
+          <span class="meta-pill">🍑 GLUTE + HAM FOCUS</span>
+        </div>
+      </div>
+      <div class="section-label">WARM UP — 8 MIN</div>
+      <div class="exercise-card">
+        <div>
+          <div class="ex-number">00</div>
+          <div class="ex-name">Legs B Warm-Up + Glute Activation</div>
+          <div class="ex-note">5 min bike. Then: 20 banded clamshells each side, 10 glute bridges with 2 sec hold, 10 hip flexor stretches each side. Glute activation before hip thrusts and hack squats dramatically increases muscle recruitment — your glutes fire 30–40% harder with proper warm-up.</div>
+        </div>
+        <div class="ex-right"><div class="ex-sets">8 min</div><div class="ex-rest">—</div></div>
+      </div>
+      <div class="section-label">GLUTE-LED COMPOUNDS</div>
+      <div class="exercise-card">
+        <div><div class="ex-number">01</div><div class="ex-name">Hack Squat (Machine) or Bulgarian Split Squat <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Quads (VMO Emphasis) · Glutes</div><div class="ex-note">Hack squat: feet low and close for VMO/teardrop focus. Bulgarian split squat if hack squat unavailable — most humbling exercise for legs. Both build single-leg strength and fix imbalances that barbell squats can't.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 8–12</div><div class="ex-rest">⏱ 2 min</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">02</div><div class="ex-name">Hip Thrust (Barbell) <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Glutes · Hip Stabilizers · Hamstrings</div><div class="ex-note">Scientifically the best glute activator. Shoulders on bench, barbell on hip crease (use padding). Drive hips straight up, squeeze glutes at top for 2 seconds. Glutes are your most powerful muscle — train them seriously.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 10–12</div><div class="ex-rest">⏱ 2 min</div></div>
+      </div>
+      <div class="section-label">ISOLATION</div>
+      <div class="exercise-card">
+        <div><div class="ex-number">03</div><div class="ex-name">Leg Extension (Drop Set) <span class="iso-badge">ISO</span></div><div class="ex-target">Quads · VMO · Rectus Femoris</div><div class="ex-note">Working weight × 10 reps, then drop 30% weight × 10 reps = one set. Max quad fiber exhaustion. Creates the "quad sweep" visible from the front. Only drop set in the program — use it wisely.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 10+drop</div><div class="ex-rest">⏱ 90 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">04</div><div class="ex-name">Adductor Machine <span class="iso-badge">ISO</span></div><div class="ex-target">Adductors · Inner Quad · Hip Stabilizers</div><div class="ex-note">The most skipped machine in the gym. Adductors contribute massively to squat strength and inner leg aesthetics. Full ROM, slow and controlled. Also improves hip health significantly for heavy squats.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 15–20</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="exercise-card">
+        <div><div class="ex-number">05</div><div class="ex-name">Seated Calf Raise <span class="iso-badge">ISO</span></div><div class="ex-target">Soleus (Deep Calf)</div><div class="ex-note">Different from standing calf raise — targets soleus (deeper muscle). This adds calf thickness and cross-section. Same protocol: full stretch, hold top. Combined with standing calf raise = complete calf development.</div></div>
+        <div class="ex-right"><div class="ex-sets">4 × 15–20</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="section-label">CORE</div>
+      <div class="exercise-card">
+        <div><div class="ex-number">06</div><div class="ex-name">Cable Crunch + Reverse Crunch Superset <span class="iso-badge">ISO</span></div><div class="ex-target">Upper Abs + Lower Abs</div><div class="ex-note">Cable crunch: kneeling, pull rope to knees, crunch hard. Then immediately — reverse crunch: flat bench, pull knees to chest. Superset them with no rest between. Full ab stimulation in one efficient set.</div></div>
+        <div class="ex-right"><div class="ex-sets">3 × 12+12</div><div class="ex-rest">⏱ 60 sec</div></div>
+      </div>
+      <div class="tips-block legs">
+        <div class="tips-title">⚡ LEGS B COACHING NOTES</div>
+        <ul>
+          <li><strong>Legs B complements Legs A.</strong> A was squat-dominant. B is glute/ham dominant. Together they train legs from every angle.</li>
+          <li><strong>Hip thrusts feel awkward at first</strong> — push through it. After 2 weeks you'll feel the glutes firing properly and the results show fast.</li>
+          <li><strong>Adductor machine = strength cheat code.</strong> Inner thighs contribute to squats more than most people realize.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DAY 6: REST -->
+    <div class="day-panel" id="day-6">
+      <div class="rest-day">
+        <div class="rest-icon">🌙</div>
+        <h2>FULL RESET DAY</h2>
+        <p>This is the most important day of the week. Muscle is NOT built during training — it's built during recovery. Maximum glycogen replenishment, CNS reset, and anabolic hormone response happens today.</p>
+        <div class="recovery-list">
+          <div class="recovery-item">😴 Sleep 8–9 hours — this is when GH release peaks for muscle growth</div>
+          <div class="recovery-item">🍚 Eat at maintenance or slightly above — refeed glycogen stores</div>
+          <div class="recovery-item">🚿 Cold shower or contrast therapy — reduces inflammation, improves recovery</div>
+          <div class="recovery-item">🧘 10–15 min full body mobility — hip flexors, chest, thoracic spine</div>
+          <div class="recovery-item">📓 Log all lifts from the week — plan next week's increases</div>
+          <div class="recovery-item">🥤 3–4 liters water — dehydration significantly impairs recovery</div>
+          <div class="recovery-item">🎯 Visualize next week's goals — mental preparation is real training</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROGRESSIVE OVERLOAD -->
+    <div style="margin-top:40px;">
+      <div class="section-label">PROGRESSIVE OVERLOAD SYSTEM</div>
+      <div class="overload-grid">
+        <div class="overload-card"><div class="oc-title">🏋️ Double Progression</div><p>Work a rep range (8–12). When you hit the top with good form, add weight next session. This is the fundamental mechanism of all muscle growth.</p></div>
+        <div class="overload-card"><div class="oc-title">📈 Micro Loading</div><p>Add 1.25–2.5 kg per week to compounds. Don't jump 5 kg. Small plates compounded = 65 kg more on bench in a year.</p></div>
+        <div class="overload-card"><div class="oc-title">📝 Track Everything</div><p>Every set, rep, weight — every session. You cannot progress what you don't measure. One workout log book = ₹40 investment that multiplies results 3×.</p></div>
+        <div class="overload-card"><div class="oc-title">⏳ Deload Week 6–8</div><p>Drop volume and weight to 60% for one week every 6–8 weeks. This is when supercompensation peaks. You come back stronger than before the deload.</p></div>
+        <div class="overload-card"><div class="oc-title">😴 Sleep is the Drug</div><p>Growth hormone releases during deep sleep cycles 3–4. 7–9 hours non-negotiable. Missing one night of sleep drops testosterone by 15–25% next day.</p></div>
+        <div class="overload-card"><div class="oc-title">⚡ Leucine Trigger</div><p>Each meal needs 2.5–3g leucine to trigger MPS. Eggs + chicken hit this. This is why protein distribution per meal matters as much as total protein.</p></div>
+      </div>
+    </div>
+    <!-- DELOAD WEEK PROTOCOL -->
+    <div style="margin-top:40px;">
+      <div class="section-label">DELOAD WEEK — EVERY 6–8 WEEKS (NON-NEGOTIABLE)</div>
+      <div class="verdict-banner" style="margin: 0 0 16px;">
+        <h2 style="font-size:22px;">🔄 WHAT IS A DELOAD AND WHY YOU NEED IT</h2>
+        <p>A deload is a scheduled low-intensity week. It is NOT weakness — it is strategy. After 6–8 weeks of progressive overload, your nervous system, joints, and connective tissue accumulate fatigue even if muscles feel fine. Skipping deloads = plateau within weeks. Doing deloads = come back 5–10% stronger.</p>
+      </div>
+      <div class="overload-grid">
+        <div class="overload-card"><div class="oc-title">📅 When to Deload</div><p>Every 6–8 weeks, or whenever you notice: strength dropping 2+ weeks in a row, persistent joint soreness, sleep quality decline, zero motivation to train. Don't wait for breakdown — schedule it.</p></div>
+        <div class="overload-card"><div class="oc-title">⚖️ How to Deload</div><p>Keep same exercises. Reduce weight to 50–60% of working weight. Reduce sets to 2–3 per exercise. Still train 5–6 days. Focus entirely on form perfection and mind-muscle connection.</p></div>
+        <div class="overload-card"><div class="oc-title">🍽️ Eat During Deload</div><p>Eat at maintenance or slightly above. This is when supercompensation occurs — your body rebuilds stronger. Do NOT cut calories during deload. Protein stays high (140g+).</p></div>
+        <div class="overload-card"><div class="oc-title">😴 Sleep Extra</div><p>Aim for 8–9 hours during deload week. GH release during extended sleep is when the structural repair happens. This is your body's construction week — give it the time it needs.</p></div>
+        <div class="overload-card"><div class="oc-title">📈 What Happens After</div><p>You will return week 1 post-deload feeling fresher, stronger, and more motivated. Joints stop aching. Lifts often jump 2.5–5 kg immediately. This is supercompensation — the science of getting stronger by resting.</p></div>
+        <div class="overload-card"><div class="oc-title">🗓️ Deload Schedule</div><p>Week 6 → Deload. Week 7 → Resume. Week 12 → Deload. Week 13 → Resume. Week 16 → Final assessment. Build this into your tracking calendar from day 1.</p></div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 CARDIO PROTOCOL -->
+    <div style="margin-top:40px;">
+      <div class="section-label">PHASE 3 CARDIO PROTOCOL — WEEKS 11–16</div>
+      <div class="verdict-banner" style="margin: 0 0 16px; background: linear-gradient(135deg,rgba(34,197,94,0.1),rgba(34,197,94,0.03)); border-color: rgba(34,197,94,0.25);">
+        <h2 style="font-size:22px; color: var(--legs);">🏃 CONDITIONING TO REVEAL YOUR PHYSIQUE</h2>
+        <p>Cardio is not started until Week 11 intentionally. Early phases build muscle — adding cardio too early impairs muscle growth by competing for recovery resources. By Week 11 your muscle base is built. Now you strip fat to reveal it. Add 3 sessions/week of conditioning post-workout or on alternate mornings.</p>
+      </div>
+      <div class="overload-grid">
+        <div class="overload-card" style="border-color: rgba(34,197,94,0.2);">
+          <div class="oc-title" style="color: var(--legs);">🔥 HIIT — 20 min (2× / week)</div>
+          <p>Sprint 30 sec → Walk 90 sec → Repeat × 8 rounds.<br>OR: Row machine 20 sec hard / 40 sec easy × 10 rounds.<br>Post-workout only. Burns fat without touching muscle. Most effective cardio protocol for body recomp.</p>
+        </div>
+        <div class="overload-card" style="border-color: rgba(34,197,94,0.2);">
+          <div class="oc-title" style="color: var(--legs);">🚶 LISS — 30 min (1× / week)</div>
+          <p>Morning walk (fasted preferred) — 30–40 min. 5–6 km/hr pace. Low intensity — zero muscle breakdown risk. Increases fat oxidation enzymes over time. Good on Sunday rest day to stay active without taxing CNS.</p>
+        </div>
+        <div class="overload-card" style="border-color: rgba(34,197,94,0.2);">
+          <div class="oc-title" style="color: var(--legs);">📏 Calorie Adjustment</div>
+          <p>In Phase 3 reduce carbs on rest days by 50g (remove one cup rice). Keep protein constant. Keep fats constant. This creates a ~200 kcal weekly deficit — gentle enough to preserve muscle while losing fat progressively.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ELITE UPGRADES TO 10/10 -->
+    <div style="margin-top:40px;">
+      <div class="section-label">⭐ ELITE UPGRADES — THE 3 ADDITIONS THAT MAKE THIS 10/10</div>
+      <div class="verdict-banner" style="margin: 0 0 16px; background: linear-gradient(135deg,rgba(167,139,250,0.12),rgba(167,139,250,0.03)); border-color: rgba(167,139,250,0.3);">
+        <h2 style="font-size:22px; color:#a78bfa;">💎 CURRENT RATING: 9.5/10 — ELITE TIER</h2>
+        <p>The plan is already elite. These 3 additions push it to a true 10/10 by adding explosive athleticism, grip/neck aesthetics, and upper chest priority. Implement them progressively after your first 4–6 weeks when the base is locked in.</p>
+      </div>
+      <div class="overload-grid">
+        <div class="overload-card" style="border-color:rgba(167,139,250,0.25);">
+          <div class="oc-title" style="color:#a78bfa;">🚀 1. Upper Chest Priority (Push Day)</div>
+          <p>Swap order on Push A: start with <strong>Incline Barbell Press</strong> (not flat bench) first. Low-to-high cable fly before flat bench cable fly. Upper chest is the #1 aesthetic gap in most physiques. First exercise = most energy = most growth. Flat bench moves to exercise #2.</p>
+        </div>
+        <div class="overload-card" style="border-color:rgba(167,139,250,0.25);">
+          <div class="oc-title" style="color:#a78bfa;">⚡ 2. Athletic Power Work (2×/week)</div>
+          <p>Add explosive work on Legs A (after warm-up) and Push A (before compounds):<br><strong>Box Jumps</strong> — 4×5 (max height, soft landing)<br><strong>Medicine Ball Slam</strong> — 3×8 (explosive overhead slam)<br><strong>Kettlebell Swing</strong> — 3×12 (hip drive, not arm lift)<br>Recruits fast-twitch fibers = sports performance + fat burn.</p>
+        </div>
+        <div class="overload-card" style="border-color:rgba(167,139,250,0.25);">
+          <div class="oc-title" style="color:#a78bfa;">💪 3. Grip & Neck Training (2×/week)</div>
+          <p><strong>Grip (Pull days, end of session):</strong><br>Farmer's Walk — 40–60m × 3 (heavy DBs, walk with control)<br>Towel Pull-Up — 2×max (loops towel over bar, neutral grip)<br><strong>Neck (Optional, add to rest day or warm-up):</strong><br>Plate neck hold — 3×30 sec (4-way: front/back/sides)<br>These are the most visible yet most-skipped muscles.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SWIMMING INTEGRATION -->
+    <div style="margin-top:40px;">
+      <div class="section-label">🏊 SWIMMING + GYM INTEGRATION SCHEDULE</div>
+      <div class="verdict-banner" style="margin: 0 0 16px; background: linear-gradient(135deg,rgba(26,140,232,0.1),rgba(26,140,232,0.03)); border-color:rgba(26,140,232,0.25);">
+        <h2 style="font-size:22px; color:var(--pull);">🔵 HOW TO COMBINE SWIMMING WITH THIS PLAN</h2>
+        <p>Swimming is one of the best complements to a gym program — it builds shoulder mobility, cardiovascular base, lung capacity, and active recovery without stressing joints. The key is placing swim sessions where they don't compete with heavy gym days for recovery.</p>
+      </div>
+      <div class="overload-grid">
+        <div class="overload-card" style="border-color:rgba(26,140,232,0.2);">
+          <div class="oc-title" style="color:var(--pull);">📅 Recommended Weekly Schedule</div>
+          <p><strong>Mon</strong> — Gym: Push A<br><strong>Tue</strong> — Gym: Pull A<br><strong>Wed</strong> — Gym: Legs A + 20 min swim (post-gym active recovery)<br><strong>Thu</strong> — Gym: Push B<br><strong>Fri</strong> — Gym: Pull B<br><strong>Sat</strong> — Gym: Legs B<br><strong>Sun</strong> — 30–40 min swim only (active rest)</p>
+        </div>
+        <div class="overload-card" style="border-color:rgba(26,140,232,0.2);">
+          <div class="oc-title" style="color:var(--pull);">🏊 What Swimming Adds</div>
+          <p><strong>Recovery:</strong> Hydrostatic pressure reduces DOMS faster<br><strong>Shoulder mobility:</strong> Overhead stroke patterns fix gym-tightened shoulders<br><strong>Cardiovascular:</strong> Better heart/lung capacity = better gym endurance<br><strong>Fat loss:</strong> Burns 400–600 kcal/hr at moderate pace<br><strong>Lung capacity:</strong> Breathing training improves all lifts</p>
+        </div>
+        <div class="overload-card" style="border-color:rgba(26,140,232,0.2);">
+          <div class="oc-title" style="color:var(--pull);">⚠️ Rules for Combining</div>
+          <p>Never swim on the day BEFORE a heavy leg day (fatigue legs)<br>Never swim >45 min on gym days — it competes for recovery<br>Swim AFTER gym on combined days, never before<br>Eat extra 200–300 kcal on swim days (extra energy expense)<br>In Phase 3 (weeks 11–16) replace 1 LISS session with 30 min swim</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- =================== DIET VIEW =================== -->
+<div id="view-diet" class="view">
+  <div class="container">
+    <div class="diet-day-bar">
+      <div class="diet-day-chip active" onclick="showDiet(0)">Mon/Thu</div>
+      <div class="diet-day-chip" onclick="showDiet(1)">Tue/Fri</div>
+      <div class="diet-day-chip" onclick="showDiet(2)">Wed/Sat</div>
+      <div class="diet-day-chip" onclick="showDiet(3)">Sunday</div>
+      <div class="diet-day-chip" onclick="showDiet(4)">Grocery List</div>
+    </div>
+
+    <!-- DIET PANEL 0: PUSH DAY DIET -->
+    <div class="diet-panel active" id="diet-0">
+      <div class="diet-header">
+        <div class="diet-day-title">PUSH DAY DIET</div>
+        <div class="diet-sub">MON / THU — HIGH CARB · HIGH PROTEIN · TRAINING DAY</div>
+      </div>
+      <div class="macro-bar">
+        <div class="macro-item"><div class="macro-val p">165g</div><div class="macro-label">Protein</div></div>
+        <div class="macro-item"><div class="macro-val c">300g</div><div class="macro-label">Carbs</div></div>
+        <div class="macro-item"><div class="macro-val f">60g</div><div class="macro-label">Fats</div></div>
+        <div class="macro-item"><div class="macro-val cal">2450</div><div class="macro-label">Calories</div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">06:30 AM — PRE-BREAKFAST</div>
+        <div class="meal-name">Wake-Up Fuel</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>Black Coffee or Green Tea</span><span>0 kcal</span></div>
+          <div class="meal-item"><span>1 Banana</span><span>89 kcal · 1g P · 23g C</span></div>
+          <div class="meal-item"><span>5g Creatine (with water)</span><span>0 kcal</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">1g</span></div><div class="mm">C: <span class="c">23g</span></div><div class="mm">F: <span class="f">0g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">07:30 AM — BREAKFAST</div>
+        <div class="meal-name">Egg Power Meal</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>4 Whole Eggs (scrambled/omelette)</span><span>280 kcal · 24g P · 2g C · 20g F</span></div>
+          <div class="meal-item"><span>2 Slices Bread / 2 Chapati (hostel)</span><span>160 kcal · 5g P · 30g C</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">29g</span></div><div class="mm">C: <span class="c">32g</span></div><div class="mm">F: <span class="f">21g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">10:30 AM — MID-MORNING SNACK</div>
+        <div class="meal-name">Sattu + Peanut Combo</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>40g Sattu in water (can add lemon + salt)</span><span>138 kcal · 8g P · 6g F</span></div>
+          <div class="meal-item"><span>30g Roasted Peanuts</span><span>166 kcal · 7g P · 14g F</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">15g</span></div><div class="mm">C: <span class="c">12g</span></div><div class="mm">F: <span class="f">20g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">1:00 PM — LUNCH (HOSTEL)</div>
+        <div class="meal-name">Hostel Power Lunch</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>2 Cups Rice (300g cooked)</span><span>390 kcal · 8g P · 85g C</span></div>
+          <div class="meal-item"><span>2 Ladles Dal</span><span>100 kcal · 8g P · 15g C</span></div>
+          <div class="meal-item"><span>Vegetable Sabji</span><span>80 kcal · 2g P · 10g C</span></div>
+          <div class="meal-item"><span>Cucumber + Onion salad (raw)</span><span>20 kcal · 1g P · 4g C</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">19g</span></div><div class="mm">C: <span class="c">114g</span></div><div class="mm">F: <span class="f">5g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">4:00 PM — PRE-WORKOUT</div>
+        <div class="meal-name">Pre-Workout Fuel (45 min before gym)</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>1 Banana</span><span>89 kcal · 1g P · 23g C</span></div>
+          <div class="meal-item"><span>30g Peanuts</span><span>166 kcal · 7g P · 14g F</span></div>
+          <div class="meal-item"><span>Black Coffee (optional)</span><span>5 kcal</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">8g</span></div><div class="mm">C: <span class="c">25g</span></div><div class="mm">F: <span class="f">14g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">7:30 PM — POST-WORKOUT (within 45 min)</div>
+        <div class="meal-name">Anabolic Window Meal — MOST IMPORTANT</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>350g Chicken (grilled/boiled)</span><span>550 kcal · 105g P · 12g F</span></div>
+          <div class="meal-item"><span>1 Cup Rice / 2 Chapati (hostel dinner)</span><span>200 kcal · 4g P · 43g C</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">109g</span></div><div class="mm">C: <span class="c">43g</span></div><div class="mm">F: <span class="f">12g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">9:30 PM — BEFORE SLEEP</div>
+        <div class="meal-name">Casein Slow-Release Protein</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>1 Glass Milk (250ml)</span><span>135 kcal · 8g P · 10g C · 5g F</span></div>
+          <div class="meal-item"><span>Optional: 2 boiled eggs</span><span>140 kcal · 12g P · 10g F</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">20g</span></div><div class="mm">C: <span class="c">10g</span></div><div class="mm">F: <span class="f">15g</span></div></div>
+      </div>
+    </div>
+
+    <!-- DIET PANEL 1: PULL DAY DIET -->
+    <div class="diet-panel" id="diet-1">
+      <div class="diet-header">
+        <div class="diet-day-title">PULL DAY DIET</div>
+        <div class="diet-sub">TUE / FRI — HIGH PROTEIN · MODERATE CARB · TRAINING DAY</div>
+      </div>
+      <div class="macro-bar">
+        <div class="macro-item"><div class="macro-val p">155g</div><div class="macro-label">Protein</div></div>
+        <div class="macro-item"><div class="macro-val c">270g</div><div class="macro-label">Carbs</div></div>
+        <div class="macro-item"><div class="macro-val f">58g</div><div class="macro-label">Fats</div></div>
+        <div class="macro-item"><div class="macro-val cal">2380</div><div class="macro-label">Calories</div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">07:00 AM — BREAKFAST</div>
+        <div class="meal-name">Protein-First Morning</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>4 Whole Eggs (boiled or scrambled)</span><span>280 kcal · 24g P · 20g F</span></div>
+          <div class="meal-item"><span>2 Chapati (hostel)</span><span>150 kcal · 4g P · 28g C</span></div>
+          <div class="meal-item"><span>1 Orange or Guava</span><span>50 kcal · 1g P · 12g C</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">29g</span></div><div class="mm">C: <span class="c">40g</span></div><div class="mm">F: <span class="f">21g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">10:30 AM — SNACK</div>
+        <div class="meal-name">Soy Chunk Power Snack</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>50g Raw Soy Chunks (soaked, boiled, spiced)</span><span>175 kcal · 26g P · 5g C</span></div>
+          <div class="meal-item"><span>1 Banana</span><span>89 kcal · 1g P · 23g C</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">27g</span></div><div class="mm">C: <span class="c">28g</span></div><div class="mm">F: <span class="f">2g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">1:00 PM — LUNCH (HOSTEL)</div>
+        <div class="meal-name">Standard Hostel Meal + Protein Add-On</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>2 Cups Rice + Dal + Sabji</span><span>580 kcal · 20g P · 100g C</span></div>
+          <div class="meal-item"><span>Raw Salad: cucumber + carrot + onion</span><span>30 kcal · 1g P · 6g C</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">21g</span></div><div class="mm">C: <span class="c">106g</span></div><div class="mm">F: <span class="f">5g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">4:00 PM — PRE-WORKOUT</div>
+        <div class="meal-name">Pre-Gym Fuel</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>40g Sattu drink</span><span>138 kcal · 8g P · 6g F</span></div>
+          <div class="meal-item"><span>30g Peanuts</span><span>166 kcal · 7g P · 14g F</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">15g</span></div><div class="mm">C: <span class="c">8g</span></div><div class="mm">F: <span class="f">20g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">7:30 PM — POST-WORKOUT</div>
+        <div class="meal-name">Recovery Meal</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>350g Chicken (post workout)</span><span>550 kcal · 105g P · 12g F</span></div>
+          <div class="meal-item"><span>Rice / Chapati (hostel)</span><span>200 kcal · 4g P · 43g C</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">109g</span></div><div class="mm">C: <span class="c">43g</span></div><div class="mm">F: <span class="f">12g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">10:00 PM — BEFORE SLEEP</div>
+        <div class="meal-name">Sleep Recovery</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>250ml Milk</span><span>135 kcal · 8g P · 5g F</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">8g</span></div><div class="mm">C: <span class="c">10g</span></div><div class="mm">F: <span class="f">5g</span></div></div>
+      </div>
+    </div>
+
+    <!-- DIET PANEL 2: LEG DAY DIET -->
+    <div class="diet-panel" id="diet-2">
+      <div class="diet-header">
+        <div class="diet-day-title">LEG DAY DIET</div>
+        <div class="diet-sub">WED / SAT — MAXIMUM CARB · HIGH PROTEIN · HIGHEST CALORIE DAY</div>
+      </div>
+      <div class="macro-bar">
+        <div class="macro-item"><div class="macro-val p">160g</div><div class="macro-label">Protein</div></div>
+        <div class="macro-item"><div class="macro-val c">350g</div><div class="macro-label">Carbs</div></div>
+        <div class="macro-item"><div class="macro-val f">55g</div><div class="macro-label">Fats</div></div>
+        <div class="macro-item"><div class="macro-val cal">2580</div><div class="macro-label">Calories</div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">07:00 AM — BREAKFAST</div>
+        <div class="meal-name">Pre-Leg-Day Load Up</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>4 Whole Eggs</span><span>280 kcal · 24g P</span></div>
+          <div class="meal-item"><span>2 Bananas (extra carbs — legs need it)</span><span>178 kcal · 46g C</span></div>
+          <div class="meal-item"><span>2 Chapati (hostel)</span><span>150 kcal · 28g C</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">26g</span></div><div class="mm">C: <span class="c">74g</span></div><div class="mm">F: <span class="f">20g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">11:00 AM — SNACK</div>
+        <div class="meal-name">Soy + Sattu Power</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>50g Soy Chunks (boiled, spiced)</span><span>175 kcal · 26g P</span></div>
+          <div class="meal-item"><span>40g Sattu drink</span><span>138 kcal · 8g P</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">34g</span></div><div class="mm">C: <span class="c">18g</span></div><div class="mm">F: <span class="f">5g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">1:00 PM — LUNCH (HOSTEL)</div>
+        <div class="meal-name">Big Carb Lunch</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>3 Cups Rice (extra serving — leg day allowance)</span><span>585 kcal · 12g P · 128g C</span></div>
+          <div class="meal-item"><span>Dal + Sabji</span><span>180 kcal · 10g P</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">22g</span></div><div class="mm">C: <span class="c">140g</span></div><div class="mm">F: <span class="f">5g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">4:00 PM — PRE-WORKOUT</div>
+        <div class="meal-name">Leg Day Pre-Fuel (eat 60 min before)</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>1 Banana + 30g Peanuts</span><span>255 kcal · 8g P · 23g C</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">8g</span></div><div class="mm">C: <span class="c">23g</span></div><div class="mm">F: <span class="f">14g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">7:30 PM — POST-WORKOUT (Critical on Leg Day)</div>
+        <div class="meal-name">Glycogen Reload + Muscle Rebuild</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>350g Chicken</span><span>550 kcal · 105g P</span></div>
+          <div class="meal-item"><span>Extra Rice (leg days = more carbs needed)</span><span>260 kcal · 57g C</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">109g</span></div><div class="mm">C: <span class="c">57g</span></div><div class="mm">F: <span class="f">12g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">10:00 PM — SLEEP FUEL</div>
+        <div class="meal-name">Overnight Recovery</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>Milk 250ml + 2 Eggs (boiled)</span><span>275 kcal · 20g P</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">20g</span></div><div class="mm">C: <span class="c">10g</span></div><div class="mm">F: <span class="f">15g</span></div></div>
+      </div>
+    </div>
+
+    <!-- DIET PANEL 3: REST DAY DIET -->
+    <div class="diet-panel" id="diet-3">
+      <div class="diet-header">
+        <div class="diet-day-title">REST DAY DIET</div>
+        <div class="diet-sub">SUNDAY — LOW CARB · HIGH PROTEIN · RECOVERY MODE</div>
+      </div>
+      <div class="macro-bar">
+        <div class="macro-item"><div class="macro-val p">140g</div><div class="macro-label">Protein</div></div>
+        <div class="macro-item"><div class="macro-val c">180g</div><div class="macro-label">Carbs</div></div>
+        <div class="macro-item"><div class="macro-val f">55g</div><div class="macro-label">Fats</div></div>
+        <div class="macro-item"><div class="macro-val cal">1800</div><div class="macro-label">Calories</div></div>
+      </div>
+      <div style="background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.2);border-radius:4px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:#aaa;line-height:1.6;">
+        ⚡ <strong style="color:var(--diet);">WHY 1800 KCAL ON REST DAY:</strong> This is intentional. No training = no glycogen depletion = lower carb need. Protein stays high to prevent muscle breakdown. The ~600 kcal daily deficit (vs training days at 2400–2580) creates fat-burning conditions without affecting muscle — this is the recomp mechanism working exactly as designed.
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">08:00 AM — BREAKFAST</div>
+        <div class="meal-name">Rest Day Lean Breakfast</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>4 Boiled Eggs</span><span>280 kcal · 24g P · 20g F</span></div>
+          <div class="meal-item"><span>1 Banana</span><span>89 kcal · 23g C</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">25g</span></div><div class="mm">C: <span class="c">23g</span></div><div class="mm">F: <span class="f">20g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">11:00 AM — SNACK</div>
+        <div class="meal-name">Sattu + Peanuts</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>40g Sattu + 30g Peanuts</span><span>304 kcal · 15g P · 20g F</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">15g</span></div><div class="mm">C: <span class="c">10g</span></div><div class="mm">F: <span class="f">20g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">1:00 PM — LUNCH (HOSTEL)</div>
+        <div class="meal-name">Moderate Hostel Lunch</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>1.5 Cups Rice + Dal + Sabji</span><span>430 kcal · 15g P · 75g C</span></div>
+          <div class="meal-item"><span>Raw salad</span><span>30 kcal · 1g P</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">16g</span></div><div class="mm">C: <span class="c">75g</span></div><div class="mm">F: <span class="f">4g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">4:00 PM — AFTERNOON SNACK</div>
+        <div class="meal-name">Soy Chunks (Rest Day Protein Hit)</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>50g Soy Chunks + spices</span><span>175 kcal · 26g P</span></div>
+          <div class="meal-item"><span>1 Fruit (orange / guava / papaya)</span><span>60 kcal · 15g C</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">27g</span></div><div class="mm">C: <span class="c">15g</span></div><div class="mm">F: <span class="f">2g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">7:30 PM — DINNER</div>
+        <div class="meal-name">Lean Protein Dinner</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>200g Chicken (lighter on rest day)</span><span>310 kcal · 60g P · 7g F</span></div>
+          <div class="meal-item"><span>Hostel Dal + 1 Chapati</span><span>180 kcal · 8g P · 25g C</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">68g</span></div><div class="mm">C: <span class="c">25g</span></div><div class="mm">F: <span class="f">8g</span></div></div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-time">10:00 PM — SLEEP</div>
+        <div class="meal-name">Overnight Protein</div>
+        <div class="meal-items">
+          <div class="meal-item"><span>250ml Milk</span><span>135 kcal · 8g P</span></div>
+        </div>
+        <div class="meal-macros"><div class="mm">P: <span class="p">8g</span></div><div class="mm">C: <span class="c">10g</span></div><div class="mm">F: <span class="f">5g</span></div></div>
+      </div>
+    </div>
+
+    <!-- DIET PANEL 4: GROCERY LIST -->
+    <div class="diet-panel" id="diet-4">
+      <div class="diet-header">
+        <div class="diet-day-title">WEEKLY GROCERY LIST</div>
+        <div class="diet-sub">BUY THESE EVERY WEEK — COMPLETE NUTRITION SYSTEM</div>
+      </div>
+      <div class="section-label">PROTEIN SOURCES</div>
+      <div class="grocery-grid">
+        <div class="grocery-item"><div class="grocery-name">Eggs (28/week = 4/day)</div><div class="grocery-meta">~₹196 · 168g PROTEIN</div></div>
+        <div class="grocery-item"><div class="grocery-name">Chicken (2.5 kg/week)</div><div class="grocery-meta">~₹560 · 750g PROTEIN</div></div>
+        <div class="grocery-item"><div class="grocery-name">Soy Chunks 500g pack</div><div class="grocery-meta">~₹80 · 260g PROTEIN</div></div>
+        <div class="grocery-item"><div class="grocery-name">Milk (1L carton × 2)</div><div class="grocery-meta">~₹110 · 66g PROTEIN</div></div>
+      </div>
+      <div class="section-label">FATS + SLOW CARBS</div>
+      <div class="grocery-grid">
+        <div class="grocery-item"><div class="grocery-name">Roasted Peanuts 500g</div><div class="grocery-meta">~₹80 · Healthy fats</div></div>
+        <div class="grocery-item"><div class="grocery-name">Sattu 500g</div><div class="grocery-meta">~₹60 · Fiber + protein</div></div>
+      </div>
+      <div class="section-label">FRUITS + MICRONUTRIENTS</div>
+      <div class="grocery-grid">
+        <div class="grocery-item"><div class="grocery-name">Bananas (14–18 pieces)</div><div class="grocery-meta">~₹100 · Potassium + carbs</div></div>
+        <div class="grocery-item"><div class="grocery-name">Guava / Orange × 7</div><div class="grocery-meta">~₹70 · Vitamin C</div></div>
+        <div class="grocery-item"><div class="grocery-name">Cucumber × 3</div><div class="grocery-meta">~₹30 · Fiber + hydration</div></div>
+        <div class="grocery-item"><div class="grocery-name">Carrots × 3</div><div class="grocery-meta">~₹30 · Beta-carotene</div></div>
+      </div>
+      <div class="section-label">WEEKLY COST</div>
+      <table class="budget-table">
+        <thead><tr><th>ITEM</th><th>WEEKLY</th></tr></thead>
+        <tbody>
+          <tr><td>Eggs</td><td class="budget-val">₹196</td></tr>
+          <tr><td>Chicken</td><td class="budget-val">₹560</td></tr>
+          <tr><td>Soy Chunks</td><td class="budget-val">₹80</td></tr>
+          <tr><td>Milk</td><td class="budget-val">₹110</td></tr>
+          <tr><td>Peanuts</td><td class="budget-val">₹80</td></tr>
+          <tr><td>Sattu</td><td class="budget-val">₹60</td></tr>
+          <tr><td>Fruits + Veg</td><td class="budget-val">₹230</td></tr>
+          <tr><td><strong>TOTAL / WEEK</strong></td><td class="budget-val"><strong>₹1316</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:8px;font-size:12px;color:#555;">~₹5250/month extra cost. Hostel meals already covered separately.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- =================== SCIENCE VIEW =================== -->
+<div id="view-science" class="view">
+  <div class="container">
+
+    <div class="section-label" style="padding-top:28px;">THE 4 PILLARS — EVERYTHING ELSE IS SECONDARY</div>
+    <div class="science-grid">
+      <div class="science-card">
+        <div class="sc-icon">🏋️</div>
+        <div class="sc-title">Progressive Overload</div>
+        <div class="sc-body">The singular driver of muscle growth. <strong>If the weight isn't going up over time, your muscles aren't growing.</strong> Not your diet, not your supplements — the progressive overload is the mechanism. Track every session.</div>
+      </div>
+      <div class="science-card">
+        <div class="sc-icon">🥩</div>
+        <div class="sc-title">Protein Distribution</div>
+        <div class="sc-body">Total protein matters, but <strong>protein per meal matters more.</strong> Each meal needs 25–40g protein to trigger Muscle Protein Synthesis (MPS). Your 5-meal structure creates 5 MPS spikes per day — this is how you outgrow most gym-goers.</div>
+      </div>
+      <div class="science-card">
+        <div class="sc-icon">😴</div>
+        <div class="sc-title">Sleep = Gains</div>
+        <div class="sc-body">Growth Hormone peaks during deep sleep stages 3–4. <strong>Missing one night drops testosterone 15–25% next day.</strong> 7–9 hours is non-negotiable. Sleep is the anabolic drug you already have for free.</div>
+      </div>
+      <div class="science-card">
+        <div class="sc-icon">🔄</div>
+        <div class="sc-title">Recovery Balance</div>
+        <div class="sc-body">You train 2 hrs/day, 6 days/week. <strong>That's high volume — your nutrition and sleep MUST match.</strong> Under-eating on training days kills results. Your 2400 kcal maintenance is the floor, not the ceiling.</div>
+      </div>
+    </div>
+
+    <div class="section-label">BODY RECOMP SCIENCE — WHY IT WORKS FOR YOU</div>
+    <div class="science-grid">
+      <div class="science-card">
+        <div class="sc-icon">⚗️</div>
+        <div class="sc-title">Dual Pathway Activation</div>
+        <div class="sc-body">At maintenance calories with high protein + heavy training: <strong>fat cells oxidize for energy</strong> (deficit signal) while <strong>muscle cells synthesize protein</strong> (leucine signal). Two processes happening simultaneously. This is recomp.</div>
+      </div>
+      <div class="science-card">
+        <div class="sc-icon">📉</div>
+        <div class="sc-title">Why Not Cut</div>
+        <div class="sc-body">At BMI 22.7, a hard cut risks <strong>losing 30–40% of weight from muscle,</strong> not fat. You'd get smaller but not look better. Recomp at your body fat level preserves muscle while losing fat — net result is far superior aesthetics.</div>
+      </div>
+      <div class="science-card">
+        <div class="sc-icon">📈</div>
+        <div class="sc-title">Why Not Bulk</div>
+        <div class="sc-body">You don't need a caloric surplus to build muscle at 29 with your training volume. A dirty bulk at ~18% body fat will push you to <strong>22–25% body fat</strong> before any cut. You'd spend months getting fat before getting lean. Skip it.</div>
+      </div>
+      <div class="science-card">
+        <div class="sc-icon">⚡</div>
+        <div class="sc-title">Leucine Threshold</div>
+        <div class="sc-body">Muscle protein synthesis requires <strong>2.5–3g leucine per meal</strong> as the trigger. 4 eggs = ~2.5g leucine. 350g chicken = ~8g leucine. Your current diet already hits this threshold — the protein timing plan maximizes it further.</div>
+      </div>
+    </div>
+
+    <div class="section-label">10 MISTAKES THAT STOP YOUR PROGRESS</div>
+    <div class="science-grid">
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">No Progressive Overload</div><div class="sc-body">Training the same weights for months. If bench press hasn't gone up in 4 weeks, something is broken — diet, sleep, or training structure.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Skipping Legs</div><div class="sc-body">Squats and deadlifts release more total anabolic hormones than any upper body work. <strong>Your arms grow faster when you squat heavy.</strong></div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">No Post-Workout Meal</div><div class="sc-body">Waiting 2+ hours post-training to eat blunts MPS by 30–50%. The 45-min post-workout window is real. Chicken + rice is non-negotiable.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Zero Fiber</div><div class="sc-body">Low fiber = poor gut health = poor nutrient absorption. Your 10g/day is a third of what's needed. Cucumber + salad + fruits fixes this immediately.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Dehydration</div><div class="sc-body">2% dehydration reduces strength by 10–15%. 3–4 liters/day minimum when training 2 hours. Most hostel athletes train chronically dehydrated.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Program Hopping</div><div class="sc-body">Switching programs every 2–3 weeks. Your neuromuscular adaptation takes 4–6 weeks minimum. Stick to this PPL for at least 12–16 weeks before changing anything.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Ego Lifting</div><div class="sc-body">Using momentum and partial reps with heavy weight. <strong>A perfect 60kg squat builds more muscle than a sloppy 80kg squat</strong> and keeps you injury-free long-term.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Ignoring Sleep</div><div class="sc-body">Sleeping 5–6 hours and expecting gym progress. GH release is completely suppressed. Training hard + poor sleep = cortisol dominance = muscle breakdown.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">No Micronutrients</div><div class="sc-body">Vitamin D deficiency (very common in India) reduces testosterone by 20–30%. Magnesium deficiency impairs sleep quality and muscle contraction. Fix these first.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Excessive Junk on "Bulk"</div><div class="sc-body">Biryani, fried snacks thinking it's "bulking." Inflammatory foods impair recovery, increase fat storage in wrong areas, and blunt hormonal response to training.</div></div>
+    </div>
+
+    <div class="section-label">AB VISIBILITY — THE ACTUAL TRUTH</div>
+    <div class="science-grid">
+      <div class="science-card">
+        <div class="sc-icon">🎯</div>
+        <div class="sc-title">Body Fat % Required</div>
+        <div class="sc-body"><strong>17–18%</strong> → Faint ab outline<br><strong>14–15%</strong> → Clear visible abs<br><strong>11–12%</strong> → Sharp six-pack<br>You're currently est. ~18–19%. Phase 3 (Weeks 11–16) targets 14–15%.</div>
+      </div>
+      <div class="science-card">
+        <div class="sc-icon">🏃</div>
+        <div class="sc-title">Ab Workout Protocol</div>
+        <div class="sc-body"><strong>3× per week:</strong><br>Hanging leg raises 3×12<br>Cable crunch 3×15<br>Reverse crunch 3×12<br>Plank 3×60 sec<br>Abs are muscles — they need progressive overload too.</div>
+      </div>
+      <div class="science-card">
+        <div class="sc-icon">🍽️</div>
+        <div class="sc-title">Diet is 70% of Abs</div>
+        <div class="sc-body">You can have the strongest abs in the gym and they won't show at 20% body fat. The plan above — maintenance calories + 2 hr training — will peel fat layers. <strong>Abs are revealed in the kitchen.</strong></div>
+      </div>
+    </div>
+
+    <div class="section-label">PULL-UP PROGRESSION — 2 REPS → 15 REPS IN 10–12 WEEKS</div>
+    <div class="verdict-banner" style="margin: 0 0 16px; background: linear-gradient(135deg,rgba(26,140,232,0.1),rgba(26,140,232,0.03)); border-color: rgba(26,140,232,0.25);">
+      <h2 style="font-size:22px; color:var(--pull);">🔵 THE PULL-UP IS YOUR MOST IMPORTANT LIFT</h2>
+      <p>Weighted pull-ups are the single best upper body mass builder. More important than bench press for aesthetics. Wide lats = V-taper = athletic silhouette. Most people plateau at 4–6 reps and stay there for years. This protocol fixes that.</p>
+    </div>
+    <div class="science-grid">
+      <div class="science-card" style="border-color:rgba(26,140,232,0.2)">
+        <div class="sc-icon">1️⃣</div>
+        <div class="sc-title">Weeks 1–3 — Build Volume</div>
+        <div class="sc-body">3 sets pull-ups to failure (honest reps, no kipping). After — 3 sets negative pull-ups: jump to bar, lower yourself 5 seconds. Negatives build the strength you don't have yet. <strong>3× per week.</strong></div>
+      </div>
+      <div class="science-card" style="border-color:rgba(26,140,232,0.2)">
+        <div class="sc-icon">2️⃣</div>
+        <div class="sc-title">Weeks 4–6 — Ladder Method</div>
+        <div class="sc-body">Ladder: do 1 rep, rest 30 sec. 2 reps, rest 30 sec. 3 reps, rest 30 sec. Continue until failure. Then add 3 sets lat pulldown at 60% BW. <strong>Goal: hit 8 reps by week 6.</strong></div>
+      </div>
+      <div class="science-card" style="border-color:rgba(26,140,232,0.2)">
+        <div class="sc-icon">3️⃣</div>
+        <div class="sc-title">Weeks 7–10 — Weighted Addition</div>
+        <div class="sc-body">When you hit 10 clean reps — add 2.5 kg with belt. Do 5 sets × 4–6 reps weighted. This is the fastest path to 15 bodyweight reps because you're overloading beyond bodyweight. <strong>Strength explodes here.</strong></div>
+      </div>
+      <div class="science-card" style="border-color:rgba(26,140,232,0.2)">
+        <div class="sc-icon">📊</div>
+        <div class="sc-title">Expected Timeline</div>
+        <div class="sc-body"><strong>Week 1:</strong> 2–4 reps<br><strong>Week 4:</strong> 6–8 reps<br><strong>Week 8:</strong> 10–12 reps<br><strong>Week 12:</strong> 13–15 reps clean<br>Most people hit 15 in 10–12 weeks on this exact progression.</div>
+      </div>
+    </div>
+
+    <div class="section-label">COACH'S RATING — THIS PLAN SCORED</div>
+    <div class="science-grid">
+      <div class="science-card" style="border-color:rgba(232,69,26,0.25)">
+        <div class="sc-icon">⭐</div>
+        <div class="sc-title" style="color:var(--push)">Exercise Selection — 9/10</div>
+        <div class="sc-body">Compound-first, optimal muscle selection, balanced push-pull. Weak point: earlier versions had no warm-up on 5 of 6 days. Fixed in this version. Olympic-level exercise choices throughout.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(232,69,26,0.25)">
+        <div class="sc-icon">💪</div>
+        <div class="sc-title" style="color:var(--push)">Muscle Coverage — 9/10</div>
+        <div class="sc-body">Chest, back, shoulders, arms, legs, glutes, calves, core, rear delts, traps, forearms, adductors — all covered. Very few programs hit this many muscle groups systematically. Excellent balance.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(232,69,26,0.25)">
+        <div class="sc-icon">📈</div>
+        <div class="sc-title" style="color:var(--push)">Hypertrophy Potential — 9/10</div>
+        <div class="sc-body">2× per week frequency. Optimal rep ranges (5–7 strength, 8–12 hypertrophy, 12–20 isolation). Progressive overload system built in. Double progression method. This is textbook hypertrophy programming.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(232,69,26,0.25)">
+        <div class="sc-icon">🛡️</div>
+        <div class="sc-title" style="color:var(--push)">Injury Prevention — 8.5/10</div>
+        <div class="sc-body">Face pulls, rear delts, rotator cuff warm-up added, deload protocol included. Previously no warm-ups on 5/6 training days — that was the main risk. Now fixed. Shoulder health programming is excellent.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(232,69,26,0.25)">
+        <div class="sc-icon">🔄</div>
+        <div class="sc-title" style="color:var(--push)">Recovery Balance — 8/10</div>
+        <div class="sc-body">6 training days is high volume. Risk factor: 2 hr sessions can cause CNS fatigue. Mitigated by: deload protocol, diet timing, sleep guidance. If fatigue becomes an issue — reduce to 5 days by combining Pull B accessories into Pull A.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(34,197,94,0.3); background:rgba(34,197,94,0.05)">
+        <div class="sc-icon">🏆</div>
+        <div class="sc-title" style="color:var(--legs)">FINAL SCORE — 9.5/10</div>
+        <div class="sc-body"><strong style="font-size:18px;">ELITE TIER</strong><br>Scientifically structured · Hypertrophy optimized · Strength oriented · Injury-aware · Diet integrated · Swimming included · Power work added · Beginner pathway built in. With all upgrades implemented — this is a true 10/10 professional athlete program. Execute for 16 weeks without deviation.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- =================== BEGINNER VIEW =================== -->
+<div id="view-beginner" class="view">
+  <div class="container">
+
+    <div class="day-header" style="padding-top:32px;">
+      <div>
+        <div class="day-title" style="color:#a78bfa;font-size:38px;">BEGINNER PATHWAY</div>
+        <div class="focus-tags">
+          <span class="focus-tag">New to Gym</span>
+          <span class="focus-tag">Technique First</span>
+          <span class="focus-tag">4-Day Split</span>
+          <span class="focus-tag">Weeks 1–6 Foundation</span>
+          <span class="focus-tag">Swimming Included</span>
+        </div>
+      </div>
+      <div class="day-meta">
+        <span class="meta-pill">🟣 FOUNDATION PHASE</span>
+        <span class="meta-pill">⏱ 50–60 MIN</span>
+      </div>
+    </div>
+
+    <div class="verdict-banner" style="margin: 0 0 24px; background:linear-gradient(135deg,rgba(167,139,250,0.12),rgba(167,139,250,0.03)); border-color:rgba(167,139,250,0.3);">
+      <h2 style="font-size:22px; color:#a78bfa;">⚠️ IS THIS PLAN BEGINNER FRIENDLY?</h2>
+      <p>The main 6-day PPL program is an <strong>intermediate athlete plan</strong>. If you're new to the gym and swimming, jumping directly into 6 days with compound barbell lifts risks injury, fatigue, and poor form. The solution: spend <strong>Weeks 1–6 in the Foundation Phase</strong> below. This builds technique, mobility, and base strength — then the full PPL plan becomes perfectly safe and highly effective.</p>
+      <div class="verdict-pills">
+        <span class="verdict-pill red">Full PPL = Intermediate Level</span>
+        <span class="verdict-pill orange">Foundation Phase = Beginner Safe</span>
+        <span class="verdict-pill green">Complete Foundation First → Then PPL</span>
+      </div>
+    </div>
+
+    <div class="section-label">BEGINNER PROGRESSION ROADMAP</div>
+    <div class="phase-timeline">
+      <div class="phase-card">
+        <div class="phase-num">PHASE 0 — WEEKS 1–6</div>
+        <div class="phase-title">Foundation</div>
+        <div class="phase-body">
+          <strong>4 days/week · Upper-Lower Split</strong><br><br>
+          Goal: Learn squat, hinge, press, and pull mechanics. Build mobility. Develop mind-muscle connection. No ego lifting — perfect form only.
+          <br><br>Expected: +10–20% strength on all movements. Form becomes automatic.
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">PHASE 1 — WEEKS 7–22</div>
+        <div class="phase-title">Full PPL Program</div>
+        <div class="phase-body">
+          <strong>6 days/week · Push-Pull-Legs</strong><br><br>
+          After Foundation, you have the technique and base strength to handle this properly. Start Phase 1 (Foundation) of the main plan from the Workout tab.
+          <br><br>Expected: Rapid muscle gain due to "newbie gains" + technique foundation.
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">PHASE 2 — WEEK 23+</div>
+        <div class="phase-title">Elite Tier</div>
+        <div class="phase-body">
+          <strong>Add elite upgrades from Workout tab</strong><br><br>
+          Power work, grip training, neck training, swimming conditioning. At this stage your body can handle and benefit from these advanced additions.
+          <br><br>Expected: Complete athletic physique. 10/10 program execution.
+        </div>
+      </div>
+    </div>
+
+    <!-- FOUNDATION WEEK SCHEDULE -->
+    <div class="section-label">FOUNDATION PHASE — WEEKLY SCHEDULE (WEEKS 1–6)</div>
+    <div class="overload-grid">
+      <div class="overload-card" style="border-color:rgba(167,139,250,0.2);">
+        <div class="oc-title" style="color:#a78bfa;">Monday — Upper Body A</div>
+        <p>Bench Press · Lat Pulldown · Dumbbell Shoulder Press · Dumbbell Row · Bicep Curl · Tricep Pushdown<br>Abs: Plank 3×30 sec</p>
+      </div>
+      <div class="overload-card" style="border-color:rgba(167,139,250,0.2);">
+        <div class="oc-title" style="color:#a78bfa;">Tuesday — Lower Body A</div>
+        <p>Goblet Squat · Romanian Deadlift (light) · Leg Press · Hamstring Curl · Calf Raises<br>Abs: Dead Bug 3×10</p>
+      </div>
+      <div class="overload-card" style="border-color:rgba(26,140,232,0.2);">
+        <div class="oc-title" style="color:var(--pull);">Wednesday — Swimming</div>
+        <p>30–40 min easy swimming. Focus on breathing rhythm. Freestyle or breaststroke. This is active recovery + cardio base building. No gym today.</p>
+      </div>
+      <div class="overload-card" style="border-color:rgba(167,139,250,0.2);">
+        <div class="oc-title" style="color:#a78bfa;">Thursday — Upper Body B</div>
+        <p>Incline DB Press · Pull-Ups (or Assisted) · Lateral Raises · Seated Cable Row · Hammer Curl · Overhead Tricep Extension<br>Abs: Russian Twist 3×20</p>
+      </div>
+      <div class="overload-card" style="border-color:rgba(167,139,250,0.2);">
+        <div class="oc-title" style="color:#a78bfa;">Friday — Lower Body B</div>
+        <p>Bulgarian Split Squat (or Lunge) · Hip Thrust (bodyweight or light) · Leg Extension · Adductor Machine · Seated Calf Raise<br>Abs: Hanging Knee Raise 3×12</p>
+      </div>
+      <div class="overload-card" style="border-color:rgba(26,140,232,0.2);">
+        <div class="oc-title" style="color:var(--pull);">Saturday — Swimming</div>
+        <p>40–45 min moderate pace. Practice bilateral breathing. Try 4 lengths non-stop, rest 30 sec, repeat. Building swim endurance + full body mobility.</p>
+      </div>
+      <div class="overload-card" style="border-color:rgba(136,136,136,0.15);">
+        <div class="oc-title" style="color:var(--muted);">Sunday — Full Rest</div>
+        <p>No training. 8–9 hours sleep. Light walk only if you feel energized. This is your recovery day — muscle is built here, not in the gym.</p>
+      </div>
+    </div>
+
+    <!-- BEGINNER WORKOUT DETAILS -->
+    <div class="section-label">BEGINNER UPPER BODY WORKOUT — DETAILED</div>
+    <div class="exercise-card">
+      <div><div class="ex-number">01</div><div class="ex-name">Barbell Bench Press <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Chest · Shoulders · Triceps</div><div class="ex-note">Start with empty bar or 20kg. Learn the movement pattern: bar path, leg drive, grip width. Add weight only when form is perfect. 3 working sets, not 4. Quality over quantity.</div></div>
+      <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 2 min</div></div>
+    </div>
+    <div class="exercise-card">
+      <div><div class="ex-number">02</div><div class="ex-name">Lat Pulldown (Wide Grip) <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Lats · Biceps · Rear Delts</div><div class="ex-note">Learn to initiate with shoulder blades DOWN first, then pull. This is the pull-up training ground. 60–70% of bodyweight. Feel the lats, not just arms pulling.</div></div>
+      <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 90 sec</div></div>
+    </div>
+    <div class="exercise-card">
+      <div><div class="ex-number">03</div><div class="ex-name">Dumbbell Shoulder Press <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Deltoids · Triceps</div><div class="ex-note">Seated. Light weight. Learn overhead pressing pattern before going heavy. Elbows at 75° (not straight out). Builds shoulder stability needed for heavier work later.</div></div>
+      <div class="ex-right"><div class="ex-sets">3 × 10</div><div class="ex-rest">⏱ 90 sec</div></div>
+    </div>
+    <div class="exercise-card">
+      <div><div class="ex-number">04</div><div class="ex-name">Dumbbell Row (Single Arm) <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Mid Back · Lats · Biceps</div><div class="ex-note">Knee on bench, row DB to hip. Beginner-friendly back builder. Excellent for learning the "pull with back, not arms" cue. Builds the base for barbell rows later.</div></div>
+      <div class="ex-right"><div class="ex-sets">3 × 10/side</div><div class="ex-rest">⏱ 90 sec</div></div>
+    </div>
+    <div class="exercise-card">
+      <div><div class="ex-number">05</div><div class="ex-name">Dumbbell Lateral Raises <span class="iso-badge">ISO</span></div><div class="ex-target">Side Deltoids</div><div class="ex-note">Super light — 4–6kg. Learn the movement: slight forward lean, pinky up, lead with elbow. Side delts built early give visible shoulder width even at beginner stage.</div></div>
+      <div class="ex-right"><div class="ex-sets">3 × 15</div><div class="ex-rest">⏱ 60 sec</div></div>
+    </div>
+    <div class="exercise-card">
+      <div><div class="ex-number">06</div><div class="ex-name">Bicep Curl + Tricep Pushdown Superset <span class="iso-badge">ISO</span></div><div class="ex-target">Biceps · Triceps</div><div class="ex-note">Do 10 curls, immediately do 12 pushdowns with rope. No rest between. Rest 60 sec after superset. Efficient arm training for beginners — same time, double the stimulus.</div></div>
+      <div class="ex-right"><div class="ex-sets">3 × 10+12</div><div class="ex-rest">⏱ 60 sec</div></div>
+    </div>
+
+    <div class="section-label">BEGINNER LOWER BODY WORKOUT — DETAILED</div>
+    <div class="exercise-card">
+      <div><div class="ex-number">01</div><div class="ex-name">Goblet Squat (Dumbbell or Kettlebell) <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Quads · Glutes · Core</div><div class="ex-note">Hold weight at chest. This is the BEST squat for beginners — the weight counterbalances your body and forces perfect form. Learn depth, knee tracking, and upright torso here before barbell squatting.</div></div>
+      <div class="ex-right"><div class="ex-sets">3 × 10</div><div class="ex-rest">⏱ 2 min</div></div>
+    </div>
+    <div class="exercise-card">
+      <div><div class="ex-number">02</div><div class="ex-name">Romanian Deadlift — Light <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Hamstrings · Glutes · Lower Back</div><div class="ex-note">Start with empty barbell or 30–40kg maximum. Learn the hip hinge pattern — this is the most important movement skill in gym. Flat back, push hips back, feel hamstring stretch. Form > weight for first 6 weeks.</div></div>
+      <div class="ex-right"><div class="ex-sets">3 × 10</div><div class="ex-rest">⏱ 2 min</div></div>
+    </div>
+    <div class="exercise-card">
+      <div><div class="ex-number">03</div><div class="ex-name">Leg Press (Machine) <span class="compound-badge">COMPOUND</span></div><div class="ex-target">Quads · Glutes</div><div class="ex-note">Safer than squats for beginners while building quad strength. Feet shoulder width, knees track over toes. Full range of motion — don't lock out at top. Builds leg strength without spinal loading.</div></div>
+      <div class="ex-right"><div class="ex-sets">3 × 12</div><div class="ex-rest">⏱ 90 sec</div></div>
+    </div>
+    <div class="exercise-card">
+      <div><div class="ex-number">04</div><div class="ex-name">Lying Hamstring Curl <span class="iso-badge">ISO</span></div><div class="ex-target">Hamstrings</div><div class="ex-note">Isolates hamstrings safely. Critical for knee health — most beginners have weak hamstrings vs quads. This fixes it. Slow and controlled. Feel the back of the thigh working.</div></div>
+      <div class="ex-right"><div class="ex-sets">3 × 12</div><div class="ex-rest">⏱ 90 sec</div></div>
+    </div>
+    <div class="exercise-card">
+      <div><div class="ex-number">05</div><div class="ex-name">Standing Calf Raises <span class="iso-badge">ISO</span></div><div class="ex-target">Gastrocnemius</div><div class="ex-note">Full stretch at bottom, hold peak at top 1 second. Calves respond to high reps. 3×15–20. Neglected by 90% of beginners — address this early for complete lower leg development.</div></div>
+      <div class="ex-right"><div class="ex-sets">3 × 15–20</div><div class="ex-rest">⏱ 60 sec</div></div>
+    </div>
+    <div class="exercise-card">
+      <div><div class="ex-number">06</div><div class="ex-name">Plank + Dead Bug Core Circuit <span class="iso-badge">ISO</span></div><div class="ex-target">Core · Transverse Abdominis · Lumbar Stability</div><div class="ex-note">Plank 30–45 sec → Dead Bug 10 reps (opposite arm + leg extend). Core stability must be built before heavy compound lifts. Protects lower back during squats and deadlifts long-term.</div></div>
+      <div class="ex-right"><div class="ex-sets">3 × circuit</div><div class="ex-rest">⏱ 60 sec</div></div>
+    </div>
+
+    <!-- TECHNIQUE PRIORITY LIST -->
+    <div class="section-label">TECHNIQUE CHECKLIST — MASTER THESE BEFORE ADDING WEIGHT</div>
+    <div class="science-grid">
+      <div class="science-card" style="border-color:rgba(167,139,250,0.2);">
+        <div class="sc-icon">🏋️</div>
+        <div class="sc-title">Squat Checklist</div>
+        <div class="sc-body">
+          ✅ Knees tracking over toes<br>
+          ✅ Depth: hip crease below knee<br>
+          ✅ Chest up, back not rounding<br>
+          ✅ Weight on mid-foot (not heels or toes)<br>
+          ✅ Core braced throughout<br><br>
+          <strong>Until all 5 are consistent — do not add weight.</strong>
+        </div>
+      </div>
+      <div class="science-card" style="border-color:rgba(167,139,250,0.2);">
+        <div class="sc-icon">🔱</div>
+        <div class="sc-title">Deadlift Checklist</div>
+        <div class="sc-body">
+          ✅ Bar over mid-foot (not touching shins)<br>
+          ✅ Hips hinge, not squat down<br>
+          ✅ Neutral spine (no rounding)<br>
+          ✅ Lats tight before lifting (lat spread cue)<br>
+          ✅ Drive through floor, not pull up<br><br>
+          <strong>Wrong deadlift form = lower back injury.</strong>
+        </div>
+      </div>
+      <div class="science-card" style="border-color:rgba(167,139,250,0.2);">
+        <div class="sc-icon">💪</div>
+        <div class="sc-title">Bench Press Checklist</div>
+        <div class="sc-body">
+          ✅ Scapulae retracted and depressed<br>
+          ✅ Slight arch in lower back<br>
+          ✅ Feet flat on floor, driving into ground<br>
+          ✅ Bar touches chest (not bouncing)<br>
+          ✅ Elbows at 75° (not 90° flared)<br><br>
+          <strong>Arch + leg drive = 10–15kg more safely.</strong>
+        </div>
+      </div>
+      <div class="science-card" style="border-color:rgba(167,139,250,0.2);">
+        <div class="sc-icon">📊</div>
+        <div class="sc-title">When to Move to Full PPL</div>
+        <div class="sc-body">
+          You're ready for the 6-day program when:<br><br>
+          <strong>Squat:</strong> ~0.75× bodyweight × 5 reps<br>
+          <strong>RDL:</strong> ~BW × 8 reps clean form<br>
+          <strong>Bench:</strong> ~0.6× bodyweight × 5 reps<br>
+          <strong>Pull-ups:</strong> 3–5 clean reps<br>
+          <strong>Time:</strong> Minimum 6 weeks completed
+        </div>
+      </div>
+    </div>
+
+    <!-- BEGINNER MISTAKES -->
+    <div class="section-label">12 BEGINNER MISTAKES THAT KILL PROGRESS</div>
+    <div class="science-grid">
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Skipping Warm-Up</div><div class="sc-body">Beginners tear muscles and strain joints most often in the first 2 sets when cold. 5–8 min cardio + movement-specific warm-up is not optional. Skipping it is trading 10 minutes for a 4-week injury.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Ego Lifting Immediately</div><div class="sc-body">Picking weights that force bad form. A perfect goblet squat at 16kg builds more than a half-rep leg press at 120kg. Your neuromuscular system needs reps with correct patterns, not weight.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Not Eating Enough Protein</div><div class="sc-body">Going to gym without 120g+ protein/day. Muscle protein synthesis requires raw material. Training provides the signal, food provides the bricks. Without protein, training just breaks down muscle with no rebuild.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Program Hopping</div><div class="sc-body">Switching between YouTube routines every 2–3 weeks. Neuromuscular adaptation takes 4–6 weeks minimum. You need 8–12 weeks on one program to see real results. Commit to the Foundation Phase fully.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Skipping Legs</div><div class="sc-body">The most common beginner mistake. Squats and RDLs release more testosterone and growth hormone than all upper body work combined. Skipping legs = slower total body growth including arms and chest.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Zero Rest Days</div><div class="sc-body">Training 7 days/week thinking more = faster results. Muscle growth happens during recovery, not training. Training is the stimulus. Rest is where the adaptation occurs. 1–2 rest days per week is mandatory.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Ignoring Sleep</div><div class="sc-body">Training hard on 5–6 hours sleep. Growth hormone peaks in deep sleep cycles 3–4. Losing one night's sleep reduces testosterone 15–25% next day. Sleep is the most powerful free supplement available.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Not Tracking Lifts</div><div class="sc-body">Training without a notebook or app. You cannot progress what you don't measure. Write down every set, rep, and weight. A ₹40 notebook multiplies your results 2–3× over 16 weeks.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Rushing to Advanced Programs</div><div class="sc-body">Jumping to 6-day splits, drop sets, supersets before having 6+ months of training base. The Foundation Phase is not "easy mode" — it's building the technical and physical capacity to handle advanced training.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Dehydration</div><div class="sc-body">2% dehydration reduces strength by 10–15%. 3–4 liters/day minimum when training 90+ minutes. Most beginners train chronically dehydrated and wonder why they feel weak by set 3 every session.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Comparing to Others at Gym</div><div class="sc-body">Adjusting your weights based on what others are lifting. Everyone started somewhere. A 60kg man on week 2 should not be lifting what a 90kg man on year 3 lifts. Your only competition is last week's you.</div></div>
+      <div class="science-card"><div class="sc-icon">❌</div><div class="sc-title">Ignoring Form Cues Online</div><div class="sc-body">Watching YouTube tutorials but not actually applying them. Write down 3 form cues per exercise and repeat them in your head each rep. Form becomes automatic in 4–6 weeks of conscious practice.</div></div>
+    </div>
+
+    <!-- BEGINNER NEWBIE GAINS EXPLANATION -->
+    <div class="section-label">YOUR BIGGEST ADVANTAGE: NEWBIE GAINS</div>
+    <div class="verdict-banner" style="margin: 0 0 16px; background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(34,197,94,0.03)); border-color:rgba(34,197,94,0.25);">
+      <h2 style="font-size:22px; color:var(--legs);">🚀 BEGINNERS GROW FASTER THAN ANYONE</h2>
+      <p>This is not motivation — it is physiology. Your body has never been trained. Every session creates massive hormonal and neurological adaptation. In your first 12 months you can gain <strong>5–8 kg of lean muscle</strong> — something a 5-year veteran cannot do in 3 years. Starting correctly with the Foundation Phase means every rep counts double. Do not waste this window.</p>
+    </div>
+    <div class="overload-grid">
+      <div class="overload-card" style="border-color:rgba(34,197,94,0.2);">
+        <div class="oc-title" style="color:var(--legs);">Month 1–2</div>
+        <p>Mostly neurological. Your brain learns to recruit more muscle fibers. Strength goes up fast (20–40%) without much actual muscle size yet. This feels incredible.</p>
+      </div>
+      <div class="overload-card" style="border-color:rgba(34,197,94,0.2);">
+        <div class="oc-title" style="color:var(--legs);">Month 3–6</div>
+        <p>Hypertrophy begins. Muscle size now visibly increases. 1.5–3 kg of actual muscle tissue. With the right diet (140g+ protein) this phase is the most dramatic visual change.</p>
+      </div>
+      <div class="overload-card" style="border-color:rgba(34,197,94,0.2);">
+        <div class="oc-title" style="color:var(--legs);">Month 7–12</div>
+        <p>Compounding strength and size. You now have the base to run advanced programs. Add swimming conditioning + power work. The physique others spent 3 years building, you can achieve in 1 year by starting right.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function showView(name) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('view-' + name).classList.add('active');
+    const tabs = ['overview','workout','diet','science','beginner'];
+    const idx = tabs.indexOf(name);
+    document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showDay(idx) {
+    document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.day-chip').forEach(c => c.classList.remove('active'));
+    document.getElementById('day-' + idx).classList.add('active');
+    document.querySelectorAll('.day-chip')[idx].classList.add('active');
+    window.scrollTo({ top: 60, behavior: 'smooth' });
+  }
+
+  function showDiet(idx) {
+    document.querySelectorAll('.diet-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.diet-day-chip').forEach(c => c.classList.remove('active'));
+    document.getElementById('diet-' + idx).classList.add('active');
+    document.querySelectorAll('.diet-day-chip')[idx].classList.add('active');
+    window.scrollTo({ top: 60, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>

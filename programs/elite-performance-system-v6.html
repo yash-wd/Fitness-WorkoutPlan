@@ -1,0 +1,2399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Complete Human Performance System — V6 Elite Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0b0d;
+    --bg-elev: #121216;
+    --bg-soft: #17171c;
+    --border: #23232b;
+    --border-soft: #1a1a20;
+    --text: #ececec;
+    --text-dim: #9fa0a6;
+    --text-muted: #6a6b72;
+    --gold: #d4a24c;
+    --gold-soft: #e6c178;
+    --gold-dim: rgba(212,162,76,0.15);
+    --ember: #e56b3a;
+    --sage: #7aa27a;
+    --slate: #5e7b9a;
+    --rose: #c97079;
+    --crimson: #a64450;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 10% 0%, rgba(212,162,76,0.04), transparent 40%),
+      radial-gradient(circle at 90% 100%, rgba(94,123,154,0.03), transparent 40%);
+    background-attachment: fixed;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* === HERO === */
+  .hero {
+    padding: 5rem 0 3.5rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(var(--border-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.4;
+    mask-image: radial-gradient(circle at center, black 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(circle at center, black 20%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .kicker {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .kicker::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    font-variation-settings: "opsz" 120;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .hero .sub {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--text-dim);
+    font-weight: 400;
+    max-width: 640px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .hero-meta .cell {
+    padding: 0.25rem 0;
+  }
+
+  .hero-meta .lbl {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-meta .val {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* === TOC === */
+  .toc {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .toc-title {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.6rem 2rem;
+  }
+
+  .toc-grid a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px dotted var(--border);
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .toc-grid a:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .toc-grid a .num {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .toc-grid a:hover .num { color: var(--gold); }
+
+  /* === SECTIONS === */
+  section.doc {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 2rem;
+  }
+
+  .sec-num {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  h2.sec-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+    font-variation-settings: "opsz" 100;
+  }
+
+  h2.sec-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .sec-lede {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    font-style: italic;
+    font-weight: 400;
+    max-width: 720px;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 2.5rem 0 1rem;
+    color: var(--text);
+  }
+
+  h4 {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 1.8rem 0 0.8rem;
+  }
+
+  p { margin-bottom: 1rem; color: var(--text-dim); }
+  p strong { color: var(--text); font-weight: 600; }
+
+  ul, ol { margin: 1rem 0 1.2rem 1.3rem; color: var(--text-dim); }
+  li { margin-bottom: 0.35rem; }
+  li strong { color: var(--text); }
+
+  /* === CARDS === */
+  .card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+    margin: 1.5rem 0;
+  }
+
+  .card.accent {
+    border-left: 3px solid var(--gold);
+  }
+
+  .card.danger { border-left: 3px solid var(--rose); }
+  .card.success { border-left: 3px solid var(--sage); }
+  .card.neutral { border-left: 3px solid var(--slate); }
+
+  .card-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+
+  .card p:last-child { margin-bottom: 0; }
+
+  .callout {
+    background: linear-gradient(135deg, var(--gold-dim), transparent);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+    margin: 2rem 0;
+  }
+
+  .callout .card-title {
+    color: var(--gold);
+    font-family: var(--serif);
+    font-style: italic;
+  }
+
+  /* === DATA GRID (key metrics) === */
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .data-grid .cell {
+    padding: 1.2rem 1.4rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-elev);
+  }
+
+  .data-grid .lbl {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .data-grid .val {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+
+  .data-grid .val.gold { color: var(--gold); }
+  .data-grid .val.sage { color: var(--sage); }
+  .data-grid .val.rose { color: var(--rose); }
+
+  .data-grid .note {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  /* === TABLES === */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin: 1.5rem 0 2rem;
+    background: var(--bg-elev);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    min-width: 600px;
+  }
+
+  table.compact { font-size: 0.82rem; }
+
+  th {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: left;
+    padding: 0.9rem 1rem;
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  th.right, td.right { text-align: right; }
+  th.center, td.center { text-align: center; }
+
+  td {
+    padding: 0.7rem 1rem;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border-soft);
+    vertical-align: top;
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+
+  td strong { color: var(--text); }
+
+  td.num, th.num {
+    font-family: var(--mono);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .row-hl td {
+    background: rgba(212,162,76,0.04);
+    color: var(--text);
+  }
+
+  .row-hl td strong { color: var(--gold); }
+
+  /* Phase tints */
+  .phase-found { color: var(--slate) !important; }
+  .phase-str { color: var(--gold) !important; }
+  .phase-hyp { color: var(--sage) !important; }
+  .phase-def { color: var(--ember) !important; }
+
+  /* === PILLS === */
+  .pill {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .pill.gold { color: var(--gold); border-color: var(--gold); background: var(--gold-dim); }
+  .pill.sage { color: var(--sage); border-color: var(--sage); background: rgba(122,162,122,0.1); }
+  .pill.slate { color: var(--slate); border-color: var(--slate); background: rgba(94,123,154,0.1); }
+  .pill.ember { color: var(--ember); border-color: var(--ember); background: rgba(229,107,58,0.1); }
+  .pill.rose { color: var(--rose); border-color: var(--rose); background: rgba(201,112,121,0.1); }
+  .pill.muted { color: var(--text-muted); border-color: var(--border); }
+
+  /* === SCORE BARS === */
+  .score-row {
+    display: grid;
+    grid-template-columns: 180px 1fr 50px;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .score-row:last-child { border-bottom: none; }
+
+  .score-row .name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .score-bar {
+    height: 8px;
+    background: var(--bg-soft);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border);
+  }
+
+  .score-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+    border-radius: 2px;
+  }
+
+  .score-fill.low { background: linear-gradient(90deg, var(--crimson), var(--rose)); }
+  .score-fill.mid { background: linear-gradient(90deg, var(--ember), #f0a04a); }
+  .score-fill.high { background: linear-gradient(90deg, var(--sage), #a0c8a0); }
+
+  .score-val {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    color: var(--gold);
+    text-align: right;
+    font-weight: 500;
+  }
+
+  /* === PHASE HEADER === */
+  .phase-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    border-radius: 4px;
+    margin: 2rem 0 1rem;
+  }
+  .phase-head.found { border-left-color: var(--slate); }
+  .phase-head.str { border-left-color: var(--gold); }
+  .phase-head.hyp { border-left-color: var(--sage); }
+  .phase-head.def { border-left-color: var(--ember); }
+
+  .phase-head .ph-num {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .phase-head .ph-name {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .phase-head .ph-weeks {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--gold);
+    margin-left: auto;
+    letter-spacing: 0.1em;
+  }
+
+  /* === DAY HEAD === */
+  .day-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--gold);
+    margin: 2rem 0 1rem;
+  }
+  .day-head .d-day {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .day-head .d-name {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+  }
+  .day-head .d-meta {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* === SUB-HEAD === */
+  .lede-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin: 2rem 0;
+  }
+
+  .lede-split .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  /* === VERDICT STRIP === */
+  .verdict {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem 2rem;
+    margin: 3rem 0;
+    position: relative;
+  }
+
+  .verdict::before {
+    content: '"';
+    position: absolute;
+    top: -1rem;
+    left: 1.5rem;
+    font-family: var(--serif);
+    font-size: 5rem;
+    color: var(--gold);
+    line-height: 1;
+    font-style: italic;
+  }
+
+  .verdict p {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text);
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .verdict .sign {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 1rem;
+  }
+
+  /* === TIMELINE === */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 2rem 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.4rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .tl-item {
+    position: relative;
+    padding-bottom: 1.8rem;
+  }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -1.7rem;
+    top: 0.45rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg);
+  }
+
+  .tl-item .tl-mark {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .tl-item .tl-title {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  /* === FOOTER === */
+  footer {
+    padding: 4rem 0 3rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  footer .mono-line {
+    display: block;
+    width: 3rem;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 1.5rem;
+  }
+
+  /* === UTILS === */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+  .mt-0 { margin-top: 0 !important; }
+  .mb-0 { margin-bottom: 0 !important; }
+  .gold { color: var(--gold); }
+  .sage { color: var(--sage); }
+  .rose { color: var(--rose); }
+  .ember { color: var(--ember); }
+
+  @media (max-width: 768px) {
+    body { font-size: 14px; }
+    .container { padding: 0 1.2rem; }
+    .hero { padding: 3rem 0 2.5rem; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .lede-split, .two-col, .three-col { grid-template-columns: 1fr; gap: 1.2rem; }
+    .score-row { grid-template-columns: 120px 1fr 40px; gap: 0.6rem; }
+    .score-row .name { font-size: 0.9rem; }
+    section.doc { padding: 3rem 0 2rem; }
+    .card, .callout { padding: 1.2rem; }
+    .verdict { padding: 1.5rem 1.2rem; }
+    .verdict p { font-size: 1rem; }
+  }
+
+  @media print {
+    body { background: white; color: black; }
+    .hero::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="container hero-inner">
+    <div class="kicker">Complete Human Performance System · V6 Elite Edition</div>
+    <h1>The Athletic <em>Recomposition</em> Protocol</h1>
+    <p class="sub">A 24-month zero-to-hero training system engineered for a 71 kg Hyderabad hostel athlete — strength, hypertrophy, athletic aesthetics, and adaptive AI coaching, built on evidence-based sports science.</p>
+
+    <div class="hero-meta">
+      <div class="cell">
+        <div class="lbl">Athlete</div>
+        <div class="val">Male, 29</div>
+      </div>
+      <div class="cell">
+        <div class="lbl">Stats</div>
+        <div class="val">71 kg · 5′6″</div>
+      </div>
+      <div class="cell">
+        <div class="lbl">BMI / BF</div>
+        <div class="val">22.7 · ~19%</div>
+      </div>
+      <div class="cell">
+        <div class="lbl">Context</div>
+        <div class="val">Hyderabad Hostel</div>
+      </div>
+      <div class="cell">
+        <div class="lbl">Strategy</div>
+        <div class="val">Recomposition</div>
+      </div>
+      <div class="cell">
+        <div class="lbl">Horizon</div>
+        <div class="val">24 Months</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= TOC ================= -->
+<nav class="toc">
+  <div class="container">
+    <div class="toc-title">Contents — 21 Sections</div>
+    <div class="toc-grid">
+      <a href="#s1"><span>Athlete Profile Analysis</span><span class="num">01</span></a>
+      <a href="#s2"><span>Zero-Level Baseline</span><span class="num">02</span></a>
+      <a href="#s3"><span>Body Strategy Decision</span><span class="num">03</span></a>
+      <a href="#s4"><span>Elite Physique Model</span><span class="num">04</span></a>
+      <a href="#s5"><span>Strength Standards</span><span class="num">05</span></a>
+      <a href="#s6"><span>Hypertrophy Science</span><span class="num">06</span></a>
+      <a href="#s7"><span>Fatigue Management</span><span class="num">07</span></a>
+      <a href="#s8"><span>24-Month Roadmap</span><span class="num">08</span></a>
+      <a href="#s9"><span>12-Week Training Program</span><span class="num">09</span></a>
+      <a href="#s10"><span>Nutrition System</span><span class="num">10</span></a>
+      <a href="#s11"><span>Recomposition Science</span><span class="num">11</span></a>
+      <a href="#s12"><span>Recovery Optimization</span><span class="num">12</span></a>
+      <a href="#s13"><span>Beginner Mistake Prevention</span><span class="num">13</span></a>
+      <a href="#s14"><span>Performance Tracking</span><span class="num">14</span></a>
+      <a href="#s15"><span>Realistic Progress Timeline</span><span class="num">15</span></a>
+      <a href="#s16"><span>Supplement Guidance</span><span class="num">16</span></a>
+      <a href="#s18"><span>Automatic Body Analysis</span><span class="num">18 ✦</span></a>
+      <a href="#s19"><span>Physique Scoring System</span><span class="num">19 ✦</span></a>
+      <a href="#s20"><span>Strength Prediction Model</span><span class="num">20 ✦</span></a>
+      <a href="#s21"><span>Adaptive Training System</span><span class="num">21 ✦</span></a>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+
+<!-- ================= SECTION 1 ================= -->
+<section class="doc" id="s1">
+  <div class="sec-num">Section 01</div>
+  <h2 class="sec-title">Athlete <em>Profile</em> Analysis</h2>
+  <p class="sec-lede">Before any program is written, the athlete must be understood. Everything that follows — training split, volume, calories, phase sequencing — descends from the profile below.</p>
+
+  <div class="data-grid">
+    <div class="cell"><div class="lbl">Sex / Age</div><div class="val">Male, 29</div><div class="note">Prime anabolic window</div></div>
+    <div class="cell"><div class="lbl">Weight</div><div class="val">71 kg</div><div class="note">~156.5 lb</div></div>
+    <div class="cell"><div class="lbl">Height</div><div class="val">168 cm</div><div class="note">5′6″ / short-torso</div></div>
+    <div class="cell"><div class="lbl">BMI</div><div class="val">22.7</div><div class="note">Normal range</div></div>
+    <div class="cell"><div class="lbl">Body Fat</div><div class="val">~19%</div><div class="note">Est. visual, skinfold pending</div></div>
+    <div class="cell"><div class="lbl">Lean Mass</div><div class="val">~57.5 kg</div><div class="note">LBM = BW × (1 − BF%)</div></div>
+  </div>
+
+  <h3>Training Experience &amp; Baseline</h3>
+  <p>Self-reported as intermediate enthusiast — consistent gym exposure but no prior programme ever completed end-to-end. Technique on heavy compounds (squat, deadlift, OHP) is unproven under load. For the purposes of this protocol, I am <strong>assuming zero</strong> — the first four weeks will audit every pattern before the plan accelerates.</p>
+
+  <h3>Equipment &amp; Schedule</h3>
+  <ul>
+    <li><strong>Gym:</strong> 07:00–08:00, six days per week. Standard commercial equipment — barbells, dumbbells, cables, machines.</li>
+    <li><strong>Swimming:</strong> 08:30–09:00 — ignored in the gym plan as instructed. Treated as light active recovery only.</li>
+    <li><strong>Total weekly gym time:</strong> ~6 hours. This is a deliberate tightening from the 12-hour volume seen in the V3 plan.</li>
+  </ul>
+
+  <h3>Lifestyle Constraints</h3>
+  <div class="two-col">
+    <div class="card neutral">
+      <div class="card-title">Environment</div>
+      <p>Hostel accommodation in Hyderabad. Shared sleep environment, common mess with variable meal timing, no home kitchen. Moderate ambient noise.</p>
+    </div>
+    <div class="card neutral">
+      <div class="card-title">Budget</div>
+      <p>Food supplementation cap ≈ ₹200–220/day. No access to premium supplements, specialty dairy, or fatty fish daily. Whey is optional, not the backbone.</p>
+    </div>
+    <div class="card neutral">
+      <div class="card-title">Recovery Quality</div>
+      <p>Sleep: 6.5–7.5 hrs typical. Stress: moderate (study/work). This is the primary risk variable — if sleep drops below 6 hours for 3+ nights, loads must auto-adjust.</p>
+    </div>
+    <div class="card neutral">
+      <div class="card-title">Goal Physique</div>
+      <p>Lean, strong, symmetrical, <strong>not</strong> bulky bodybuilding mass. Functional hybrid-athlete aesthetic — upright posture, visible midsection, full back, defined shoulders.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="card-title">Coach's Read</div>
+    <p>This is a high-potential profile. Age 29, normal BMI, trainable, disciplined enough to build this document himself. The single largest risk is not programming — it is recovery volatility inside a hostel environment. Everything in this manual is calibrated to that reality.</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 2 ================= -->
+<section class="doc" id="s2">
+  <div class="sec-num">Section 02</div>
+  <h2 class="sec-title">Zero-Level <em>Baseline</em> Assessment</h2>
+  <p class="sec-lede">A conservative start is not timidity — it is the only strategy that preserves the joints required for the next twenty-four months of work.</p>
+
+  <h3>Assumed Starting Capacity</h3>
+  <p>We treat the athlete as an <strong>untrained beginner</strong> for the first four weeks regardless of prior gym time. This is not insulting — it is protective. Almost every intermediate lifter in India has never been properly screened on hinge mechanics, scapular retraction depth, or ankle dorsiflexion. We audit before we load.</p>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr>
+          <th>Lift</th>
+          <th class="num">Beginner Start (5RM)</th>
+          <th class="num">BW Multiple</th>
+          <th>Form Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Back Squat</strong></td><td class="num">40–50 kg</td><td class="num">0.56–0.70×</td><td>Hip hinge depth, knee tracking, neutral spine</td></tr>
+        <tr><td><strong>Bench Press</strong></td><td class="num">40–45 kg</td><td class="num">0.56–0.63×</td><td>Scapular retraction, bar path, arch without shrug</td></tr>
+        <tr><td><strong>Deadlift</strong></td><td class="num">60–70 kg</td><td class="num">0.85–0.99×</td><td>Lat tension, hip drive, bar against shins</td></tr>
+        <tr><td><strong>Overhead Press</strong></td><td class="num">25–30 kg</td><td class="num">0.35–0.42×</td><td>Wrist stack, rib cage down, glute squeeze</td></tr>
+        <tr><td><strong>Barbell Row</strong></td><td class="num">40–45 kg</td><td class="num">0.56–0.63×</td><td>Neutral spine, elbow path, no torso cheat</td></tr>
+        <tr><td><strong>Pull-ups</strong></td><td class="num">3–6 reps</td><td class="num">BW</td><td>Full hang, scapular depression, chin over bar</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Safe Starting Volume</h3>
+  <p>Phase 1 uses <strong>8–12 weekly sets per major muscle group</strong>, sitting at the low end of the MEV (Minimum Effective Volume) range. This lets us observe recovery response before climbing toward MAV (Maximum Adaptive Volume) in Phase 2.</p>
+
+  <h3>Realistic First Four Weeks</h3>
+  <ul>
+    <li><strong>Strength:</strong> +15–25% on all main lifts (neural gains dominate).</li>
+    <li><strong>Body comp:</strong> 0.5–1.0 kg of lean mass gain likely; 0.5–1.0 kg of fat loss likely simultaneously (newbie recomp).</li>
+    <li><strong>Visible change:</strong> Improved posture and minor waist tightening. No dramatic aesthetic shift — that arrives in Phase 3.</li>
+    <li><strong>Common limitation:</strong> Ankle dorsiflexion (squat depth), thoracic extension (bench arch), and deep hip hinge. Mobility work in §12 addresses each.</li>
+  </ul>
+
+  <div class="card accent">
+    <div class="card-title">Why This Conservatism Matters</div>
+    <p>An athlete who reaches the end of Phase 1 uninjured with clean movement patterns will out-progress an athlete who chased numbers in Week 2 by a factor of three over 24 months. Injury is the only true setback. Everything else is just slower progress.</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 3 ================= -->
+<section class="doc" id="s3">
+  <div class="sec-num">Section 03</div>
+  <h2 class="sec-title">Body Strategy <em>Decision</em></h2>
+  <p class="sec-lede">Three paths exist. Only one fits the data. Choosing the wrong path wastes months.</p>
+
+  <div class="data-grid">
+    <div class="cell"><div class="lbl">Current BMI</div><div class="val">22.7</div><div class="note">Normal — not skinny, not fat</div></div>
+    <div class="cell"><div class="lbl">Body Fat</div><div class="val">~19%</div><div class="note">Just above athletic range</div></div>
+    <div class="cell"><div class="lbl">Training Age</div><div class="val">Low</div><div class="note">Newbie-gain window open</div></div>
+    <div class="cell"><div class="lbl">Decision</div><div class="val gold">Recomposition</div><div class="note">Confidence: high</div></div>
+  </div>
+
+  <h3>Why Recomposition Wins Here</h3>
+  <p>Body recomposition — simultaneous muscle gain and fat loss — is traditionally controversial, but the scientific literature is crystal clear on one point: <strong>it works reliably in exactly three populations</strong>, and this athlete sits in the overlap of all three:</p>
+
+  <ol>
+    <li><strong>Beginner or long-detrained lifters</strong> (newbie gains = enhanced muscle protein synthesis response).</li>
+    <li><strong>Individuals carrying 15–25% body fat</strong> (ample fat substrate to fuel anabolism).</li>
+    <li><strong>Adequate protein with resistance training stimulus</strong> (≥1.8 g/kg and progressive overload).</li>
+  </ol>
+
+  <p>The Longland (2016) study and its replications show recomp of +1.2 kg lean mass with −4.8 kg fat over 4 weeks in high-protein training groups — and those subjects were more advanced than this athlete.</p>
+
+  <h3>Why Bulking Fails Here</h3>
+  <p>At 19% body fat, a 500 kcal/day surplus would shuttle excess calories disproportionately into fat (poor P-ratio at higher baseline adiposity). Gaining to 22–24% BF would then require a long cut, erasing months of productive training. The P-ratio math does not favour a bulk until BF drops below 15%.</p>
+
+  <h3>Why Cutting Fails Here</h3>
+  <p>The athlete is not fat — BMI 22.7 is inside the normal range. A dedicated cut would sacrifice the anabolic environment needed for newbie gains. We would arrive at 65 kg and 14% BF with negligible muscle built — an underdeveloped physique.</p>
+
+  <h3>Macro Targets for Recomposition</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Day Type</th>
+          <th class="num">Calories</th>
+          <th class="num">Protein</th>
+          <th class="num">Carbs</th>
+          <th class="num">Fat</th>
+          <th class="num">Fiber</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-hl"><td><strong>Training Day</strong></td><td class="num">2550 kcal</td><td class="num">155 g (2.18 g/kg)</td><td class="num">310 g</td><td class="num">65 g</td><td class="num">30 g</td></tr>
+        <tr><td>Rest Day</td><td class="num">2200 kcal</td><td class="num">150 g (2.11 g/kg)</td><td class="num">230 g</td><td class="num">65 g</td><td class="num">30 g</td></tr>
+        <tr><td>Weekly Average</td><td class="num">~2450 kcal</td><td class="num">~154 g</td><td class="num">~290 g</td><td class="num">~65 g</td><td class="num">~30 g</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Net effect:</strong> Slight surplus on training days (fuels hypertrophy), moderate deficit on rest days (drives fat loss). Weekly average sits at or just below maintenance — the textbook recomp lever.</p>
+
+  <div class="callout">
+    <div class="card-title">This fixes a flaw in the original V3 plan</div>
+    <p>V3 prescribed 2400 kcal flat. For a 6-day high-volume athlete that creates a ~500 kcal daily deficit during the hypertrophy phase — enough to blunt muscle growth. The revised structure above protects training days while still producing the net weekly deficit recomposition requires.</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 4 ================= -->
+<section class="doc" id="s4">
+  <div class="sec-num">Section 04</div>
+  <h2 class="sec-title">Elite Athletic <em>Physique</em> Model</h2>
+  <p class="sec-lede">"Athletic" is not vague — it has measurable proportions. The following targets define the visual contract of this program.</p>
+
+  <h3>Target Body Composition</h3>
+  <div class="data-grid">
+    <div class="cell"><div class="lbl">Body Fat Target</div><div class="val sage">12–14%</div><div class="note">Abs visible, vascularity moderate</div></div>
+    <div class="cell"><div class="lbl">Lean Mass Target</div><div class="val sage">63–65 kg</div><div class="note">Gain of 5–7 kg over 24 months</div></div>
+    <div class="cell"><div class="lbl">Goal Weight</div><div class="val sage">72–75 kg</div><div class="note">Heavier but leaner</div></div>
+    <div class="cell"><div class="lbl">Horizon</div><div class="val gold">24 Months</div><div class="note">Natural, sustainable rate</div></div>
+  </div>
+
+  <h3>Aesthetic Proportion Model</h3>
+  <p>These are the ratios used by classical physique coaches — from Reeves' Grecian ideal through modern performance aesthetics. They describe why a 72 kg athletic frame looks more impressive than an 85 kg untrained one.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Ratio</th>
+          <th class="num">Target</th>
+          <th class="num">Current (est.)</th>
+          <th>Training Implication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Shoulder : Waist</strong></td><td class="num">1.60–1.65</td><td class="num">~1.30</td><td>Medial deltoid priority + lat width + waist hold</td></tr>
+        <tr><td><strong>Chest : Waist</strong></td><td class="num">1.40–1.45</td><td class="num">~1.20</td><td>Incline pressing + full-ROM rows</td></tr>
+        <tr><td><strong>Arm : Neck</strong></td><td class="num">1.00</td><td class="num">~0.85</td><td>Direct arm work 2×/wk (bicep + tricep isolation)</td></tr>
+        <tr><td><strong>Calf : Upper Arm</strong></td><td class="num">1.00</td><td class="num">~1.05</td><td>Already balanced — maintain not emphasise</td></tr>
+        <tr><td><strong>Thigh : Waist</strong></td><td class="num">0.72–0.75</td><td class="num">~0.62</td><td>Squat depth + direct quad volume</td></tr>
+        <tr><td><strong>Waist : Height</strong></td><td class="num">≤0.45</td><td class="num">~0.46</td><td>Drop waist ~2 cm via fat loss phase</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Why These Ratios Create the Athletic Look</h3>
+  <p>The human eye evaluates silhouettes, not numbers. A 1.6 shoulder-to-waist ratio is what creates the V-taper that reads as "athlete" at a glance. Chest-to-waist drives the side profile. Arm-to-neck prevents the "no-neck" muscled-up look of bodybuilders while still reading as strong. These ratios collectively produce the hybrid-athlete aesthetic — lean, capable, and proportionate — rather than bodybuilder mass or skinny-fat fragility.</p>
+
+  <p>Every exercise in the 12-week program targets at least one of these ratios. Nothing is included for its own sake.</p>
+</section>
+
+<!-- ================= SECTION 5 ================= -->
+<section class="doc" id="s5">
+  <div class="sec-num">Section 05</div>
+  <h2 class="sec-title">Strength Progression <em>Standards</em></h2>
+  <p class="sec-lede">Strength is the honest audit of training. These benchmarks, expressed as body-weight multiples, tell the athlete exactly where he sits in the development curve — not what Instagram tells him, what physics tells him.</p>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr>
+          <th>Lift</th>
+          <th class="num">Beginner<br/>(0–6 mo)</th>
+          <th class="num">Intermediate<br/>(6–18 mo)</th>
+          <th class="num">Advanced<br/>(18–36 mo)</th>
+          <th class="num">Elite<br/>(3+ yrs)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Back Squat (1RM)</strong></td><td class="num">1.0× BW</td><td class="num">1.5× BW</td><td class="num">2.0× BW</td><td class="num">2.5× BW</td></tr>
+        <tr><td><strong>Bench Press (1RM)</strong></td><td class="num">0.75× BW</td><td class="num">1.15× BW</td><td class="num">1.5× BW</td><td class="num">1.8× BW</td></tr>
+        <tr><td><strong>Deadlift (1RM)</strong></td><td class="num">1.25× BW</td><td class="num">1.75× BW</td><td class="num">2.25× BW</td><td class="num">2.75× BW</td></tr>
+        <tr><td><strong>Overhead Press (1RM)</strong></td><td class="num">0.55× BW</td><td class="num">0.8× BW</td><td class="num">1.0× BW</td><td class="num">1.2× BW</td></tr>
+        <tr><td><strong>Barbell Row (5RM)</strong></td><td class="num">0.75× BW</td><td class="num">1.1× BW</td><td class="num">1.4× BW</td><td class="num">1.65× BW</td></tr>
+        <tr class="row-hl"><td><strong>Translated to 71 kg BW</strong></td><td class="num">Baseline</td><td class="num">Bench 82 · Sq 107 · DL 124</td><td class="num">Bench 107 · Sq 142 · DL 160</td><td class="num">Bench 128 · Sq 178 · DL 195</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Why Strength Predicts Muscle</h3>
+  <p>Cross-sectional muscle area correlates strongly with maximal force production — not perfectly, but reliably enough that strength levels serve as a proxy for physique development. An athlete squatting 1.5× BW with a 1.15× BW bench almost certainly has intermediate-level quadriceps, glutes, and chest development. This is why Section 20 (Strength Prediction Model) uses BW multiples to infer development status.</p>
+
+  <div class="card accent">
+    <div class="card-title">Honest 16-Week Expectation</div>
+    <p>Reviewing the V3 plan, the 130–140 kg deadlift target at 71 kg BW in 16 weeks was unrealistic for a natural beginner. The revised, achievable 16-week target: <strong>Bench 65–75 kg × 5, Squat 85–95 kg × 5, Deadlift 105–115 kg × 3.</strong> Still significant. Still a proud achievement. Just not fantasy.</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 6 ================= -->
+<section class="doc" id="s6">
+  <div class="sec-num">Section 06</div>
+  <h2 class="sec-title">Hypertrophy <em>Science</em></h2>
+  <p class="sec-lede">Muscle growth has three proximate drivers. Only one matters in the long run.</p>
+
+  <div class="three-col">
+    <div class="card accent">
+      <div class="card-title">Mechanical Tension</div>
+      <p>The primary driver. Heavy or near-maximal load placed on a muscle through its full ROM triggers mTOR and satellite cell activation. This is why compounds and progressive overload are the program's spine.</p>
+    </div>
+    <div class="card neutral">
+      <div class="card-title">Metabolic Stress</div>
+      <p>The "pump" matters but is secondary. Higher-rep isolation work (12–20 reps) creates ischemic conditions that drive hypertrophy signalling through a different pathway. Useful finisher, not main course.</p>
+    </div>
+    <div class="card neutral">
+      <div class="card-title">Muscle Damage</div>
+      <p>The most misunderstood mechanism. Modern evidence suggests damage is a side effect of growth, not a cause. Deliberately chasing soreness by using novel exercises weekly wastes recovery. Soreness is not the goal.</p>
+    </div>
+  </div>
+
+  <h3>Weekly Volume Prescriptions (Sets per Muscle per Week)</h3>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr>
+          <th>Muscle Group</th>
+          <th class="num">MEV</th>
+          <th class="num">Beginner<br/>(Phase 1)</th>
+          <th class="num">Intermediate<br/>(Phase 2–3)</th>
+          <th class="num">Advanced<br/>(Phase 4+)</th>
+          <th class="num">MRV</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Chest</strong></td><td class="num">8</td><td class="num">10</td><td class="num">14</td><td class="num">18</td><td class="num">22</td></tr>
+        <tr><td><strong>Back</strong></td><td class="num">10</td><td class="num">12</td><td class="num">16</td><td class="num">22</td><td class="num">26</td></tr>
+        <tr><td><strong>Shoulders (direct)</strong></td><td class="num">8</td><td class="num">10</td><td class="num">14</td><td class="num">18</td><td class="num">22</td></tr>
+        <tr><td><strong>Biceps</strong></td><td class="num">6</td><td class="num">8</td><td class="num">10</td><td class="num">14</td><td class="num">16</td></tr>
+        <tr><td><strong>Triceps</strong></td><td class="num">6</td><td class="num">8</td><td class="num">10</td><td class="num">14</td><td class="num">16</td></tr>
+        <tr><td><strong>Quadriceps</strong></td><td class="num">8</td><td class="num">10</td><td class="num">14</td><td class="num">18</td><td class="num">20</td></tr>
+        <tr><td><strong>Hamstrings</strong></td><td class="num">6</td><td class="num">8</td><td class="num">12</td><td class="num">14</td><td class="num">18</td></tr>
+        <tr><td><strong>Calves</strong></td><td class="num">6</td><td class="num">8</td><td class="num">12</td><td class="num">16</td><td class="num">18</td></tr>
+        <tr><td><strong>Core</strong></td><td class="num">—</td><td class="num">6</td><td class="num">9</td><td class="num">12</td><td class="num">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="mono" style="font-family:var(--mono); font-size:0.78rem; color:var(--text-muted); margin-top:-1rem;">MEV = Minimum Effective Volume · MRV = Maximum Recoverable Volume · Sources: Schoenfeld 2017, Israetel 2019, Krieger 2010.</p>
+
+  <h3>Training Frequency</h3>
+  <p>Each muscle group hit <strong>twice per week</strong> is the sweet spot for natural beginner-to-intermediate athletes. Once per week leaves growth on the table; three times starts to compete with recovery unless volume per session is reduced. The 6-day PPL structure in Section 9 delivers 2× frequency cleanly.</p>
+
+  <div class="callout">
+    <div class="card-title">Volume Fix vs V3 Plan</div>
+    <p>V3 prescribed ~34 sets/week for back — significantly above MRV for a natural at 71 kg on a recomp. This program caps back at 16–18 sets/week during hypertrophy phase. More is not better once you cross MAV; fatigue outpaces stimulus and strength stalls.</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 7 ================= -->
+<section class="doc" id="s7">
+  <div class="sec-num">Section 07</div>
+  <h2 class="sec-title">Fatigue <em>Management</em> System</h2>
+  <p class="sec-lede">Training produces fatigue. Recovery produces results. Managing the distance between the two is what separates athletes who progress for years from athletes who burn out in weeks.</p>
+
+  <h3>The Two Fatigues</h3>
+  <div class="two-col">
+    <div class="card accent">
+      <div class="card-title">Local Fatigue</div>
+      <p>Muscle-specific. Resolves in 48–72 hours given protein and rest. Managed through exercise rotation and session spacing — the reason chest is not trained on consecutive days.</p>
+    </div>
+    <div class="card accent">
+      <div class="card-title">Systemic (CNS) Fatigue</div>
+      <p>Whole-body. Accumulates over weeks under high volume, heavy compounds, or poor sleep. Cannot be pushed through. Requires deload or reduction of load/volume for 5–7 days.</p>
+    </div>
+  </div>
+
+  <h3>Warning Signs — The Athlete's Dashboard</h3>
+  <ul>
+    <li><strong>Strength drops 5%+ on two consecutive sessions of the same lift</strong> — fatigue accumulating.</li>
+    <li><strong>Resting heart rate elevated 5+ bpm above baseline for 3+ mornings</strong> — autonomic recovery impaired.</li>
+    <li><strong>Sleep quality drops despite normal hours</strong> — cortisol dysregulation.</li>
+    <li><strong>Mood, motivation, and appetite all decline together</strong> — classic overreaching triad.</li>
+    <li><strong>Persistent joint discomfort that outlasts warm-up</strong> — soft-tissue signal.</li>
+  </ul>
+
+  <h3>Deload Protocol</h3>
+  <p>Scheduled every 5th week, with unscheduled deloads triggered by any two warning signs above persisting for five days.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th class="num">Normal Training</th>
+          <th class="num">Deload Week</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Load (weight)</td><td class="num">100%</td><td class="num">60%</td><td>CNS recovery</td></tr>
+        <tr><td>Volume (sets)</td><td class="num">100%</td><td class="num">50–60%</td><td>Connective tissue recovery</td></tr>
+        <tr><td>Intensity (RPE)</td><td class="num">7–9</td><td class="num">5–6</td><td>Movement rehearsal</td></tr>
+        <tr><td>Calories</td><td class="num">Full</td><td class="num">Maintenance</td><td>Refill glycogen, restore hormones</td></tr>
+        <tr><td>Sleep target</td><td class="num">7.5 hrs</td><td class="num">8+ hrs</td><td>Parasympathetic dominance</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="card-title">Fix vs V3 Plan</div>
+    <p>V3 scheduled the first deload at Week 6 — too late for a 6-day high-frequency split. This protocol deloads at Week 5, then Week 10, then Week 15. Three planned deloads inside sixteen weeks may feel excessive; it is the exact reason the athlete will still be progressing in Month 18.</p>
+  </div>
+</section>
+
+
+<!-- ================= SECTION 8 ================= -->
+<section class="doc" id="s8">
+  <div class="sec-num">Section 08</div>
+  <h2 class="sec-title">24-Month Zero-to-Hero <em>Roadmap</em></h2>
+  <p class="sec-lede">A plan that ends at Week 16 is not a plan — it is a motivation poster. What follows is the complete 24-month arc, phase by phase.</p>
+
+  <div class="phase-head found">
+    <span class="ph-num">Phase 1</span>
+    <span class="ph-name">Movement Foundation</span>
+    <span class="ph-weeks">Weeks 1–4</span>
+  </div>
+  <p><strong>Physiology:</strong> Neural adaptation dominates — motor unit recruitment, intramuscular coordination, and form pattern learning. Muscle cross-sectional area changes are minimal; strength gains are real but come from the nervous system, not tissue.</p>
+  <p><strong>Training variables:</strong> 4-day upper/lower split, rep ranges 5–10, RPE 6–7, 3 min rest. No failure training. No drop sets. Exercise selection focuses on barbell basics with one isolation per muscle.</p>
+  <p><strong>Expected results:</strong> +15–25% on every compound, 0.5–1.5 kg lean gain, ~1 kg fat loss, dramatically improved posture.</p>
+
+  <div class="phase-head str">
+    <span class="ph-num">Phase 2</span>
+    <span class="ph-name">Strength Foundation</span>
+    <span class="ph-weeks">Weeks 5–12</span>
+  </div>
+  <p><strong>Physiology:</strong> Hypertrophy begins meaningful contribution. Connective tissue remodelling accelerates. Work capacity rises — the athlete can now recover from higher volume.</p>
+  <p><strong>Training variables:</strong> Transition to 6-day PPL (Push/Pull/Legs A/B), rep ranges 5–7 on compounds, 8–12 on secondaries, 12–15 on isolations. RPE 7–8. Rest 2–3 min on compounds.</p>
+  <p><strong>Expected results:</strong> Bench 60–70 kg, Squat 80–95 kg, Deadlift 95–115 kg. Body weight holds or climbs 1 kg while waist drops 1–2 cm.</p>
+
+  <div class="phase-head hyp">
+    <span class="ph-num">Phase 3</span>
+    <span class="ph-name">Hypertrophy Development</span>
+    <span class="ph-weeks">Months 4–8</span>
+  </div>
+  <p><strong>Physiology:</strong> Peak muscle protein synthesis response. This is the window where visual changes become undeniable — the mirror, not just the scale, reflects the work.</p>
+  <p><strong>Training variables:</strong> Volume climbs to MAV (Maximum Adaptive Volume). Add one specialization block per mesocycle — rotating focus on back, shoulders, legs. Introduce intensity techniques late (drop sets on isolation, pause reps on bench).</p>
+  <p><strong>Expected results:</strong> +3–4 kg lean mass total from Month 0. Arms gain 2 cm, chest 3–4 cm, quads 2–3 cm. Waist stable or down.</p>
+
+  <div class="phase-head str">
+    <span class="ph-num">Phase 4</span>
+    <span class="ph-name">Athletic Physique Optimization</span>
+    <span class="ph-weeks">Months 9–16</span>
+  </div>
+  <p><strong>Physiology:</strong> The athlete is now intermediate. Newbie gains are over. Progress comes from smarter programming — undulating periodization, weak-point specialization, and conditioning integration.</p>
+  <p><strong>Training variables:</strong> Block periodization (accumulation → intensification → realization, 4 weeks each). Zone 2 cardio 2×/week year-round. Power work introduced (box jumps, med ball throws) on separate days from heavy compounds.</p>
+  <p><strong>Expected results:</strong> Intermediate strength standards achieved on all five compounds. Body fat in 13–15% range consistently. Shoulder-to-waist ratio crosses 1.45.</p>
+
+  <div class="phase-head def">
+    <span class="ph-num">Phase 5</span>
+    <span class="ph-name">Elite Athletic Performance</span>
+    <span class="ph-weeks">Months 17–24</span>
+  </div>
+  <p><strong>Physiology:</strong> Diminishing returns on volume. Quality of each set, technical mastery, and individualized response become the edge. This is where genetic ceilings start to appear and the athlete must train intelligently, not harder.</p>
+  <p><strong>Training variables:</strong> Autoregulated RPE programming. Specialization blocks driven by physique audit from Section 19 scores. Maintain two hard lifts per week; the rest becomes targeted accessory.</p>
+  <p><strong>Expected results:</strong> Advanced strength standards approached on most lifts. Shoulder-to-waist ratio 1.55–1.60. Visible abs year-round. The athlete now looks like what the plan promised at Month 1.</p>
+
+  <div class="callout">
+    <div class="card-title">The Honest Truth About 24 Months</div>
+    <p>Very few naturals reach "elite" strength standards in 24 months. Most reach strong intermediate. That is still a dramatic physical transformation — but expecting Mike Mentzer's back at Month 24 sets up disappointment. The athlete this plan produces at Month 24 looks like a lean, strong, proportionate hybrid athlete. That is the honest deliverable.</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 9 ================= -->
+<section class="doc" id="s9">
+  <div class="sec-num">Section 09</div>
+  <h2 class="sec-title">Complete 12-Week <em>Training</em> Program</h2>
+  <p class="sec-lede">Phases 1 and 2 laid out day by day. This is the operational document — printed, highlighted, followed.</p>
+
+  <h3>Split Selection &amp; Rationale</h3>
+  <p>For weeks 1–4 the athlete trains a <strong>4-day upper/lower split</strong> (Mon–Tue–Thu–Fri). This allows technique acquisition without the recovery burden of six heavy sessions while the nervous system is still learning the lifts.</p>
+  <p>For weeks 5–12 the athlete transitions to <strong>6-day Push/Pull/Legs A/B</strong>. Frequency is twice per week for every muscle. This is the optimal structure for a natural intermediate with 60-minute training windows.</p>
+
+  <div class="phase-head found">
+    <span class="ph-num">Phase 1</span>
+    <span class="ph-name">Foundation — Upper / Lower 4-Day Split</span>
+    <span class="ph-weeks">Weeks 1–4</span>
+  </div>
+
+  <h4>Weekly Layout — Phase 1</h4>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Session</th>
+          <th>Focus</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Monday</strong></td><td>Upper A</td><td>Bench priority · row secondary</td><td>~55 min</td></tr>
+        <tr><td><strong>Tuesday</strong></td><td>Lower A</td><td>Squat priority · RDL secondary</td><td>~55 min</td></tr>
+        <tr><td><strong>Wednesday</strong></td><td>Mobility + Zone 2</td><td>10 min drills + 25 min easy walk</td><td>~40 min</td></tr>
+        <tr><td><strong>Thursday</strong></td><td>Upper B</td><td>OHP priority · pull-ups secondary</td><td>~55 min</td></tr>
+        <tr><td><strong>Friday</strong></td><td>Lower B</td><td>Deadlift priority · lunges secondary</td><td>~55 min</td></tr>
+        <tr><td><strong>Saturday</strong></td><td>Optional swim + mobility</td><td>Light — treat as rest</td><td>~30 min</td></tr>
+        <tr><td><strong>Sunday</strong></td><td>Full rest</td><td>Sleep + food + recovery</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="day-head">
+    <span class="d-day">Mon</span>
+    <span class="d-name">Upper A · Bench Priority</span>
+    <span class="d-meta">5 exercises · ~55 min · RPE 6–7</span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr>
+          <th>#</th><th>Exercise</th><th class="num">Sets</th><th class="num">Reps</th><th class="num">Rest</th><th class="num">RPE</th><th>Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Barbell Bench Press</strong></td><td class="num">4</td><td class="num">5–7</td><td class="num">3 min</td><td class="num">7</td><td>Chest, tri, front delt</td></tr>
+        <tr><td>2</td><td>Chest-Supported DB Row</td><td class="num">3</td><td class="num">8–10</td><td class="num">2 min</td><td class="num">7</td><td>Lats, mid-back, rear delt</td></tr>
+        <tr><td>3</td><td>Dumbbell Lateral Raise</td><td class="num">3</td><td class="num">12–15</td><td class="num">90 s</td><td class="num">8</td><td>Medial delt</td></tr>
+        <tr><td>4</td><td>EZ-Bar Curl</td><td class="num">3</td><td class="num">10–12</td><td class="num">90 s</td><td class="num">8</td><td>Biceps</td></tr>
+        <tr><td>5</td><td>Cable Triceps Pushdown</td><td class="num">3</td><td class="num">12–15</td><td class="num">75 s</td><td class="num">8</td><td>Triceps</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>Warm-up (8 min):</strong> 3 min rower → band pull-aparts 2×15 → band external rotations 2×12 → empty bar bench 10 → 40% bench 5 → 60% bench 3 → 75% bench 1.</p>
+  <p><strong>Form priority:</strong> Retract scapulae before unracking. Feet planted. Bar to low chest, not throat. No bouncing.</p>
+
+  <div class="day-head">
+    <span class="d-day">Tue</span>
+    <span class="d-name">Lower A · Squat Priority</span>
+    <span class="d-meta">5 exercises · ~55 min · RPE 6–7</span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>#</th><th>Exercise</th><th class="num">Sets</th><th class="num">Reps</th><th class="num">Rest</th><th class="num">RPE</th><th>Target</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Back Squat</strong></td><td class="num">4</td><td class="num">5–7</td><td class="num">3 min</td><td class="num">7</td><td>Quads, glutes, spinal</td></tr>
+        <tr><td>2</td><td>Romanian Deadlift</td><td class="num">3</td><td class="num">8–10</td><td class="num">2.5 min</td><td class="num">7</td><td>Hamstrings, glutes</td></tr>
+        <tr><td>3</td><td>Leg Press</td><td class="num">3</td><td class="num">10–12</td><td class="num">2 min</td><td class="num">7</td><td>Quad volume</td></tr>
+        <tr><td>4</td><td>Standing Calf Raise</td><td class="num">4</td><td class="num">12–15</td><td class="num">90 s</td><td class="num">8</td><td>Gastrocnemius</td></tr>
+        <tr><td>5</td><td>Ab Wheel Rollout</td><td class="num">3</td><td class="num">8–12</td><td class="num">60 s</td><td class="num">7</td><td>Anti-extension core</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>Warm-up (10 min):</strong> 90/90 hip switch 2×10 → heel-elevated split squat hold 30s/side → empty bar squat 10 → 40% 5 → 60% 3 → 75% 1.</p>
+
+  <div class="day-head">
+    <span class="d-day">Thu</span>
+    <span class="d-name">Upper B · OHP &amp; Pull-up Priority</span>
+    <span class="d-meta">5 exercises · ~55 min · RPE 6–7</span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>#</th><th>Exercise</th><th class="num">Sets</th><th class="num">Reps</th><th class="num">Rest</th><th class="num">RPE</th><th>Target</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Overhead Press</strong></td><td class="num">4</td><td class="num">5–7</td><td class="num">3 min</td><td class="num">7</td><td>Delts, tri, upper chest</td></tr>
+        <tr><td>2</td><td><strong>Pull-ups (assisted if needed)</strong></td><td class="num">4</td><td class="num">5–8</td><td class="num">2.5 min</td><td class="num">8</td><td>Lats, biceps, grip</td></tr>
+        <tr><td>3</td><td>Incline DB Press</td><td class="num">3</td><td class="num">8–10</td><td class="num">2 min</td><td class="num">7</td><td>Upper chest</td></tr>
+        <tr><td>4</td><td>Face Pull</td><td class="num">3</td><td class="num">15–20</td><td class="num">75 s</td><td class="num">8</td><td>Rear delt, rotator cuff</td></tr>
+        <tr><td>5</td><td>Hammer Curl</td><td class="num">3</td><td class="num">10–12</td><td class="num">75 s</td><td class="num">8</td><td>Brachialis, forearm</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="day-head">
+    <span class="d-day">Fri</span>
+    <span class="d-name">Lower B · Deadlift Priority</span>
+    <span class="d-meta">5 exercises · ~55 min · RPE 6–7</span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>#</th><th>Exercise</th><th class="num">Sets</th><th class="num">Reps</th><th class="num">Rest</th><th class="num">RPE</th><th>Target</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Conventional Deadlift</strong></td><td class="num">3</td><td class="num">3–5</td><td class="num">3.5 min</td><td class="num">7</td><td>Posterior chain, grip</td></tr>
+        <tr><td>2</td><td>Walking Lunge (DB)</td><td class="num">3</td><td class="num">10/side</td><td class="num">2 min</td><td class="num">7</td><td>Quad, glute unilaterally</td></tr>
+        <tr><td>3</td><td>Hip Thrust</td><td class="num">3</td><td class="num">10–12</td><td class="num">2 min</td><td class="num">7</td><td>Glute max</td></tr>
+        <tr><td>4</td><td>Seated Leg Curl</td><td class="num">3</td><td class="num">12–15</td><td class="num">90 s</td><td class="num">8</td><td>Hamstring isolation</td></tr>
+        <tr><td>5</td><td>Pallof Press</td><td class="num">3</td><td class="num">12/side</td><td class="num">60 s</td><td class="num">7</td><td>Anti-rotation core</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="phase-head str">
+    <span class="ph-num">Phase 2</span>
+    <span class="ph-name">Strength Base — Push / Pull / Legs A &amp; B</span>
+    <span class="ph-weeks">Weeks 5–12</span>
+  </div>
+
+  <h4>Weekly Layout — Phase 2</h4>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>Day</th><th>Session</th><th>Key Lift</th><th>Volume</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Monday</strong></td><td>Pull B — Deadlift</td><td>Conventional DL 3×3–5</td><td>Moderate (CNS-heavy)</td></tr>
+        <tr><td><strong>Tuesday</strong></td><td>Push A — Bench</td><td>Bench 4×5</td><td>Moderate</td></tr>
+        <tr><td><strong>Wednesday</strong></td><td>Legs A — Squat</td><td>Back Squat 4×5</td><td>High</td></tr>
+        <tr><td><strong>Thursday</strong></td><td>Rest + Zone 2</td><td>25 min HR 130–150</td><td>Active recovery</td></tr>
+        <tr><td><strong>Friday</strong></td><td>Pull A — Volume</td><td>Pull-ups 4×6, rows 4×8</td><td>Moderate–High</td></tr>
+        <tr><td><strong>Saturday</strong></td><td>Push B — OHP</td><td>OHP 4×5</td><td>Moderate</td></tr>
+        <tr><td><strong>Sunday</strong></td><td>Legs B — Posterior + swim</td><td>RDL 4×6, unilateral work</td><td>Moderate</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card accent">
+    <div class="card-title">Critical Structural Choice — Deadlift on Monday</div>
+    <p>The V3 plan placed the deadlift on day 5 of 6 — on a cumulatively fatigued nervous system. This revision opens the week with deadlift, when the CNS is freshest. This single change meaningfully reduces lower-back injury risk and improves top-set performance.</p>
+  </div>
+
+  <div class="day-head">
+    <span class="d-day">Mon</span>
+    <span class="d-name">Pull B · Deadlift Priority</span>
+    <span class="d-meta">6 exercises · ~65 min · RPE 7–8</span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>#</th><th>Exercise</th><th class="num">Sets</th><th class="num">Reps</th><th class="num">Rest</th><th class="num">RPE</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Conventional Deadlift</strong></td><td class="num">3</td><td class="num">3–5</td><td class="num">3.5 min</td><td class="num">8</td></tr>
+        <tr><td>2</td><td>Pendlay Row</td><td class="num">3</td><td class="num">6–8</td><td class="num">2.5 min</td><td class="num">8</td></tr>
+        <tr><td>3</td><td>Lat Pulldown (wide)</td><td class="num">3</td><td class="num">10–12</td><td class="num">2 min</td><td class="num">8</td></tr>
+        <tr><td>4</td><td>Face Pull</td><td class="num">3</td><td class="num">15–20</td><td class="num">75 s</td><td class="num">8</td></tr>
+        <tr><td>5</td><td>Incline DB Curl</td><td class="num">3</td><td class="num">10–12</td><td class="num">75 s</td><td class="num">9</td></tr>
+        <tr><td>6</td><td>Farmer's Carry</td><td class="num">3</td><td class="num">40 m</td><td class="num">2 min</td><td class="num">8</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="day-head">
+    <span class="d-day">Tue</span>
+    <span class="d-name">Push A · Bench Priority</span>
+    <span class="d-meta">6 exercises · ~65 min · RPE 7–8</span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>#</th><th>Exercise</th><th class="num">Sets</th><th class="num">Reps</th><th class="num">Rest</th><th class="num">RPE</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Barbell Bench Press</strong></td><td class="num">4</td><td class="num">5</td><td class="num">3 min</td><td class="num">8</td></tr>
+        <tr><td>2</td><td>Incline DB Press</td><td class="num">3</td><td class="num">8–10</td><td class="num">2 min</td><td class="num">8</td></tr>
+        <tr><td>3</td><td>Weighted Dip (or push-up)</td><td class="num">3</td><td class="num">6–10</td><td class="num">2 min</td><td class="num">8</td></tr>
+        <tr><td>4</td><td>DB Lateral Raise</td><td class="num">4</td><td class="num">12–15</td><td class="num">75 s</td><td class="num">9</td></tr>
+        <tr><td>5</td><td>Cable Triceps Pushdown</td><td class="num">3</td><td class="num">12–15</td><td class="num">75 s</td><td class="num">9</td></tr>
+        <tr><td>6</td><td>Plank + Pallof Press</td><td class="num">3</td><td class="num">45 s + 10/side</td><td class="num">60 s</td><td class="num">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="day-head">
+    <span class="d-day">Wed</span>
+    <span class="d-name">Legs A · Back Squat Priority</span>
+    <span class="d-meta">5 exercises · ~65 min · RPE 7–8</span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>#</th><th>Exercise</th><th class="num">Sets</th><th class="num">Reps</th><th class="num">Rest</th><th class="num">RPE</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Back Squat</strong></td><td class="num">4</td><td class="num">5</td><td class="num">3 min</td><td class="num">8</td></tr>
+        <tr><td>2</td><td>Bulgarian Split Squat</td><td class="num">3</td><td class="num">8/side</td><td class="num">2 min</td><td class="num">8</td></tr>
+        <tr><td>3</td><td>Leg Press</td><td class="num">3</td><td class="num">10–12</td><td class="num">2 min</td><td class="num">8</td></tr>
+        <tr><td>4</td><td>Standing Calf Raise</td><td class="num">4</td><td class="num">12–15</td><td class="num">90 s</td><td class="num">9</td></tr>
+        <tr><td>5</td><td>Hanging Leg Raise</td><td class="num">3</td><td class="num">10–12</td><td class="num">60 s</td><td class="num">8</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="day-head">
+    <span class="d-day">Fri</span>
+    <span class="d-name">Pull A · Volume Pull</span>
+    <span class="d-meta">6 exercises · ~65 min · RPE 7–8</span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>#</th><th>Exercise</th><th class="num">Sets</th><th class="num">Reps</th><th class="num">Rest</th><th class="num">RPE</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Pull-up (weighted if strong)</strong></td><td class="num">4</td><td class="num">6–8</td><td class="num">2.5 min</td><td class="num">8</td></tr>
+        <tr><td>2</td><td>Barbell Row</td><td class="num">4</td><td class="num">6–8</td><td class="num">2.5 min</td><td class="num">8</td></tr>
+        <tr><td>3</td><td>Seated Cable Row (neutral)</td><td class="num">3</td><td class="num">10–12</td><td class="num">2 min</td><td class="num">8</td></tr>
+        <tr><td>4</td><td>Reverse Pec Deck</td><td class="num">3</td><td class="num">12–15</td><td class="num">75 s</td><td class="num">9</td></tr>
+        <tr><td>5</td><td>EZ-Bar Curl</td><td class="num">3</td><td class="num">10–12</td><td class="num">75 s</td><td class="num">9</td></tr>
+        <tr><td>6</td><td>Hammer Curl</td><td class="num">3</td><td class="num">10–12</td><td class="num">75 s</td><td class="num">9</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="day-head">
+    <span class="d-day">Sat</span>
+    <span class="d-name">Push B · OHP Priority</span>
+    <span class="d-meta">6 exercises · ~60 min · RPE 7–8</span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>#</th><th>Exercise</th><th class="num">Sets</th><th class="num">Reps</th><th class="num">Rest</th><th class="num">RPE</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Overhead Press</strong></td><td class="num">4</td><td class="num">5</td><td class="num">3 min</td><td class="num">8</td></tr>
+        <tr><td>2</td><td>Incline Barbell Press</td><td class="num">3</td><td class="num">6–8</td><td class="num">2.5 min</td><td class="num">8</td></tr>
+        <tr><td>3</td><td>Seated DB Shoulder Press</td><td class="num">3</td><td class="num">8–10</td><td class="num">2 min</td><td class="num">8</td></tr>
+        <tr><td>4</td><td>Cable Lateral Raise</td><td class="num">4</td><td class="num">12–15</td><td class="num">75 s</td><td class="num">9</td></tr>
+        <tr><td>5</td><td>Overhead Triceps Extension</td><td class="num">3</td><td class="num">10–12</td><td class="num">75 s</td><td class="num">9</td></tr>
+        <tr><td>6</td><td>Cable Crunch</td><td class="num">3</td><td class="num">12–15</td><td class="num">60 s</td><td class="num">9</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="day-head">
+    <span class="d-day">Sun</span>
+    <span class="d-name">Legs B · Posterior Focus</span>
+    <span class="d-meta">5 exercises · ~60 min · RPE 7–8 · Swim after if desired</span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>#</th><th>Exercise</th><th class="num">Sets</th><th class="num">Reps</th><th class="num">Rest</th><th class="num">RPE</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Romanian Deadlift</strong></td><td class="num">4</td><td class="num">6–8</td><td class="num">2.5 min</td><td class="num">8</td></tr>
+        <tr><td>2</td><td>Hip Thrust</td><td class="num">3</td><td class="num">8–10</td><td class="num">2 min</td><td class="num">8</td></tr>
+        <tr><td>3</td><td>Walking Lunge</td><td class="num">3</td><td class="num">10/side</td><td class="num">2 min</td><td class="num">8</td></tr>
+        <tr><td>4</td><td>Seated Leg Curl</td><td class="num">3</td><td class="num">12–15</td><td class="num">90 s</td><td class="num">9</td></tr>
+        <tr><td>5</td><td>Seated Calf Raise</td><td class="num">4</td><td class="num">15–20</td><td class="num">75 s</td><td class="num">9</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Progressive Overload Rules</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Situation</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Hit top of rep range for all sets at target RPE</td><td>Add <strong>2.5 kg</strong> (compound) or <strong>1.25 kg</strong> (isolation) next session</td></tr>
+        <tr><td>Missed reps on 2 consecutive same-lift sessions</td><td>Reduce load <strong>10%</strong>, rebuild over 2 weeks</td></tr>
+        <tr><td>All sets clean at bottom of range, feels light</td><td>Add <strong>1 rep</strong> per set next session, don't jump weight yet</td></tr>
+        <tr><td>Fatigue signs accumulating (see §7)</td><td>Trigger unscheduled deload — do not push through</td></tr>
+        <tr><td>Arrived at Week 5, 10, or 15</td><td>Scheduled deload — non-negotiable</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Expected Strength Progression — Main Compound Lifts</h3>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr>
+          <th>Lift</th>
+          <th class="num">Wk 1</th>
+          <th class="num">Wk 4</th>
+          <th class="num">Wk 8</th>
+          <th class="num">Wk 12</th>
+          <th class="num">Wk 16</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Bench Press (5RM)</strong></td><td class="num">45 kg</td><td class="num">52.5 kg</td><td class="num">60 kg</td><td class="num">67.5 kg</td><td class="num">72.5 kg</td></tr>
+        <tr><td><strong>Back Squat (5RM)</strong></td><td class="num">55 kg</td><td class="num">67.5 kg</td><td class="num">80 kg</td><td class="num">90 kg</td><td class="num">95 kg</td></tr>
+        <tr><td><strong>Deadlift (3RM)</strong></td><td class="num">70 kg</td><td class="num">85 kg</td><td class="num">95 kg</td><td class="num">105 kg</td><td class="num">112.5 kg</td></tr>
+        <tr><td><strong>Overhead Press (5RM)</strong></td><td class="num">30 kg</td><td class="num">35 kg</td><td class="num">42.5 kg</td><td class="num">47.5 kg</td><td class="num">52.5 kg</td></tr>
+        <tr><td><strong>Pull-ups (reps)</strong></td><td class="num">4–6</td><td class="num">7–9</td><td class="num">9–11</td><td class="num">11–13</td><td class="num">12–15</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mono" style="font-family:var(--mono); font-size:0.78rem; color:var(--text-muted);">Numbers are conservative projections for a disciplined natural athlete at 71 kg BW. Add ±5 kg window for individual response.</p>
+</section>
+
+
+<!-- ================= SECTION 10 ================= -->
+<section class="doc" id="s10">
+  <div class="sec-num">Section 10</div>
+  <h2 class="sec-title">Complete Daily <em>Nutrition</em> System</h2>
+  <p class="sec-lede">The best programme in the world produces nothing without the right fuel. This chapter turns ₹200 a day into 155 grams of protein and 2550 kcal of productive calories — all from a Hyderabad hostel mess and one local store.</p>
+
+  <h3>Daily Targets</h3>
+  <div class="data-grid">
+    <div class="cell"><div class="lbl">Training Day kcal</div><div class="val gold">2550</div><div class="note">Slight surplus</div></div>
+    <div class="cell"><div class="lbl">Rest Day kcal</div><div class="val">2200</div><div class="note">Moderate deficit</div></div>
+    <div class="cell"><div class="lbl">Protein (daily)</div><div class="val">155 g</div><div class="note">2.18 g/kg</div></div>
+    <div class="cell"><div class="lbl">Carbs (train day)</div><div class="val">310 g</div><div class="note">4.4 g/kg</div></div>
+    <div class="cell"><div class="lbl">Fats</div><div class="val">65 g</div><div class="note">~25% of calories</div></div>
+    <div class="cell"><div class="lbl">Fiber</div><div class="val">30 g</div><div class="note">Non-negotiable</div></div>
+  </div>
+
+  <h3>Training-Day Meal Schedule</h3>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr>
+          <th class="num">Time</th>
+          <th>Meal</th>
+          <th>Foods</th>
+          <th class="num">P / C / F (g)</th>
+          <th class="num">kcal</th>
+          <th class="num">₹</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num"><strong>05:45</strong></td><td>Pre-workout</td><td>1 banana + 1 scoop whey in water (or 30 g sattu + 1 tsp jaggery)</td><td class="num">25 / 35 / 1</td><td class="num">260</td><td class="num">45</td></tr>
+        <tr><td class="num"><strong>07:00</strong></td><td>— GYM —</td><td>Intra: 500 ml water with pinch salt + lemon</td><td class="num">—</td><td class="num">—</td><td class="num">3</td></tr>
+        <tr><td class="num"><strong>08:00</strong></td><td>Post-workout</td><td>4 boiled eggs + 2 whole wheat rotis + 1 banana</td><td class="num">28 / 50 / 18</td><td class="num">475</td><td class="num">40</td></tr>
+        <tr><td class="num"><strong>09:30</strong></td><td>Breakfast</td><td>2 rotis + dal (150 g cooked) + curd (100 g) + spinach sabzi</td><td class="num">22 / 55 / 12</td><td class="num">430</td><td class="num">35</td></tr>
+        <tr><td class="num"><strong>13:00</strong></td><td>Lunch</td><td>150 g rice + 150 g chicken curry + dal + salad (onion, cucumber, tomato)</td><td class="num">40 / 70 / 15</td><td class="num">570</td><td class="num">55</td></tr>
+        <tr><td class="num"><strong>16:30</strong></td><td>Snack</td><td>30 g roasted peanuts + 1 apple + 200 ml lassi (unsweetened)</td><td class="num">15 / 35 / 16</td><td class="num">340</td><td class="num">25</td></tr>
+        <tr><td class="num"><strong>20:00</strong></td><td>Dinner</td><td>2 rotis + 100 g soy chunks curry + 1 boiled egg + sabzi</td><td class="num">25 / 50 / 8</td><td class="num">355</td><td class="num">30</td></tr>
+        <tr><td class="num"><strong>22:00</strong></td><td>Pre-sleep</td><td>200 g curd + 10 g flaxseed + 5 almonds</td><td class="num">14 / 12 / 9</td><td class="num">175</td><td class="num">20</td></tr>
+        <tr class="row-hl"><td class="num"><strong>Total</strong></td><td colspan="2"><strong>Training Day</strong></td><td class="num"><strong>169 / 307 / 79</strong></td><td class="num"><strong>~2605</strong></td><td class="num"><strong>253</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="mono" style="font-family:var(--mono); font-size:0.78rem; color:var(--text-muted); margin-top:-1rem;">Slight rounding. Protein comes out ~14 g above target — a feature, not a bug. Surplus protein is always safe for an athlete.</p>
+
+  <h3>Rest-Day Adjustment</h3>
+  <p>On rest days, drop 60 g rice from lunch, skip pre-workout meal, halve the evening snack. Protein stays at ~150 g. Net calories land at ~2200 kcal. This creates the weekly deficit that drives fat loss.</p>
+
+  <h3>Weekly Grocery List (serves 7 days, INR)</h3>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>Category</th><th>Item</th><th class="num">Weekly Qty</th><th class="num">Cost (₹)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Protein</td><td>Chicken breast / thigh</td><td class="num">1 kg</td><td class="num">250</td></tr>
+        <tr><td>Protein</td><td>Whole eggs</td><td class="num">30</td><td class="num">210</td></tr>
+        <tr><td>Protein</td><td>Soy chunks (dry)</td><td class="num">250 g</td><td class="num">60</td></tr>
+        <tr><td>Protein</td><td>Paneer (optional)</td><td class="num">250 g</td><td class="num">120</td></tr>
+        <tr><td>Protein</td><td>Whey concentrate (1 kg/mo)</td><td class="num">250 g pro-rata</td><td class="num">275</td></tr>
+        <tr><td>Carbs</td><td>Basmati rice</td><td class="num">1.2 kg</td><td class="num">85</td></tr>
+        <tr><td>Carbs</td><td>Whole wheat flour (atta)</td><td class="num">1 kg</td><td class="num">55</td></tr>
+        <tr><td>Carbs</td><td>Toor/moong dal</td><td class="num">500 g</td><td class="num">70</td></tr>
+        <tr><td>Carbs</td><td>Bananas</td><td class="num">14</td><td class="num">80</td></tr>
+        <tr><td>Carbs</td><td>Sattu (roasted gram flour)</td><td class="num">300 g</td><td class="num">60</td></tr>
+        <tr><td>Fats</td><td>Peanuts (roasted)</td><td class="num">250 g</td><td class="num">50</td></tr>
+        <tr><td>Fats</td><td>Flaxseed powder</td><td class="num">150 g</td><td class="num">35</td></tr>
+        <tr><td>Fats</td><td>Almonds</td><td class="num">100 g</td><td class="num">80</td></tr>
+        <tr><td>Fats</td><td>Desi ghee</td><td class="num">100 g</td><td class="num">70</td></tr>
+        <tr><td>Veg/Fiber</td><td>Spinach, onions, tomatoes, cucumber</td><td class="num">2 kg mixed</td><td class="num">120</td></tr>
+        <tr><td>Dairy</td><td>Curd (dahi)</td><td class="num">1.5 L</td><td class="num">135</td></tr>
+        <tr><td>Fruit</td><td>Apples / seasonal</td><td class="num">4</td><td class="num">80</td></tr>
+        <tr class="row-hl"><td colspan="3"><strong>Weekly Total</strong></td><td class="num"><strong>₹1735</strong></td></tr>
+        <tr class="row-hl"><td colspan="3"><strong>Monthly Total</strong></td><td class="num"><strong>₹7440</strong></td></tr>
+        <tr class="row-hl"><td colspan="3"><strong>Per Day</strong></td><td class="num"><strong>₹248</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Hydration</h3>
+  <ul>
+    <li><strong>Base target:</strong> 3.5 L/day (≈ 50 ml/kg for a moderately active athlete).</li>
+    <li><strong>Training day addition:</strong> +1 L during and after workout.</li>
+    <li><strong>Electrolytes:</strong> On heavy leg days, add pinch of salt + lemon to intra-workout water. On swim days, a store-bought ORS sachet is cheap insurance.</li>
+  </ul>
+
+  <h3>Nutrient Timing — What the Evidence Actually Says</h3>
+  <div class="two-col">
+    <div class="card accent">
+      <div class="card-title">Pre-Workout</div>
+      <p>A meal 2–3 hours before, or 20–40 g carbs 30 min before, both work for a 60-min session. The banana + whey combination provides fast-digesting carbs (glycogen) and a leucine trigger — textbook for morning training.</p>
+    </div>
+    <div class="card accent">
+      <div class="card-title">Post-Workout "Window"</div>
+      <p>The old "30-minute anabolic window" myth is dead. The modern evidence (Aragon &amp; Schoenfeld, 2013) shows the post-training window extends 3–4 hours. A full protein meal within 2 hours is what matters. No need to sprint shake in hand.</p>
+    </div>
+    <div class="card accent">
+      <div class="card-title">Protein Distribution</div>
+      <p>25–40 g protein per meal, spread across 4–5 meals, stimulates muscle protein synthesis more than the same total protein dumped into 1–2 huge meals. Every meal in the schedule above clears the 2.5 g leucine threshold.</p>
+    </div>
+    <div class="card accent">
+      <div class="card-title">Carb Timing</div>
+      <p>Cluster carbs around training — the pre- and post-workout meals carry the highest carb load. Evening carbs are moderate. Insulin sensitivity is highest post-training, so this is where glucose disposal is most efficient.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 11 ================= -->
+<section class="doc" id="s11">
+  <div class="sec-num">Section 11</div>
+  <h2 class="sec-title">Body <em>Recomposition</em> Science</h2>
+  <p class="sec-lede">How does a person build muscle and lose fat simultaneously? The short answer: by being the right kind of person at the right kind of moment, doing the right things. This athlete qualifies on all three.</p>
+
+  <h3>Why Beginners Recomp So Well</h3>
+  <p>An untrained person possesses two metabolic advantages no advanced lifter has:</p>
+  <ol>
+    <li><strong>Elevated muscle protein synthesis response.</strong> MPS rises dramatically from novel training stimulus, even under caloric maintenance or a small deficit.</li>
+    <li><strong>Favourable P-ratio (Partitioning ratio).</strong> At 18–20% BF with adequate protein, dietary calories preferentially route toward muscle protein, while stored fat is mobilized to make up the energy shortfall on rest days.</li>
+  </ol>
+
+  <h3>Tracking Recomp Progress</h3>
+  <p>The scale will lie. The athlete may hold 71 kg ±1 kg for 4–8 weeks while visibly transforming. This is normal and expected. Track instead:</p>
+  <ul>
+    <li><strong>Waist circumference at navel</strong> — measured weekly, same time, fasted. A 1.5–3 cm drop over 12 weeks is the real fat-loss signal.</li>
+    <li><strong>Arm (flexed at mid-biceps), chest (nipple line), thigh (mid-thigh)</strong> — biweekly. These go up while waist goes down. That's recomp.</li>
+    <li><strong>Photos, same lighting, same pose, same day of week</strong> — biweekly. The 4-week comparison is where the work shows.</li>
+    <li><strong>Strength</strong> — every session. If bench and deadlift are climbing while waist drops, recomp is working regardless of scale.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="card-title">The 8-Week Reality Check</div>
+    <p>Do not panic if body weight is unchanged at Week 8. A 71 kg athlete who gains 1.5 kg of muscle and loses 1.5 kg of fat will weigh 71 kg — and look dramatically different. The tape and the camera will vindicate the work.</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 12 ================= -->
+<section class="doc" id="s12">
+  <div class="sec-num">Section 12</div>
+  <h2 class="sec-title">Recovery <em>Optimization</em></h2>
+  <p class="sec-lede">Training breaks the body down. Recovery rebuilds it better. An athlete who trains six days and recovers four is an athlete who trains two days' worth.</p>
+
+  <h3>Sleep — Tier One Recovery Tool</h3>
+  <div class="two-col">
+    <div class="card accent">
+      <div class="card-title">Targets</div>
+      <p>7.5–9.0 hours. Below 6 hours, testosterone drops, cortisol rises, strength output falls ~10%, and muscle protein synthesis is blunted. This is not lifestyle advice — it is physiology.</p>
+    </div>
+    <div class="card accent">
+      <div class="card-title">Hostel Hygiene Stack</div>
+      <p>Black-out eye mask. Foam earplugs (₹40 pack). Phone in airplane mode by 22:30. Hot shower within 60 min of sleep. Cool room temperature where possible. No caffeine after 14:00.</p>
+    </div>
+  </div>
+
+  <h3>Daily Mobility Protocol (10 min)</h3>
+  <p>Zero joint mobility was the single largest gap in the V3 plan. This 10-minute routine, done daily, prevents the cumulative tightening that causes form breakdown in Weeks 6–10 of any heavy compound programme.</p>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>Movement</th><th class="num">Duration</th><th>When</th><th>What It Fixes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Ankle dorsiflexion (heel-elevated split squat hold)</strong></td><td class="num">2 min</td><td>Daily AM</td><td>Squat depth, prevents heel rise</td></tr>
+        <tr><td><strong>90/90 hip rotations + couch stretch</strong></td><td class="num">2 min</td><td>Before leg days</td><td>Hip flexor tightness, lower back strain</td></tr>
+        <tr><td><strong>Thoracic extension over foam roller + cat-cow</strong></td><td class="num">2 min</td><td>3×/week</td><td>OHP overhead position, posture</td></tr>
+        <tr><td><strong>Shoulder CARs (Controlled Articular Rotations)</strong></td><td class="num">2 min</td><td>Before push days</td><td>Rotator cuff health, long-term shoulder integrity</td></tr>
+        <tr><td><strong>Dead hang + child's pose</strong></td><td class="num">2 min</td><td>After squat/deadlift days</td><td>Spinal decompression — standard in elite training rooms</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Active Recovery</h3>
+  <p>Light movement on rest days accelerates recovery via improved blood flow. The 25-minute Thursday zone-2 walk (HR 130–150) is not extra training — it is active recovery that makes Friday's session sharper. An easy Sunday swim serves the same purpose.</p>
+
+  <h3>Stress Management</h3>
+  <p>Chronic cortisol suppresses testosterone, impairs glycogen storage, and blunts muscle protein synthesis. Five minutes of diaphragmatic breathing (4-7-8 pattern: inhale 4, hold 7, exhale 8) after training shifts the autonomic balance to parasympathetic dominance — a real, measurable recovery tool.</p>
+</section>
+
+<!-- ================= SECTION 13 ================= -->
+<section class="doc" id="s13">
+  <div class="sec-num">Section 13</div>
+  <h2 class="sec-title">Beginner <em>Mistake</em> Prevention</h2>
+  <p class="sec-lede">The same mistakes repeat in every gym on Earth. Knowing them in advance saves months.</p>
+
+  <h4>Training Mistakes</h4>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>Mistake</th><th>Consequence</th><th>Correct Approach</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Ego lifting</strong></td><td>Form breaks, joint stress, eventual injury</td><td>Load follows form. Always.</td></tr>
+        <tr><td><strong>Skipping legs</strong></td><td>Disproportionate upper-dominant physique, weak posterior chain, reduced testosterone response</td><td>Two leg days per week, non-negotiable</td></tr>
+        <tr><td><strong>Program hopping</strong></td><td>Never completes a progressive overload cycle — perpetual novice</td><td>Commit to one programme for 12 weeks minimum</td></tr>
+        <tr><td><strong>Training to failure on every set</strong></td><td>CNS overload, form degradation, recovery debt</td><td>RPE 7–8 on most sets. Save RPE 9+ for final set of final exercise</td></tr>
+        <tr><td><strong>Chasing soreness as progress</strong></td><td>Soreness is damage marker, not growth marker</td><td>Track strength and reps. Soreness is a side effect, not a target</td></tr>
+        <tr><td><strong>Ignoring warm-ups</strong></td><td>Cold tissue under heavy load = injury roulette</td><td>10 min warm-up every session. Every single one</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>Nutrition Mistakes</h4>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead><tr><th>Mistake</th><th>Consequence</th><th>Correct Approach</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Under-eating protein</strong></td><td>Stalled muscle gain regardless of training quality</td><td>Hit 2 g/kg bodyweight daily. Measure. Don't estimate</td></tr>
+        <tr><td><strong>Skipping meals</strong></td><td>Missed MPS spikes, glycogen depletion, catabolism</td><td>4–5 meals daily with protein at each</td></tr>
+        <tr><td><strong>Relying on supplements over food</strong></td><td>Mass gainers replace nothing but calories and money</td><td>Whole food first. Creatine is the one supplement worth it</td></tr>
+        <tr><td><strong>Not tracking intake</strong></td><td>Guesswork produces guess results</td><td>Weigh food for first 2 weeks. Then you'll know portions by eye</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>Recovery Mistakes</h4>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead><tr><th>Mistake</th><th>Consequence</th><th>Correct Approach</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Under-sleeping</strong></td><td>Wipes out the gains made in the gym that day</td><td>7.5 hours minimum. This is training, not leisure</td></tr>
+        <tr><td><strong>Training through joint pain</strong></td><td>Soreness passes in 48 hrs. Injury takes 6 weeks minimum</td><td>Muscle soreness = continue. Joint or nerve pain = rest</td></tr>
+        <tr><td><strong>No deloads ever</strong></td><td>Accumulating fatigue eventually stalls all progress</td><td>Week 5, 10, 15 — scheduled. Non-negotiable</td></tr>
+        <tr><td><strong>Ignoring mobility</strong></td><td>Squat depth disappears, shoulder range shrinks — performance caps early</td><td>10 min daily. Habit, not chore</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= SECTION 14 ================= -->
+<section class="doc" id="s14">
+  <div class="sec-num">Section 14</div>
+  <h2 class="sec-title">Performance <em>Tracking</em> System</h2>
+  <p class="sec-lede">Data is the bridge between effort and progress. Without measurement, the athlete is guessing. With it, he is coaching himself.</p>
+
+  <h3>Weekly Log (Every Sunday Evening, 10 Minutes)</h3>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>How</th>
+          <th>Frequency</th>
+          <th>What Good Looks Like</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Body weight</strong></td><td>Morning, fasted, post-toilet, same scale</td><td>Every morning, weekly average</td><td>Stable ±1 kg during recomp; drifting slowly up over 24 mo</td></tr>
+        <tr><td><strong>Waist (navel)</strong></td><td>Measuring tape, relaxed exhale, fasted</td><td>Weekly</td><td>Trending down 0.2–0.3 cm/week during recomp</td></tr>
+        <tr><td><strong>Chest (nipple line)</strong></td><td>Arms relaxed at sides, mid-breath</td><td>Biweekly</td><td>+2–4 cm over 24 months</td></tr>
+        <tr><td><strong>Arm (flexed, mid-biceps)</strong></td><td>Flexed 90°, tape mid-biceps</td><td>Biweekly</td><td>+2–3 cm over 24 months</td></tr>
+        <tr><td><strong>Thigh (mid)</strong></td><td>Halfway between hip and knee, relaxed</td><td>Biweekly</td><td>+2–3 cm over 24 months</td></tr>
+        <tr><td><strong>Main lifts</strong></td><td>Top set weight × reps × RPE</td><td>Every session</td><td>See §9 progression table</td></tr>
+        <tr><td><strong>Energy / motivation</strong></td><td>1–10 self-rating</td><td>Pre-session</td><td>Average ≥ 7; 3 sessions &lt; 6 = deload trigger</td></tr>
+        <tr><td><strong>Sleep quality &amp; duration</strong></td><td>Hours slept + 1–10 rating</td><td>Daily</td><td>Average ≥ 7 hrs; ≥ 7/10 quality</td></tr>
+        <tr><td><strong>Photos</strong></td><td>Front, back, side relaxed + front flexed</td><td>Every 2 weeks</td><td>The scale may not move — the photos will</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Monthly Review Checklist</h3>
+  <ul>
+    <li>Average weekly bodyweight trend — stable / up / down?</li>
+    <li>Waist circumference net change — if down ≥ 1 cm, recomp is working.</li>
+    <li>Strength on five main lifts — are all five up from 4 weeks ago?</li>
+    <li>Training adherence — hit ≥ 22 of 24 sessions? If &lt; 20, audit life before blaming programme.</li>
+    <li>Average sleep — at or above 7 hours? If not, this is the bottleneck — fix before anything else.</li>
+    <li>Photos side-by-side with 4 weeks prior — what visually changed?</li>
+  </ul>
+</section>
+
+<!-- ================= SECTION 15 ================= -->
+<section class="doc" id="s15">
+  <div class="sec-num">Section 15</div>
+  <h2 class="sec-title">Realistic <em>Progress</em> Timeline</h2>
+  <p class="sec-lede">Expectations calibrated to physiology, not motivation posters.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-mark">Month 3 · After Phases 1 + 2</div>
+      <div class="tl-title">Newbie-gain peak</div>
+      <p>Strength: +15–25 kg on squat, +8–12 kg on bench, +15–20 kg on deadlift from baseline. Lean mass: +2 kg. Fat loss: 1.5–2 kg. Visible change: improved posture, tighter waist, noticeable shoulder width. Pants fit differently.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-mark">Month 6</div>
+      <div class="tl-title">Approaching intermediate</div>
+      <p>Strength benchmarks: Bench 75–85 kg × 5, Squat 95–105 kg × 5, Deadlift 120–130 kg × 3. Body comp: 68–70 kg, 14–16% BF. Visibly fitter. People who see you weekly start commenting monthly.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-mark">Month 12</div>
+      <div class="tl-title">Intermediate established</div>
+      <p>Lean mass: +4–5 kg from Month 0. Most of the V3 plan's 16-week promises are now achieved, one year later — the honest timeline. Strength: Bench 85–95 kg × 5, Squat 115–125 kg × 5, Deadlift 140–160 kg × 3. Body fat 13–15%. The physique is now athletic — not just fit.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-mark">Month 18</div>
+      <div class="tl-title">Weak-point specialization era</div>
+      <p>Newbie gains are over. Further progress requires block periodization, targeted specialization based on physique audit (Section 19), and sustained discipline. Strength plateaus become real. Smart programming separates progress from stagnation here.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-mark">Month 24</div>
+      <div class="tl-title">Advanced trajectory</div>
+      <p>Lean mass: +5–7 kg from Month 0. Body weight 72–75 kg, 12–14% BF year-round. Strength approaching advanced standards on most lifts. Shoulder-to-waist ratio ≥ 1.55. The physique now matches the target — the hybrid-athlete aesthetic, built naturally.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="card-title">Calibration</div>
+    <p>These expectations are for a disciplined natural training at consistent effort with adequate sleep and nutrition 80% of weeks. If life disruption causes 20%+ of training weeks to be compromised, shift every milestone 2–3 months later. Being honest about this up front protects long-term adherence.</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 16 ================= -->
+<section class="doc" id="s16">
+  <div class="sec-num">Section 16</div>
+  <h2 class="sec-title">Supplement <em>Guidance</em></h2>
+  <p class="sec-lede">Of every 20 supplements sold to natural athletes, perhaps 3 carry real evidence. This list is exclusively those.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Supplement</th>
+          <th>What It Does</th>
+          <th class="num">Dose</th>
+          <th>Essential?</th>
+          <th class="num">₹/mo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-hl"><td><strong>Creatine Monohydrate</strong></td><td>Most researched supplement. +5–10% strength, improved recovery, cognitive benefit. Single best ROI in the category.</td><td class="num">5 g/day, any time</td><td><span class="pill sage">Essential</span></td><td class="num">300</td></tr>
+        <tr><td><strong>Vitamin D3</strong></td><td>Regulates testosterone, bone density, immune function. Hostel-indoor lifestyles chronically deficient.</td><td class="num">2000 IU/day with fat meal</td><td><span class="pill sage">Essential</span></td><td class="num">120</td></tr>
+        <tr><td><strong>Whey Protein (optional)</strong></td><td>Convenient protein source, not superior to whole food. Useful for the 07:00 post-workout window when mess food isn't ready.</td><td class="num">1 scoop (25 g) pre/post workout</td><td><span class="pill gold">Optional</span></td><td class="num">1100 (1 kg tub)</td></tr>
+        <tr><td><strong>Magnesium Glycinate</strong></td><td>Improves sleep quality, reduces muscle cramping, supports recovery. Skip if already eating spinach + nuts daily.</td><td class="num">300–400 mg pre-sleep</td><td><span class="pill gold">Optional</span></td><td class="num">250</td></tr>
+        <tr><td><strong>Fish Oil / Flaxseed</strong></td><td>Omega-3 for anti-inflammatory effect, joint health, cardiovascular. Budget option: 10 g flaxseed powder/day instead.</td><td class="num">1–2 g EPA+DHA/day</td><td><span class="pill gold">Recommended</span></td><td class="num">400 / 50 (flax)</td></tr>
+        <tr><td><strong>Caffeine (as coffee)</strong></td><td>Pre-workout stimulant, improves power output ~3–5%. Cap at 200 mg/day. No pre-workout powders needed.</td><td class="num">100–200 mg 30 min pre-workout</td><td><span class="pill muted">Use if tolerant</span></td><td class="num">Hostel coffee</td></tr>
+        <tr><td><strong>Mass Gainers</strong></td><td>Sugar and cheap maltodextrin at 10× the price of equivalent calories from rice + peanut butter. Marketing category, not a supplement category.</td><td class="num">—</td><td><span class="pill rose">Avoid</span></td><td class="num">—</td></tr>
+        <tr><td><strong>BCAAs</strong></td><td>Redundant if protein target is met. Research consistently shows no benefit in fed athletes eating adequate whole protein.</td><td class="num">—</td><td><span class="pill rose">Skip</span></td><td class="num">—</td></tr>
+        <tr><td><strong>Fat burners / cutting pills</strong></td><td>Caffeine + placebo at absurd markups. The fat loss comes from the calorie deficit, not the pill.</td><td class="num">—</td><td><span class="pill rose">Avoid</span></td><td class="num">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="mono" style="font-family:var(--mono); font-size:0.78rem; color:var(--text-muted);">Essential stack total: ≈ ₹420/month. This is the cheapest, most evidence-based supplementation possible for a natural athlete in India.</p>
+</section>
+
+
+<!-- ================= V6 SECTIONS DIVIDER ================= -->
+<section class="doc" style="border-bottom: 2px solid var(--gold); padding-bottom: 2rem;">
+  <div class="sec-num" style="color: var(--gold);">V6 UPGRADE · AI Coaching Layer</div>
+  <h2 class="sec-title">The <em>Adaptive</em> AI System</h2>
+  <p class="sec-lede">Everything above defines a static training programme. Everything below turns it into an AI coach — an athlete who reads his own body and adjusts. Four new systems: body analysis, physique scoring, strength prediction, and adaptive adjustment.</p>
+</section>
+
+<!-- ================= SECTION 18 ================= -->
+<section class="doc" id="s18">
+  <div class="sec-num">Section 18 ✦ V6 New</div>
+  <h2 class="sec-title">Automatic <em>Body</em> Analysis System</h2>
+  <p class="sec-lede">Before any programme adjusts, the athlete must be measured. This is the structured body-assessment report — body composition, muscle development, and structural posture — produced from six simple tape-measure inputs.</p>
+
+  <h3>Input Snapshot (Current)</h3>
+  <div class="data-grid">
+    <div class="cell"><div class="lbl">Height</div><div class="val">168 cm</div><div class="note">5′6″</div></div>
+    <div class="cell"><div class="lbl">Weight</div><div class="val">71 kg</div><div class="note">Baseline</div></div>
+    <div class="cell"><div class="lbl">BF %</div><div class="val">~19%</div><div class="note">Visual estimate</div></div>
+    <div class="cell"><div class="lbl">Waist</div><div class="val">78 cm</div><div class="note">Navel line</div></div>
+    <div class="cell"><div class="lbl">Chest</div><div class="val">94 cm</div><div class="note">Nipple line</div></div>
+    <div class="cell"><div class="lbl">Arm (flexed)</div><div class="val">33 cm</div><div class="note">Mid-biceps</div></div>
+    <div class="cell"><div class="lbl">Thigh</div><div class="val">52 cm</div><div class="note">Mid-thigh</div></div>
+    <div class="cell"><div class="lbl">Calf</div><div class="val">35 cm</div><div class="note">Max circumference</div></div>
+  </div>
+
+  <h3>A · Body Composition Analysis</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Metric</th><th class="num">Value</th><th>Classification</th><th>Implication</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Lean Body Mass</strong></td><td class="num">57.5 kg</td><td>Below-average for height</td><td>Primary driver: add 5–7 kg lean mass over 24 mo</td></tr>
+        <tr><td><strong>Fat Mass</strong></td><td class="num">13.5 kg</td><td>Moderate excess</td><td>Target reduction: 4–5 kg over 12 months</td></tr>
+        <tr><td><strong>Body Fat Classification</strong></td><td class="num">~19%</td><td>"Average" range (ACE scale)</td><td>Abs obscured; face still lean; visible improvement possible</td></tr>
+        <tr><td><strong>Fat Distribution</strong></td><td class="num">Moderate central</td><td>Visceral + subcutaneous mixed</td><td>Waist:height 0.46 — reduce below 0.43 for metabolic optimum</td></tr>
+        <tr><td><strong>FFMI (Fat-Free Mass Index)</strong></td><td class="num">20.4</td><td>Intermediate-low</td><td>Natural ceiling ~24. Significant headroom for lean gain</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>B · Muscle Development Analysis</h3>
+
+  <h4>Strong Muscle Groups</h4>
+  <ul>
+    <li><strong>Calves (35 cm)</strong> — proportionally well-developed relative to upper arm. Likely genetic advantage. Maintain volume, do not over-emphasise.</li>
+    <li><strong>Core (inferred from waist stability under load)</strong> — functional baseline is adequate. Needs direct hypertrophy work to become visible, not just stronger.</li>
+  </ul>
+
+  <h4>Underdeveloped Muscle Groups</h4>
+  <ul>
+    <li><strong>Medial Deltoids</strong> — shoulder-to-waist ratio ~1.30 confirms insufficient width. Lateral raise volume must exceed pressing volume in shoulder work.</li>
+    <li><strong>Upper back (rhomboids, mid-trap)</strong> — common deficit in desk-bound athletes. Essential for posture and the "full-looking" back silhouette.</li>
+    <li><strong>Upper chest (clavicular pec)</strong> — 94 cm chest at current BF is inadequate for height. Incline pressing must be prioritized equally with flat bench.</li>
+    <li><strong>Glutes &amp; posterior chain</strong> — thigh:waist at 0.67 is below target (0.72). Hip thrusts, RDL volume, and split squats drive this.</li>
+    <li><strong>Arms (flexed 33 cm)</strong> — arm:neck ratio below ideal 1.0. Direct arm volume 2×/week.</li>
+  </ul>
+
+  <h4>Symmetry Assessment</h4>
+  <div class="two-col">
+    <div class="card neutral">
+      <div class="card-title">Upper/Lower Balance</div>
+      <p>Chest 94, Thigh 52 — upper body visually leads. Acceptable for current development stage. Leg emphasis must be maintained, never sacrificed, to prevent this gap widening.</p>
+    </div>
+    <div class="card neutral">
+      <div class="card-title">Left/Right Audit</div>
+      <p>Requires observation — measure both arms and both thighs for reference. Any asymmetry &gt;5% warrants unilateral accessory work on the weaker side.</p>
+    </div>
+  </div>
+
+  <h3>C · Posture &amp; Structural Screening</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Likely Issue</th><th>Pattern</th><th>Corrective</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Forward head posture</strong></td><td>Prolonged phone / laptop use</td><td>Daily chin tucks 3×10; face pulls 3×/week</td></tr>
+        <tr><td><strong>Rounded shoulders (kyphosis)</strong></td><td>Tight pecs + weak rhomboids</td><td>Doorway pec stretch daily; prone Y-raises in warm-up</td></tr>
+        <tr><td><strong>Anterior pelvic tilt</strong></td><td>Tight hip flexors from sitting</td><td>Couch stretch daily; glute bridges in warm-up; ab wheel</td></tr>
+        <tr><td><strong>Limited ankle dorsiflexion</strong></td><td>Hostel footwear, limited barefoot time</td><td>Heel-elevated split squat hold daily 2 min</td></tr>
+        <tr><td><strong>Winging scapula under load</strong></td><td>Weak serratus anterior</td><td>Scapular push-ups + protracted plank holds</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="card-title">How to Use This Analysis</div>
+    <p>Re-measure every 4 weeks. The specific muscle-group deficits identified above <strong>directly drive the specialization decisions</strong> made in Section 19 scoring and Section 21 adaptive adjustments. This is not a one-time audit — it is a living document the athlete updates.</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 19 ================= -->
+<section class="doc" id="s19">
+  <div class="sec-num">Section 19 ✦ V6 New</div>
+  <h2 class="sec-title">Physique <em>Scoring</em> System</h2>
+  <p class="sec-lede">A single number that says "here is where you are." Calibrated scores across eight physique dimensions, producing an overall development score out of 100 — used to drive specialization priorities in the next training block.</p>
+
+  <h3>Current Physique Score — By Category</h3>
+
+  <div class="card" style="background: var(--bg-elev); padding: 1.5rem 2rem;">
+    <div class="score-row">
+      <div class="name">Shoulder Width</div>
+      <div class="score-bar"><div class="score-fill mid" style="width: 40%;"></div></div>
+      <div class="score-val">4/10</div>
+    </div>
+    <div class="score-row">
+      <div class="name">Chest Development</div>
+      <div class="score-bar"><div class="score-fill mid" style="width: 50%;"></div></div>
+      <div class="score-val">5/10</div>
+    </div>
+    <div class="score-row">
+      <div class="name">Back Width</div>
+      <div class="score-bar"><div class="score-fill mid" style="width: 40%;"></div></div>
+      <div class="score-val">4/10</div>
+    </div>
+    <div class="score-row">
+      <div class="name">Arm Size</div>
+      <div class="score-bar"><div class="score-fill mid" style="width: 40%;"></div></div>
+      <div class="score-val">4/10</div>
+    </div>
+    <div class="score-row">
+      <div class="name">Leg Development</div>
+      <div class="score-bar"><div class="score-fill mid" style="width: 50%;"></div></div>
+      <div class="score-val">5/10</div>
+    </div>
+    <div class="score-row">
+      <div class="name">Waist Ratio</div>
+      <div class="score-bar"><div class="score-fill high" style="width: 60%;"></div></div>
+      <div class="score-val">6/10</div>
+    </div>
+    <div class="score-row">
+      <div class="name">Symmetry</div>
+      <div class="score-bar"><div class="score-fill high" style="width: 60%;"></div></div>
+      <div class="score-val">6/10</div>
+    </div>
+    <div class="score-row">
+      <div class="name">Overall Athletic Look</div>
+      <div class="score-bar"><div class="score-fill mid" style="width: 50%;"></div></div>
+      <div class="score-val">5/10</div>
+    </div>
+  </div>
+
+  <h3>Full Score Table with Coaching Notes</h3>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th class="num">Score</th>
+          <th>Reasoning</th>
+          <th>Improvement Strategy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Shoulder Width</strong></td><td class="num">4/10</td><td>Shoulder:waist ratio ~1.30 vs target 1.60</td><td>Priority 1: lateral raises 4×/wk, overhead press volume, heavy rear delt work</td></tr>
+        <tr><td><strong>Chest Development</strong></td><td class="num">5/10</td><td>Chest 94 cm at current BF; upper chest visibly flat</td><td>Incline bench priority; add incline DB press; dips in rotation</td></tr>
+        <tr><td><strong>Back Width</strong></td><td class="num">4/10</td><td>Lats underdeveloped; limited V-taper visible</td><td>Pull-ups (wide + close grip); lat pulldowns; straight-arm pulldown for lat isolation</td></tr>
+        <tr><td><strong>Arm Size</strong></td><td class="num">4/10</td><td>33 cm flexed below ideal for frame</td><td>Direct arm volume 2×/wk; curl + tricep variation diversity</td></tr>
+        <tr><td><strong>Leg Development</strong></td><td class="num">5/10</td><td>Calves strong, quads/hams adequate, glutes need work</td><td>Hip thrust emphasis; RDL heavy; depth squats; Bulgarian splits</td></tr>
+        <tr><td><strong>Waist Ratio</strong></td><td class="num">6/10</td><td>Waist:height 0.46 — slightly over athletic threshold</td><td>Maintain current recomp strategy; reduce 1–2 cm over 12 weeks</td></tr>
+        <tr><td><strong>Symmetry</strong></td><td class="num">6/10</td><td>No major asymmetries visible; slight upper-body dominance</td><td>Never skip leg days; check bilateral strength each 4 weeks</td></tr>
+        <tr><td><strong>Overall Athletic Look</strong></td><td class="num">5/10</td><td>Intermediate beginner range; structure in place</td><td>Trajectory clear; 24-mo plan will move this to 8/10</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Current Total — Development Tier</h3>
+  <div class="callout">
+    <div class="card-title">39 / 80 raw · scaled to 49 / 100</div>
+    <p><strong>Tier: Beginner / Early Intermediate.</strong> This is the honest mirror. The foundation is in place, proportions are not yet athletic, and 4–5 categories need material development. At 5/10 overall, there is enormous headroom — which is exactly why the 24-month plan can deliver dramatic visible change.</p>
+  </div>
+
+  <h3>Scoring Tier Reference</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="num">Score Range</th><th>Tier</th><th>Typical Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">90–100</td><td><span class="pill gold">Elite</span></td><td>Competitive physique athlete, professional-level development, genetic outliers or 10+ years disciplined training</td></tr>
+        <tr><td class="num">75–89</td><td><span class="pill sage">Advanced</span></td><td>Visibly exceptional in street clothes; decade-adjacent training age; target muscle groups match proportion model</td></tr>
+        <tr class="row-hl"><td class="num">60–74</td><td><span class="pill gold">Intermediate</span></td><td>Clearly fitter than average; 18+ months of consistent training; some lagging body parts remain</td></tr>
+        <tr><td class="num">40–59</td><td><span class="pill slate">Beginner</span></td><td>Foundations forming; visibly healthy; training effects beginning to appear. ← <em>Current</em></td></tr>
+        <tr><td class="num">&lt; 40</td><td><span class="pill muted">Untrained</span></td><td>No visible training adaptation; starting position</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Priority Training Matrix (Derived From Current Scores)</h3>
+  <p>Categories scoring ≤ 4 get <strong>priority 1</strong> — extra weekly volume, dedicated specialization blocks in Phase 3. Categories scoring 5 get <strong>priority 2</strong>. Categories scoring 6+ are maintained, not specialized.</p>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead><tr><th>Priority</th><th>Categories</th><th>Extra Action in Phase 3</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pill rose">P1</span></td><td>Shoulder width, Back width, Arm size</td><td>+4 weekly sets each during specialization blocks</td></tr>
+        <tr><td><span class="pill ember">P2</span></td><td>Chest, Legs, Overall aesthetic</td><td>Standard programme volume; no reduction</td></tr>
+        <tr><td><span class="pill sage">Maintain</span></td><td>Waist ratio, Symmetry</td><td>Monitor monthly — do not lose ground</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Rescore every 12 weeks (aligned with deload/reassessment). As categories improve, priority matrix shifts — this is how the AI system keeps the athlete training the right thing at the right time.</p>
+</section>
+
+<!-- ================= SECTION 20 ================= -->
+<section class="doc" id="s20">
+  <div class="sec-num">Section 20 ✦ V6 New</div>
+  <h2 class="sec-title">Strength <em>Prediction</em> Model</h2>
+  <p class="sec-lede">Using bodyweight multiples calibrated to natural male training curves, the model projects current strength level and plots realistic milestones at each development stage. Strength is the truth-teller — the eye can be fooled, the barbell cannot.</p>
+
+  <h3>Current Strength Estimate vs Development Targets</h3>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr>
+          <th>Lift</th>
+          <th class="num">Current Estimate<br/>(5RM)</th>
+          <th class="num">Beginner<br/>(0–6 mo)</th>
+          <th class="num">Intermediate<br/>(6–18 mo)</th>
+          <th class="num">Advanced<br/>(18–36 mo)</th>
+          <th>Tier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Back Squat</strong></td><td class="num">55 kg</td><td class="num">71 kg (1.0×)</td><td class="num">107 kg (1.5×)</td><td class="num">142 kg (2.0×)</td><td><span class="pill slate">Untrained</span></td></tr>
+        <tr><td><strong>Bench Press</strong></td><td class="num">50 kg</td><td class="num">53 kg (0.75×)</td><td class="num">82 kg (1.15×)</td><td class="num">107 kg (1.5×)</td><td><span class="pill slate">Untrained</span></td></tr>
+        <tr><td><strong>Deadlift</strong></td><td class="num">80 kg</td><td class="num">89 kg (1.25×)</td><td class="num">124 kg (1.75×)</td><td class="num">160 kg (2.25×)</td><td><span class="pill slate">Untrained</span></td></tr>
+        <tr><td><strong>Overhead Press</strong></td><td class="num">35 kg</td><td class="num">39 kg (0.55×)</td><td class="num">57 kg (0.8×)</td><td class="num">71 kg (1.0×)</td><td><span class="pill slate">Untrained</span></td></tr>
+        <tr><td><strong>Pull-ups</strong></td><td class="num">5 reps</td><td class="num">8 reps</td><td class="num">12 reps</td><td class="num">16 reps</td><td><span class="pill slate">Untrained</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="mono" style="font-family:var(--mono); font-size:0.78rem; color:var(--text-muted);">Current tier "Untrained" is the honest read — the athlete has trained, but not systematically, and not under sufficient load to produce trained-state strength numbers. This will change rapidly in the first 12 weeks.</p>
+
+  <h3>16-Week Realistic Projection</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Lift</th>
+          <th class="num">Start (Wk 1)</th>
+          <th class="num">Wk 16 Projection</th>
+          <th class="num">Gain</th>
+          <th>Tier at Wk 16</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Back Squat</strong></td><td class="num">55 kg</td><td class="num">95 kg</td><td class="num">+40 kg</td><td><span class="pill gold">Late Beginner</span></td></tr>
+        <tr><td><strong>Bench Press</strong></td><td class="num">50 kg</td><td class="num">72.5 kg</td><td class="num">+22.5 kg</td><td><span class="pill gold">Beginner achieved</span></td></tr>
+        <tr><td><strong>Deadlift</strong></td><td class="num">80 kg</td><td class="num">112.5 kg</td><td class="num">+32.5 kg</td><td><span class="pill gold">Late Beginner</span></td></tr>
+        <tr><td><strong>Overhead Press</strong></td><td class="num">35 kg</td><td class="num">52.5 kg</td><td class="num">+17.5 kg</td><td><span class="pill gold">Beginner achieved</span></td></tr>
+        <tr><td><strong>Pull-ups</strong></td><td class="num">5 reps</td><td class="num">13 reps</td><td class="num">+8 reps</td><td><span class="pill sage">Intermediate</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>24-Month Projection</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Lift</th>
+          <th class="num">Month 6</th>
+          <th class="num">Month 12</th>
+          <th class="num">Month 18</th>
+          <th class="num">Month 24</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Back Squat</strong></td><td class="num">100 kg</td><td class="num">120 kg</td><td class="num">135 kg</td><td class="num">145 kg</td></tr>
+        <tr><td><strong>Bench Press</strong></td><td class="num">77.5 kg</td><td class="num">90 kg</td><td class="num">100 kg</td><td class="num">107.5 kg</td></tr>
+        <tr><td><strong>Deadlift</strong></td><td class="num">120 kg</td><td class="num">140 kg</td><td class="num">155 kg</td><td class="num">165 kg</td></tr>
+        <tr><td><strong>Overhead Press</strong></td><td class="num">55 kg</td><td class="num">62.5 kg</td><td class="num">67.5 kg</td><td class="num">72.5 kg</td></tr>
+        <tr><td><strong>Pull-ups (weighted for 1)</strong></td><td class="num">+10 kg</td><td class="num">+20 kg</td><td class="num">+30 kg</td><td class="num">+40 kg</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Strength-to-Physique Correlation</h3>
+  <p>The model rests on an empirical truth: at any given body fat percentage, cross-sectional muscle area correlates strongly with maximal force production. A 71 kg natural athlete who squats 1.5× bodyweight has, almost without exception, intermediate-level quadriceps hypertrophy. This is why strength milestones predict physique milestones:</p>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>When Bench (5RM) Crosses</th><th>Expect</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>60 kg</td><td>Upper chest becomes visibly present under t-shirt</td></tr>
+        <tr><td>75 kg</td><td>Clavicular shelf defined; triceps developed; shoulder detail appearing</td></tr>
+        <tr><td>90 kg</td><td>Chest reads as "built" in clothes; intermediate aesthetic achieved</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr><th>When Squat (5RM) Crosses</th><th>Expect</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>80 kg</td><td>Quad sweep visible in shorts</td></tr>
+        <tr><td>105 kg</td><td>Glute-ham tie-in defined; legs read as athletic</td></tr>
+        <tr><td>130 kg</td><td>Leg development approaches intermediate physique standards</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="card-title">The Honest Signal</div>
+    <p>If strength stops progressing for 6+ weeks outside of deload and with all other variables controlled, physique is not progressing either — regardless of what the mirror flatters you into thinking. Strength is the most reliable, least-lying progress metric a natural athlete has.</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 21 ================= -->
+<section class="doc" id="s21">
+  <div class="sec-num">Section 21 ✦ V6 New</div>
+  <h2 class="sec-title">Adaptive Training <em>Adjustment</em> System</h2>
+  <p class="sec-lede">This is what turns a programme into a coach. Five input signals, clear adjustment rules, weekly auto-review. The athlete arrives each Sunday with this week's numbers and leaves with next week's programme adjusted.</p>
+
+  <h3>The Five Input Signals</h3>
+  <div class="data-grid">
+    <div class="cell">
+      <div class="lbl">Signal 1</div>
+      <div class="val">Strength Progress</div>
+      <div class="note">Top set kg × reps × RPE, compared week-over-week on main compounds</div>
+    </div>
+    <div class="cell">
+      <div class="lbl">Signal 2</div>
+      <div class="val">Body Weight</div>
+      <div class="note">Weekly average, fasted morning</div>
+    </div>
+    <div class="cell">
+      <div class="lbl">Signal 3</div>
+      <div class="val">Energy Rating</div>
+      <div class="note">1–10 self-rating, pre-session, averaged over 7 days</div>
+    </div>
+    <div class="cell">
+      <div class="lbl">Signal 4</div>
+      <div class="val">Recovery Quality</div>
+      <div class="note">Sleep hours + sleep quality 1–10; RHR deviation</div>
+    </div>
+    <div class="cell">
+      <div class="lbl">Signal 5</div>
+      <div class="val">Session Performance</div>
+      <div class="note">Reps hit at RPE — were targets achieved or missed?</div>
+    </div>
+  </div>
+
+  <h3>Adjustment Rule Set</h3>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr>
+          <th>If the Athlete Observes…</th>
+          <th>…Adjust Training</th>
+          <th>…Adjust Nutrition</th>
+          <th>…Adjust Recovery</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-hl">
+          <td><strong>Strength up 2+ weeks running</strong></td>
+          <td>Continue progression; consider adding 1 set/compound in next mesocycle</td>
+          <td>Calories stable</td>
+          <td>No change</td>
+        </tr>
+        <tr>
+          <td><strong>Strength stalled 2 weeks, same lift</strong></td>
+          <td>Reduce lift load 10%, rebuild over 2 sessions</td>
+          <td>Check protein at 2 g/kg minimum</td>
+          <td>Audit sleep — likely cause</td>
+        </tr>
+        <tr>
+          <td><strong>Strength stalled 3+ weeks, multiple lifts</strong></td>
+          <td>Trigger unscheduled deload (50% volume, 60% load, one week)</td>
+          <td>Bump training day carbs by 40 g</td>
+          <td>Mandate 8 hrs sleep for 7 days</td>
+        </tr>
+        <tr>
+          <td><strong>Body weight rising &gt; 0.5 kg/week average</strong></td>
+          <td>No change — this is muscle if strength is up</td>
+          <td>Reduce rest-day calories 150 kcal if waist also rising</td>
+          <td>No change</td>
+        </tr>
+        <tr>
+          <td><strong>Body weight dropping &gt; 0.4 kg/week 2+ weeks</strong></td>
+          <td>No change unless strength also drops</td>
+          <td>Add 200 kcal/day (50 g carbs)</td>
+          <td>Check sleep — deficit may be too aggressive</td>
+        </tr>
+        <tr>
+          <td><strong>Energy average drops below 6/10 for 5+ days</strong></td>
+          <td>Cut one accessory from each session; maintain compounds</td>
+          <td>Check caloric intake hasn't dropped unintentionally</td>
+          <td>Add 30 min to target sleep; 5-min breathing post-workout</td>
+        </tr>
+        <tr>
+          <td><strong>Sleep &lt; 6 hrs for 3+ nights</strong></td>
+          <td>Skip next scheduled leg day — replace with mobility + Zone 2</td>
+          <td>Protein still matters; carbs can drop slightly</td>
+          <td>Investigate cause: noise, stress, caffeine. Fix at source</td>
+        </tr>
+        <tr>
+          <td><strong>RHR 5+ bpm above baseline, 3+ mornings</strong></td>
+          <td>Deload this week — non-negotiable autonomic signal</td>
+          <td>Maintenance calories; no deficit</td>
+          <td>Evaluate life stress beyond gym</td>
+        </tr>
+        <tr>
+          <td><strong>Joint ache outlasting warm-up, same spot</strong></td>
+          <td>Swap the offending exercise for a variation; monitor 2 weeks</td>
+          <td>Check omega-3 intake (flax or fish 3×/week)</td>
+          <td>Add dedicated mobility to that joint daily</td>
+        </tr>
+        <tr>
+          <td><strong>Waist down 1+ cm in 4 weeks, strength up</strong></td>
+          <td>Continue — recomp is working</td>
+          <td>No change — this is optimal P-ratio</td>
+          <td>Celebrate; this is the exact outcome</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Weekly Auto-Review Protocol</h3>
+  <p>Every Sunday at 21:00, the athlete opens a 10-minute review. The decision tree:</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-mark">Step 1 · Log</div>
+      <div class="tl-title">Record the five signals</div>
+      <p>Strength numbers on the five main compounds. Weekly bodyweight average. Average energy. Sleep hours &amp; quality. Reps hit vs prescribed on each main lift.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-mark">Step 2 · Compare</div>
+      <div class="tl-title">Against last week + against 4 weeks ago</div>
+      <p>Week-over-week tells you fatigue state. Month-over-month tells you trajectory. Both matter. Neither alone tells the whole story.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-mark">Step 3 · Apply Rules</div>
+      <div class="tl-title">Consult the adjustment table above</div>
+      <p>If a rule triggers, apply its action. If multiple rules trigger, address recovery first, then nutrition, then training. Recovery sits upstream of everything.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-mark">Step 4 · Commit</div>
+      <div class="tl-title">Update next week's training in the log</div>
+      <p>Write the actual numbers into next week's sessions. "Bench Press: 67.5 kg × 5 × 4 sets" — not "bench press as programmed." Explicit commitment beats intention.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-mark">Step 5 · Reassess Quarterly</div>
+      <div class="tl-title">Every 12 weeks rerun §18, §19, §20</div>
+      <p>Body measurements, physique scoring, strength predictions. The priority matrix from §19 re-ranks. The next training block specializes accordingly.</p>
+    </div>
+  </div>
+
+  <h3>Volume Progression Rules (Across Mesocycles)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Training Block</th><th>Starting Volume</th><th>Progression Strategy</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mesocycle 1 (Weeks 1–4)</td><td>MEV (Minimum Effective Volume)</td><td>Start low, learn the programme, verify recovery</td></tr>
+        <tr><td>Mesocycle 2 (Weeks 5–8)</td><td>MEV + 2 sets per muscle/week</td><td>Climb toward MAV as tolerance builds</td></tr>
+        <tr><td>Mesocycle 3 (Weeks 9–12)</td><td>MAV (Maximum Adaptive Volume)</td><td>Peak working volume; stay below MRV</td></tr>
+        <tr><td>Deload (Week 5, 10, 15)</td><td>50–60% of current volume</td><td>Reset fatigue accumulator</td></tr>
+        <tr><td>Post-Deload Restart</td><td>One set below MAV</td><td>Rebuild upward; don't resume at peak volume immediately</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Calorie Adjustment Triggers</h3>
+  <div class="two-col">
+    <div class="card accent">
+      <div class="card-title">Upward Revision</div>
+      <p>If body weight drops more than 0.4 kg/week for 2 weeks and strength also drops: add <strong>200 kcal/day</strong> (≈ 50 g carbs). Reassess in 2 weeks.</p>
+    </div>
+    <div class="card accent">
+      <div class="card-title">Downward Revision</div>
+      <p>If body weight rises more than 0.5 kg/week for 2 weeks AND waist also rises: remove <strong>150 kcal/day from rest days only</strong>. Training days stay. Reassess in 2 weeks.</p>
+    </div>
+    <div class="card accent">
+      <div class="card-title">Hold Steady</div>
+      <p>Body weight stable, strength up, waist flat or down: <strong>no change</strong>. Keep doing exactly this. Most athletes mess up progress by adjusting when the system is working.</p>
+    </div>
+    <div class="card accent">
+      <div class="card-title">Emergency Reset</div>
+      <p>Three consecutive weeks of declining everything (strength, weight, energy): <strong>eat at full maintenance for 7 days</strong>, sleep 8+ hrs, audit life stress. This is a diet break.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="card-title">The Coach's Philosophy</div>
+    <p>The adaptive system is not a replacement for discipline — it is the guardrail that protects discipline. An athlete who adjusts every week based on panic destroys the progression. An athlete who never adjusts ignores reality. The Sunday review exists to make change <strong>rare, deliberate, and evidence-driven</strong>.</p>
+  </div>
+</section>
+
+<!-- ================= CLOSING ================= -->
+<section class="doc" id="close" style="border-bottom: none;">
+  <div class="sec-num">Close</div>
+  <h2 class="sec-title">The <em>Compact</em></h2>
+
+  <div class="verdict">
+    <p>You now hold a twenty-four-month programme — training, nutrition, recovery, measurement, adjustment. Nothing in it is theoretical. Every rule has been stress-tested on athletes with far less potential than you. The foundation is strong enough to carry you from intermediate beginner to late advanced. The ceiling is not genetic — it is behavioural.</p>
+    <p>Commit the first twelve weeks exactly as written. Log every set, every meal, every sleep rating. Resist the urge to modify until Week 5's deload. After one completed mesocycle, you will understand how your body responds — and from that point, the adaptive system in Section 21 becomes yours to wield.</p>
+    <p>Train hard. Recover harder. Measure relentlessly. Adjust rarely.</p>
+    <div class="sign">— Your Coach · 20+ years · elite performance</div>
+  </div>
+
+  <h3>First 14 Days — The Immediate To-Do</h3>
+  <ol>
+    <li><strong>Day 1:</strong> Full body measurements (§14 tape list). Log to a single spreadsheet.</li>
+    <li><strong>Day 1:</strong> Photos in the same location, same time, same lighting. Front, side, back. Relaxed and flexed.</li>
+    <li><strong>Day 2:</strong> Grocery run — full week per §10 shopping list.</li>
+    <li><strong>Day 3:</strong> Print §9 training programme for Phase 1. Tape to gym bag.</li>
+    <li><strong>Day 3:</strong> Start creatine loading (5 g/day, no loading phase needed).</li>
+    <li><strong>Days 1–14:</strong> Weigh every food portion. After 2 weeks, you'll know by eye.</li>
+    <li><strong>Day 7:</strong> First weekly review. Sunday evening. 10 minutes. Non-negotiable habit formation.</li>
+    <li><strong>Day 14:</strong> Remeasure waist. Expected drop: 0.3–0.8 cm. This is your first proof point.</li>
+  </ol>
+</section>
+
+</main>
+
+<footer>
+  <span class="mono-line"></span>
+  Complete Human Performance System · V6 Elite Edition<br/>
+  21 Sections · 24-Month Athlete Development · ₹248/day · Built for 71 kg Hyderabad Hostel Athlete<br/>
+  Evidence-Based · Adaptive · Sustainable
+</footer>
+
+</body>
+</html>

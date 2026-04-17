@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Complete Human Performance System — Ultimate Prompt</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --surface: #131318;
+    --border: #1e1e26;
+    --text: #e4e4e7;
+    --muted: #8b8b96;
+    --accent: #22d3ee;
+    --accent2: #a78bfa;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --red: #f87171;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    padding: 3rem 1rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .header .badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.3rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+
+  .header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+  }
+
+  .header .sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .meta-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.9rem;
+  }
+
+  .meta-box .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 0.8rem;
+  }
+
+  .meta-box p { color: var(--muted); margin-bottom: 0.5rem; }
+  .meta-box p strong { color: var(--text); }
+
+  .section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--accent2);
+    margin-top: 1.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  p { margin-bottom: 0.8rem; color: var(--muted); }
+
+  .prompt-block {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.5rem;
+    margin: 1rem 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.92rem;
+    color: var(--text);
+    white-space: pre-wrap;
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1.8;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    margin-right: 0.4rem;
+    letter-spacing: 1px;
+  }
+  .tag.green { background: rgba(74,222,128,0.15); color: var(--green); }
+  .tag.orange { background: rgba(251,146,60,0.15); color: var(--orange); }
+  .tag.cyan { background: rgba(34,211,238,0.15); color: var(--accent); }
+
+  .footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .copy-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin: 2rem 0;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s;
+  }
+  .copy-btn:hover { opacity: 0.85; }
+
+  @media (max-width: 600px) {
+    body { padding: 1rem; }
+    .header h1 { font-size: 1.6rem; }
+    .prompt-block { font-size: 0.82rem; padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">Final Version — V5.0</div>
+  <h1>The Complete Human Performance System</h1>
+  <p class="sub">Zero → Hero &bull; Beginner to Elite &bull; Science-Based &bull; Budget Friendly</p>
+</div>
+
+<div class="meta-box">
+  <div class="label">Why This Prompt</div>
+  <p>This is the <strong>consolidated final prompt</strong> built from all 4 iterations in the conversation:</p>
+  <p><strong>V1</strong> High-Precision Prompt → <strong>V2</strong> Elite Fitness Super Prompt → <strong>V3</strong> 10/10 Elite Athlete System → <strong>V4</strong> Zero → Hero Hybrid Master System</p>
+  <p>This V5 merges every strength from all four and adds the missing pieces: <strong>aesthetic proportion science, strength-to-physique correlation, weekly volume science, fatigue management, zero-baseline safety, and a 24-month roadmap</strong>.</p>
+</div>
+
+<div class="section">
+  <div class="section-num">How To Use</div>
+  <h2>Instructions</h2>
+  <p>1. Copy the entire prompt below.</p>
+  <p>2. Paste it into a new Claude conversation (or any advanced AI).</p>
+  <p>3. Attach your HTML files, PDF documents, and any body stats you have.</p>
+  <p>4. The AI will generate a complete professional HTML training manual.</p>
+</div>
+
+<button class="copy-btn" onclick="copyPrompt()">Copy Full Prompt to Clipboard</button>
+
+<div class="section">
+  <div class="section-num">The Prompt</div>
+  <h2>Complete Human Performance System — Zero to Hero</h2>
+
+  <div class="prompt-block" id="full-prompt">You are an elite strength and conditioning coach with over 20 years of experience training athletes from absolute beginner to world-class level. Your expertise spans strength training, hypertrophy science, athletic conditioning, sports physiology, body recomposition, mobility, injury prevention, and long-term athlete development. You have built physiques that are lean, powerful, symmetrical, and functional — not bulky bodybuilding mass, but athletic performance bodies.
+
+Your task is to design a COMPLETE ZERO-TO-HERO HUMAN PERFORMANCE SYSTEM based on the information I provide.
+
+The system must start from absolute beginner (zero gym experience) and build progressively toward an elite athletic physique and strength level. Every recommendation must be backed by modern evidence-based sports science. Avoid all outdated bodybuilding myths.
+
+Carefully read and analyze ALL materials I have provided — HTML files, PDF documents, previous chats, notes, and any structured or unstructured information — before generating any output.
+
+══════════════════════════════════════════════════
+SECTION 1 — ATHLETE PROFILE ANALYSIS
+══════════════════════════════════════════════════
+
+Extract and summarize all relevant information about me from the provided documents:
+
+• Current fitness level and training experience
+• Body composition (weight, height, body fat estimate if available)
+• Physical strengths and weaknesses
+• Available equipment (gym only — no calisthenics equipment)
+• Daily schedule and time availability
+• Lifestyle constraints (hostel living, budget food, Indian diet)
+• Recovery conditions (sleep quality, stress level, activity outside gym)
+
+My schedule:
+• Gym: 7:00 AM – 8:00 AM (6 days per week)
+• Swimming: 8:30 AM – 9:00 AM (separate — ignore while designing gym plan)
+• Total weekly gym time: ~6–8 hours
+
+IMPORTANT CONSTRAINT: Design ONLY the gym program. Ignore swimming.
+
+Goal physique:
+• Athletic, lean, strong
+• Well-structured and symmetrical
+• Not bulky bodybuilding size
+• Balanced full-body development
+• Similar to elite athletes / hybrid athletes
+
+══════════════════════════════════════════════════
+SECTION 2 — ZERO-LEVEL BASELINE ASSESSMENT
+══════════════════════════════════════════════════
+
+Assume the athlete starts with:
+• Minimal strength and endurance
+• Limited joint mobility and stability
+• No established exercise technique
+• Beginner-level work capacity
+
+Define the safe starting point:
+• Expected beginner strength levels for major lifts
+• Safe starting training intensity and volume
+• Realistic early progress expectations (first 4 weeks)
+• Common movement limitations beginners face
+
+Explain why starting conservatively is critical for long-term results.
+
+══════════════════════════════════════════════════
+SECTION 3 — BODY STRATEGY DECISION
+══════════════════════════════════════════════════
+
+Based on the profile analysis, determine whether the optimal approach is:
+• Bulking (caloric surplus for muscle gain)
+• Cutting (caloric deficit for fat loss)
+• Body recomposition (simultaneous muscle gain + fat loss)
+
+Explain your decision scientifically using:
+• Beginner muscle gain response (newbie gains)
+• Metabolic adaptation principles
+• Muscle protein synthesis in beginners
+• Body fat percentage and hormonal impact
+• Caloric partitioning in untrained individuals
+
+Provide specific calorie and macro targets for the chosen strategy.
+
+══════════════════════════════════════════════════
+SECTION 4 — ELITE ATHLETIC PHYSIQUE MODEL
+══════════════════════════════════════════════════
+
+Define the target athletic physique using measurable standards:
+
+Body composition targets:
+• Ideal body fat percentage range
+• Lean mass distribution goals
+
+Aesthetic proportion model (ratios used by elite physique coaches):
+• Shoulder-to-waist ratio
+• Chest-to-waist ratio
+• Arm circumference relative to chest
+• Thigh-to-waist ratio
+• Calf-to-arm balance
+
+Explain WHY these ratios create an athletic appearance and how training will be designed to achieve them.
+
+══════════════════════════════════════════════════
+SECTION 5 — STRENGTH PROGRESSION STANDARDS
+══════════════════════════════════════════════════
+
+Define strength benchmarks for progress tracking across four levels:
+
+For each of these lifts — Bench Press, Squat, Deadlift, Overhead Press, Barbell Row:
+
+Provide standards as body-weight multipliers:
+• Beginner (0–6 months)
+• Intermediate (6–18 months)
+• Advanced (18–36 months)
+• Elite (3+ years)
+
+Explain how strength levels correlate with muscle development and physique quality.
+
+══════════════════════════════════════════════════
+SECTION 6 — HYPERTROPHY SCIENCE
+══════════════════════════════════════════════════
+
+Explain the science of muscle growth for a beginner audience:
+
+Core principles:
+• Mechanical tension
+• Metabolic stress
+• Muscle damage (and why it matters less than previously thought)
+• Progressive overload as the primary driver
+• Training volume as a key variable
+• Recovery as the growth period
+
+Weekly hypertrophy volume targets (sets per muscle group per week):
+• Chest
+• Back
+• Shoulders
+• Biceps
+• Triceps
+• Quadriceps
+• Hamstrings
+• Calves
+• Core
+
+Provide BEGINNER volume (starting), INTERMEDIATE volume (after 3 months), and ADVANCED volume (after 12 months).
+
+Explain optimal training frequency per muscle group for beginners.
+
+══════════════════════════════════════════════════
+SECTION 7 — FATIGUE MANAGEMENT SYSTEM
+══════════════════════════════════════════════════
+
+Explain how fatigue accumulates and how to manage it:
+
+• Systemic vs local fatigue
+• CNS fatigue in beginners
+• Signs of overtraining
+• Deload protocols (when, how, and why)
+• Volume adjustment strategies
+• Sleep and recovery as fatigue management tools
+• When to take unplanned rest days
+
+Provide a deload schedule within the training program.
+
+══════════════════════════════════════════════════
+SECTION 8 — 24-MONTH ZERO-TO-HERO DEVELOPMENT ROADMAP
+══════════════════════════════════════════════════
+
+Create a phased long-term plan:
+
+PHASE 1 — Movement Foundation (Weeks 1–4)
+• Learning proper exercise form
+• Joint conditioning and mobility
+• Building basic movement patterns
+• Light weights, higher reps, technique focus
+
+PHASE 2 — Strength Foundation (Weeks 5–12)
+• Building base strength on compound lifts
+• Progressive weight increases
+• Developing mind-muscle connection
+• Increasing work capacity
+
+PHASE 3 — Hypertrophy Development (Months 4–8)
+• Increased training volume
+• Muscle growth focus
+• Introduction of isolation exercises
+• Strength continues to progress
+
+PHASE 4 — Athletic Physique Optimization (Months 9–16)
+• Advanced programming techniques
+• Balanced physique development
+• Strength approaching intermediate standards
+• Body composition refinement
+
+PHASE 5 — Elite Athletic Performance (Months 17–24)
+• Advanced strength levels
+• Physique approaching aesthetic proportion targets
+• Performance conditioning
+• Sustainable long-term training habits
+
+For each phase, explain:
+• What changes physiologically
+• What training variables change (volume, intensity, exercise selection)
+• What results to realistically expect
+
+══════════════════════════════════════════════════
+SECTION 9 — COMPLETE 12-WEEK GYM TRAINING PROGRAM
+══════════════════════════════════════════════════
+
+Design a detailed 12-week program covering Phase 1 and Phase 2.
+
+Training split: 6 days per week (select the best split for a beginner — Push/Pull/Legs, Upper/Lower, or Athletic Hybrid — and explain why).
+
+For EACH training day, provide:
+• Exercise name
+• Sets
+• Reps (or rep range)
+• Rest period between sets
+• Tempo guidance (if relevant)
+• RPE (Rate of Perceived Exertion) target
+
+For EACH exercise, explain:
+• Primary and secondary muscles targeted
+• Why this exercise is included
+• How it contributes to the athletic physique goal
+• Common form mistakes to avoid
+
+Include:
+• Warm-up protocol (5–10 minutes before each session)
+• Cool-down protocol (stretching/mobility after each session)
+
+Progressive overload rules:
+• When to increase weight
+• When to increase reps
+• When to increase sets
+• How to handle plateaus
+• When to deload (every 4th week)
+
+Provide a STRENGTH PROGRESSION TABLE showing expected weight progression for major lifts across the 12 weeks.
+
+══════════════════════════════════════════════════
+SECTION 10 — COMPLETE DAILY NUTRITION SYSTEM
+══════════════════════════════════════════════════
+
+Design a BUDGET-FRIENDLY INDIAN HOSTEL DIET PLAN.
+
+Daily macro targets (based on the body strategy decision in Section 3):
+• Total calories
+• Protein (grams and per-kg target)
+• Carbohydrates
+• Fats
+• Fiber
+
+Complete daily meal schedule with timestamps:
+
+5:45 AM — Pre-Workout Nutrition
+7:00 AM — GYM
+8:00 AM — Post-Workout Nutrition
+8:30 AM — Swimming (separate)
+9:30 AM — Breakfast
+1:00 PM — Lunch
+4:30 PM — Evening Snack
+8:00 PM — Dinner
+10:00 PM — Pre-Sleep Nutrition (if needed)
+
+For EACH meal provide:
+• Specific foods (Indian budget-friendly options)
+• Portion sizes
+• Approximate macros per meal
+• Why this meal is timed here
+• Affordable alternatives / substitutions
+
+Include a WEEKLY GROCERY LIST with estimated costs (INR).
+
+Hydration guidelines: how much water per day and when.
+
+Explain the science of nutrient timing:
+• Pre-workout nutrition (what and why)
+• Post-workout anabolic window (current evidence)
+• Protein distribution across meals
+• Carb timing for performance and recovery
+
+══════════════════════════════════════════════════
+SECTION 11 — BODY RECOMPOSITION SCIENCE
+══════════════════════════════════════════════════
+
+Explain how beginners can simultaneously build muscle and lose fat:
+
+• Why beginners are uniquely positioned for recomposition
+• The role of training stimulus in caloric partitioning
+• Protein requirements for recomposition
+• How to track recomposition progress (since scale weight may not change)
+• Body measurement tracking vs scale weight
+
+══════════════════════════════════════════════════
+SECTION 12 — RECOVERY OPTIMIZATION
+══════════════════════════════════════════════════
+
+Sleep:
+• Optimal hours
+• Sleep hygiene tips for hostel living
+• Impact of sleep on muscle growth and performance
+
+Hydration:
+• Daily targets
+• Electrolyte balance
+
+Active recovery:
+• Light mobility on rest days
+• Foam rolling basics
+
+Stress management:
+• Cortisol and muscle growth
+• Simple stress reduction techniques
+
+══════════════════════════════════════════════════
+SECTION 13 — BEGINNER MISTAKE PREVENTION
+══════════════════════════════════════════════════
+
+List and explain the top mistakes beginners make:
+
+Training mistakes:
+• Ego lifting
+• Skipping legs
+• Ignoring form for weight
+• Not following a program
+• Program hopping
+
+Diet mistakes:
+• Not eating enough protein
+• Skipping meals
+• Relying on supplements over food
+• Not tracking intake
+
+Recovery mistakes:
+• Not sleeping enough
+• Training through pain vs soreness
+• Skipping warm-ups and cool-downs
+
+For each mistake, explain the consequence and the correct approach.
+
+══════════════════════════════════════════════════
+SECTION 14 — PERFORMANCE TRACKING SYSTEM
+══════════════════════════════════════════════════
+
+Provide a simple tracking system:
+
+Weekly tracking table:
+• Body weight
+• Key body measurements (chest, waist, arms, thighs)
+• Strength numbers on major lifts
+• Training performance notes
+• Energy and recovery rating
+
+Monthly progress review checklist.
+
+Explain how to use this data to adjust training and nutrition.
+
+══════════════════════════════════════════════════
+SECTION 15 — REALISTIC PROGRESS TIMELINE
+══════════════════════════════════════════════════
+
+Provide evidence-based expectations:
+
+After 3 months:
+• Strength changes
+• Body composition changes
+• Visual changes
+
+After 6 months:
+• Strength benchmarks
+• Muscle gain expectations
+• Physique changes
+
+After 1 year:
+• Intermediate strength standards
+• Significant visual transformation
+• Sustainable habits established
+
+After 2 years:
+• Approaching advanced levels
+• Athletic physique visible
+• Long-term maintenance strategy
+
+══════════════════════════════════════════════════
+SECTION 16 — SUPPLEMENT GUIDANCE (OPTIONAL)
+══════════════════════════════════════════════════
+
+Only include supplements that are:
+• Evidence-based
+• Budget-friendly
+• Actually necessary (not marketing hype)
+
+For each recommended supplement:
+• What it does
+• When to take it
+• Dosage
+• Whether it is essential or optional
+• Budget alternative if expensive
+
+══════════════════════════════════════════════════
+SECTION 17 — OUTPUT FORMAT
+══════════════════════════════════════════════════
+
+Generate the ENTIRE output as a single professional HTML document with:
+
+• Clean, readable layout with proper headings and sections
+• Tables for all workout programs (exercise, sets, reps, rest, muscles)
+• Tables for all meal plans (time, food, macros, cost)
+• Strength progression charts
+• Weekly tracking tables
+• Color coding for phases and intensity levels
+• Mobile-friendly responsive design
+
+The document must look like a professional athlete training manual — something a coach would hand to a client.
+
+══════════════════════════════════════════════════
+CRITICAL RULES
+══════════════════════════════════════════════════
+
+1. Start from ABSOLUTE ZERO — do not assume any existing fitness.
+2. Progress GRADUALLY — no intermediate volume for beginners.
+3. Use EVIDENCE-BASED sports science only.
+4. Avoid outdated myths (spot reduction, anabolic window hype, muscle confusion, etc.).
+5. Keep diet BUDGET-FRIENDLY and INDIAN HOSTEL-COMPATIBLE.
+6. Explain EVERY recommendation — why this exercise, why this food, why this timing.
+7. Design for an ATHLETIC physique — lean, strong, symmetrical — NOT bodybuilding mass.
+8. Include ONLY gym equipment exercises — no calisthenics equipment.
+9. Make the program SUSTAINABLE for 12+ months, not a crash course.
+10. Use the LATEST research and principles available.</div>
+</div>
+
+<button class="copy-btn" onclick="copyPrompt()">Copy Full Prompt to Clipboard</button>
+
+<div class="section">
+  <div class="section-num">What This Prompt Covers vs Previous Versions</div>
+  <h2>Comparison</h2>
+
+  <div class="meta-box">
+    <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
+      <thead>
+        <tr style="border-bottom:1px solid var(--border); color:var(--text);">
+          <th style="text-align:left; padding:0.6rem 0.5rem;">Feature</th>
+          <th style="text-align:center; padding:0.6rem 0.3rem;">V1</th>
+          <th style="text-align:center; padding:0.6rem 0.3rem;">V2</th>
+          <th style="text-align:center; padding:0.6rem 0.3rem;">V3</th>
+          <th style="text-align:center; padding:0.6rem 0.3rem;">V4</th>
+          <th style="text-align:center; padding:0.6rem 0.3rem; color:var(--accent);">V5 ✦</th>
+        </tr>
+      </thead>
+      <tbody style="color:var(--muted);">
+        <tr><td style="padding:0.4rem 0.5rem;">Profile Analysis</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Zero Baseline Safety</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Bulk / Cut / Recomp Decision</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Aesthetic Proportion Model</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Strength Standards Table</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Hypertrophy Volume Science</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓+</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Fatigue Management</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓+</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">12-Week Training Program</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓+</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">24-Month Roadmap</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">partial</td><td style="text-align:center; color:var(--green);">✓</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Indian Budget Hostel Diet</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓+</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Grocery List with INR Costs</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center; color:var(--green);">✓ NEW</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Meal Timestamps</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓+</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Nutrient Timing Science</td><td style="text-align:center;">partial</td><td style="text-align:center;">partial</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓+</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Body Recomposition Science</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Beginner Mistake Prevention</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">—</td><td style="text-align:center; color:var(--green);">✓+</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Progressive Overload Rules</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓+</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Performance Tracking Tables</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Supplement Guidance</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center; color:var(--green);">✓ NEW</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Recovery Optimization</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center; color:var(--green);">✓</td></tr>
+        <tr style="border-top:1px solid var(--border); font-weight:600;">
+          <td style="padding:0.6rem 0.5rem; color:var(--text);">Total Sections</td>
+          <td style="text-align:center;">8</td>
+          <td style="text-align:center;">12</td>
+          <td style="text-align:center;">14</td>
+          <td style="text-align:center;">13</td>
+          <td style="text-align:center; color:var(--accent);">17</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  Complete Human Performance System — V5.0 &bull; Zero to Hero
+</div>
+
+<script>
+function copyPrompt() {
+  const text = document.getElementById('full-prompt').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btns = document.querySelectorAll('.copy-btn');
+    btns.forEach(btn => {
+      btn.textContent = '✓ Copied to Clipboard!';
+      btn.style.background = '#4ade80';
+      setTimeout(() => {
+        btn.textContent = 'Copy Full Prompt to Clipboard';
+        btn.style.background = '#22d3ee';
+      }, 2000);
+    });
+  });
+}
+</script>
+
+</body>
+</html>
