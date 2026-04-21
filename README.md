@@ -17,6 +17,7 @@ A complete, research-backed fitness documentation project built from real AI-ass
 | [Hybrid Athlete Fitness System](guides/Hybrid_Athlete_Fitness_System.pdf) | Comprehensive system combining gym + swimming + calisthenics + nutrition + recovery for body recomposition |
 | [Elite Plan Coach Evaluation](guides/Elite_Plan_Coach_Evaluation.pdf) | Critical review of the training plan by an elite coach persona -- honest scoring (7.5/10) with improvement notes |
 | [Athletic Recomposition Study Roadmap](guides/Athletic-Recomposition-Study-Roadmap.pdf) | A 24-month, 3-phase study roadmap to progressively master the V6 Elite protocol without overwhelm |
+| [Training Plans Review (PDF)](guides/training-plans-review.pdf) · [Markdown](guides/training-plans-review.md) | Comparative review and ranking of all four training plans with scores, strengths, weaknesses, and a recommendation on which to start with |
 
 ### Programs (Interactive HTML)
 
@@ -28,6 +29,7 @@ Open these files in any browser to view beautifully formatted, interactive worko
 | [Elite Transformation Plan v3](programs/elite-plan-final-v3.html) | Complete transformation plan for a 71kg athlete -- workout + nutrition + periodization |
 | [Elite Performance System V6](programs/elite-performance-system-v6.html) | The most comprehensive version -- full human performance system with adaptive coaching |
 | [6-Month Beginner Program](programs/six-month-program.html) | Structured 6-month transformation system designed specifically for beginners |
+| [6-Month Program (V3 Style)](programs/six-month-program-v3-style.html) | Same 6-month program restyled to match the V3 visual design system |
 
 ### Prompts
 

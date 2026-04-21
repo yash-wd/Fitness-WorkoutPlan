@@ -1,0 +1,3097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Beginner's Covenant — 24-Week Transformation System</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080808;
+  --surface: #111;
+  --surface2: #181818;
+  --surface3: #1f1f1f;
+  --border: #222;
+  --border2: #2a2a2a;
+  --push: #e8451a;
+  --pull: #1a8ce8;
+  --legs: #22c55e;
+  --diet: #f5a623;
+  --rest: #888;
+  --beg: #a78bfa;
+  --text: #f0f0f0;
+  --muted: #666;
+  --dim: #444;
+  --accent: #e8451a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* NAV TABS */
+.nav-tabs {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; gap: 0;
+  background: rgba(8,8,8,0.97);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+.nav-tab {
+  flex: 1; padding: 14px 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; text-align: center;
+  cursor: pointer; border: none;
+  background: transparent; color: var(--muted);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s; white-space: nowrap;
+}
+.nav-tab:hover { color: var(--text); }
+.nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* HEADER */
+header {
+  position: relative; padding: 56px 24px 40px;
+  text-align: center; border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 400px;
+  background: radial-gradient(ellipse, rgba(232,69,26,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 3px; color: var(--push); text-transform: uppercase;
+  margin-bottom: 14px; border: 1px solid rgba(232,69,26,0.3);
+  padding: 4px 12px; border-radius: 2px;
+}
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(44px, 9vw, 88px);
+  letter-spacing: 4px; line-height: 0.92;
+}
+h1 span { color: var(--push); }
+.subtitle { margin-top: 14px; color: var(--muted); font-size: 13px; letter-spacing: 1px; font-weight: 300; }
+
+/* BODY STATS STRIP */
+.stats-strip {
+  display: flex; flex-wrap: wrap; gap: 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.stat-item {
+  flex: 1; min-width: 120px;
+  padding: 18px 20px; text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat-item:last-child { border-right: none; }
+.stat-val {
+  font-family: 'Bebas Neue', sans-serif; font-size: 28px;
+  color: var(--text); letter-spacing: 1px;
+}
+.stat-val.highlight { color: var(--push); }
+.stat-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 2px; margin-top: 3px; }
+
+/* VERDICT BANNER */
+.verdict-banner {
+  background: linear-gradient(135deg, rgba(232,69,26,0.12), rgba(232,69,26,0.04));
+  border: 1px solid rgba(232,69,26,0.3);
+  border-radius: 6px; margin: 28px 24px;
+  padding: 24px 28px;
+}
+.verdict-banner h2 {
+  font-family: 'Bebas Neue', sans-serif; font-size: 32px;
+  color: var(--push); letter-spacing: 2px; margin-bottom: 12px;
+}
+.verdict-banner p { font-size: 14px; line-height: 1.7; color: #ccc; margin-bottom: 10px; }
+.verdict-banner p:last-child { margin-bottom: 0; }
+.verdict-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.verdict-pill {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  padding: 5px 12px; border-radius: 2px; letter-spacing: 1px;
+}
+.verdict-pill.green { background: rgba(34,197,94,0.12); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
+.verdict-pill.orange { background: rgba(245,166,35,0.12); color: var(--diet); border: 1px solid rgba(245,166,35,0.25); }
+.verdict-pill.red { background: rgba(232,69,26,0.12); color: var(--push); border: 1px solid rgba(232,69,26,0.25); }
+.verdict-pill.blue { background: rgba(26,140,232,0.12); color: var(--pull); border: 1px solid rgba(26,140,232,0.25); }
+.verdict-pill.purple { background: rgba(167,139,250,0.12); color: var(--beg); border: 1px solid rgba(167,139,250,0.25); }
+
+/* MAIN CONTAINER */
+.container { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+
+/* SECTION VIEWS */
+.view { display: none; }
+.view.active { display: block; }
+
+/* PHASE BAR (workout tab) */
+.phase-bar {
+  display: flex; gap: 6px; padding: 20px 0 8px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.phase-bar::-webkit-scrollbar { display: none; }
+.phase-chip {
+  flex-shrink: 0; padding: 9px 18px;
+  border-radius: 4px; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  cursor: pointer; border: 1px solid transparent;
+  transition: all 0.2s; font-weight: 700;
+  background: var(--surface2); color: var(--muted);
+}
+.phase-chip.p1 { background: rgba(26,140,232,0.1); color: var(--pull); border-color: rgba(26,140,232,0.2); }
+.phase-chip.p2 { background: rgba(232,69,26,0.1); color: var(--push); border-color: rgba(232,69,26,0.2); }
+.phase-chip.p3 { background: rgba(34,197,94,0.1); color: var(--legs); border-color: rgba(34,197,94,0.2); }
+.phase-chip.active.p1 { background: var(--pull); color: #fff; }
+.phase-chip.active.p2 { background: var(--push); color: #fff; }
+.phase-chip.active.p3 { background: var(--legs); color: #000; }
+
+/* DAY STRIP */
+.week-bar {
+  display: flex; gap: 6px; padding: 10px 0 20px;
+  overflow-x: auto; scrollbar-width: none;
+  border-bottom: 1px solid var(--border); margin-bottom: 16px;
+}
+.week-bar::-webkit-scrollbar { display: none; }
+.day-chip {
+  flex-shrink: 0; padding: 9px 14px;
+  border-radius: 4px; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  cursor: pointer; border: 1px solid transparent;
+  transition: all 0.2s; font-weight: 700;
+}
+.day-chip.push { background: rgba(232,69,26,0.1); color: var(--push); border-color: rgba(232,69,26,0.2); }
+.day-chip.pull { background: rgba(26,140,232,0.1); color: var(--pull); border-color: rgba(26,140,232,0.2); }
+.day-chip.legs { background: rgba(34,197,94,0.1); color: var(--legs); border-color: rgba(34,197,94,0.2); }
+.day-chip.upper { background: rgba(245,166,35,0.1); color: var(--diet); border-color: rgba(245,166,35,0.2); }
+.day-chip.lower { background: rgba(167,139,250,0.1); color: var(--beg); border-color: rgba(167,139,250,0.2); }
+.day-chip.rest { background: rgba(136,136,136,0.08); color: var(--muted); border-color: rgba(136,136,136,0.15); }
+.day-chip.active.push { background: var(--push); color: #fff; }
+.day-chip.active.pull { background: var(--pull); color: #fff; }
+.day-chip.active.legs { background: var(--legs); color: #000; }
+.day-chip.active.upper { background: var(--diet); color: #000; }
+.day-chip.active.lower { background: var(--beg); color: #000; }
+.day-chip.active.rest { background: #444; color: #fff; }
+
+/* PANELS */
+.phase-panel { display: none; animation: fadeUp 0.3s ease; }
+.phase-panel.active { display: block; }
+.day-panel { display: none; animation: fadeUp 0.3s ease; }
+.day-panel.active { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* DAY HEADER */
+.day-header {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; flex-wrap: wrap;
+  gap: 12px; margin-bottom: 20px; padding-top: 20px;
+}
+.day-title { font-family: 'Bebas Neue', sans-serif; font-size: 38px; letter-spacing: 2px; }
+.day-title.push { color: var(--push); }
+.day-title.pull { color: var(--pull); }
+.day-title.legs { color: var(--legs); }
+.day-title.upper { color: var(--diet); }
+.day-title.lower { color: var(--beg); }
+.day-title.rest-title { color: var(--muted); }
+
+.day-meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.meta-pill {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  padding: 4px 10px; border-radius: 2px; background: var(--surface2);
+  color: var(--muted); letter-spacing: 1px;
+}
+.focus-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.focus-tag {
+  font-size: 11px; padding: 3px 9px; border-radius: 2px;
+  background: var(--surface2); color: var(--muted); font-weight: 500;
+}
+
+/* SECTION LABEL */
+.section-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 3px; color: var(--muted); text-transform: uppercase;
+  margin: 24px 0 10px; display: flex; align-items: center; gap: 10px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* EXERCISE CARD */
+.exercise-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 15px 18px; margin-bottom: 7px;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 10px; transition: border-color 0.2s;
+}
+.exercise-card:hover { border-color: var(--border2); }
+.ex-number { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--dim); margin-bottom: 4px; }
+.ex-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.ex-target { font-size: 12px; color: var(--muted); font-weight: 300; margin-bottom: 5px; }
+.ex-note { font-size: 12px; color: #888; line-height: 1.5; }
+.ex-right { text-align: right; min-width: 90px; }
+.ex-sets { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.ex-rest { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); }
+.ex-rpe { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--diet); margin-top: 2px; }
+
+.compound-badge {
+  display: inline-block; font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 1px; padding: 2px 6px;
+  background: rgba(232,69,26,0.12); color: var(--push);
+  border-radius: 2px; margin-left: 6px; vertical-align: middle;
+}
+.priority-badge {
+  display: inline-block; font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 1px; padding: 2px 6px;
+  background: rgba(245,166,35,0.15); color: var(--diet);
+  border-radius: 2px; margin-left: 6px; vertical-align: middle;
+}
+
+/* WARMUP BOX */
+.warmup-box {
+  background: var(--surface2); border-left: 3px solid var(--diet);
+  padding: 12px 16px; margin: 8px 0 12px;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  color: #aaa; line-height: 1.6;
+}
+.warmup-box strong { color: var(--diet); letter-spacing: 1px; }
+
+/* TIPS BLOCK */
+.tips-block {
+  margin-top: 20px; padding: 18px 20px;
+  border-radius: 6px; margin-bottom: 8px;
+}
+.tips-block.push { background: rgba(232,69,26,0.07); border: 1px solid rgba(232,69,26,0.18); }
+.tips-block.pull { background: rgba(26,140,232,0.07); border: 1px solid rgba(26,140,232,0.18); }
+.tips-block.legs { background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.18); }
+.tips-block.diet { background: rgba(245,166,35,0.07); border: 1px solid rgba(245,166,35,0.18); }
+.tips-block.beg  { background: rgba(167,139,250,0.07); border: 1px solid rgba(167,139,250,0.18); }
+.tips-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; margin-bottom: 12px; }
+.tips-block.push .tips-title { color: var(--push); }
+.tips-block.pull .tips-title { color: var(--pull); }
+.tips-block.legs .tips-title { color: var(--legs); }
+.tips-block.diet .tips-title { color: var(--diet); }
+.tips-block.beg  .tips-title { color: var(--beg); }
+.tips-block ul, .tips-block ol { padding-left: 16px; }
+.tips-block li { font-size: 13px; color: #bbb; line-height: 1.7; margin-bottom: 6px; }
+.tips-block li strong { color: var(--text); }
+.tips-block p { font-size: 13px; color: #bbb; line-height: 1.7; margin-bottom: 8px; }
+.tips-block p:last-child { margin-bottom: 0; }
+
+/* REST DAY */
+.rest-day { text-align: center; padding: 40px 24px; }
+.rest-icon { font-size: 40px; margin-bottom: 14px; }
+.rest-day h2 { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--muted); letter-spacing: 3px; margin-bottom: 12px; }
+.rest-day p { font-size: 13px; color: #888; max-width: 520px; margin: 0 auto 20px; line-height: 1.7; }
+.recovery-list { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+.recovery-item {
+  padding: 12px 18px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 4px;
+  font-size: 13px; color: #aaa; text-align: left;
+}
+
+/* DIET / NUTRITION */
+.macro-bar {
+  display: flex; gap: 0; margin-bottom: 20px; margin-top: 12px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; overflow: hidden; flex-wrap: wrap;
+}
+.macro-item { flex: 1; min-width: 120px; padding: 16px 14px; text-align: center; border-right: 1px solid var(--border); }
+.macro-item:last-child { border-right: none; }
+.macro-val { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px; }
+.macro-val.p { color: #1a8ce8; }
+.macro-val.c { color: #22c55e; }
+.macro-val.f { color: #f5a623; }
+.macro-val.cal { color: var(--push); }
+.macro-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 2px; margin-top: 3px; }
+.macro-note { font-size: 10px; color: #777; margin-top: 4px; font-style: italic; }
+
+.meal-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 16px 18px; margin-bottom: 8px;
+}
+.meal-time {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  color: var(--diet); letter-spacing: 2px; margin-bottom: 6px;
+}
+.meal-name { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.meal-foods { font-size: 13px; color: #bbb; line-height: 1.6; margin-bottom: 10px; }
+.meal-macros {
+  display: flex; gap: 14px; padding-top: 10px;
+  border-top: 1px solid var(--border); flex-wrap: wrap;
+}
+.mm { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); }
+.mm span { font-weight: 700; }
+.mm span.p { color: var(--pull); }
+.mm span.c { color: var(--legs); }
+.mm span.f { color: var(--diet); }
+.mm span.cal { color: var(--push); }
+
+/* CARD GRIDS */
+.science-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; margin-top: 12px; }
+.science-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 18px 20px;
+}
+.sc-icon { font-size: 22px; margin-bottom: 10px; }
+.sc-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 8px; color: var(--text); }
+.sc-body { font-size: 13px; color: #aaa; line-height: 1.65; }
+.sc-body strong { color: var(--text); }
+.sc-body em { color: var(--diet); font-style: italic; }
+
+.two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 10px; margin-top: 12px; }
+.two-col .science-card { padding: 20px 22px; }
+
+/* TABLES */
+.data-table { width: 100%; border-collapse: collapse; margin-top: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.data-table th {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 2px; color: var(--muted); padding: 12px 14px;
+  border-bottom: 1px solid var(--border); text-align: left;
+  background: var(--surface2); text-transform: uppercase;
+}
+.data-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); font-size: 13px; color: #ccc; vertical-align: top; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: rgba(255,255,255,0.015); }
+.data-table td strong { color: var(--text); }
+.data-table .num { font-family: 'JetBrains Mono', monospace; color: var(--push); font-weight: 700; white-space: nowrap; }
+.data-table .sage { color: var(--legs); }
+.data-table .total td { background: rgba(232,69,26,0.05); font-weight: 700; color: var(--text); }
+.data-table .total td strong { color: var(--push); }
+
+.table-scroll { width: 100%; overflow-x: auto; margin-top: 12px; }
+.table-scroll::-webkit-scrollbar { height: 6px; }
+.table-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* PILLS */
+.pill {
+  display: inline-block; font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; padding: 3px 8px; border-radius: 2px;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.pill.sage { background: rgba(34,197,94,0.12); color: var(--legs); }
+.pill.gold { background: rgba(245,166,35,0.12); color: var(--diet); }
+.pill.rose { background: rgba(232,69,26,0.12); color: var(--push); }
+.pill.slate { background: rgba(136,136,136,0.12); color: var(--muted); }
+.pill.blue { background: rgba(26,140,232,0.12); color: var(--pull); }
+
+/* PHASE TIMELINE */
+.phase-timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin-top: 12px; }
+.phase-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 18px 20px; position: relative;
+}
+.phase-num {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  color: var(--muted); letter-spacing: 2px; margin-bottom: 6px;
+}
+.phase-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 10px; }
+.phase-card.p1 { border-color: rgba(26,140,232,0.3); }
+.phase-card.p1 .phase-title { color: var(--pull); }
+.phase-card.p2 { border-color: rgba(232,69,26,0.3); }
+.phase-card.p2 .phase-title { color: var(--push); }
+.phase-card.p3 { border-color: rgba(34,197,94,0.3); }
+.phase-card.p3 .phase-title { color: var(--legs); }
+.phase-body { font-size: 12px; color: #999; line-height: 1.65; }
+.phase-body strong { color: var(--text); font-size: 13px; }
+
+/* ROUTINE / TIMELINE */
+.routine-list { margin-top: 12px; }
+.routine-row {
+  display: grid; grid-template-columns: 120px 1fr;
+  gap: 16px; padding: 14px 18px; margin-bottom: 6px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.routine-row.highlight { border-color: rgba(232,69,26,0.25); background: rgba(232,69,26,0.04); }
+.r-time { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--push); letter-spacing: 1px; font-weight: 700; }
+.r-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+.r-note { font-size: 12px; color: #999; line-height: 1.6; }
+
+/* GROCERY / RECIPE */
+.grocery-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px; margin-top: 12px;
+}
+.grocery-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 4px; padding: 12px 14px;
+}
+.grocery-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.grocery-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); }
+
+/* CALLOUT */
+.callout {
+  background: linear-gradient(135deg, rgba(245,166,35,0.08), rgba(245,166,35,0.02));
+  border: 1px solid rgba(245,166,35,0.25);
+  border-radius: 6px; padding: 18px 22px; margin: 20px 0;
+}
+.callout-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--diet); margin-bottom: 10px; text-transform: uppercase; }
+.callout p { font-size: 13px; line-height: 1.7; color: #ccc; }
+.callout p strong { color: var(--text); }
+.callout p em { color: var(--diet); font-style: italic; }
+
+/* BEGINNER TIMELINE */
+.tl-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 3px solid var(--beg);
+  border-radius: 6px; padding: 18px 22px; margin-bottom: 10px;
+}
+.tl-item.sage { border-left-color: var(--legs); }
+.tl-item.terra { border-left-color: var(--push); }
+.tl-mark { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--beg); text-transform: uppercase; margin-bottom: 4px; }
+.tl-item.sage .tl-mark { color: var(--legs); }
+.tl-item.terra .tl-mark { color: var(--push); }
+.tl-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 10px; color: var(--text); }
+.tl-item p { font-size: 13px; color: #aaa; line-height: 1.7; }
+
+/* RULES LIST */
+.rules-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 10px; margin-top: 12px; }
+.rule-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 3px solid var(--beg);
+  border-radius: 6px; padding: 18px 22px;
+}
+.rule-card.push  { border-left-color: var(--push); }
+.rule-card.legs  { border-left-color: var(--legs); }
+.rule-card.pull  { border-left-color: var(--pull); }
+.rule-card.diet  { border-left-color: var(--diet); }
+.rule-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--beg); margin-bottom: 4px; }
+.rule-card.push  .rule-num { color: var(--push); }
+.rule-card.legs  .rule-num { color: var(--legs); }
+.rule-card.pull  .rule-num { color: var(--pull); }
+.rule-card.diet  .rule-num { color: var(--diet); }
+.rule-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+.rule-body { font-size: 13px; color: #aaa; line-height: 1.7; }
+.rule-body strong { color: var(--text); }
+
+/* SUPPLEMENT CARDS */
+.supp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; margin-top: 12px; }
+.supp-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 14px 16px;
+}
+.supp-name { font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.supp-verdict {
+  display: inline-block; font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; padding: 2px 7px; border-radius: 2px; margin-bottom: 8px; letter-spacing: 1px;
+}
+.supp-verdict.yes { background: rgba(34,197,94,0.12); color: #22c55e; }
+.supp-verdict.optional { background: rgba(245,166,35,0.12); color: var(--diet); }
+.supp-verdict.no { background: rgba(232,69,26,0.12); color: var(--push); }
+.supp-body { font-size: 12px; color: #999; line-height: 1.55; }
+
+/* PROSE BLOCKS */
+.prose-block { margin: 18px 0; }
+.prose-block p { font-size: 13px; color: #bbb; line-height: 1.75; margin-bottom: 10px; }
+.prose-block p strong { color: var(--text); }
+.prose-block p em { color: var(--diet); font-style: italic; }
+.prose-block ul, .prose-block ol { padding-left: 20px; margin-bottom: 10px; }
+.prose-block li { font-size: 13px; color: #bbb; line-height: 1.75; margin-bottom: 6px; }
+.prose-block li strong { color: var(--text); }
+
+h3.lead {
+  font-family: 'Bebas Neue', sans-serif; font-size: 26px;
+  letter-spacing: 2px; color: var(--text);
+  margin: 28px 0 8px;
+}
+h4.lead {
+  font-family: 'Bebas Neue', sans-serif; font-size: 20px;
+  letter-spacing: 1.5px; color: var(--diet);
+  margin: 20px 0 6px;
+}
+
+/* LEDE / HEADLINE */
+.sec-lede {
+  font-size: 14px; color: #aaa; line-height: 1.75;
+  font-style: italic; margin: 4px 0 18px;
+  padding-left: 12px; border-left: 2px solid var(--border2);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .stats-strip { flex-wrap: wrap; }
+  .stat-item { min-width: 50%; flex: none; }
+  .macro-bar { flex-wrap: wrap; }
+  .macro-item { min-width: 50%; flex: none; }
+  h1 { font-size: 44px; }
+  .routine-row { grid-template-columns: 90px 1fr; gap: 10px; }
+  .day-title { font-size: 30px; }
+  .exercise-card { grid-template-columns: 1fr; }
+  .ex-right { text-align: left; display: flex; gap: 14px; align-items: center; }
+  .nav-tab { font-size: 9px; padding: 12px 4px; letter-spacing: 1.5px; }
+  .container { padding: 0 16px 60px; }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="nav-tabs">
+  <button class="nav-tab active" onclick="showView('overview')">Overview</button>
+  <button class="nav-tab" onclick="showView('workout')">Workout</button>
+  <button class="nav-tab" onclick="showView('nutrition')">Nutrition</button>
+  <button class="nav-tab" onclick="showView('recovery')">Recovery</button>
+  <button class="nav-tab" onclick="showView('beginner')">Beginner</button>
+</nav>
+
+<!-- HEADER -->
+<header>
+  <div class="tag">Six-Month Beginner Protocol · Version 1.0</div>
+  <h1>THE BEGINNER'S <span>COVENANT</span><br>24-WEEK TRANSFORMATION</h1>
+  <p class="subtitle">71 KG · 5'6" · 29 YRS · ZERO GYM EXPERIENCE · HYDERABAD HOSTEL · 40-MIN DAILY SWIM</p>
+</header>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-val">71<span style="font-size:14px;color:var(--muted)">kg</span></div>
+    <div class="stat-label">Current Weight</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">5'6<span style="font-size:14px;color:var(--muted)">"</span></div>
+    <div class="stat-label">Height</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">~18-19<span style="font-size:14px;color:var(--muted)">%</span></div>
+    <div class="stat-label">Starting BF</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">ZERO</div>
+    <div class="stat-label">Experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val highlight">RECOMP</div>
+    <div class="stat-label">Strategy</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val highlight">24<span style="font-size:14px;color:var(--muted)">wk</span></div>
+    <div class="stat-label">Horizon</div>
+  </div>
+</div>
+
+<!-- =================== OVERVIEW VIEW =================== -->
+<div id="view-overview" class="view active">
+  <div class="container">
+
+    <!-- VERDICT -->
+    <div class="verdict-banner">
+      <h2>⚡ THE COACH'S VERDICT — RECOMPOSITION IS THE ANSWER</h2>
+      <p>Six months is long enough to change a body. It is nowhere near long enough to change it forever. This programme is designed to do both. You are not trying to bulk — you are not underweight. You are not trying to cut — you are not overweight. You sit at <strong>BMI 22.7 with roughly 18–19% body fat</strong>, which is the single best starting position in the sport. The strategy is to <strong>build muscle and lose fat at the same time</strong> — which the literature confirms is possible for exactly three populations, all of which describe you: a true beginner, an individual carrying 15–25% body fat, and someone eating adequate protein under progressive resistance training.</p>
+      <div class="verdict-pills">
+        <span class="verdict-pill green">✓ Recomposition — Best Strategy</span>
+        <span class="verdict-pill blue">✓ 4-Day → 5-Day Phased Split</span>
+        <span class="verdict-pill orange">⚡ ~2400 kcal Weekly Avg</span>
+        <span class="verdict-pill red">✗ Not a Bulk · Not a Cut</span>
+        <span class="verdict-pill purple">⏱ 24-Week Plan</span>
+      </div>
+    </div>
+
+    <!-- THE FOUR PILLARS -->
+    <div class="section-label">THE FOUR PILLARS — WHAT THIS PROGRAMME RESTS ON</div>
+    <div class="science-grid">
+      <div class="science-card">
+        <div class="sc-icon">🎯</div>
+        <div class="sc-title">Pattern Before Weight</div>
+        <div class="sc-body">The first eight weeks teach your nervous system to <strong>squat, hinge, press and pull</strong> correctly. Loads stay conservative on purpose. The payoff is a lifetime of uninjured training.</div>
+      </div>
+      <div class="science-card">
+        <div class="sc-icon">🧭</div>
+        <div class="sc-title">Strength Is the Compass</div>
+        <div class="sc-body">Physique follows force production. If your main lifts are climbing, your muscle is growing. If they stall for six weeks outside of a deload, <strong>the mirror is lying to you</strong>.</div>
+      </div>
+      <div class="science-card">
+        <div class="sc-icon">😴</div>
+        <div class="sc-title">Recovery Is the Ceiling</div>
+        <div class="sc-body">Muscle is not built in the gym. It is built in the seven hours of sleep, the 150 grams of protein, and the one full rest day that follow. The gym is the signal; recovery is the adaptation.</div>
+      </div>
+      <div class="science-card">
+        <div class="sc-icon">📈</div>
+        <div class="sc-title">Consistency Beats Intensity</div>
+        <div class="sc-body">22 sessions a month at 80% effort will <strong>out-build 28 sessions a month at 100% effort</strong> every single time — because the 100% athlete is injured, burned out, or gone by Month 3.</div>
+      </div>
+    </div>
+
+    <!-- EXPECTED TRANSFORMATION STATS -->
+    <div class="section-label">EXPECTED TRANSFORMATION — 24 WEEKS</div>
+    <div class="macro-bar">
+      <div class="macro-item">
+        <div class="macro-val cal">−3 to −4%</div>
+        <div class="macro-label">Body Fat Drop</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val c">+3 to +4 kg</div>
+        <div class="macro-label">Lean Mass Gain</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val p">+40 kg</div>
+        <div class="macro-label">Squat 5RM</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val p">+25 kg</div>
+        <div class="macro-label">Bench 5RM</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val p">+35 kg</div>
+        <div class="macro-label">Deadlift 3RM</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val f">~15%</div>
+        <div class="macro-label">BF By Wk 24</div>
+      </div>
+    </div>
+    <div class="prose-block">
+      <p>In visual terms: at Month 6 you will weigh roughly the same as today — possibly 1–2 kg more — but the waist will be <strong>2–3 cm smaller</strong>, the shoulders <strong>2–3 cm wider</strong>, and the posture straight enough that people you see weekly will begin commenting monthly. The chest will feel present under a t-shirt. The arms will fill a sleeve. The mirror will not yet show a finished physique — that arrives at Month 18 — but it will show an athlete under construction, and the trajectory will be unambiguous.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">⏳ THE HONEST TIMELINE</div>
+      <p>Most beginners overestimate what they can achieve in 3 months and dramatically <strong>underestimate what they can achieve in 24</strong>. This programme is calibrated to the second number. The first six months lay a foundation strong enough to carry you for the next eighteen — and beyond.</p>
+    </div>
+
+    <!-- WHAT THIS PROGRAMME IS NOT -->
+    <div class="section-label">WHAT THIS PROGRAMME IS <em style="color:var(--push);font-style:normal;">NOT</em></div>
+    <div class="science-grid">
+      <div class="science-card" style="border-color:rgba(232,69,26,0.25)">
+        <div class="sc-icon">🚫</div>
+        <div class="sc-title">Not a 30-Day Challenge</div>
+        <div class="sc-body">Thirty-day transformations are almost always <strong>water weight and photo lighting</strong>. Real adaptation takes months.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(232,69,26,0.25)">
+        <div class="sc-icon">🚫</div>
+        <div class="sc-title">Not a Bodybuilder's Volume Shock</div>
+        <div class="sc-body">You are 71 kg, natural, and recovering from daily swimming. <strong>Moderate volume applied consistently</strong> will out-build maximal volume applied erratically.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(232,69,26,0.25)">
+        <div class="sc-icon">🚫</div>
+        <div class="sc-title">Not Supplement-Dependent</div>
+        <div class="sc-body"><strong>Creatine and Vitamin D3</strong> are the only two supplements that earn their rupee. The rest is whole food from the hostel mess and one local grocer.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(232,69,26,0.25)">
+        <div class="sc-icon">🚫</div>
+        <div class="sc-title">Not Dependent on Perfect Conditions</div>
+        <div class="sc-body">It is designed to survive <strong>missed meals, bad sleep weeks, and travel</strong> — because those will happen.</div>
+      </div>
+    </div>
+
+    <!-- TRAINING SPLIT ANALYSIS -->
+    <div class="section-label">TRAINING SPLIT ANALYSIS — THE THREE CANDIDATES</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Split</th>
+            <th>Gym Days</th>
+            <th>Typical Layout</th>
+            <th>Freq/Muscle</th>
+            <th>Best Fit For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>4-Day Upper / Lower</strong></td><td class="num">4</td><td>U / L / rest / U / L / rest / rest</td><td>2× per week</td><td>Beginners · time-limited · high life-stress athletes</td></tr>
+          <tr><td><strong>5-Day PPL + UL</strong></td><td class="num">5</td><td>Push / Pull / Legs / rest / Upper / Lower / rest</td><td>2× per week</td><td>Early intermediate · balanced aesthetic goals</td></tr>
+          <tr><td><strong>6-Day PPL A&amp;B</strong></td><td class="num">6</td><td>P / Pl / L / P / Pl / L / rest</td><td>2× per week</td><td>Experienced · recovery-rich lifestyle · physique specialists</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose-block">
+      <p>All three hit every muscle group twice per week, which is the scientific sweet spot for natural hypertrophy. The differentiator is <strong>total weekly recovery demand</strong> — and that is where your situation reshapes the decision.</p>
+    </div>
+
+    <!-- WHAT MAKES YOUR CASE SPECIFIC -->
+    <div class="section-label">WHAT MAKES YOUR CASE SPECIFIC</div>
+    <div class="science-grid">
+      <div class="science-card" style="border-color:rgba(26,140,232,0.2)">
+        <div class="sc-icon">🏊</div>
+        <div class="sc-title">The Swim Load</div>
+        <div class="sc-body">40 minutes of freestyle every day is not recreational exercise — it is a <strong>meaningful upper-body and cardiovascular training session</strong> in its own right. Freestyle heavily loads the lats, deltoids (especially rear and medial), rotator cuff, and core. Across seven days a week this is equivalent to 2–3 additional pull-day-adjacent stimuli on your shoulders and upper back.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(232,69,26,0.2)">
+        <div class="sc-icon">🎓</div>
+        <div class="sc-title">The Beginner Status</div>
+        <div class="sc-body">You have <strong>zero gym training history</strong>. Your tendons, ligaments, and motor patterns have never been loaded. Connective tissue remodels slowly — <strong>3–6× slower than muscle</strong>. This is the single biggest injury risk factor in any beginner programme: muscle can handle the load before the joints can.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(245,166,35,0.2)">
+        <div class="sc-icon">🏠</div>
+        <div class="sc-title">The Life Context</div>
+        <div class="sc-body">Hostel living. Variable meal timing. Moderate study/work stress. Morning training window (7–9 AM) means early wakes. You are <strong>not</strong> training in a bodybuilder's recovery cocoon. <strong>Recovery quality is the tight variable</strong>, not training volume.</div>
+      </div>
+    </div>
+
+    <!-- ELIMINATING -->
+    <div class="section-label">WHY THE 6-DAY AND 4-DAY FAIL THE FULL 24 WEEKS</div>
+    <div class="two-col">
+      <div class="science-card" style="border-color:rgba(232,69,26,0.25)">
+        <div class="sc-icon">❌</div>
+        <div class="sc-title">Eliminating 6-Day PPL</div>
+        <div class="sc-body">
+          The most common programme online — and the most misapplied. For a natural athlete with your profile it fails on three counts:<br><br>
+          <strong>1. Cumulative load exceeds recovery.</strong> Six strength sessions + seven swim sessions = 13 workouts/week. For a beginner with untrained connective tissue, this is an injury roulette, not a programme.<br><br>
+          <strong>2. Shoulder overload risk is high.</strong> Push A + Push B + seven freestyle sessions = 9 weekly exposures on the anterior deltoid. Rotator cuff impingement becomes likely by Week 6–8.<br><br>
+          <strong>3. Zero true rest days is a recovery trap.</strong> The parasympathetic nervous system requires full rest periods to restore — not "active recovery" days.
+        </div>
+      </div>
+      <div class="science-card" style="border-color:rgba(245,166,35,0.25)">
+        <div class="sc-icon">⚠️</div>
+        <div class="sc-title">Eliminating 4-Day U/L (for full 24 weeks)</div>
+        <div class="sc-body">
+          The 4-day Upper/Lower is <strong>ideal for a beginner learning patterns</strong> — but once the patterns are established, it ceases to provide enough stimulus to drive intermediate progression.<br><br>
+          By Week 9, each muscle gets only <strong>8–12 working sets per week</strong> from the gym, which is below the MAV (Maximum Adaptive Volume) needed to keep hypertrophy accelerating.<br><br>
+          It stays as the <strong>Phase 1 split</strong>, not the full programme.
+        </div>
+      </div>
+    </div>
+
+    <!-- THE VERDICT -->
+    <div class="callout" style="background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(34,197,94,0.02));border-color:rgba(34,197,94,0.3);">
+      <div class="callout-title" style="color:var(--legs)">🏆 THE VERDICT — A PHASED SPLIT</div>
+      <p>Use a <strong>4-day Upper/Lower split for Phase 1 (Weeks 1–8)</strong> to teach mechanics, build baseline strength, and let the joints adapt. Then progress to a <strong>5-day PPL + Upper/Lower split for Phases 2 and 3 (Weeks 9–24)</strong> to drive hypertrophy while preserving two complete rest days for recovery alongside your daily swim.</p>
+      <p style="text-align:right;font-size:11px;color:var(--legs);font-family:'JetBrains Mono',monospace;letter-spacing:2px;margin-top:10px;">— THE COACH'S RECOMMENDATION</p>
+    </div>
+
+    <!-- WHY 5-DAY IS LONG-TERM HOME -->
+    <div class="section-label">WHY THE 5-DAY IS THE LONG-TERM HOME</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Consideration</th><th>How the 5-Day Satisfies It</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Every muscle hit 2× per week</strong></td><td>Push + Upper = 2× chest, shoulders, triceps. Pull + Upper = 2× back, biceps. Legs + Lower = 2× quads, hams, glutes, calves.</td></tr>
+          <tr><td><strong>Two complete gym rest days</strong></td><td>Thursday and Sunday are gym-off. Swim continues at moderate pace — genuine active recovery, not a third training stimulus.</td></tr>
+          <tr><td><strong>Moderate weekly volume</strong></td><td>~14–16 working sets per muscle per week, which sits at MAV — the volume that drives growth without crossing MRV.</td></tr>
+          <tr><td><strong>Shoulder load managed</strong></td><td>Only 2 dedicated pressing days. Combined with swim-loaded delts, this keeps weekly shoulder exposure at ~5 sessions — the safe ceiling for this phase.</td></tr>
+          <tr><td><strong>Time-compatible</strong></td><td>Each session fits in the 7:00–8:15 window, leaving 45 minutes before the 9:00 swim. The 6-day split often requires 90-minute sessions that crowd the swim.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 24 WEEK PHASES -->
+    <div class="section-label">24-WEEK PROGRAMME MAP — THREE PHASES</div>
+    <div class="phase-timeline">
+      <div class="phase-card p1">
+        <div class="phase-num">PHASE 01 — WEEKS 1–8</div>
+        <div class="phase-title">Foundation</div>
+        <div class="phase-body">
+          <strong>Split: 4-Day Upper / Lower</strong><br>
+          <strong>Reps: 6–10 @ RPE 6–7</strong><br>
+          <strong>Deload: Week 5</strong><br><br>
+          Learn the lifts. Build textbook squat, hinge, press, pull, row mechanics. Build tendon tolerance. Accept that the weight feels light — that is the point.
+          <br><br><strong>Expected:</strong> +15–25 kg squat, +10–15 kg bench, +20–25 kg deadlift. 0.5–1.5 kg lean mass gain. Visibly better posture.
+        </div>
+      </div>
+      <div class="phase-card p2">
+        <div class="phase-num">PHASE 02 — WEEKS 9–16</div>
+        <div class="phase-title">Strength Development</div>
+        <div class="phase-body">
+          <strong>Split: 5-Day PPL + UL</strong><br>
+          <strong>Reps: 4–8 @ RPE 7–8</strong><br>
+          <strong>Deload: Week 13</strong><br><br>
+          Relentless progression on the five main compound lifts — squat, bench, deadlift, OHP, pull-up. Volume climbs modestly. Intensity climbs more.
+          <br><br><strong>Expected:</strong> Squat 90–100×5, Bench 67.5–75×5, Deadlift 110–120×3, OHP 47.5–52.5×5, Pull-Ups 8–12 unassisted.
+        </div>
+      </div>
+      <div class="phase-card p3">
+        <div class="phase-num">PHASE 03 — WEEKS 17–24</div>
+        <div class="phase-title">Hypertrophy &amp; Definition</div>
+        <div class="phase-body">
+          <strong>Split: 5-Day PPL + UL (higher volume)</strong><br>
+          <strong>Reps: 8–15 @ RPE 7–9</strong><br>
+          <strong>Deload: Week 21</strong><br><br>
+          Take the strength base and convert it into visible muscle. Volume climbs to MAV. Higher-rep ranges drive metabolic stress and MPS.
+          <br><br><strong>Expected:</strong> Waist −2 cm. Visible upper-ab definition. Arms +1 cm. BF approaches 15%.
+        </div>
+      </div>
+    </div>
+
+    <!-- STRENGTH TARGETS -->
+    <div class="section-label">EXPECTED STRENGTH PROGRESSION — MAIN LIFTS</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Lift</th>
+            <th>Wk 1 (Start)</th>
+            <th>Wk 8</th>
+            <th>Wk 16</th>
+            <th>Wk 24</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Back Squat</strong> (5-rep)</td><td class="num">40–50 kg</td><td class="num">65–75 kg</td><td class="num">90–100 kg</td><td class="num sage">100–110 kg</td></tr>
+          <tr><td><strong>Bench Press</strong> (5-rep)</td><td class="num">35–45 kg</td><td class="num">55–62.5 kg</td><td class="num">67.5–75 kg</td><td class="num sage">75–82.5 kg</td></tr>
+          <tr><td><strong>Deadlift</strong> (3-rep)</td><td class="num">60–70 kg</td><td class="num">85–95 kg</td><td class="num">110–120 kg</td><td class="num sage">120–130 kg</td></tr>
+          <tr><td><strong>Overhead Press</strong> (5-rep)</td><td class="num">25–32.5 kg</td><td class="num">37.5–42.5 kg</td><td class="num">47.5–52.5 kg</td><td class="num sage">52.5–57.5 kg</td></tr>
+          <tr><td><strong>Pull-Ups</strong> (unassisted)</td><td class="num">0–3 reps</td><td class="num">5–8 reps</td><td class="num">8–12 reps</td><td class="num sage">12–15 reps</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <div class="callout-title">📊 WHAT THESE NUMBERS REPRESENT</div>
+      <p>At Week 24, roughly: <strong>Squat ≈ 1.5× bodyweight</strong> (intermediate), <strong>Bench ≈ 1.1× bodyweight</strong> (strong beginner), <strong>Deadlift ≈ 1.85× bodyweight</strong> (intermediate approached), <strong>OHP ≈ 0.8× bodyweight</strong> (intermediate). A complete beginner who achieves these numbers in 24 weeks is in the <em>top 10% of natural trainees</em> — because most stop showing up.</p>
+    </div>
+
+    <!-- WEEKLY VOLUME -->
+    <div class="section-label">WEEKLY VOLUME PRESCRIPTIONS (WORKING SETS PER MUSCLE)</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Muscle Group</th>
+            <th>Phase 1</th>
+            <th>Phase 2</th>
+            <th>Phase 3</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Chest</td><td class="num">8</td><td class="num">12</td><td class="num">15</td><td>Incline emphasis in Phase 3</td></tr>
+          <tr><td>Back (lats + mid)</td><td class="num">10</td><td class="num">14</td><td class="num">16</td><td>Plus 7 swim sessions of loading</td></tr>
+          <tr><td>Shoulders (direct)</td><td class="num">9</td><td class="num">12</td><td class="num">15</td><td>Lateral raises are the priority</td></tr>
+          <tr><td>Biceps</td><td class="num">5</td><td class="num">8</td><td class="num">10</td><td>Plus ~4 indirect sets from rows</td></tr>
+          <tr><td>Triceps</td><td class="num">5</td><td class="num">8</td><td class="num">11</td><td>Plus ~6 indirect from presses</td></tr>
+          <tr><td>Quadriceps</td><td class="num">9</td><td class="num">12</td><td class="num">14</td><td>Squat-dominant</td></tr>
+          <tr><td>Hamstrings</td><td class="num">6</td><td class="num">9</td><td class="num">11</td><td>RDL + curl combination</td></tr>
+          <tr><td>Glutes</td><td class="num">6</td><td class="num">9</td><td class="num">10</td><td>Hip thrust is the anchor</td></tr>
+          <tr><td>Calves</td><td class="num">6</td><td class="num">8</td><td class="num">10</td><td>Both gastroc (standing) and soleus (seated)</td></tr>
+          <tr><td>Core</td><td class="num">6</td><td class="num">8</td><td class="num">10</td><td>Anti-extension, anti-rotation, flexion</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px;font-family:'JetBrains Mono',monospace;">Hard working sets per week only. Warm-up sets excluded. All sets taken within 1–2 reps of technical failure at RPE 7+.</p>
+
+    <!-- PROGRAMME MAP TABLE -->
+    <div class="section-label">PROGRAMME MAP — AT A GLANCE</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Weeks</th>
+            <th>Dominant Goal</th>
+            <th>Split</th>
+            <th>Rep Focus</th>
+            <th>Deload</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong style="color:var(--pull)">Phase 1 · Foundation</strong></td><td class="num">1–8</td><td>Learn mechanics, baseline strength, joint adaptation</td><td>4-Day U/L</td><td>6–10 @ RPE 6–7</td><td class="num">Week 5</td></tr>
+          <tr><td><strong style="color:var(--push)">Phase 2 · Strength Development</strong></td><td class="num">9–16</td><td>Drive the main lifts up; build work capacity</td><td>5-Day PPL+UL</td><td>4–8 @ RPE 7–8</td><td class="num">Week 13</td></tr>
+          <tr><td><strong style="color:var(--legs)">Phase 3 · Hypertrophy &amp; Definition</strong></td><td class="num">17–24</td><td>Maximise muscle size, sharpen physique, reveal abs</td><td>5-Day PPL+UL</td><td>8–15 @ RPE 7–9</td><td class="num">Week 21</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PROGRESSION RULES -->
+    <div class="section-label">PROGRESSIVE OVERLOAD RULES — APPLY EVERY SESSION</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Situation</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Hit top of rep range for all sets at target RPE</td><td>Add <strong>2.5 kg</strong> to compounds · <strong>1.25 kg</strong> to isolations next session</td></tr>
+          <tr><td>All sets clean at bottom of range, feels light</td><td>Add <strong>1 rep</strong> per set · weight stays the same</td></tr>
+          <tr><td>Missed reps on 2 consecutive same-lift sessions</td><td>Reduce load <strong>10%</strong>, rebuild over 2 weeks</td></tr>
+          <tr><td>Fatigue signs accumulating (see Recovery tab)</td><td>Trigger unscheduled deload — don't push through</td></tr>
+          <tr><td>Arrived at Week 5, 13, or 21</td><td><strong>Scheduled deload</strong> — reduce load &amp; volume to 60% · non-negotiable</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DELOAD PROTOCOL -->
+    <div class="section-label">DELOAD PROTOCOL — WEEK 5, 13, 21</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Variable</th><th>Normal Week</th><th>Deload Week</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Load (weight on the bar)</td><td class="num">100%</td><td class="num">60%</td><td>CNS recovery</td></tr>
+          <tr><td>Volume (total sets)</td><td class="num">100%</td><td class="num">55–60%</td><td>Connective tissue recovery</td></tr>
+          <tr><td>Intensity (RPE)</td><td class="num">7–9</td><td class="num">5–6</td><td>Technique rehearsal</td></tr>
+          <tr><td>Swim intensity</td><td class="num">Moderate</td><td class="num">Easy only</td><td>Parasympathetic recovery</td></tr>
+          <tr><td>Sleep target</td><td class="num">7.5 hrs</td><td class="num">8+ hrs</td><td>Deep recovery cycles</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">📏 THE PROGRESSION LOGIC IN ONE LINE</div>
+      <p>Four days to learn the lifts. Five days to build the physique. <strong>Only consider six days after Month 12</strong>, if life permits — and only after reassessment.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- =================== WORKOUT VIEW =================== -->
+<div id="view-workout" class="view">
+  <div class="container">
+
+    <!-- PHASE SELECTOR -->
+    <div class="section-label" style="margin-top:20px;">SELECT PHASE</div>
+    <div class="phase-bar">
+      <button class="phase-chip p1 active" onclick="showPhase(1)">Phase 1 · Foundation · Wk 1–8</button>
+      <button class="phase-chip p2" onclick="showPhase(2)">Phase 2 · Strength · Wk 9–16</button>
+      <button class="phase-chip p3" onclick="showPhase(3)">Phase 3 · Hypertrophy · Wk 17–24</button>
+    </div>
+
+    <!-- ===================== PHASE 1 ===================== -->
+    <div class="phase-panel active" id="phase-1">
+
+      <div class="day-header">
+        <div>
+          <div class="day-title pull">FOUNDATION · PHASE 01</div>
+          <div class="focus-tags">
+            <span class="focus-tag">Learn the Lifts</span>
+            <span class="focus-tag">Joint Adaptation</span>
+            <span class="focus-tag">Baseline Strength</span>
+            <span class="focus-tag">Pattern Mastery</span>
+          </div>
+        </div>
+        <div class="day-meta">
+          <span class="meta-pill">📅 8 WEEKS</span>
+          <span class="meta-pill">🏋️ 4-DAY U/L</span>
+          <span class="meta-pill">⚡ RPE 6–7</span>
+        </div>
+      </div>
+
+      <div class="prose-block">
+        <p><strong>Goal:</strong> Build a textbook squat, hinge, press, pull and row. Learn how to brace, how to breathe, how to warm up. Build tendon tolerance. Accept that the weight feels light — that is the point. <strong>Every rep you perform with clean mechanics in these eight weeks buys you two years of injury-free training.</strong></p>
+        <p><strong>Expected outcomes:</strong> +15–25 kg on squat, +10–15 kg on bench, +20–25 kg on deadlift from baseline. 0.5–1.5 kg lean mass gain. 0.5–1.0 kg fat loss. Visibly better posture. Zero significant soreness lasting beyond 48 hours.</p>
+      </div>
+
+      <!-- Phase 1 Weekly Schedule -->
+      <div class="section-label">PHASE 1 WEEKLY SCHEDULE</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Day</th><th>Gym Session</th><th>Swim (post-gym, ~08:30)</th><th>Total Load</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Monday</strong></td><td style="color:var(--diet)">Upper A · Bench Priority</td><td>40 min freestyle — moderate</td><td>Moderate</td></tr>
+            <tr><td><strong>Tuesday</strong></td><td style="color:var(--beg)">Lower A · Squat Priority</td><td>40 min freestyle — easy</td><td>High</td></tr>
+            <tr><td><strong>Wednesday</strong></td><td><span class="pill slate">Gym off</span> · 10 min mobility only</td><td>40 min freestyle — moderate</td><td>Low</td></tr>
+            <tr><td><strong>Thursday</strong></td><td style="color:var(--diet)">Upper B · OHP &amp; Pull-Up Priority</td><td>40 min freestyle — moderate</td><td>Moderate</td></tr>
+            <tr><td><strong>Friday</strong></td><td style="color:var(--beg)">Lower B · Deadlift Priority</td><td>40 min freestyle — easy</td><td>High</td></tr>
+            <tr><td><strong>Saturday</strong></td><td><span class="pill slate">Gym off</span> · optional 10 min mobility</td><td>40 min freestyle — easy</td><td>Low</td></tr>
+            <tr><td><strong>Sunday</strong></td><td><span class="pill slate">Full rest</span></td><td>40 min freestyle — easy / recovery</td><td>Low</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Day chips P1 -->
+      <div class="section-label">PICK A DAY</div>
+      <div class="week-bar">
+        <button class="day-chip upper active" onclick="showDayP1(0)">Mon · Upper A</button>
+        <button class="day-chip lower" onclick="showDayP1(1)">Tue · Lower A</button>
+        <button class="day-chip rest" onclick="showDayP1(2)">Wed · Rest</button>
+        <button class="day-chip upper" onclick="showDayP1(3)">Thu · Upper B</button>
+        <button class="day-chip lower" onclick="showDayP1(4)">Fri · Lower B</button>
+        <button class="day-chip rest" onclick="showDayP1(5)">Sat · Rest</button>
+        <button class="day-chip rest" onclick="showDayP1(6)">Sun · Full Rest</button>
+      </div>
+
+      <!-- MON · UPPER A -->
+      <div class="day-panel active" id="p1-day-0">
+        <div class="day-header">
+          <div>
+            <div class="day-title upper">UPPER A · BENCH PRIORITY</div>
+            <div class="focus-tags">
+              <span class="focus-tag">Chest</span>
+              <span class="focus-tag">Back</span>
+              <span class="focus-tag">Shoulders</span>
+              <span class="focus-tag">Biceps</span>
+              <span class="focus-tag">Triceps</span>
+            </div>
+          </div>
+          <div class="day-meta">
+            <span class="meta-pill">⏱ ~60 MIN</span>
+            <span class="meta-pill">📊 6 EXERCISES</span>
+            <span class="meta-pill">⚡ RPE 6–7</span>
+          </div>
+        </div>
+
+        <div class="warmup-box">
+          <strong>⚡ WARM-UP (8 MIN):</strong> 3 min light bike → band pull-aparts 2×15 → band external rotations 2×12/arm → empty bar bench 10 → 40% bench 5 → 60% bench 3.
+        </div>
+
+        <div class="section-label">COMPOUND — PRIMARY</div>
+        <div class="exercise-card">
+          <div><div class="ex-number">01</div><div class="ex-name">Barbell Bench Press <span class="compound-badge">PRIORITY</span></div><div class="ex-note">Retract scapulae · feet planted · bar to low chest. This is your strength indicator — track every session.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 6–8</div><div class="ex-rest">⏱ 3 min</div></div>
+        </div>
+
+        <div class="section-label">SUPPORTING LIFTS</div>
+        <div class="exercise-card">
+          <div><div class="ex-number">02</div><div class="ex-name">Lat Pulldown (wide grip)</div><div class="ex-note">Pull elbows down, not hands back · squeeze lats at the bottom.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 2 min</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">03</div><div class="ex-name">Seated Dumbbell Shoulder Press</div><div class="ex-note">Elbows ~30° forward · ribs down. Controls shoulder integrity.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 2 min</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">04</div><div class="ex-name">Chest-Supported DB Row</div><div class="ex-note">Drive elbows past ribs · no torso cheat. Mid-back thickness builder.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 90 s</div></div>
+        </div>
+
+        <div class="section-label">ISOLATION — FINISHERS</div>
+        <div class="exercise-card">
+          <div><div class="ex-number">05</div><div class="ex-name">EZ-Bar Bicep Curl</div><div class="ex-note">Elbows pinned · no swinging. Control the negative.</div></div>
+          <div class="ex-right"><div class="ex-sets">2 × 10–12</div><div class="ex-rest">⏱ 75 s</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">06</div><div class="ex-name">Cable Triceps Pushdown</div><div class="ex-note">Full lockout · elbows to ribs.</div></div>
+          <div class="ex-right"><div class="ex-sets">2 × 12–15</div><div class="ex-rest">⏱ 60 s</div></div>
+        </div>
+      </div>
+
+      <!-- TUE · LOWER A -->
+      <div class="day-panel" id="p1-day-1">
+        <div class="day-header">
+          <div>
+            <div class="day-title lower">LOWER A · SQUAT PRIORITY</div>
+            <div class="focus-tags">
+              <span class="focus-tag">Quads</span>
+              <span class="focus-tag">Glutes</span>
+              <span class="focus-tag">Hamstrings</span>
+              <span class="focus-tag">Calves</span>
+              <span class="focus-tag">Core</span>
+            </div>
+          </div>
+          <div class="day-meta">
+            <span class="meta-pill">⏱ ~60 MIN</span>
+            <span class="meta-pill">📊 6 EXERCISES</span>
+            <span class="meta-pill">⚡ RPE 6–7</span>
+          </div>
+        </div>
+
+        <div class="warmup-box">
+          <strong>⚡ WARM-UP (10 MIN):</strong> 3 min bike → 90/90 hip switch 2×10 → glute bridge 2×15 → bodyweight squat 10 → empty bar squat 10 → 40% 5 → 60% 3.
+        </div>
+
+        <div class="section-label">COMPOUND — PRIMARY</div>
+        <div class="exercise-card">
+          <div><div class="ex-number">01</div><div class="ex-name">Goblet Squat → Back Squat (Wk 3+) <span class="compound-badge">PRIORITY</span></div><div class="ex-note">Hip-crease below knee · knees track over toes. Transition to barbell squat when goblet form is bulletproof.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 6–8</div><div class="ex-rest">⏱ 3 min</div></div>
+        </div>
+
+        <div class="section-label">SUPPORTING LIFTS</div>
+        <div class="exercise-card">
+          <div><div class="ex-number">02</div><div class="ex-name">Romanian Deadlift (light)</div><div class="ex-note">Hinge back · bar close to legs · feel hamstring stretch.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 2.5 min</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">03</div><div class="ex-name">Leg Press</div><div class="ex-note">Knees to chest · never lock out at top.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 2 min</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">04</div><div class="ex-name">Standing Calf Raise</div><div class="ex-note">Full stretch bottom · pause 1 s at top.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 90 s</div></div>
+        </div>
+
+        <div class="section-label">CORE WORK</div>
+        <div class="exercise-card">
+          <div><div class="ex-number">05</div><div class="ex-name">Plank</div><div class="ex-note">Posterior pelvic tilt · no hip sag.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 30–45 s</div><div class="ex-rest">⏱ 60 s</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">06</div><div class="ex-name">Dead Bug</div><div class="ex-note">Lower back flat on floor · slow control.</div></div>
+          <div class="ex-right"><div class="ex-sets">2 × 10/side</div><div class="ex-rest">⏱ 45 s</div></div>
+        </div>
+      </div>
+
+      <!-- WED · REST -->
+      <div class="day-panel" id="p1-day-2">
+        <div class="rest-day">
+          <div class="rest-icon">🛌</div>
+          <h2>WED · GYM OFF</h2>
+          <p>10 minutes of mobility work (see Recovery tab). Swim at moderate pace, focus on technique. Eat normally.</p>
+          <div class="recovery-list">
+            <div class="recovery-item"><strong>Mobility (10 min):</strong> 90/90 hip switches, thoracic extensions on foam roller, band pull-aparts, external rotations, ankle dorsiflexion.</div>
+            <div class="recovery-item"><strong>Swim (40 min · moderate):</strong> Technique focus. Breath rhythm bilateral. Active recovery from Tuesday's heavy squat session.</div>
+            <div class="recovery-item"><strong>Nutrition:</strong> Training-day macros. Do not reduce protein on gym-off days.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THU · UPPER B -->
+      <div class="day-panel" id="p1-day-3">
+        <div class="day-header">
+          <div>
+            <div class="day-title upper">UPPER B · OHP &amp; PULL-UP PRIORITY</div>
+            <div class="focus-tags">
+              <span class="focus-tag">Shoulders</span>
+              <span class="focus-tag">Back Width</span>
+              <span class="focus-tag">Upper Chest</span>
+              <span class="focus-tag">Rear Delts</span>
+            </div>
+          </div>
+          <div class="day-meta">
+            <span class="meta-pill">⏱ ~60 MIN</span>
+            <span class="meta-pill">📊 6 EXERCISES</span>
+            <span class="meta-pill">⚡ RPE 6–7</span>
+          </div>
+        </div>
+
+        <div class="warmup-box">
+          <strong>⚡ WARM-UP (8 MIN):</strong> 3 min bike → band pull-aparts 2×15 → band external rotations 2×12/arm → dead hang 2×10 s → empty bar OHP 10 → 50% OHP 3.
+        </div>
+
+        <div class="section-label">COMPOUNDS — PRIMARY</div>
+        <div class="exercise-card">
+          <div><div class="ex-number">01</div><div class="ex-name">Barbell Overhead Press <span class="compound-badge">PRIORITY</span></div><div class="ex-note">Glutes squeezed · ribs down · bar past forehead at lockout.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 6–8</div><div class="ex-rest">⏱ 3 min</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">02</div><div class="ex-name">Assisted Pull-Ups (band/machine) <span class="compound-badge">PRIORITY</span></div><div class="ex-note">Full hang · chin clears bar · no kipping. Transition to bodyweight when you hit 8 clean.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 5–8</div><div class="ex-rest">⏱ 2.5 min</div></div>
+        </div>
+
+        <div class="section-label">SUPPORTING LIFTS</div>
+        <div class="exercise-card">
+          <div><div class="ex-number">03</div><div class="ex-name">Incline Dumbbell Press</div><div class="ex-note">30–45° incline · elbows 75° · control the negative.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 2 min</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">04</div><div class="ex-name">Seated Cable Row (neutral grip)</div><div class="ex-note">Lead with elbow · shoulder blade to spine.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 90 s</div></div>
+        </div>
+
+        <div class="section-label">ISOLATION</div>
+        <div class="exercise-card">
+          <div><div class="ex-number">05</div><div class="ex-name">Dumbbell Lateral Raise</div><div class="ex-note">Lead with elbows · light weight · no swing. V-taper maker.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 75 s</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">06</div><div class="ex-name">Face Pull</div><div class="ex-note">Pull rope to face · external rotation at finish. Shoulder health insurance.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 15–20</div><div class="ex-rest">⏱ 60 s</div></div>
+        </div>
+      </div>
+
+      <!-- FRI · LOWER B -->
+      <div class="day-panel" id="p1-day-4">
+        <div class="day-header">
+          <div>
+            <div class="day-title lower">LOWER B · DEADLIFT PRIORITY</div>
+            <div class="focus-tags">
+              <span class="focus-tag">Posterior Chain</span>
+              <span class="focus-tag">Glutes</span>
+              <span class="focus-tag">Single-Leg</span>
+              <span class="focus-tag">Hamstrings</span>
+            </div>
+          </div>
+          <div class="day-meta">
+            <span class="meta-pill">⏱ ~60 MIN</span>
+            <span class="meta-pill">📊 6 EXERCISES</span>
+            <span class="meta-pill">⚡ RPE 6–7</span>
+          </div>
+        </div>
+
+        <div class="warmup-box">
+          <strong>⚡ WARM-UP (10 MIN):</strong> 3 min bike → 90/90 hip switch 2×10 → cat-cow 10 → bird dog 2×10 → empty bar RDL 10 → 40% deadlift 5 → 60% 3.
+        </div>
+
+        <div class="section-label">COMPOUND — PRIMARY</div>
+        <div class="exercise-card">
+          <div><div class="ex-number">01</div><div class="ex-name">Conventional Deadlift <span class="compound-badge">PRIORITY</span></div><div class="ex-note">Bar over midfoot · hips set · lats tight before pull. Drive through the floor.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 5</div><div class="ex-rest">⏱ 3 min</div></div>
+        </div>
+
+        <div class="section-label">SUPPORTING LIFTS</div>
+        <div class="exercise-card">
+          <div><div class="ex-number">02</div><div class="ex-name">Bulgarian Split Squat (BW → DB)</div><div class="ex-note">Back foot elevated · torso upright. Unilateral strength.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8/side</div><div class="ex-rest">⏱ 2 min</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">03</div><div class="ex-name">Barbell Hip Thrust</div><div class="ex-note">Posterior pelvic tilt at top · squeeze glutes 1 s.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 2 min</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">04</div><div class="ex-name">Seated Leg Curl</div><div class="ex-note">Hold contraction 1 s · full stretch.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 90 s</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">05</div><div class="ex-name">Seated Calf Raise</div><div class="ex-note">Heel dropped deep · slow tempo.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 15–20</div><div class="ex-rest">⏱ 75 s</div></div>
+        </div>
+
+        <div class="section-label">CORE</div>
+        <div class="exercise-card">
+          <div><div class="ex-number">06</div><div class="ex-name">Pallof Press</div><div class="ex-note">Anti-rotation · arms straight out front.</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10/side</div><div class="ex-rest">⏱ 60 s</div></div>
+        </div>
+      </div>
+
+      <!-- SAT / SUN · REST -->
+      <div class="day-panel" id="p1-day-5">
+        <div class="rest-day">
+          <div class="rest-icon">🛌</div>
+          <h2>SAT · GYM OFF</h2>
+          <p>Swim at easy conversational pace. Optional 10 min mobility. This is active recovery, not a third stimulus.</p>
+          <div class="recovery-list">
+            <div class="recovery-item"><strong>Swim (40 min · easy):</strong> Conversational pace. Breathing every stroke. Technique only.</div>
+            <div class="recovery-item"><strong>Optional mobility (10 min):</strong> Hip openers, thoracic work, ankle dorsiflexion.</div>
+            <div class="recovery-item"><strong>Nutrition:</strong> Rest-day macros (2200 kcal). Protein stays at 150 g.</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-panel" id="p1-day-6">
+        <div class="rest-day">
+          <div class="rest-icon">😴</div>
+          <h2>SUN · FULL REST</h2>
+          <p>The only complete rest day of the week — the day your body catches up. Long sleep, big meals, minimal stress.</p>
+          <div class="recovery-list">
+            <div class="recovery-item"><strong>Swim (40 min · easy / recovery):</strong> Technique focus only. Very easy effort.</div>
+            <div class="recovery-item"><strong>Weekly review (10 min):</strong> Weigh in, waist measurement, review lift progress, plan next week's loads.</div>
+            <div class="recovery-item"><strong>Sleep target:</strong> 8+ hours. Sunday night sets the tone for Monday's bench session.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P1 PROGRESSION -->
+      <div class="tips-block pull">
+        <div class="tips-title">🔵 PHASE 1 PROGRESSION STRATEGY</div>
+        <ul>
+          <li><strong>Weeks 1–2:</strong> Learn the movements. Hit the bottom of every rep range. Add weight only when every rep is clean.</li>
+          <li><strong>Weeks 3–4:</strong> Transition from goblet squat to back squat when goblet form is solid. Add 2.5 kg per session on compounds when you hit the top of the rep range.</li>
+          <li><strong>Week 5 — Deload:</strong> All loads to 60%. Sets cut to 2. RPE 5. Sleep +30 min. Non-negotiable.</li>
+          <li><strong>Weeks 6–8:</strong> Return to full loads and push for small PRs each session. By Week 8 target: clean-form squat, 3–5 unassisted pull-ups, deadlift ~1× bodyweight for 5.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- ===================== PHASE 2 ===================== -->
+    <div class="phase-panel" id="phase-2">
+
+      <div class="day-header">
+        <div>
+          <div class="day-title push">STRENGTH DEVELOPMENT · PHASE 02</div>
+          <div class="focus-tags">
+            <span class="focus-tag">Main Lift Progression</span>
+            <span class="focus-tag">Work Capacity</span>
+            <span class="focus-tag">PPL + UL</span>
+            <span class="focus-tag">Linear Gains</span>
+          </div>
+        </div>
+        <div class="day-meta">
+          <span class="meta-pill">📅 8 WEEKS</span>
+          <span class="meta-pill">🏋️ 5-DAY PPL+UL</span>
+          <span class="meta-pill">⚡ RPE 7–8</span>
+        </div>
+      </div>
+
+      <div class="prose-block">
+        <p><strong>Goal:</strong> Relentless progression on the five main compound lifts — squat, bench, deadlift, overhead press, pull-up. Volume climbs modestly. Intensity climbs more. Rep ranges compress into the 4–8 zone for main work, with higher-rep isolation added for muscle development. <strong>This is where the foundation becomes a body.</strong></p>
+        <p><strong>Expected outcomes by Week 16:</strong> Squat 90–100 kg × 5, Bench 67.5–75 kg × 5, Deadlift 110–120 kg × 3, OHP 47.5–52.5 kg × 5, Pull-Ups 8–12 unassisted. Lean mass +1.5–2 kg. Waist −1 to −2 cm.</p>
+      </div>
+
+      <!-- Phase 2 Weekly Schedule -->
+      <div class="section-label">PHASE 2 WEEKLY SCHEDULE</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Day</th><th>Gym Session</th><th>Swim</th><th>Key Lift</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Monday</strong></td><td style="color:var(--push)">Push</td><td>40 min moderate</td><td class="num">Bench 4×5</td></tr>
+            <tr><td><strong>Tuesday</strong></td><td style="color:var(--pull)">Pull</td><td>40 min moderate</td><td class="num">Pull-Up 4×5–8</td></tr>
+            <tr><td><strong>Wednesday</strong></td><td style="color:var(--legs)">Legs</td><td>40 min easy</td><td class="num">Back Squat 4×5</td></tr>
+            <tr><td><strong>Thursday</strong></td><td><span class="pill slate">Gym off</span> · 10 min mobility</td><td>40 min easy</td><td>— Recovery —</td></tr>
+            <tr><td><strong>Friday</strong></td><td style="color:var(--diet)">Upper (full-body upper)</td><td>40 min moderate</td><td class="num">OHP 4×5</td></tr>
+            <tr><td><strong>Saturday</strong></td><td style="color:var(--beg)">Lower (full-body lower)</td><td>40 min easy</td><td class="num">Deadlift 3×3–5</td></tr>
+            <tr><td><strong>Sunday</strong></td><td><span class="pill slate">Full rest</span></td><td>40 min easy</td><td>— Recovery —</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Day chips P2 -->
+      <div class="section-label">PICK A DAY</div>
+      <div class="week-bar">
+        <button class="day-chip push active" onclick="showDayP2(0)">Mon · Push</button>
+        <button class="day-chip pull" onclick="showDayP2(1)">Tue · Pull</button>
+        <button class="day-chip legs" onclick="showDayP2(2)">Wed · Legs</button>
+        <button class="day-chip rest" onclick="showDayP2(3)">Thu · Rest</button>
+        <button class="day-chip upper" onclick="showDayP2(4)">Fri · Upper</button>
+        <button class="day-chip lower" onclick="showDayP2(5)">Sat · Lower</button>
+        <button class="day-chip rest" onclick="showDayP2(6)">Sun · Rest</button>
+      </div>
+
+      <!-- MON · PUSH -->
+      <div class="day-panel active" id="p2-day-0">
+        <div class="day-header">
+          <div>
+            <div class="day-title push">PUSH · BENCH PRIORITY</div>
+            <div class="focus-tags">
+              <span class="focus-tag">Chest</span>
+              <span class="focus-tag">Shoulders</span>
+              <span class="focus-tag">Triceps</span>
+            </div>
+          </div>
+          <div class="day-meta">
+            <span class="meta-pill">⏱ ~70 MIN</span>
+            <span class="meta-pill">📊 6 EXERCISES</span>
+            <span class="meta-pill">⚡ RPE 7–8</span>
+          </div>
+        </div>
+
+        <div class="exercise-card">
+          <div><div class="ex-number">01</div><div class="ex-name">Barbell Bench Press <span class="compound-badge">PRIORITY</span></div><div class="ex-target">Chest · Shoulders · Triceps</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 5</div><div class="ex-rest">⏱ 3 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">02</div><div class="ex-name">Incline Dumbbell Press</div><div class="ex-target">Upper Chest · Front Delts</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">03</div><div class="ex-name">Seated DB Shoulder Press</div><div class="ex-target">Anterior · Medial Delts</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">04</div><div class="ex-name">Dumbbell Lateral Raise</div><div class="ex-target">Medial Delts (V-taper)</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 12–15</div><div class="ex-rest">⏱ 75 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">05</div><div class="ex-name">Cable Triceps Pushdown</div><div class="ex-target">Lateral Triceps</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 75 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">06</div><div class="ex-name">Overhead Triceps Extension</div><div class="ex-target">Long Head Triceps</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+      </div>
+
+      <!-- TUE · PULL -->
+      <div class="day-panel" id="p2-day-1">
+        <div class="day-header">
+          <div>
+            <div class="day-title pull">PULL · BACK WIDTH &amp; BICEPS</div>
+            <div class="focus-tags">
+              <span class="focus-tag">Lats</span>
+              <span class="focus-tag">Mid Back</span>
+              <span class="focus-tag">Rear Delts</span>
+              <span class="focus-tag">Biceps</span>
+            </div>
+          </div>
+          <div class="day-meta">
+            <span class="meta-pill">⏱ ~70 MIN</span>
+            <span class="meta-pill">📊 6 EXERCISES</span>
+            <span class="meta-pill">⚡ RPE 7–8</span>
+          </div>
+        </div>
+
+        <div class="exercise-card">
+          <div><div class="ex-number">01</div><div class="ex-name">Pull-Up (weighted if possible) <span class="compound-badge">PRIORITY</span></div><div class="ex-target">Lats · Biceps · Core</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 5–8</div><div class="ex-rest">⏱ 2.5 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">02</div><div class="ex-name">Barbell Row <span class="compound-badge">PRIORITY</span></div><div class="ex-target">Mid Back · Lats · Rear Delts</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 6–8</div><div class="ex-rest">⏱ 2.5 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">03</div><div class="ex-name">Seated Cable Row (neutral)</div><div class="ex-target">Mid Back · Rhomboids</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">04</div><div class="ex-name">Face Pull</div><div class="ex-target">Rear Delts · Rotator Cuff</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 15–20</div><div class="ex-rest">⏱ 75 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">05</div><div class="ex-name">EZ-Bar Bicep Curl</div><div class="ex-target">Biceps (Short Head)</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 75 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">06</div><div class="ex-name">Hammer Curl</div><div class="ex-target">Brachialis · Brachioradialis</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+      </div>
+
+      <!-- WED · LEGS -->
+      <div class="day-panel" id="p2-day-2">
+        <div class="day-header">
+          <div>
+            <div class="day-title legs">LEGS · BACK SQUAT PRIORITY</div>
+            <div class="focus-tags">
+              <span class="focus-tag">Quads</span>
+              <span class="focus-tag">Hamstrings</span>
+              <span class="focus-tag">Glutes</span>
+              <span class="focus-tag">Calves</span>
+              <span class="focus-tag">Core</span>
+            </div>
+          </div>
+          <div class="day-meta">
+            <span class="meta-pill">⏱ ~70 MIN</span>
+            <span class="meta-pill">📊 6 EXERCISES</span>
+            <span class="meta-pill">⚡ RPE 7–8</span>
+          </div>
+        </div>
+
+        <div class="exercise-card">
+          <div><div class="ex-number">01</div><div class="ex-name">Back Squat <span class="compound-badge">PRIORITY</span></div><div class="ex-target">Quads · Glutes · Core</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 5</div><div class="ex-rest">⏱ 3 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">02</div><div class="ex-name">Romanian Deadlift</div><div class="ex-target">Hamstrings · Glutes</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8</div><div class="ex-rest">⏱ 2.5 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">03</div><div class="ex-name">Leg Press</div><div class="ex-target">Quads · Glutes</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">04</div><div class="ex-name">Walking Lunge (DB)</div><div class="ex-target">Unilateral Quads · Glutes</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10/side</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">05</div><div class="ex-name">Standing Calf Raise</div><div class="ex-target">Gastrocnemius</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 12–15</div><div class="ex-rest">⏱ 90 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">06</div><div class="ex-name">Hanging Leg Raise</div><div class="ex-target">Lower Abs · Hip Flexors</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+      </div>
+
+      <!-- THU · REST -->
+      <div class="day-panel" id="p2-day-3">
+        <div class="rest-day">
+          <div class="rest-icon">🛌</div>
+          <h2>THU · FULL GYM REST</h2>
+          <p>Mobility 10 minutes. Swim at easy pace. Prepare mentally for heavy Friday OHP. Extra protein today.</p>
+          <div class="recovery-list">
+            <div class="recovery-item"><strong>Mobility (10 min):</strong> Focus on shoulder prep for Friday's OHP — band external rotations, thoracic extensions.</div>
+            <div class="recovery-item"><strong>Swim (40 min · easy):</strong> Active recovery from Mon–Wed volume.</div>
+            <div class="recovery-item"><strong>Nutrition:</strong> Extra protein day. Pre-load for Friday–Saturday double-header.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FRI · UPPER -->
+      <div class="day-panel" id="p2-day-4">
+        <div class="day-header">
+          <div>
+            <div class="day-title upper">UPPER · OHP PRIORITY (FULL UPPER)</div>
+            <div class="focus-tags">
+              <span class="focus-tag">Shoulders</span>
+              <span class="focus-tag">Upper Chest</span>
+              <span class="focus-tag">Back</span>
+              <span class="focus-tag">Rear Delts</span>
+            </div>
+          </div>
+          <div class="day-meta">
+            <span class="meta-pill">⏱ ~70 MIN</span>
+            <span class="meta-pill">📊 6 EXERCISES</span>
+            <span class="meta-pill">⚡ RPE 7–8</span>
+          </div>
+        </div>
+
+        <div class="exercise-card">
+          <div><div class="ex-number">01</div><div class="ex-name">Overhead Press <span class="compound-badge">PRIORITY</span></div><div class="ex-target">Delts · Upper Chest · Triceps</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 5</div><div class="ex-rest">⏱ 3 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">02</div><div class="ex-name">Lat Pulldown (wide grip)</div><div class="ex-target">Lats · Teres Major</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 8–10</div><div class="ex-rest">⏱ 2.5 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">03</div><div class="ex-name">Incline Barbell Press</div><div class="ex-target">Upper Chest · Front Delts</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 6–8</div><div class="ex-rest">⏱ 2.5 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">04</div><div class="ex-name">Chest-Supported Row</div><div class="ex-target">Mid Back · Rear Delts</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">05</div><div class="ex-name">Cable Lateral Raise</div><div class="ex-target">Medial Delts</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 75 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">06</div><div class="ex-name">Reverse Pec Deck</div><div class="ex-target">Rear Delts</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+      </div>
+
+      <!-- SAT · LOWER -->
+      <div class="day-panel" id="p2-day-5">
+        <div class="day-header">
+          <div>
+            <div class="day-title lower">LOWER · DEADLIFT PRIORITY (FULL LOWER)</div>
+            <div class="focus-tags">
+              <span class="focus-tag">Posterior Chain</span>
+              <span class="focus-tag">Quads</span>
+              <span class="focus-tag">Glutes</span>
+              <span class="focus-tag">Hamstrings</span>
+            </div>
+          </div>
+          <div class="day-meta">
+            <span class="meta-pill">⏱ ~65 MIN</span>
+            <span class="meta-pill">📊 6 EXERCISES</span>
+            <span class="meta-pill">⚡ RPE 7–8</span>
+          </div>
+        </div>
+
+        <div class="exercise-card">
+          <div><div class="ex-number">01</div><div class="ex-name">Conventional Deadlift <span class="compound-badge">PRIORITY</span></div><div class="ex-target">Posterior Chain · Core · Grip</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 3–5</div><div class="ex-rest">⏱ 3 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">02</div><div class="ex-name">Front Squat (Goblet if heavy)</div><div class="ex-target">Quads · Core</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 6–8</div><div class="ex-rest">⏱ 2.5 min</div><div class="ex-rpe">RPE 7</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">03</div><div class="ex-name">Barbell Hip Thrust</div><div class="ex-target">Glutes · Hamstrings</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">04</div><div class="ex-name">Lying Leg Curl</div><div class="ex-target">Hamstrings</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 90 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">05</div><div class="ex-name">Seated Calf Raise</div><div class="ex-target">Soleus</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 15–20</div><div class="ex-rest">⏱ 75 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">06</div><div class="ex-name">Cable Crunch</div><div class="ex-target">Rectus Abdominis</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+      </div>
+
+      <!-- SUN · REST -->
+      <div class="day-panel" id="p2-day-6">
+        <div class="rest-day">
+          <div class="rest-icon">😴</div>
+          <h2>SUN · FULL REST</h2>
+          <p>No gym. Easy swim only. This is the 24-hour window the body uses to consolidate a week's stimulus. Protect it.</p>
+          <div class="recovery-list">
+            <div class="recovery-item"><strong>Swim (40 min · easy):</strong> Very easy pace. Technique only.</div>
+            <div class="recovery-item"><strong>Weekly review (10 min):</strong> Log the week. Weight trend. Lift progression. Sleep quality.</div>
+            <div class="recovery-item"><strong>Sleep target:</strong> 8+ hours. Recovery priority.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P2 PROGRESSION -->
+      <div class="tips-block push">
+        <div class="tips-title">🔥 PHASE 2 PROGRESSION STRATEGY</div>
+        <ul>
+          <li><strong>Weeks 9–10:</strong> Transition to PPL. Expect a 5% load drop in the first session as you adjust — this is normal.</li>
+          <li><strong>Weeks 11–12:</strong> Linear progression accelerates. Add 2.5 kg per compound session. Isolation work adds reps first, then weight.</li>
+          <li><strong>Week 13 — Deload:</strong> All loads to 60%. Two sets. RPE 5–6. Non-negotiable. This is where the body absorbs the prior month's work.</li>
+          <li><strong>Weeks 14–16:</strong> Push for PRs on main lifts. By Week 16 target the benchmark numbers in the overview.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- ===================== PHASE 3 ===================== -->
+    <div class="phase-panel" id="phase-3">
+
+      <div class="day-header">
+        <div>
+          <div class="day-title legs">HYPERTROPHY &amp; DEFINITION · PHASE 03</div>
+          <div class="focus-tags">
+            <span class="focus-tag">Muscle Size</span>
+            <span class="focus-tag">Physique Definition</span>
+            <span class="focus-tag">Higher Volume</span>
+            <span class="focus-tag">MAV Volume</span>
+          </div>
+        </div>
+        <div class="day-meta">
+          <span class="meta-pill">📅 8 WEEKS</span>
+          <span class="meta-pill">🏋️ 5-DAY PPL+UL</span>
+          <span class="meta-pill">⚡ RPE 7–9</span>
+        </div>
+      </div>
+
+      <div class="prose-block">
+        <p><strong>Goal:</strong> Take the strength base built in Phase 2 and convert it into visible muscle. Volume climbs to MAV (Maximum Adaptive Volume). Rep ranges move higher (8–15) to drive metabolic stress and muscle protein synthesis. <strong>A small caloric taper on rest days sharpens the physique by revealing what you've built.</strong></p>
+        <p><strong>Expected outcomes by Week 24:</strong> Waist −2 cm from Week 17. Visible upper-abdomen definition. Arms +1 cm. Chest fills under a t-shirt. Body fat approaches 15%. Strength continues climbing but at a slower rate than Phase 2.</p>
+      </div>
+
+      <!-- Key changes from phase 2 -->
+      <div class="section-label">PHASE 3 — KEY CHANGES FROM PHASE 2</div>
+      <div class="science-grid">
+        <div class="science-card" style="border-color:rgba(34,197,94,0.25)">
+          <div class="sc-icon">📈</div>
+          <div class="sc-title">Volume Up</div>
+          <div class="sc-body">Add 1 set to every isolation. Add a <strong>4th working set</strong> on rear-delt and lateral raise work (priority muscles). Weekly sets per muscle climb ~20%.</div>
+        </div>
+        <div class="science-card" style="border-color:rgba(34,197,94,0.25)">
+          <div class="sc-icon">🔁</div>
+          <div class="sc-title">Rep Range Up</div>
+          <div class="sc-body">Main compounds shift from 5 reps to <strong>6–8 at RPE 7</strong>. Isolation work moves to <strong>10–15 at RPE 8–9</strong>. More time-under-tension, more hypertrophy signal.</div>
+        </div>
+        <div class="science-card" style="border-color:rgba(34,197,94,0.25)">
+          <div class="sc-icon">🏃</div>
+          <div class="sc-title">Cardio Added</div>
+          <div class="sc-body">Swim intensity on Mon/Tue/Fri moves from moderate to <strong>moderately-hard (6/10)</strong>. Add one 20-min HIIT finisher on Pull day — sprint/walk intervals or rower.</div>
+        </div>
+      </div>
+
+      <!-- Day chips P3 -->
+      <div class="section-label">PICK A DAY · HYPERTROPHY VARIANTS</div>
+      <div class="week-bar">
+        <button class="day-chip push active" onclick="showDayP3(0)">Mon · Push</button>
+        <button class="day-chip pull" onclick="showDayP3(1)">Tue · Pull + HIIT</button>
+        <button class="day-chip legs" onclick="showDayP3(2)">Wed · Legs</button>
+        <button class="day-chip rest" onclick="showDayP3(3)">Thu · Rest</button>
+        <button class="day-chip upper" onclick="showDayP3(4)">Fri · Upper</button>
+        <button class="day-chip lower" onclick="showDayP3(5)">Sat · Lower</button>
+        <button class="day-chip rest" onclick="showDayP3(6)">Sun · Rest</button>
+      </div>
+
+      <!-- MON · PUSH -->
+      <div class="day-panel active" id="p3-day-0">
+        <div class="day-header">
+          <div>
+            <div class="day-title push">PUSH · UPPER CHEST &amp; LATERAL DELT EMPHASIS</div>
+            <div class="focus-tags">
+              <span class="focus-tag">Upper Chest</span>
+              <span class="focus-tag">Medial Delts</span>
+              <span class="focus-tag">Triceps Volume</span>
+            </div>
+          </div>
+          <div class="day-meta">
+            <span class="meta-pill">⏱ ~75 MIN</span>
+            <span class="meta-pill">📊 7 EXERCISES</span>
+            <span class="meta-pill">⚡ RPE 7–9</span>
+          </div>
+        </div>
+
+        <div class="exercise-card">
+          <div><div class="ex-number">01</div><div class="ex-name">Incline Barbell Press <span class="priority-badge">PRIORITY FIRST</span></div><div class="ex-target">Upper Chest · Front Delts</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 6–8</div><div class="ex-rest">⏱ 2.5 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">02</div><div class="ex-name">Flat Dumbbell Bench Press</div><div class="ex-target">Chest (Mid) · Shoulders</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">03</div><div class="ex-name">Seated DB Shoulder Press</div><div class="ex-target">Anterior · Medial Delts</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">04</div><div class="ex-name">Cable Lateral Raise</div><div class="ex-target">Medial Delts (Priority)</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 12–15</div><div class="ex-rest">⏱ 75 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">05</div><div class="ex-name">Cable Chest Fly</div><div class="ex-target">Chest (Stretch-loaded)</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 75 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">06</div><div class="ex-name">Overhead Triceps Extension</div><div class="ex-target">Long Head Triceps</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">07</div><div class="ex-name">Cable Triceps Pushdown (rope)</div><div class="ex-target">Lateral · Medial Triceps</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+      </div>
+
+      <!-- TUE · PULL + HIIT -->
+      <div class="day-panel" id="p3-day-1">
+        <div class="day-header">
+          <div>
+            <div class="day-title pull">PULL · HYPERTROPHY + HIIT FINISHER</div>
+            <div class="focus-tags">
+              <span class="focus-tag">Lat Width</span>
+              <span class="focus-tag">Mid Back</span>
+              <span class="focus-tag">Biceps</span>
+              <span class="focus-tag">Conditioning</span>
+            </div>
+          </div>
+          <div class="day-meta">
+            <span class="meta-pill">⏱ ~75 MIN + 20 HIIT</span>
+            <span class="meta-pill">📊 7 EXERCISES</span>
+            <span class="meta-pill">⚡ RPE 7–9</span>
+          </div>
+        </div>
+
+        <div class="exercise-card">
+          <div><div class="ex-number">01</div><div class="ex-name">Weighted Pull-Up <span class="priority-badge">PRIORITY FIRST</span></div><div class="ex-target">Lats · Biceps</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 6–8</div><div class="ex-rest">⏱ 2.5 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">02</div><div class="ex-name">Barbell Row (or Pendlay)</div><div class="ex-target">Mid Back · Lats</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 8–10</div><div class="ex-rest">⏱ 2.5 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">03</div><div class="ex-name">Seated Cable Row (neutral)</div><div class="ex-target">Mid Back · Rhomboids</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">04</div><div class="ex-name">Face Pull</div><div class="ex-target">Rear Delts · Rotator Cuff</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 15–20</div><div class="ex-rest">⏱ 75 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">05</div><div class="ex-name">Incline DB Curl</div><div class="ex-target">Biceps (Long Head)</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 75 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">06</div><div class="ex-name">Hammer Curl</div><div class="ex-target">Brachialis · Brachioradialis</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">07</div><div class="ex-name">HIIT Finisher (Rower/Sprints)</div><div class="ex-target">Conditioning · Fat Loss</div></div>
+          <div class="ex-right"><div class="ex-sets">20 min</div><div class="ex-rest">Intervals</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+      </div>
+
+      <!-- WED · LEGS -->
+      <div class="day-panel" id="p3-day-2">
+        <div class="day-header">
+          <div>
+            <div class="day-title legs">LEGS · HACK SQUAT VARIATION + VOLUME</div>
+            <div class="focus-tags">
+              <span class="focus-tag">Quad Hypertrophy</span>
+              <span class="focus-tag">Glute Volume</span>
+              <span class="focus-tag">Hamstring Curl</span>
+              <span class="focus-tag">Calves</span>
+            </div>
+          </div>
+          <div class="day-meta">
+            <span class="meta-pill">⏱ ~75 MIN</span>
+            <span class="meta-pill">📊 7 EXERCISES</span>
+            <span class="meta-pill">⚡ RPE 7–9</span>
+          </div>
+        </div>
+
+        <div class="exercise-card">
+          <div><div class="ex-number">01</div><div class="ex-name">Hack Squat (or Back Squat) <span class="priority-badge">PRIORITY FIRST</span></div><div class="ex-target">Quads (Hypertrophy Bias)</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 6–8</div><div class="ex-rest">⏱ 2.5 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">02</div><div class="ex-name">Romanian Deadlift</div><div class="ex-target">Hamstrings · Glutes</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">03</div><div class="ex-name">Leg Press (Feet High)</div><div class="ex-target">Hamstrings · Glutes Bias</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">04</div><div class="ex-name">Walking Lunge (DB)</div><div class="ex-target">Unilateral Quads · Glutes</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 12/side</div><div class="ex-rest">⏱ 90 s</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">05</div><div class="ex-name">Lying Leg Curl</div><div class="ex-target">Hamstrings (Knee Flexion)</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 12–15</div><div class="ex-rest">⏱ 75 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">06</div><div class="ex-name">Standing Calf Raise</div><div class="ex-target">Gastrocnemius</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 12–15</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">07</div><div class="ex-name">Hanging Leg Raise</div><div class="ex-target">Lower Abs · Hip Flexors</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+      </div>
+
+      <!-- THU · REST -->
+      <div class="day-panel" id="p3-day-3">
+        <div class="rest-day">
+          <div class="rest-icon">🛌</div>
+          <h2>THU · FULL GYM REST</h2>
+          <p>Recovery critical at this volume. Mobility, easy swim, extra sleep. Protect for Friday's heavy OHP + Saturday's deadlift double-header.</p>
+          <div class="recovery-list">
+            <div class="recovery-item"><strong>Mobility (10 min):</strong> Shoulder prep for Friday — heavy band work for rotator cuff.</div>
+            <div class="recovery-item"><strong>Swim (40 min · easy):</strong> Very easy. Active recovery only.</div>
+            <div class="recovery-item"><strong>Nutrition:</strong> Maintenance calories. Extra 20 g protein to support muscle repair from Mon–Wed volume.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FRI · UPPER -->
+      <div class="day-panel" id="p3-day-4">
+        <div class="day-header">
+          <div>
+            <div class="day-title upper">UPPER · HYPERTROPHY VOLUME</div>
+            <div class="focus-tags">
+              <span class="focus-tag">OHP Lockout</span>
+              <span class="focus-tag">Width</span>
+              <span class="focus-tag">Rear Delts Priority</span>
+            </div>
+          </div>
+          <div class="day-meta">
+            <span class="meta-pill">⏱ ~75 MIN</span>
+            <span class="meta-pill">📊 7 EXERCISES</span>
+            <span class="meta-pill">⚡ RPE 7–9</span>
+          </div>
+        </div>
+
+        <div class="exercise-card">
+          <div><div class="ex-number">01</div><div class="ex-name">Overhead Press <span class="priority-badge">PRIORITY FIRST</span></div><div class="ex-target">Delts · Triceps</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 6–8</div><div class="ex-rest">⏱ 2.5 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">02</div><div class="ex-name">Lat Pulldown (wide grip)</div><div class="ex-target">Lats · Teres Major</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 10–12</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">03</div><div class="ex-name">Incline DB Press</div><div class="ex-target">Upper Chest</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8–10</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">04</div><div class="ex-name">Chest-Supported Row</div><div class="ex-target">Mid Back · Rear Delts</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 10–12</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">05</div><div class="ex-name">DB Lateral Raise</div><div class="ex-target">Medial Delts</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 12–15</div><div class="ex-rest">⏱ 75 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">06</div><div class="ex-name">Reverse Pec Deck</div><div class="ex-target">Rear Delts (Priority)</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 15–20</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">07</div><div class="ex-name">Preacher Curl</div><div class="ex-target">Biceps (Short Head)</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10–12</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+      </div>
+
+      <!-- SAT · LOWER -->
+      <div class="day-panel" id="p3-day-5">
+        <div class="day-header">
+          <div>
+            <div class="day-title lower">LOWER · POSTERIOR CHAIN BIAS</div>
+            <div class="focus-tags">
+              <span class="focus-tag">Deadlift</span>
+              <span class="focus-tag">Glutes</span>
+              <span class="focus-tag">Hamstrings</span>
+              <span class="focus-tag">Abs</span>
+            </div>
+          </div>
+          <div class="day-meta">
+            <span class="meta-pill">⏱ ~70 MIN</span>
+            <span class="meta-pill">📊 7 EXERCISES</span>
+            <span class="meta-pill">⚡ RPE 7–9</span>
+          </div>
+        </div>
+
+        <div class="exercise-card">
+          <div><div class="ex-number">01</div><div class="ex-name">Conventional Deadlift <span class="priority-badge">PRIORITY FIRST</span></div><div class="ex-target">Posterior Chain · Core</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 3–5</div><div class="ex-rest">⏱ 3 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">02</div><div class="ex-name">Front Squat</div><div class="ex-target">Quads · Upper Back</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 6–8</div><div class="ex-rest">⏱ 2.5 min</div><div class="ex-rpe">RPE 7</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">03</div><div class="ex-name">Barbell Hip Thrust</div><div class="ex-target">Glutes (Priority)</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 8–10</div><div class="ex-rest">⏱ 2 min</div><div class="ex-rpe">RPE 8</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">04</div><div class="ex-name">Lying Leg Curl</div><div class="ex-target">Hamstrings</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 12–15</div><div class="ex-rest">⏱ 75 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">05</div><div class="ex-name">Seated Calf Raise</div><div class="ex-target">Soleus</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 15–20</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">06</div><div class="ex-name">Cable Crunch</div><div class="ex-target">Rectus Abdominis</div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 12–15</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+        <div class="exercise-card">
+          <div><div class="ex-number">07</div><div class="ex-name">Hanging Leg Raise</div><div class="ex-target">Lower Abs</div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 12–15</div><div class="ex-rest">⏱ 60 s</div><div class="ex-rpe">RPE 9</div></div>
+        </div>
+      </div>
+
+      <!-- SUN · REST -->
+      <div class="day-panel" id="p3-day-6">
+        <div class="rest-day">
+          <div class="rest-icon">😴</div>
+          <h2>SUN · FULL REST</h2>
+          <p>Peak volume protection. This rest day is non-negotiable — the body needs 24 hours to consolidate Phase 3's accumulated stimulus.</p>
+          <div class="recovery-list">
+            <div class="recovery-item"><strong>Swim (40 min · easy):</strong> Absolute recovery pace.</div>
+            <div class="recovery-item"><strong>Weekly review:</strong> Photos, measurements, log the week. Definition check begins Week 20+.</div>
+            <div class="recovery-item"><strong>Sleep target:</strong> 8+ hours. At Phase 3 volume, sleep is the rate-limiter.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P3 PROGRESSION -->
+      <div class="tips-block legs">
+        <div class="tips-title">💚 PHASE 3 PROGRESSION STRATEGY</div>
+        <ul>
+          <li><strong>Weeks 17–18:</strong> Introduce new volume gradually. Do not try to PR main lifts — hit 90% of Week 16 numbers for higher reps.</li>
+          <li><strong>Weeks 19–20:</strong> Push weights up on the new rep ranges. Isolation lifts should see real progression week over week.</li>
+          <li><strong>Week 21 — Deload:</strong> Final scheduled deload. Loads to 60%, volume to 60%. Crucial before the final push.</li>
+          <li><strong>Weeks 22–23:</strong> Peak volume weeks. Mild fatigue expected. Sleep becomes the rate-limiter.</li>
+          <li><strong>Week 24 — Test Week:</strong> Final measurements, photos, 5-rep max tests on Bench/Squat/OHP and a 3-rep max on Deadlift. Pull-Up max rep count. <strong>This is the programme's final audit.</strong></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- =================== NUTRITION VIEW =================== -->
+<div id="view-nutrition" class="view">
+  <div class="container">
+
+    <div class="day-header" style="padding-top:28px;">
+      <div>
+        <div class="day-title" style="color:var(--diet)">THE NUTRITION SYSTEM</div>
+        <div class="focus-tags">
+          <span class="focus-tag">Hostel-Proof</span>
+          <span class="focus-tag">Budget-Friendly</span>
+          <span class="focus-tag">Hyderabad-Local</span>
+          <span class="focus-tag">150g Protein Daily</span>
+        </div>
+      </div>
+      <div class="day-meta">
+        <span class="meta-pill">🍳 ~2400 KCAL AVG</span>
+        <span class="meta-pill">💰 ~₹253/DAY</span>
+      </div>
+    </div>
+
+    <p class="sec-lede">This is where most beginners fail. Not through bad training — through inconsistent eating. The plan below is hostel-proof, budget-friendly, and uses food you can get within 2 km of any Hyderabad mess.</p>
+
+    <!-- DAILY MACRO TARGETS -->
+    <div class="section-label">DAILY MACRO TARGETS</div>
+    <div class="macro-bar">
+      <div class="macro-item">
+        <div class="macro-val cal">2500</div>
+        <div class="macro-label">Train Day kcal</div>
+        <div class="macro-note">Slight surplus · fuels hypertrophy</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val">2200</div>
+        <div class="macro-label">Rest Day kcal</div>
+        <div class="macro-note">Moderate deficit · drives fat loss</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val cal">~2400</div>
+        <div class="macro-label">Weekly Avg</div>
+        <div class="macro-note">At maintenance</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val p">150g</div>
+        <div class="macro-label">Protein Daily</div>
+        <div class="macro-note">2.1 g/kg bodyweight</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val c">~300g</div>
+        <div class="macro-label">Carbs (train)</div>
+        <div class="macro-note">Clustered around training</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val f">~65g</div>
+        <div class="macro-label">Fats</div>
+        <div class="macro-note">25% of calories</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val c">30g</div>
+        <div class="macro-label">Fiber</div>
+        <div class="macro-note">Non-negotiable</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val" style="color:var(--pull)">3.5L+</div>
+        <div class="macro-label">Water</div>
+        <div class="macro-note">+1L around training</div>
+      </div>
+    </div>
+    <div class="prose-block">
+      <p><strong>Recomposition logic:</strong> small surplus on training days (fuel growth), moderate deficit on rest days (drive fat loss). Weekly average at maintenance. <em>Protein stays flat every day — that is the anabolic anchor.</em></p>
+    </div>
+
+    <!-- TRAINING DAY MEAL SCHEDULE -->
+    <div class="section-label">TRAINING-DAY MEAL SCHEDULE — 2500 KCAL</div>
+
+    <div class="meal-card">
+      <div class="meal-time">⏱ 05:45 · PRE-WORKOUT</div>
+      <div class="meal-name">Pre-Workout Fuel</div>
+      <div class="meal-foods">1 banana + 25 g whey in water (or 30 g sattu + 1 tsp jaggery). Plus 500 ml water with pinch of salt and lemon. 5 g creatine. 150 mg caffeine (black coffee) if tolerant.</div>
+      <div class="meal-macros">
+        <div class="mm">P <span class="p">25g</span></div>
+        <div class="mm">C <span class="c">35g</span></div>
+        <div class="mm">F <span class="f">1g</span></div>
+        <div class="mm">kcal <span class="cal">260</span></div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-time">⏱ 08:00 · BRIDGE (POST-GYM, PRE-SWIM)</div>
+      <div class="meal-name">Post-Workout Bridge Shake</div>
+      <div class="meal-foods">25 g whey + 1 banana + 500 ml water. This is the bridge between gym and pool — not the real post-workout meal.</div>
+      <div class="meal-macros">
+        <div class="mm">P <span class="p">25g</span></div>
+        <div class="mm">C <span class="c">30g</span></div>
+        <div class="mm">F <span class="f">1g</span></div>
+        <div class="mm">kcal <span class="cal">230</span></div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-time">⏱ 09:30 · POST-TRAINING REAL MEAL</div>
+      <div class="meal-name">Breakfast — The Anabolic Hit</div>
+      <div class="meal-foods">4 boiled eggs + 2 wheat rotis + 1 banana + 100 g dal.</div>
+      <div class="meal-macros">
+        <div class="mm">P <span class="p">35g</span></div>
+        <div class="mm">C <span class="c">70g</span></div>
+        <div class="mm">F <span class="f">18g</span></div>
+        <div class="mm">kcal <span class="cal">570</span></div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-time">⏱ 13:00 · LUNCH (HOSTEL MESS)</div>
+      <div class="meal-name">Main Meal of the Day</div>
+      <div class="meal-foods">150 g cooked rice + 150 g chicken curry (or 80 g soy chunks) + dal + salad.</div>
+      <div class="meal-macros">
+        <div class="mm">P <span class="p">40g</span></div>
+        <div class="mm">C <span class="c">70g</span></div>
+        <div class="mm">F <span class="f">15g</span></div>
+        <div class="mm">kcal <span class="cal">570</span></div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-time">⏱ 16:30 · AFTERNOON SNACK</div>
+      <div class="meal-name">Gap-Closer Snack</div>
+      <div class="meal-foods">30 g roasted peanuts + 1 apple + 200 ml unsweetened lassi. Covers the gap; prevents evening over-eating.</div>
+      <div class="meal-macros">
+        <div class="mm">P <span class="p">15g</span></div>
+        <div class="mm">C <span class="c">35g</span></div>
+        <div class="mm">F <span class="f">16g</span></div>
+        <div class="mm">kcal <span class="cal">340</span></div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-time">⏱ 20:00 · DINNER</div>
+      <div class="meal-name">Evening Meal — Lighter Carbs</div>
+      <div class="meal-foods">2 rotis + 100 g soy chunks curry + 1 boiled egg + sabzi. Light on carbs compared to earlier meals.</div>
+      <div class="meal-macros">
+        <div class="mm">P <span class="p">25g</span></div>
+        <div class="mm">C <span class="c">50g</span></div>
+        <div class="mm">F <span class="f">8g</span></div>
+        <div class="mm">kcal <span class="cal">355</span></div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-time">⏱ 22:00 · PRE-SLEEP PROTEIN</div>
+      <div class="meal-name">Overnight MPS Drip</div>
+      <div class="meal-foods">200 g curd + 10 g flaxseed + 5 almonds. Casein from curd drip-feeds muscle protein synthesis through the night.</div>
+      <div class="meal-macros">
+        <div class="mm">P <span class="p">14g</span></div>
+        <div class="mm">C <span class="c">12g</span></div>
+        <div class="mm">F <span class="f">9g</span></div>
+        <div class="mm">kcal <span class="cal">175</span></div>
+      </div>
+    </div>
+
+    <!-- DAILY TOTAL -->
+    <div class="table-scroll" style="margin-top:16px;">
+      <table class="data-table">
+        <thead>
+          <tr><th>Training Day Total</th><th>Protein</th><th>Carbs</th><th>Fats</th><th>Calories</th></tr>
+        </thead>
+        <tbody>
+          <tr class="total">
+            <td><strong>7 meals · rounded</strong></td>
+            <td class="num" style="color:var(--pull)">179g</td>
+            <td class="num" style="color:var(--legs)">302g</td>
+            <td class="num" style="color:var(--diet)">68g</td>
+            <td class="num">~2500</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:6px;font-family:'JetBrains Mono',monospace;">Protein comes out slightly above target — surplus protein is always safe. Totals rounded.</p>
+
+    <!-- REST DAY ADJUSTMENTS -->
+    <div class="section-label">REST-DAY ADJUSTMENTS — 2200 KCAL</div>
+    <div class="tips-block diet">
+      <div class="tips-title">🟡 REST DAY SWAPS</div>
+      <ul>
+        <li><strong>Skip the 05:45 pre-workout meal</strong> entirely (saves ~260 kcal).</li>
+        <li><strong>Skip the 08:00 bridge shake</strong> (saves ~230 kcal).</li>
+        <li><strong>Add an extra meal at 11:00:</strong> 3 boiled eggs + 1 roti + curd (adds ~320 kcal).</li>
+        <li><strong>Reduce lunch rice by 60 g</strong> (saves ~80 kcal).</li>
+        <li><strong>Protein stays at ~150 g</strong> · carbs drop to ~220 g · fats unchanged.</li>
+      </ul>
+    </div>
+
+    <!-- HOSTEL FOOD ARSENAL -->
+    <div class="section-label">HOSTEL-FRIENDLY FOOD ARSENAL</div>
+    <div class="two-col">
+      <div class="science-card" style="border-color:rgba(34,197,94,0.25)">
+        <div class="sc-icon">🍗</div>
+        <div class="sc-title">Core Protein Sources</div>
+        <div class="sc-body">
+          <strong>Eggs</strong> — 4–6/day · 6 g protein each · cheapest complete protein in India<br><br>
+          <strong>Chicken breast/thigh</strong> — 150–200 g/day · 30 g per 100 g cooked<br><br>
+          <strong>Soy chunks (dry)</strong> — 50 g/day dry · 26 g protein · budget powerhouse<br><br>
+          <strong>Dal (toor/moong)</strong> — 100 g cooked · 8 g protein · daily staple<br><br>
+          <strong>Curd (dahi)</strong> — 200–400 g/day · 7 g protein per 100 g · casein source<br><br>
+          <strong>Whey (optional)</strong> — 1–2 scoops/day · 25 g per scoop · convenient only
+        </div>
+      </div>
+      <div class="science-card" style="border-color:rgba(245,166,35,0.25)">
+        <div class="sc-icon">🍚</div>
+        <div class="sc-title">Carbs, Fats &amp; Fiber</div>
+        <div class="sc-body">
+          <strong>Rice (basmati)</strong> — lunch/dinner anchor · ~200 kcal per 150 g cooked<br><br>
+          <strong>Wheat rotis (atta)</strong> — 1–3 per meal · 70 kcal each · fiber-rich<br><br>
+          <strong>Bananas</strong> — 2–3/day · pre-workout &amp; post-workout gold<br><br>
+          <strong>Peanuts (roasted)</strong> — 30–60 g/day · healthy fats + protein<br><br>
+          <strong>Flaxseed powder</strong> — 10 g/day · omega-3 · fiber · cheap<br><br>
+          <strong>Ghee</strong> — 5–10 g/day · micronutrients · flavor<br><br>
+          <strong>Spinach, tomato, onion, cucumber</strong> — every lunch &amp; dinner · fiber target<br><br>
+          <strong>Seasonal fruit</strong> — apple/guava/orange · 1/day · micronutrient insurance
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-DAY ROTATION -->
+    <div class="section-label">EXAMPLE 2-DAY MEAL ROTATION</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Meal</th><th>Day A</th><th>Day B</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Pre-workout</strong></td><td>Banana + whey shake</td><td>Sattu drink + 1 tsp jaggery</td></tr>
+          <tr><td><strong>Post-gym bridge</strong></td><td>Whey + banana</td><td>Whey + 2 dates</td></tr>
+          <tr><td><strong>Breakfast (9:30)</strong></td><td>4 eggs + 2 rotis + dal</td><td>3-egg omelette + 2 rotis + curd</td></tr>
+          <tr><td><strong>Lunch</strong></td><td>Chicken curry + rice + dal + salad</td><td>Soy chunk curry + rice + dal + sabzi</td></tr>
+          <tr><td><strong>Snack</strong></td><td>Peanuts + apple + lassi</td><td>Sattu drink + 4 almonds + banana</td></tr>
+          <tr><td><strong>Dinner</strong></td><td>Soy chunks + rotis + sabzi + 1 egg</td><td>Paneer/egg bhurji + 2 rotis + salad</td></tr>
+          <tr><td><strong>Pre-sleep</strong></td><td>Curd + flaxseed + almonds</td><td>Curd + peanut butter</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- GROCERY LIST -->
+    <div class="section-label">WEEKLY GROCERY LIST — HYDERABAD · 7 DAYS</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Category</th><th>Item</th><th>Qty/week</th><th>₹/week</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong style="color:var(--pull)">Protein</strong></td><td>Chicken (breast or thigh)</td><td class="num">1 kg</td><td class="num">260</td></tr>
+          <tr><td><strong style="color:var(--pull)">Protein</strong></td><td>Whole eggs</td><td class="num">30</td><td class="num">210</td></tr>
+          <tr><td><strong style="color:var(--pull)">Protein</strong></td><td>Soy chunks</td><td class="num">300 g</td><td class="num">70</td></tr>
+          <tr><td><strong style="color:var(--pull)">Protein</strong></td><td>Whey (pro-rated from 1 kg/month)</td><td class="num">250 g</td><td class="num">275</td></tr>
+          <tr><td><strong style="color:var(--pull)">Dairy</strong></td><td>Curd</td><td class="num">1.5 L</td><td class="num">135</td></tr>
+          <tr><td><strong style="color:var(--legs)">Carbs</strong></td><td>Rice (basmati)</td><td class="num">1.2 kg</td><td class="num">90</td></tr>
+          <tr><td><strong style="color:var(--legs)">Carbs</strong></td><td>Atta (wheat flour)</td><td class="num">1 kg</td><td class="num">55</td></tr>
+          <tr><td><strong style="color:var(--legs)">Carbs</strong></td><td>Dal (toor or moong)</td><td class="num">500 g</td><td class="num">70</td></tr>
+          <tr><td><strong style="color:var(--legs)">Carbs</strong></td><td>Bananas</td><td class="num">14</td><td class="num">80</td></tr>
+          <tr><td><strong style="color:var(--legs)">Carbs</strong></td><td>Sattu</td><td class="num">300 g</td><td class="num">60</td></tr>
+          <tr><td><strong style="color:var(--diet)">Fats</strong></td><td>Peanuts (roasted)</td><td class="num">300 g</td><td class="num">60</td></tr>
+          <tr><td><strong style="color:var(--diet)">Fats</strong></td><td>Flaxseed</td><td class="num">150 g</td><td class="num">40</td></tr>
+          <tr><td><strong style="color:var(--diet)">Fats</strong></td><td>Almonds</td><td class="num">100 g</td><td class="num">80</td></tr>
+          <tr><td><strong style="color:var(--diet)">Fats</strong></td><td>Ghee</td><td class="num">100 g</td><td class="num">70</td></tr>
+          <tr><td><strong style="color:var(--legs)">Veg/Fiber</strong></td><td>Spinach, onion, tomato, cucumber mix</td><td class="num">2 kg</td><td class="num">125</td></tr>
+          <tr><td><strong style="color:var(--legs)">Fruit</strong></td><td>Apples / seasonal</td><td class="num">5</td><td class="num">90</td></tr>
+          <tr class="total"><td colspan="3"><strong>Weekly Total</strong></td><td class="num"><strong>₹1770</strong></td></tr>
+          <tr class="total"><td colspan="3"><strong>Monthly Total</strong></td><td class="num"><strong>~₹7580</strong></td></tr>
+          <tr class="total"><td colspan="3"><strong>Per Day</strong></td><td class="num"><strong>~₹253</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SUPPLEMENTS -->
+    <div class="section-label">SUPPLEMENTS — ONLY THESE THREE EARN THEIR RUPEE</div>
+    <div class="supp-grid">
+      <div class="supp-card">
+        <div class="supp-name">Creatine Monohydrate</div>
+        <div class="supp-verdict yes">ESSENTIAL</div>
+        <div class="supp-body"><strong>5 g/day · any time.</strong> +5–10% strength · better recovery · most researched supplement in existence. No loading phase needed. Cost: ₹500–700/month.</div>
+      </div>
+      <div class="supp-card">
+        <div class="supp-name">Vitamin D3</div>
+        <div class="supp-verdict yes">ESSENTIAL</div>
+        <div class="supp-body"><strong>2000 IU/day with fat.</strong> Supports testosterone, bone density, immunity. Hostel life is indoor — most Indians are deficient. Cost: ₹300/month. Game-changer.</div>
+      </div>
+      <div class="supp-card">
+        <div class="supp-name">Whey Protein</div>
+        <div class="supp-verdict optional">OPTIONAL</div>
+        <div class="supp-body"><strong>25 g × 1–2/day.</strong> Convenient pre/post workout when hostel food isn't ready. Cost: ₹2500–3000/kg. Skip if you can hit 150 g from food alone.</div>
+      </div>
+      <div class="supp-card">
+        <div class="supp-name">Mass Gainers / BCAAs / Pre-Workouts / Fat Burners</div>
+        <div class="supp-verdict no">SKIP</div>
+        <div class="supp-body"><strong>Marketing category.</strong> Waste of money at your stage. Black coffee (₹5) is as effective as any pre-workout. BCAAs are redundant with whole-food protein.</div>
+      </div>
+    </div>
+
+    <!-- HYDRATION -->
+    <div class="section-label">HYDRATION PROTOCOL</div>
+    <div class="tips-block pull">
+      <div class="tips-title">💧 HYDRATION RULES</div>
+      <ul>
+        <li><strong>Base target:</strong> 3.5 L/day.</li>
+        <li><strong>Gym day addition:</strong> +500 ml during workout · +500 ml around the swim.</li>
+        <li><strong>Electrolytes:</strong> On heavy leg days and hot days, add a pinch of salt + lemon to one intra-workout bottle. On extended swim days, an ORS sachet is cheap insurance.</li>
+        <li><strong>Caffeine:</strong> Cap at 200 mg/day (one large coffee). More than that hurts sleep, and sleep is the ceiling of your progress.</li>
+        <li><strong>Alcohol:</strong> Not banned, but honest truth — every drink slows recovery for 48 hours. Save it for deload weeks if at all.</li>
+      </ul>
+    </div>
+
+    <!-- THE ONE RULE -->
+    <div class="callout">
+      <div class="callout-title">⚡ THE ONE NUTRITION RULE THAT DECIDES EVERYTHING</div>
+      <p><strong>Protein. 150 g per day, every day, without exception.</strong> Miss the perfect breakfast, skip the snack, eat mess food that isn't quite on-plan — fine. <em>But hit the protein number.</em> Miss protein and the gym work cannot translate into muscle. Hit protein and even imperfect eating weeks produce progress.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- =================== RECOVERY VIEW =================== -->
+<div id="view-recovery" class="view">
+  <div class="container">
+
+    <div class="day-header" style="padding-top:28px;">
+      <div>
+        <div class="day-title pull">SWIM · ROUTINE · TRACKING · RECOVERY</div>
+        <div class="focus-tags">
+          <span class="focus-tag">40-Min Daily Swim</span>
+          <span class="focus-tag">7.5 Hrs Sleep</span>
+          <span class="focus-tag">3 Deloads</span>
+          <span class="focus-tag">Weekly Logs</span>
+        </div>
+      </div>
+      <div class="day-meta">
+        <span class="meta-pill">🏊 AEROBIC BASE</span>
+        <span class="meta-pill">😴 RECOVERY FIRST</span>
+      </div>
+    </div>
+
+    <p class="sec-lede">Training is the stimulus. Recovery is the adaptation. You can out-train a bad diet for a while; you cannot out-train bad recovery for any amount of time.</p>
+
+    <!-- =========== SWIMMING INTEGRATION =========== -->
+    <div class="section-label">SWIMMING INTEGRATION — 40 MIN DAILY</div>
+    <div class="prose-block">
+      <p>Forty minutes of freestyle, every day. This is not a footnote — it is a <strong>second training modality running in parallel</strong>. Managed intelligently, it accelerates everything. Managed carelessly, it erases half the gym's effect.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="science-card" style="border-color:rgba(26,140,232,0.25)">
+        <div class="sc-icon">✅</div>
+        <div class="sc-title">The Positive Stimulus</div>
+        <div class="sc-body">Freestyle drives <strong>aerobic base, lung capacity, shoulder mobility, and lat endurance</strong>. It burns roughly 400–550 kcal in 40 minutes at moderate pace. Hydrostatic pressure reduces DOMS and increases circulation, which speeds recovery from leg and back sessions. For a recomposition athlete, it is one of the highest-value cardio modes available.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(232,69,26,0.25)">
+        <div class="sc-icon">⚠️</div>
+        <div class="sc-title">The Hidden Cost</div>
+        <div class="sc-body">Freestyle heavily recruits the <strong>anterior/medial delts, lats, rear delts, and rotator cuff</strong>. Done daily on top of a 6-day gym programme, it can push weekly shoulder exposure above recovery capacity — especially in the first 8 weeks. It also burns calories that must be replaced, or body weight drops faster than it should and muscle growth stalls.</div>
+      </div>
+    </div>
+
+    <!-- INTENSITY ZONES -->
+    <div class="section-label">INTENSITY ZONES — MATCH THE GYM DAY</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Zone</th><th>Effort</th><th>Heart Rate</th><th>When to Use</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong style="color:var(--legs)">Easy (Recovery)</strong></td><td>3–4 / 10 · can hold a conversation while breathing every stroke</td><td class="num">~60–65% max</td><td>After heavy leg days · Sundays · any deload week</td></tr>
+          <tr><td><strong style="color:var(--diet)">Moderate (Aerobic)</strong></td><td>5–6 / 10 · breathing pattern bilateral, slightly elevated</td><td class="num">~70–75% max</td><td>After upper-body gym days · most weekdays in Phase 1–2</td></tr>
+          <tr><td><strong style="color:var(--push)">Moderately Hard (Threshold)</strong></td><td>7 / 10 · can speak only short sentences between sets</td><td class="num">~80–85% max</td><td>Phase 3 only · max 1–2 sessions per week · never on heavy compound days</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- THE FIVE SWIM RULES -->
+    <div class="section-label">THE FIVE RULES FOR SWIM + GYM INTEGRATION</div>
+    <div class="rules-list">
+      <div class="rule-card pull">
+        <div class="rule-num">RULE 01</div>
+        <div class="rule-title">Swim AFTER Gym, Never Before</div>
+        <div class="rule-body">Your 30-minute gap between gym (ends ~8:00) and pool (starts ~8:30) is the correct order. Swimming first depletes glycogen and pre-fatigues the shoulders, making the gym session dangerous.</div>
+      </div>
+      <div class="rule-card pull">
+        <div class="rule-num">RULE 02</div>
+        <div class="rule-title">Match Swim Intensity to Gym Stress</div>
+        <div class="rule-body">Heavy leg day → easy swim. Upper day → moderate. Full rest day → easy to moderate (<strong>NOT hard</strong> — rest days exist to recover).</div>
+      </div>
+      <div class="rule-card pull">
+        <div class="rule-num">RULE 03</div>
+        <div class="rule-title">40 Minutes Is the Upper Bound</div>
+        <div class="rule-body">Going longer turns it into a third training stimulus and competes directly with muscle recovery. <strong>On deload weeks drop to 30 minutes.</strong></div>
+      </div>
+      <div class="rule-card pull">
+        <div class="rule-num">RULE 04</div>
+        <div class="rule-title">Eat for the Swim</div>
+        <div class="rule-body">Your post-gym meal must bridge the next 30 minutes of work. <strong>25 g whey + 1 banana + 500 ml water</strong> is the minimum. A proper post-swim meal follows within 60 minutes.</div>
+      </div>
+      <div class="rule-card pull">
+        <div class="rule-num">RULE 05</div>
+        <div class="rule-title">Protect the Shoulders</div>
+        <div class="rule-body">If you feel any anterior shoulder pinch in the first 100 m, <strong>stop and do 2 minutes of band external rotations</strong>. Shoulder impingement ends programmes.</div>
+      </div>
+    </div>
+
+    <!-- SWIM STRUCTURE -->
+    <div class="section-label">SWIM STRUCTURE — A SENSIBLE 40 MINUTES</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Time</th><th>Segment</th><th>Intensity</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">0–5 min</td><td>Warm-up · easy freestyle</td><td>Easy</td><td>Raise core temp · loosen shoulders after gym</td></tr>
+          <tr><td class="num">5–30 min</td><td>Main set · freestyle with technique focus</td><td>Matched to day</td><td>Aerobic base · stroke mechanics · lat/back conditioning</td></tr>
+          <tr><td class="num">30–35 min</td><td>Technique drills (catch-up, single-arm, kick-only)</td><td>Easy</td><td>Fix patterns · active recovery</td></tr>
+          <tr><td class="num">35–40 min</td><td>Cool-down · easy freestyle or breaststroke</td><td>Very easy</td><td>Heart rate decline · mental wind-down</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SWIM ROLE THROUGH PHASES -->
+    <div class="section-label">ROLE OF SWIMMING THROUGH THE PHASES</div>
+    <div class="phase-timeline">
+      <div class="phase-card p1">
+        <div class="phase-num">PHASE 1 · WK 1–8</div>
+        <div class="phase-title">Active Recovery</div>
+        <div class="phase-body">Primarily easy-to-moderate. You are a complete beginner in the gym — the swim is not trying to be a training stimulus. Its job is to <strong>keep the aerobic base alive</strong> and speed recovery between gym sessions.</div>
+      </div>
+      <div class="phase-card p2">
+        <div class="phase-num">PHASE 2 · WK 9–16</div>
+        <div class="phase-title">Aerobic Support</div>
+        <div class="phase-body">Mostly moderate. The swim is now a real <strong>cardiovascular contributor</strong>, improving gym work capacity. Avoid any hard swim sessions — they compete with strength progression.</div>
+      </div>
+      <div class="phase-card p3">
+        <div class="phase-num">PHASE 3 · WK 17–24</div>
+        <div class="phase-title">Fat-Loss Lever</div>
+        <div class="phase-body">One or two moderately-hard sessions per week. Caloric expenditure becomes useful for sharpening the physique. Replace one easy-swim day with <strong>25 min moderately-hard + 15 min cool-down</strong>.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">⚡ THE ONE SWIM MISTAKE TO AVOID</div>
+      <p>Do not turn the daily swim into a hard workout just because you feel good. <strong>Seven hard swims a week on top of six gym sessions is a recipe for burnout by Week 6.</strong> The swim's job is to <em>support</em> the gym, not compete with it.</p>
+    </div>
+
+    <!-- =========== DAILY ROUTINE =========== -->
+    <div class="section-label" style="margin-top:40px;">THE DAILY ROUTINE — MONDAY THROUGH SATURDAY</div>
+    <div class="prose-block">
+      <p>A day well-structured is a day that defends itself against disruption. This is the template — follow it closely Monday through Saturday, relax it one notch on Sunday.</p>
+    </div>
+
+    <div class="routine-list">
+      <div class="routine-row highlight">
+        <div class="r-time">05:45</div>
+        <div>
+          <div class="r-name">Wake · Hydrate · Pre-Workout</div>
+          <div class="r-note">500 ml water with a pinch of salt and squeeze of lemon. 1 banana. 25 g whey in water OR 30 g sattu + 1 tsp jaggery. 150 mg caffeine (black coffee) if tolerant. 5 g creatine with water.</div>
+        </div>
+      </div>
+      <div class="routine-row">
+        <div class="r-time">06:15</div>
+        <div>
+          <div class="r-name">Walk to Gym</div>
+          <div class="r-note">Loose mobility: arm circles, leg swings, gentle torso rotations. This is part of your warm-up.</div>
+        </div>
+      </div>
+      <div class="routine-row highlight">
+        <div class="r-time">06:30–07:00</div>
+        <div>
+          <div class="r-name">Warm-Up (10 min)</div>
+          <div class="r-note">3 min light cardio → movement prep → ramp-up sets on the primary lift. Never skip — skipping is not saving time, it is banking injury.</div>
+        </div>
+      </div>
+      <div class="routine-row highlight">
+        <div class="r-time">07:00–08:00</div>
+        <div>
+          <div class="r-name">Gym Session</div>
+          <div class="r-note">Follow the day's prescribed workout exactly. Log every set (weight · reps · RPE). Rest times are not suggestions — they preserve neural output.</div>
+        </div>
+      </div>
+      <div class="routine-row">
+        <div class="r-time">08:00</div>
+        <div>
+          <div class="r-name">Post-Workout Shake (Bridge Meal)</div>
+          <div class="r-note">25 g whey + 1 banana + 500 ml water. This is the bridge between gym and pool — not the real post-workout meal.</div>
+        </div>
+      </div>
+      <div class="routine-row highlight">
+        <div class="r-time">08:30–09:10</div>
+        <div>
+          <div class="r-name">Swim · 40 min Freestyle</div>
+          <div class="r-note">Intensity per swim rules above. Eat half a banana poolside if feeling low-energy. Sip water between sets.</div>
+        </div>
+      </div>
+      <div class="routine-row highlight">
+        <div class="r-time">09:30</div>
+        <div>
+          <div class="r-name">Post-Training Real Meal</div>
+          <div class="r-note">4 boiled eggs + 2 wheat rotis + 1 banana + dal · or equivalent. ~35–40 g protein · 70–80 g carbs.</div>
+        </div>
+      </div>
+      <div class="routine-row">
+        <div class="r-time">13:00</div>
+        <div>
+          <div class="r-name">Lunch (Hostel Mess)</div>
+          <div class="r-note">150 g cooked rice + 150 g chicken curry (or 80 g soy chunks) + dal + salad.</div>
+        </div>
+      </div>
+      <div class="routine-row">
+        <div class="r-time">13:30–18:00</div>
+        <div>
+          <div class="r-name">Study / Work Block</div>
+          <div class="r-note">Deepest work. Hydrate throughout. One screen break every 50 min. Walk 5 min per hour.</div>
+        </div>
+      </div>
+      <div class="routine-row">
+        <div class="r-time">16:30</div>
+        <div>
+          <div class="r-name">Afternoon Snack</div>
+          <div class="r-note">30 g roasted peanuts + 1 apple + 200 ml unsweetened lassi. Covers the gap; prevents evening over-eating.</div>
+        </div>
+      </div>
+      <div class="routine-row">
+        <div class="r-time">20:00</div>
+        <div>
+          <div class="r-name">Dinner</div>
+          <div class="r-note">2 rotis + 100 g soy chunks curry + 1 boiled egg + sabzi. Light on carbs compared to earlier meals.</div>
+        </div>
+      </div>
+      <div class="routine-row highlight">
+        <div class="r-time">22:00</div>
+        <div>
+          <div class="r-name">Pre-Sleep Protein</div>
+          <div class="r-note">200 g curd + 10 g flaxseed + 5 almonds. Casein from curd drip-feeds muscle protein synthesis through the night.</div>
+        </div>
+      </div>
+      <div class="routine-row highlight">
+        <div class="r-time">22:30</div>
+        <div>
+          <div class="r-name">Lights Out</div>
+          <div class="r-note">Phone out of reach. Room cool. 4-7-8 breathing pattern while in bed. Target 7.5 hours of sleep.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUNDAY ROUTINE -->
+    <div class="section-label">SUNDAY — RECOVERY DAY PROTOCOL</div>
+    <div class="routine-list">
+      <div class="routine-row">
+        <div class="r-time">07:30</div>
+        <div>
+          <div class="r-name">Natural Wake</div>
+          <div class="r-note">No alarm. Hydrate. Light breakfast — eggs, curd, fruit. Relaxed pace.</div>
+        </div>
+      </div>
+      <div class="routine-row">
+        <div class="r-time">09:00</div>
+        <div>
+          <div class="r-name">Easy Swim · 40 min</div>
+          <div class="r-note">Very easy pace. Technique focus only. This is active recovery — nothing more.</div>
+        </div>
+      </div>
+      <div class="routine-row">
+        <div class="r-time">11:00</div>
+        <div>
+          <div class="r-name">Weekly Review (10 min)</div>
+          <div class="r-note">Fill the weekly log. Weigh in. Waist measurement. Review lift progress. Plan next week's loads.</div>
+        </div>
+      </div>
+      <div class="routine-row">
+        <div class="r-time">13:00</div>
+        <div>
+          <div class="r-name">Larger Lunch</div>
+          <div class="r-note">Rest day calories are lower overall, but meals are still regular. Adjust rice by −60 g; skip the afternoon snack's lassi.</div>
+        </div>
+      </div>
+      <div class="routine-row">
+        <div class="r-time">Afternoon</div>
+        <div>
+          <div class="r-name">Life · Social · Reading</div>
+          <div class="r-note">Do non-training things. The head also needs rest. A 20-minute walk after lunch is excellent but optional.</div>
+        </div>
+      </div>
+      <div class="routine-row highlight">
+        <div class="r-time">22:00</div>
+        <div>
+          <div class="r-name">Earlier Bed</div>
+          <div class="r-note">Target 8+ hours tonight. Sunday's sleep sets the tone for Monday's training.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">⚖️ THE 80/20 PRINCIPLE FOR ADHERENCE</div>
+      <p>The routine is designed to be followed <strong>85–90% of the time</strong>. Missing one meal a week, skipping one swim for social reasons, sleeping 6.5 hours one night because friends visited — none of this breaks the programme. What breaks the programme is letting <em>"one off day"</em> become a pattern of off days. Note the deviation, return to the template the next morning.</p>
+    </div>
+
+    <!-- =========== WEEKLY PROGRESS TRACKING =========== -->
+    <div class="section-label" style="margin-top:40px;">WEEKLY PROGRESS TRACKING</div>
+    <div class="prose-block">
+      <p>Data is the bridge between effort and progress. Without measurement, you are guessing. With it, you are coaching yourself — and <strong>that is the only coach you will have with you for the next 20 years</strong>.</p>
+    </div>
+
+    <!-- WHAT TO TRACK -->
+    <div class="section-label">WHAT TO TRACK, AND HOW OFTEN</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Metric</th><th>How</th><th>Frequency</th><th>What Good Looks Like</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Body weight</strong></td><td>Morning · fasted · post-toilet · same scale</td><td>Daily · weekly avg is the real number</td><td>Stable ±1 kg · slow upward drift over 24 wk</td></tr>
+          <tr><td><strong>Waist (at navel)</strong></td><td>Measuring tape · relaxed exhale · fasted</td><td>Weekly (Sunday morning)</td><td>Trending down 0.2–0.4 cm/week</td></tr>
+          <tr><td><strong>Chest (nipple line)</strong></td><td>Arms at sides · mid-breath</td><td>Biweekly</td><td>+2–4 cm over 24 weeks</td></tr>
+          <tr><td><strong>Arm (flexed mid-biceps)</strong></td><td>Flexed at 90° · tape mid-biceps</td><td>Biweekly</td><td>+1–2 cm over 24 weeks</td></tr>
+          <tr><td><strong>Thigh (mid-thigh)</strong></td><td>Halfway between hip and knee · relaxed</td><td>Biweekly</td><td>+1.5–2.5 cm over 24 weeks</td></tr>
+          <tr><td><strong>Main lifts</strong></td><td>Top set weight × reps × RPE, logged</td><td>Every session</td><td>See progression table (Overview)</td></tr>
+          <tr><td><strong>Energy / motivation</strong></td><td>1–10 self-rating pre-session</td><td>Every session</td><td>Weekly avg ≥ 7 · three sessions &lt; 6 = deload flag</td></tr>
+          <tr><td><strong>Sleep hours &amp; quality</strong></td><td>Hours slept + 1–10 quality rating</td><td>Daily</td><td>Average ≥ 7.0 hrs · quality ≥ 7/10</td></tr>
+          <tr><td><strong>Photos</strong></td><td>Front, side, back · relaxed + flexed · same lighting</td><td>Every 2 weeks</td><td>Side-by-side comparison reveals what the scale hides</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- WEEKLY LOG -->
+    <div class="section-label">WEEKLY LOG TEMPLATE — FILL EVERY SUNDAY · 10 MIN</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>BW</th>
+            <th>Waist</th>
+            <th>Bench</th>
+            <th>Squat</th>
+            <th>DL</th>
+            <th>OHP</th>
+            <th>P-Up</th>
+            <th>Sleep</th>
+            <th>Energy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td class="num">71.0</td><td class="num">78.0</td><td class="num">40×6</td><td class="num">50×6</td><td class="num">70×5</td><td class="num">27.5×6</td><td class="num">3</td><td class="num">7.0</td><td class="num">7</td></tr>
+          <tr><td>2</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>3</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>4</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr style="color:var(--muted);"><td>…</td><td class="num">…</td><td class="num">…</td><td class="num">…</td><td class="num">…</td><td class="num">…</td><td class="num">…</td><td class="num">…</td><td class="num">…</td><td class="num">…</td></tr>
+          <tr><td>24</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:6px;font-family:'JetBrains Mono',monospace;">Copy this table into a spreadsheet, a notebook, or a note-taking app on your phone. The format is less important than the discipline of filling it every week.</p>
+
+    <!-- BIWEEKLY MEASUREMENTS -->
+    <div class="section-label">BIWEEKLY MEASUREMENTS LOG</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Weight</th>
+            <th>Chest</th>
+            <th>Waist</th>
+            <th>Arm Flex</th>
+            <th>Thigh</th>
+            <th>Calf</th>
+            <th>Photo?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td class="num">71.0</td><td class="num">94.0</td><td class="num">78.0</td><td class="num">33.0</td><td class="num">52.0</td><td class="num">35.0</td><td><span class="pill sage">Yes</span></td></tr>
+          <tr><td>3</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>—</td></tr>
+          <tr><td>5</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>—</td></tr>
+          <tr><td>7</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>—</td></tr>
+          <tr style="color:var(--muted);"><td>…</td><td class="num">…</td><td class="num">…</td><td class="num">…</td><td class="num">…</td><td class="num">…</td><td class="num">…</td><td>…</td></tr>
+          <tr><td>24</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="pill sage">Yes</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MONTHLY REVIEW CHECKLIST -->
+    <div class="section-label">MONTHLY REVIEW CHECKLIST</div>
+    <div class="tips-block diet">
+      <div class="tips-title">📋 ONCE A MONTH — 15 MINUTES</div>
+      <ul>
+        <li>Average weekly bodyweight trend — stable, up, or down?</li>
+        <li>Waist circumference net change — if down ≥ 1 cm, <strong>recomposition is working</strong>.</li>
+        <li>Strength on the five main lifts — are all five up from 4 weeks ago?</li>
+        <li>Training adherence — hit ≥ 85% of prescribed sessions? If below 75%, audit life before blaming the programme.</li>
+        <li>Average sleep — ≥ 7 hours? If not, <strong>sleep is the bottleneck</strong> — fix before anything else.</li>
+        <li>Photos side-by-side with 4 weeks prior — what visually changed?</li>
+        <li>Protein adherence — did you hit 150 g on at least 25 of 28 days?</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">⚠️ THE SIGNALS THAT SHOULD WORRY YOU</div>
+      <p>If weight drops more than 0.4 kg/week for two consecutive weeks <em>and</em> strength is also dropping — <strong>you are in an unintended deficit</strong>. Add 200 kcal/day. If weight climbs 0.5+ kg/week for two weeks and waist is also rising — <strong>you are in an unintended surplus</strong>. Drop 150 kcal from rest days. Most weeks, however, the right action is <em>no action</em>. The system works because it is consistent.</p>
+    </div>
+
+    <!-- =========== RECOVERY OPTIMIZATION =========== -->
+    <div class="section-label" style="margin-top:40px;">RECOVERY OPTIMIZATION — SLEEP · MOBILITY · DELOADS</div>
+
+    <!-- SLEEP TARGETS -->
+    <div class="section-label">SLEEP — THE TIER-ONE RECOVERY TOOL</div>
+    <div class="macro-bar">
+      <div class="macro-item">
+        <div class="macro-val cal">7–8 hrs</div>
+        <div class="macro-label">Nightly Target</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val">22:30</div>
+        <div class="macro-label">Lights Out (train days)</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val c">18°C</div>
+        <div class="macro-label">Ideal Room Temp</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-val f">≤200mg</div>
+        <div class="macro-label">Caffeine · Before 14:00</div>
+      </div>
+    </div>
+
+    <!-- SLEEP HYGIENE -->
+    <div class="section-label">SLEEP HYGIENE NON-NEGOTIABLES</div>
+    <div class="tips-block pull">
+      <div class="tips-title">🌙 SIX RULES FOR GOOD SLEEP</div>
+      <ul>
+        <li><strong>Fixed schedule:</strong> Same sleep time ±30 min · 6 nights a week. Circadian rhythms stabilize in 10–14 days and then protect you automatically.</li>
+        <li><strong>Phone out of arm's reach:</strong> 30 min before bed, 30 min after waking. Scrolling raises cortisol and crushes deep sleep.</li>
+        <li><strong>Dark and cool room:</strong> Blackout where possible · fan/AC to keep temp low · core body temperature must drop 1–2 °C to enter deep sleep.</li>
+        <li><strong>Caffeine cutoff at 14:00:</strong> Caffeine has a 6-hour half-life. A 16:00 coffee is still in your system at midnight — invisibly degrading sleep architecture.</li>
+        <li><strong>No heavy meal after 21:30:</strong> Digestion competes with recovery processes. Light pre-sleep protein (curd) is fine; a full dinner at 22:30 is not.</li>
+        <li><strong>5-minute wind-down:</strong> Box breathing (4-4-4-4) or 4-7-8 breathing in bed. Shifts the nervous system from sympathetic to parasympathetic — you fall asleep faster and wake less.</li>
+      </ul>
+    </div>
+
+    <!-- MOBILITY PROTOCOL -->
+    <div class="section-label">DAILY MOBILITY PROTOCOL — 10 MINUTES</div>
+    <div class="prose-block">
+      <p>Do this every morning on gym days as part of warm-up, or anytime on rest days. Cumulative over 24 weeks, this is what keeps your <strong>squat deep, your bench shoulders healthy, and your deadlift spine neutral</strong>.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Drill</th><th>Duration</th><th>What It Opens</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>90/90 hip switches</strong></td><td class="num">2 min</td><td>Internal/external hip rotation (squat depth)</td></tr>
+          <tr><td><strong>Thoracic extensions on foam roller</strong></td><td class="num">2 min</td><td>Upper back (bench arch, OHP lockout)</td></tr>
+          <tr><td><strong>Band pull-aparts</strong></td><td class="num">2 min (2×20)</td><td>Rear delt · scapular health</td></tr>
+          <tr><td><strong>Band external rotations</strong></td><td class="num">2 min (2×12/arm)</td><td>Rotator cuff (pressing, swimming)</td></tr>
+          <tr><td><strong>Ankle dorsiflexion (wall stretch)</strong></td><td class="num">2 min</td><td>Squat depth · calf length</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DELOAD WEEKS -->
+    <div class="section-label">DELOAD WEEKS — SCHEDULE &amp; PURPOSE</div>
+    <div class="prose-block">
+      <p>You have <strong>three scheduled deloads</strong> across the 24 weeks: <em>Week 5, Week 13, Week 21</em>. These are not optional recovery weeks — they are built into the programme because without them, accumulating fatigue stops strength progression by Month 3, with or without you noticing.</p>
+    </div>
+    <div class="tips-block diet">
+      <div class="tips-title">🔻 DELOAD PARAMETERS</div>
+      <ul>
+        <li><strong>Loads:</strong> 60% of normal working weight.</li>
+        <li><strong>Volume:</strong> 55–60% of normal (cut from 3–4 sets to 2 sets).</li>
+        <li><strong>RPE:</strong> 5–6 only. Stop each set feeling fresh.</li>
+        <li><strong>Swim:</strong> Easy pace only. Skip the hard Phase 3 sessions during deload weeks.</li>
+        <li><strong>Sleep:</strong> Target 8+ hours. Add 30 minutes to normal bedtime.</li>
+        <li><strong>Nutrition:</strong> Maintain full calories. This is when the body absorbs months of work.</li>
+      </ul>
+    </div>
+
+    <!-- WARNING SIGNS -->
+    <div class="section-label">WARNING SIGNS — TRIGGER AN UNSCHEDULED DELOAD</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Signal</th><th>What It Means</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Strength drops 5%+ on 2 consecutive sessions of the same lift</td><td>Local &amp; systemic fatigue accumulating</td></tr>
+          <tr><td>Resting heart rate elevated 5+ bpm above baseline for 3+ mornings</td><td>Autonomic recovery impaired</td></tr>
+          <tr><td>Sleep quality drops despite normal hours</td><td>Cortisol dysregulation beginning</td></tr>
+          <tr><td>Mood, motivation, and appetite all decline together</td><td>Classic overreaching signature</td></tr>
+          <tr><td>Persistent joint discomfort that outlasts warm-up</td><td>Soft tissue load warning · swap the offending exercise</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:#bbb;margin-top:10px;line-height:1.7;">Any <strong style="color:var(--push)">two of the above persisting for five days</strong> → unscheduled deload. Do not push through. <em>Five days of reduced training protects five months of progress.</em></p>
+
+    <!-- ACTIVE RECOVERY -->
+    <div class="section-label">ACTIVE RECOVERY — WHAT IT IS &amp; ISN'T</div>
+    <div class="two-col">
+      <div class="science-card" style="border-color:rgba(34,197,94,0.25)">
+        <div class="sc-icon">✅</div>
+        <div class="sc-title">IS Active Recovery</div>
+        <div class="sc-body">
+          Easy swim · mobility work · 20-minute walk · light yoga · foam rolling.<br><br>
+          <strong>Purpose:</strong> Move blood through the tissues to clear metabolic byproducts, <em>without adding training load</em>.
+        </div>
+      </div>
+      <div class="science-card" style="border-color:rgba(232,69,26,0.25)">
+        <div class="sc-icon">❌</div>
+        <div class="sc-title">IS NOT Active Recovery</div>
+        <div class="sc-body">
+          A "light" gym session. A swim at "just 80%". Any activity that spikes <strong>heart rate above 130 bpm</strong>.<br><br>
+          These are training stimuli in disguise — and they erase the recovery you think you're getting.
+        </div>
+      </div>
+    </div>
+
+    <!-- STRESS MANAGEMENT -->
+    <div class="section-label">STRESS MANAGEMENT</div>
+    <div class="prose-block">
+      <p>Chronic cortisol suppresses testosterone, impairs glycogen storage, and blunts muscle protein synthesis. Five minutes of diaphragmatic breathing post-workout — the <strong>4-7-8 pattern (inhale 4, hold 7, exhale 8)</strong> for 4 rounds — shifts the autonomic balance to parasympathetic dominance. <em>This is a measurable recovery tool, not a wellness gimmick.</em></p>
+      <p>Other high-leverage habits:</p>
+      <ul>
+        <li>One <strong>20-minute walk daily without a screen or earbuds</strong> — the only time the default-mode network gets to work.</li>
+        <li><strong>Weekly social anchor</strong> — one conversation with friends or family. Social isolation drives cortisol in hostel environments.</li>
+        <li>A <strong>rigid work/study shutdown by 21:00</strong>. Your body cannot recover from training if it is still running on work stress.</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">🏆 THE RECOVERY HIERARCHY</div>
+      <p>If you can only fix one thing, <strong>fix sleep</strong>. If you can fix two, <strong>add protein</strong>. If you can fix three, <strong>add stress management</strong>. The gym work is already solved by this document. The recovery side is where you make or break the next 24 weeks.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- =================== BEGINNER VIEW =================== -->
+<div id="view-beginner" class="view">
+  <div class="container">
+
+    <div class="day-header" style="padding-top:28px;">
+      <div>
+        <div class="day-title" style="color:var(--beg)">THE BEGINNER'S PROTOCOL</div>
+        <div class="focus-tags">
+          <span class="focus-tag">7 Rules</span>
+          <span class="focus-tag">Common Mistakes</span>
+          <span class="focus-tag">Habit Blueprint</span>
+          <span class="focus-tag">14-Day Launch</span>
+        </div>
+      </div>
+      <div class="day-meta">
+        <span class="meta-pill">🟣 ZERO EXPERIENCE</span>
+        <span class="meta-pill">🚀 WEEK 1 READY</span>
+      </div>
+    </div>
+
+    <p class="sec-lede">Seven laws to carry into the first session. Violate any of them and the programme stops working. Honour them all and the programme works whether you feel like training or not.</p>
+
+    <!-- THE SEVEN RULES -->
+    <div class="section-label">THE BEGINNER'S RULES — SEVEN LAWS</div>
+    <div class="rules-list">
+      <div class="rule-card push">
+        <div class="rule-num">RULE 01</div>
+        <div class="rule-title">Form Before Weight</div>
+        <div class="rule-body">Until you can perform a movement with textbook mechanics across every rep of every set, the weight does not go up. If the squat bar rolls forward, if the bench arches into the lumbar, if the deadlift back rounds — <strong>drop the load 10% and rebuild</strong>. This is not caution. It is the single most important rule in the document. Every serious training injury you will ever sustain will be an avoidable form breakdown under fatigue.</div>
+      </div>
+
+      <div class="rule-card legs">
+        <div class="rule-num">RULE 02</div>
+        <div class="rule-title">Progressive Overload</div>
+        <div class="rule-body">Muscle grows when asked to do slightly more than it did last time. This means adding weight, reps, or a cleaner rep — consistently. The rule: when you hit the top of a rep range with all prescribed sets at the target effort, next session you add <strong>2.5 kg to compounds, 1.25 kg to isolations, or one rep per set</strong>. No overload, no adaptation. <em>Write the numbers down or the progression does not exist.</em></div>
+      </div>
+
+      <div class="rule-card pull">
+        <div class="rule-num">RULE 03</div>
+        <div class="rule-title">Recovery Is Training</div>
+        <div class="rule-body">You are lifting and swimming six days a week. The body does not adapt during the session — it adapts during sleep, meals, and off-days. Treat recovery with the same discipline as training. If strength drops for two consecutive sessions on the same lift, if motivation collapses, if resting heart rate rises 5+ bpm above baseline for three mornings — <strong>take a deload. No exceptions.</strong></div>
+      </div>
+
+      <div class="rule-card diet">
+        <div class="rule-num">RULE 04</div>
+        <div class="rule-title">Seven-Hour Sleep Minimum</div>
+        <div class="rule-body">Growth hormone and testosterone peak in deep sleep. One night below six hours depresses the next day's testosterone response by 15–25%. A chronic pattern of six-hour nights erases <strong>30–40% of your potential gain from training</strong> — invisibly. The non-negotiable floor is <strong>7 hours per night, averaged over the week</strong>. 7.5 is the target.</div>
+      </div>
+
+      <div class="rule-card push">
+        <div class="rule-num">RULE 05</div>
+        <div class="rule-title">Hydrate Deliberately</div>
+        <div class="rule-body">A <strong>2% drop in body water cuts strength output by 10–15%</strong>. You are training in the morning in Hyderabad and swimming on top of that — fluid loss is real. The target is <strong>3.5 litres per day baseline, plus 500–700 ml per training hour, plus another 500 ml around the swim</strong>. On heavy leg days and swim days, add a pinch of salt or an oral-rehydration sachet.</div>
+      </div>
+
+      <div class="rule-card diet">
+        <div class="rule-num">RULE 06</div>
+        <div class="rule-title">Patience Over Panic</div>
+        <div class="rule-body">You will be tempted — by Instagram, by a gym acquaintance, by the impatience of a Week 3 plateau — to <em>"add something"</em> to this programme. Do not. The programme is already calibrated. Premature volume additions cause injury. Premature calorie cuts cause strength loss. The first change you make is a scheduled change at Week 9. Until then, <strong>run the plan as written</strong>.</div>
+      </div>
+
+      <div class="rule-card" style="border-left-color:var(--push);background:linear-gradient(135deg,rgba(232,69,26,0.06),rgba(232,69,26,0.01))">
+        <div class="rule-num" style="color:var(--push)">RULE 07 · THE MASTER RULE</div>
+        <div class="rule-title">Consistency Is the Whole Game</div>
+        <div class="rule-body">The athlete who trains four days a week for 24 weeks will outprogress the athlete who trains six days a week for eight weeks and then disappears. Your only real competitor in this programme is the version of you that quits in Week 5 because results felt too slow. <strong>Adherence &gt; intensity.</strong> <em>Show up. Do the prescribed work. Leave. Repeat tomorrow.</em> That is the entire game.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">📜 THE ONE SENTENCE YOU MUST ACCEPT</div>
+      <p>If you do the programme exactly as written for 24 weeks, you will gain roughly <strong>3–4 kg of lean mass and lose 3–4 kg of fat</strong>. If you chase every new idea you see online, you will gain roughly nothing. <em>The difference is not genetics. It is adherence.</em></p>
+    </div>
+
+    <!-- =============== TRAINING MISTAKES =============== -->
+    <div class="section-label" style="margin-top:40px;">COMMON BEGINNER MISTAKES — TRAINING</div>
+    <p class="sec-lede">The same errors repeat in every gym on Earth. Knowing them in advance saves months. This list is not exhaustive — it is ranked by how often it derails a beginner.</p>
+
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Mistake</th><th>Why It Breaks Progress</th><th>The Correction</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong style="color:var(--push)">Ego lifting</strong></td><td>Form breaks under load · joint injury · deload-level setback</td><td>Load always follows form. If the rep looks bad, lower the weight immediately.</td></tr>
+          <tr><td><strong style="color:var(--push)">Skipping legs</strong></td><td>Disproportionate upper-dominant physique · weak posterior chain · lower total-body testosterone response</td><td>Two leg days per week · non-negotiable · squat is not optional.</td></tr>
+          <tr><td><strong style="color:var(--push)">Programme hopping</strong></td><td>Never completes a full progressive overload cycle · perpetual novice</td><td>Finish all 24 weeks of this one. No Instagram additions until Week 25.</td></tr>
+          <tr><td><strong style="color:var(--push)">Training to failure on every set</strong></td><td>CNS overload · form degradation · recovery debt</td><td>RPE 7–8 on most sets. RPE 9+ only on final set of final exercise.</td></tr>
+          <tr><td><strong style="color:var(--push)">Chasing soreness as progress</strong></td><td>Soreness is a damage marker, not a growth marker</td><td>Track strength and reps. Soreness is a side effect, not a target.</td></tr>
+          <tr><td><strong style="color:var(--push)">Skipping warm-ups</strong></td><td>Cold tissue under load = injury roulette · saves 10 min · costs 4 weeks</td><td>10 min warm-up · every single session · no exceptions.</td></tr>
+          <tr><td><strong style="color:var(--push)">Ignoring the log</strong></td><td>You cannot progress what you do not measure</td><td>Write every set. A ₹40 notebook multiplies results 2–3×.</td></tr>
+          <tr><td><strong style="color:var(--push)">Comparing to gym veterans</strong></td><td>Adjusts your weights to the wrong reference · leads to ego lifting</td><td>Your only competitor is last week's you. Ignore everyone else.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- NUTRITION MISTAKES -->
+    <div class="section-label">COMMON BEGINNER MISTAKES — NUTRITION</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Mistake</th><th>Consequence</th><th>Correct Approach</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong style="color:var(--diet)">Under-eating protein</strong></td><td>Stalled muscle gain · regardless of training quality</td><td>Hit 150 g daily. Measure. Don't estimate.</td></tr>
+          <tr><td><strong style="color:var(--diet)">Skipping meals</strong></td><td>Missed MPS spikes · glycogen depletion · catabolism risk</td><td>5 meals daily with protein in each.</td></tr>
+          <tr><td><strong style="color:var(--diet)">Relying on supplements over food</strong></td><td>Mass gainers replace nothing but calories and money</td><td>Whole food first. Creatine is the only worthwhile addition.</td></tr>
+          <tr><td><strong style="color:var(--diet)">Not tracking intake early on</strong></td><td>Guesswork produces guess results</td><td>Weigh food for first 2 weeks. Then portions are known by eye.</td></tr>
+          <tr><td><strong style="color:var(--diet)">Crash dieting in Phase 3 to "reveal abs"</strong></td><td>Muscle loss · strength crash · rebound fat gain</td><td>Moderate rest-day deficit only. Abs appear over months, not weeks.</td></tr>
+          <tr><td><strong style="color:var(--diet)">Drinking calories you didn't plan for</strong></td><td>Sugary lassi, juice, soft drinks can add 300 kcal invisibly</td><td>Water, black coffee, tea, lassi (unsweetened), ORS only.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- RECOVERY & LIFESTYLE MISTAKES -->
+    <div class="section-label">COMMON BEGINNER MISTAKES — RECOVERY &amp; LIFESTYLE</div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Mistake</th><th>Consequence</th><th>Correct Approach</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong style="color:var(--pull)">Under-sleeping</strong></td><td>Wipes out 30–40% of the training response · invisibly</td><td>7.5 hrs minimum. This is training, not leisure.</td></tr>
+          <tr><td><strong style="color:var(--pull)">Training through joint pain</strong></td><td>Muscle soreness clears in 48 hrs. Joint injury takes 6+ weeks.</td><td>Muscle soreness = continue · joint or nerve pain = rest + swap exercise.</td></tr>
+          <tr><td><strong style="color:var(--pull)">No deloads ever</strong></td><td>Accumulating fatigue stalls all progress by Month 3</td><td>Week 5, 13, 21 — scheduled · non-negotiable.</td></tr>
+          <tr><td><strong style="color:var(--pull)">Swimming as a hard workout daily</strong></td><td>Double training stimulus · chronic shoulder overload</td><td>Match swim intensity to gym day · easy after heavy legs.</td></tr>
+          <tr><td><strong style="color:var(--pull)">Ignoring mobility</strong></td><td>Squat depth disappears · shoulder range shrinks · performance caps early</td><td>10 minutes daily · habit, not chore.</td></tr>
+          <tr><td><strong style="color:var(--pull)">Weekend binge eating</strong></td><td>Wipes out the weekday deficit · erases recomp progress</td><td>Stay within 400 kcal of target 7 days a week. Pattern beats perfection.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MENTAL MISTAKES -->
+    <div class="section-label">MENTAL MISTAKES — THE ONES NOBODY WARNS YOU ABOUT</div>
+    <div class="science-grid">
+      <div class="science-card" style="border-color:rgba(167,139,250,0.25)">
+        <div class="sc-icon">💭</div>
+        <div class="sc-title">"It's Not Working Fast Enough"</div>
+        <div class="sc-body">Week 3, 6, and 10 are the three classic quitting points. <strong>Visible change lags strength change by 4–6 weeks</strong>. If your lifts are climbing, muscle is growing — even if the mirror doesn't show it yet. <em>Trust the numbers.</em></div>
+      </div>
+      <div class="science-card" style="border-color:rgba(167,139,250,0.25)">
+        <div class="sc-icon">➕</div>
+        <div class="sc-title">"I'll Add One More Thing"</div>
+        <div class="sc-body">The temptation to bolt on <strong>extra ab work, extra cardio, extra arm day</strong> starts around Week 4. The programme is already calibrated. Additions do not accelerate progress — they accelerate fatigue and derail the balance.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(167,139,250,0.25)">
+        <div class="sc-icon">📉</div>
+        <div class="sc-title">"I Missed Three Days, Week Is Ruined"</div>
+        <div class="sc-body">Three missed sessions is not a ruined week. It is a <strong>50% week. A 50% week is infinitely better than a 0% week.</strong> Return to the next scheduled session — do not "make up" the missed ones. Catch-up training just creates fatigue.</div>
+      </div>
+      <div class="science-card" style="border-color:rgba(167,139,250,0.25)">
+        <div class="sc-icon">📸</div>
+        <div class="sc-title">"I Need to Look Like Him"</div>
+        <div class="sc-body">Every body responds differently to training. Your Week 24 physique will look like <strong>yours — not like the Instagram athlete's</strong>. The goal is the best version of your body, not a copy of someone else's.</div>
+      </div>
+    </div>
+
+    <!-- =============== THE HABIT BLUEPRINT =============== -->
+    <div class="section-label" style="margin-top:40px;">THE HABIT BLUEPRINT — THE LONG GAME</div>
+    <p class="sec-lede">Twenty-four weeks is the short game. The long game is building an identity strong enough that you train at 39 and 49 without needing motivation. These are the principles that separate athletes who last from athletes who quit.</p>
+
+    <!-- IDENTITY SHIFT -->
+    <div class="prose-block">
+      <p><strong>The Identity Shift.</strong> Most people say <em>"I'm trying to lose weight"</em> or <em>"I'm trying to get fit."</em> Both framings position you as an outsider trying to join a club. The athletes who last instead say <strong>"I train."</strong> That is it. It is a sentence about <em>identity</em>, not effort. When training is what you <strong>are</strong> rather than what you <strong>do</strong>, missing a session feels wrong — the same way skipping a shower or a meal would feel wrong. That is the end state. Weeks 1–24 are the runway to it.</p>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="section-label">THE 24-WEEK HABIT CRYSTALLIZATION TIMELINE</div>
+    <div class="tl-item sage">
+      <div class="tl-mark">WEEK 1–2 · ANCHOR FORMATION</div>
+      <div class="tl-title">The Hardest Window</div>
+      <p>Motivation is highest but habit is weakest. <strong>Rely on systems, not willpower:</strong> bag packed the night before, gym clothes by the bed, alarm across the room, pre-workout shake pre-made. Make the default action <em>"get to the gym"</em> — not <em>"decide whether to get to the gym"</em>.</p>
+    </div>
+    <div class="tl-item sage">
+      <div class="tl-mark">WEEK 3–6 · DOUBT ZONE</div>
+      <div class="tl-title">When Most Quit</div>
+      <p>Results feel slow. Novelty is gone. The body is tired. <strong>This is the single highest-risk quitting window.</strong> Protection: focus on process metrics (sessions completed) not outcome metrics (weight change). The scale will move — but not yet. Trust the strength log.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-mark">WEEK 7–10 · FIRST CRYSTALLIZATION</div>
+      <div class="tl-title">Something Clicks</div>
+      <p>Strength jumps are now obvious. The squat feels natural. People at the gym begin nodding. The routine requires less psychological effort. <strong>This is the reward</strong> — not because it arrived, but because you stayed long enough to meet it.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-mark">WEEK 11–16 · MOMENTUM PHASE</div>
+      <div class="tl-title">Self-Propelling</div>
+      <p>The habit now maintains itself. Missing a session feels wrong. You begin planning travel around the gym. Conversations with family shift — <strong>they start asking about your training rather than commenting on it</strong>.</p>
+    </div>
+    <div class="tl-item terra">
+      <div class="tl-mark">WEEK 17–24 · IDENTITY LOCK</div>
+      <div class="tl-title">You Are an Athlete Now</div>
+      <p>The transition is complete. <em>"I train"</em> is no longer aspirational — it is descriptive. The question is no longer <em>"should I go to the gym?"</em> but <em>"what will I lift today?"</em>. From this point the challenge is not showing up. <strong>It is not overdoing it.</strong></p>
+    </div>
+
+    <!-- SEVEN RULES FOR MAKING IT PERMANENT -->
+    <div class="section-label">SEVEN RULES FOR MAKING THIS PERMANENT</div>
+    <div class="tips-block beg">
+      <div class="tips-title">🔒 PERMANENCE PROTOCOL</div>
+      <ol>
+        <li><strong>Never miss twice.</strong> One missed session is life. Two in a row is the beginning of a pattern. The rule is absolute: if you miss Monday, you train Tuesday — even a 30-minute abbreviated session. This one rule prevents more relapses than any other.</li>
+        <li><strong>Systems over motivation.</strong> Motivation is a feeling and feelings fluctuate. A system — lay out clothes at night, same wake time, same gym time, same route — bypasses motivation entirely. You will need discipline for Week 1. For Week 10, you will just need the system.</li>
+        <li><strong>Track your streak.</strong> Mark a physical calendar with an X for every training day. After 30 Xs you will be physically unwilling to break the chain. This is Seinfeld's trick and it works on humans.</li>
+        <li><strong>Engineer your environment.</strong> A hostel fridge stocked with eggs and curd beats the most motivated person surrounded by instant noodles. Buy groceries on Sunday. Pack the gym bag Sunday night. <em>Decide once, execute many times.</em></li>
+        <li><strong>Find one training partner or accountability anchor.</strong> Someone who notices if you don't show up. Could be a gym friend, a WhatsApp coach, or a simple weekly check-in with a family member. Human accountability is a 3× multiplier on consistency.</li>
+        <li><strong>Celebrate process, not outcomes.</strong> "I trained six days this week" is the celebration. "I hit the bench PR" is a bonus. If you only celebrate outcomes, you will quit the week an outcome does not arrive — and outcomes arrive on unpredictable schedules.</li>
+        <li><strong>Plan for disruption.</strong> Travel, illness, work deadlines, family events — these are not excuses to quit, they are events to plan around. Keep a 20-minute bodyweight session in your back pocket for bad days. Keep the swim for travel recovery days. <em>The streak is the main prize.</em></li>
+      </ol>
+    </div>
+
+    <!-- WHEN MOTIVATION DIES -->
+    <div class="section-label">WHEN MOTIVATION DIES — THE EMERGENCY PROTOCOL</div>
+    <div class="science-grid">
+      <div class="science-card" style="border-color:rgba(26,140,232,0.25)">
+        <div class="sc-icon">1️⃣</div>
+        <div class="sc-title">Day 1 · Show Up</div>
+        <div class="sc-body">No matter how tired or unmotivated you feel, go to the gym. Do a <strong>20-minute abbreviated session</strong> if needed — squat + bench + pull-up, one working set each. The session is not about stimulus. <em>It is about preserving identity.</em></div>
+      </div>
+      <div class="science-card" style="border-color:rgba(26,140,232,0.25)">
+        <div class="sc-icon">2️⃣</div>
+        <div class="sc-title">Day 2 · Audit the Life</div>
+        <div class="sc-body">Low motivation is almost always a <strong>recovery problem in disguise</strong>. Audit sleep (under 7 hrs?), protein (under 150 g?), stress (high?), and life disruption (travel, illness, conflict?). <em>Fix one variable, not all four at once.</em></div>
+      </div>
+      <div class="science-card" style="border-color:rgba(26,140,232,0.25)">
+        <div class="sc-icon">3️⃣</div>
+        <div class="sc-title">Day 3 · Consider Deload</div>
+        <div class="sc-body">If motivation is still collapsed with no obvious life cause — it may be an <strong>unscheduled deload signal</strong>. Drop loads to 60% for 5 days. Sleep +30 min. Eat at maintenance. <em>Motivation returns when nervous system recovers.</em></div>
+      </div>
+    </div>
+
+    <!-- THE 24 MONTH VIEW -->
+    <div class="section-label">THE 24-MONTH VIEW</div>
+    <div class="prose-block">
+      <p>This document covers 6 months. The honest horizon for what most people call an <strong>"aesthetic athletic physique"</strong> is 18–24 months of consistent training. At Month 24 — if you follow this document, then its progression, then the next — you will look back at the 71 kg beginner reading this for the first time and barely recognize him. <em>That person was not built by one great workout. He was built by 500 decent ones stacked in sequence.</em></p>
+    </div>
+
+    <!-- CLOSING WORD -->
+    <div class="verdict-banner" style="background:linear-gradient(135deg,rgba(167,139,250,0.12),rgba(167,139,250,0.03));border-color:rgba(167,139,250,0.3);margin:28px 0;">
+      <h2 style="color:var(--beg)">🏁 THE COACH'S CLOSING WORD</h2>
+      <p>You now hold a complete 6-month operational plan — training, nutrition, recovery, tracking, habits. <strong>Nothing in it is theoretical.</strong> Every rule has been built from evidence and stress-tested on beginners more disrupted than you. Commit the first eight weeks exactly as written. Log every set, every meal, every sleep rating. Resist the urge to modify until Week 9. After one completed mesocycle, you will understand how your body responds to load — and from that point, the progression becomes yours to own.</p>
+      <p style="margin-top:12px;"><strong>Train hard. Recover harder. Measure relentlessly. Show up tomorrow.</strong></p>
+    </div>
+
+    <!-- FIRST 14 DAYS CHECKLIST -->
+    <div class="section-label">THE FIRST 14 DAYS — YOUR IMMEDIATE CHECKLIST</div>
+    <div class="tips-block beg">
+      <div class="tips-title">✅ WEEK 1–2 IMMEDIATE ACTIONS</div>
+      <ol>
+        <li><strong>Day 1:</strong> Take all body measurements (weight, waist, chest, arm, thigh, calf). Log to spreadsheet or notebook.</li>
+        <li><strong>Day 1:</strong> Photos — front, side, back · relaxed and flexed · same lighting · save to a dedicated folder.</li>
+        <li><strong>Day 2:</strong> Grocery run — full week per the Nutrition tab list.</li>
+        <li><strong>Day 2:</strong> Buy a kitchen scale (₹400) and a measuring tape (₹50). Non-negotiable.</li>
+        <li><strong>Day 3:</strong> Print the Phase 1 Weekly Schedule and tape it to your gym bag.</li>
+        <li><strong>Day 3:</strong> Start creatine (5 g/day · no loading phase needed).</li>
+        <li><strong>Days 1–14:</strong> Weigh every food portion. After two weeks you will know portions by eye.</li>
+        <li><strong>Day 7:</strong> First weekly review. Sunday evening. 10 minutes. <em>Start the habit.</em></li>
+        <li><strong>Day 14:</strong> Remeasure waist. Expected drop: 0.3–0.8 cm. <strong>First proof point.</strong></li>
+      </ol>
+    </div>
+
+    <!-- FOOTER TAG -->
+    <div style="text-align:center;margin-top:40px;padding:24px 0;border-top:1px solid var(--border);">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;">The Beginner's Covenant · 24-Week Transformation System</p>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--dim);margin-top:8px;text-transform:uppercase;">Evidence-Based · Hostel-Friendly · Swim-Integrated</p>
+      <p style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:var(--push);margin-top:12px;">TRAIN HARD · RECOVER HARDER · SHOW UP TOMORROW</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+  function showView(name) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('view-' + name).classList.add('active');
+    const tabs = ['overview','workout','nutrition','recovery','beginner'];
+    const idx = tabs.indexOf(name);
+    if (idx >= 0) document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showPhase(n) {
+    document.querySelectorAll('.phase-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.phase-chip').forEach(c => c.classList.remove('active'));
+    document.getElementById('phase-' + n).classList.add('active');
+    document.querySelectorAll('.phase-chip')[n - 1].classList.add('active');
+    // Reset to day 0 of the new phase
+    const defaultDay = 0;
+    if (n === 1) resetDayP1(defaultDay);
+    if (n === 2) resetDayP2(defaultDay);
+    if (n === 3) resetDayP3(defaultDay);
+    window.scrollTo({ top: 200, behavior: 'smooth' });
+  }
+
+  function showDayP1(idx) {
+    const panels = document.querySelectorAll('#phase-1 .day-panel');
+    const chips = document.querySelectorAll('#phase-1 .day-chip');
+    panels.forEach(p => p.classList.remove('active'));
+    chips.forEach(c => c.classList.remove('active'));
+    document.getElementById('p1-day-' + idx).classList.add('active');
+    chips[idx].classList.add('active');
+  }
+  function resetDayP1(idx) { showDayP1(idx); }
+
+  function showDayP2(idx) {
+    const panels = document.querySelectorAll('#phase-2 .day-panel');
+    const chips = document.querySelectorAll('#phase-2 .day-chip');
+    panels.forEach(p => p.classList.remove('active'));
+    chips.forEach(c => c.classList.remove('active'));
+    document.getElementById('p2-day-' + idx).classList.add('active');
+    chips[idx].classList.add('active');
+  }
+  function resetDayP2(idx) { showDayP2(idx); }
+
+  function showDayP3(idx) {
+    const panels = document.querySelectorAll('#phase-3 .day-panel');
+    const chips = document.querySelectorAll('#phase-3 .day-chip');
+    panels.forEach(p => p.classList.remove('active'));
+    chips.forEach(c => c.classList.remove('active'));
+    document.getElementById('p3-day-' + idx).classList.add('active');
+    chips[idx].classList.add('active');
+  }
+  function resetDayP3(idx) { showDayP3(idx); }
+</script>
+
+</body>
+</html>
