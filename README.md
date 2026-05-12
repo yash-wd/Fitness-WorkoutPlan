@@ -30,6 +30,8 @@ Open these files in any browser to view beautifully formatted, interactive worko
 | [Elite Performance System V6](programs/elite-performance-system-v6.html) | The most comprehensive version -- full human performance system with adaptive coaching |
 | [6-Month Beginner Program](programs/six-month-program.html) | Structured 6-month transformation system designed specifically for beginners |
 | [6-Month Program (V3 Style)](programs/six-month-program-v3-style.html) | Same 6-month program restyled to match the V3 visual design system |
+| [Months 7-24 Continuation](programs/months-7-24-continuation.html) | The Athlete's Compact -- 18-month continuation (months 7-24) taking you from recomp into advanced training |
+| [Recomposition Fuel Protocol](programs/recomposition-fuel-protocol.html) | 24-month diet companion to the training system -- daily nutrition targets, programme rating, and meal plan suggestions |
 
 ### Prompts
 

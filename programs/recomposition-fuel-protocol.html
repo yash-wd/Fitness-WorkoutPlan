@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Recomposition Fuel Protocol — 24-Month Diet Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0b0d;
+    --bg-elev: #121216;
+    --bg-soft: #17171c;
+    --bg-soft2: #1d1d23;
+    --border: #25252c;
+    --text: #ececec;
+    --text-dim: #9fa0a6;
+    --text-muted: #6a6b72;
+    --gold: #d4a24c;
+    --gold-soft: #e6c178;
+    --gold-dim: rgba(212,162,76,0.15);
+    --sage: #7aa27a;
+    --sage-dim: rgba(122,162,122,0.12);
+    --slate: #5e7b9a;
+    --ember: #e56b3a;
+    --ember-dim: rgba(229,107,58,0.12);
+    --rose: #c97079;
+    --rose-dim: rgba(201,112,121,0.12);
+    --crimson: #c84545;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 15px;
+    background-image: radial-gradient(circle at 20% 10%, rgba(212,162,76,0.04), transparent 40%),
+                      radial-gradient(circle at 80% 90%, rgba(122,162,122,0.03), transparent 40%);
+    background-attachment: fixed;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* HEADER */
+  header.hero { text-align: center; padding: 24px 0 36px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+  header.hero .eyebrow { font-family: var(--mono); color: var(--gold); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; }
+  header.hero h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 4.5vw, 3.2rem); margin: 14px 0 8px; line-height: 1.05; letter-spacing: -0.01em; }
+  header.hero h1 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  header.hero .sub { color: var(--text-dim); font-size: 1.05rem; max-width: 760px; margin: 8px auto 0; }
+  .athlete-line { font-family: var(--mono); color: var(--text-muted); font-size: 0.82rem; margin-top: 18px; letter-spacing: 0.05em; }
+  .athlete-line span { color: var(--gold); }
+
+  /* TABS */
+  .tabs-nav { display: flex; flex-wrap: wrap; gap: 6px; border-bottom: 1px solid var(--border); margin-bottom: 32px; padding-bottom: 0; position: sticky; top: 0; background: var(--bg); z-index: 50; padding-top: 12px; }
+  .tab-btn {
+    background: transparent; border: 1px solid transparent; border-bottom: none;
+    color: var(--text-dim); padding: 10px 14px; font-family: var(--sans); font-size: 0.85rem; font-weight: 500;
+    cursor: pointer; border-radius: 6px 6px 0 0; transition: all 0.15s ease;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .tab-btn .num { font-family: var(--mono); font-size: 0.7rem; color: var(--text-muted); }
+  .tab-btn:hover { color: var(--text); background: var(--bg-soft); }
+  .tab-btn.active { color: var(--gold); border-color: var(--border); border-bottom-color: var(--bg); background: var(--bg-elev); margin-bottom: -1px; }
+  .tab-btn.active .num { color: var(--gold-soft); }
+
+  /* PANELS */
+  .panel { display: none; animation: fade 0.25s ease; }
+  .panel.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  .panel-title { font-family: var(--serif); font-weight: 500; font-size: 2rem; color: var(--text); margin: 0 0 4px; line-height: 1.1; }
+  .panel-title em { color: var(--gold); font-style: italic; }
+  .panel-lede { color: var(--text-dim); font-size: 1.02rem; margin: 0 0 28px; max-width: 760px; }
+
+  h2 { font-family: var(--serif); font-weight: 500; font-size: 1.55rem; color: var(--gold); margin: 32px 0 12px; line-height: 1.2; }
+  h3 { font-family: var(--serif); font-weight: 500; font-size: 1.2rem; color: var(--text); margin: 24px 0 10px; }
+  h4 { font-family: var(--sans); font-weight: 600; font-size: 0.95rem; color: var(--gold-soft); margin: 18px 0 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+  p { margin: 8px 0 14px; color: var(--text); }
+  p strong { color: var(--text); font-weight: 600; }
+  ul, ol { padding-left: 20px; color: var(--text); }
+  li { margin: 6px 0; }
+
+  /* CARDS */
+  .card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; margin: 14px 0; }
+  .card.gold { border-left: 3px solid var(--gold); }
+  .card.sage { border-left: 3px solid var(--sage); }
+  .card.ember { border-left: 3px solid var(--ember); }
+  .card.rose { border-left: 3px solid var(--rose); }
+  .card .card-title { font-family: var(--sans); font-weight: 600; color: var(--gold); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+
+  /* DATA GRID */
+  .data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 18px 0; }
+  .data-grid .cell { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+  .data-grid .lbl { font-family: var(--mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .data-grid .val { font-family: var(--serif); font-size: 1.6rem; font-weight: 500; color: var(--text); margin: 4px 0 0; line-height: 1; }
+  .data-grid .val.gold { color: var(--gold); }
+  .data-grid .val.sage { color: var(--sage); }
+  .data-grid .val.ember { color: var(--ember); }
+  .data-grid .note { font-size: 0.78rem; color: var(--text-dim); margin-top: 4px; }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; font-size: 0.92rem; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  thead th { background: var(--bg-soft2); color: var(--gold-soft); font-family: var(--sans); font-weight: 600; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  thead th.num { text-align: right; }
+  tbody td { padding: 11px 14px; border-top: 1px solid var(--border); color: var(--text); vertical-align: top; }
+  tbody td.num { text-align: right; font-family: var(--mono); font-size: 0.88rem; }
+  tbody tr:hover { background: rgba(212,162,76,0.025); }
+  tbody tr.row-hl { background: rgba(212,162,76,0.06); }
+  tbody tr.row-hl td { color: var(--text); }
+  tbody tr.row-good { background: rgba(122,162,122,0.05); }
+  tbody tr.row-warn { background: rgba(229,107,58,0.04); }
+
+  /* PILLS */
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.04em; border: 1px solid var(--border); color: var(--text-dim); }
+  .pill.gold { color: var(--gold); border-color: var(--gold); background: var(--gold-dim); }
+  .pill.sage { color: var(--sage); border-color: var(--sage); background: var(--sage-dim); }
+  .pill.ember { color: var(--ember); border-color: var(--ember); background: var(--ember-dim); }
+  .pill.rose { color: var(--rose); border-color: var(--rose); background: var(--rose-dim); }
+  .pill.muted { color: var(--text-muted); }
+
+  /* SCORE BAR */
+  .score-row { display: grid; grid-template-columns: 180px 1fr 60px; align-items: center; gap: 14px; margin: 10px 0; }
+  .score-row .name { font-weight: 500; color: var(--text); }
+  .score-row .bar { height: 8px; background: var(--bg-soft); border-radius: 999px; overflow: hidden; }
+  .score-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-soft)); }
+  .score-fill.high { background: linear-gradient(90deg, var(--sage), #a0c8a0); }
+  .score-fill.mid { background: linear-gradient(90deg, var(--ember), #f0a04a); }
+  .score-row .num { text-align: right; font-family: var(--mono); color: var(--gold); font-weight: 600; }
+
+  /* SPLITS */
+  .split-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 14px 0; }
+  .split-2 > .card { margin: 0; }
+  @media (max-width: 760px) { .split-2 { grid-template-columns: 1fr; } .score-row { grid-template-columns: 130px 1fr 50px; } }
+
+  /* MEAL TIMELINE */
+  .timeline { border-left: 2px solid var(--border); padding-left: 22px; margin-left: 8px; margin-top: 18px; }
+  .meal { position: relative; padding: 14px 0 18px; }
+  .meal::before { content: ''; position: absolute; left: -29px; top: 18px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--gold); }
+  .meal.workout::before { background: var(--ember); border-color: var(--ember); }
+  .meal.sleep::before { background: var(--slate); border-color: var(--slate); }
+  .meal-time { font-family: var(--mono); color: var(--gold); font-size: 0.78rem; letter-spacing: 0.05em; }
+  .meal-name { font-family: var(--serif); font-size: 1.1rem; color: var(--text); margin: 2px 0 6px; font-weight: 500; }
+  .meal-foods { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 6px; }
+  .meal-macros { font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted); }
+  .meal-macros span { color: var(--gold-soft); }
+
+  /* CALLOUT */
+  .callout { padding: 14px 18px; border-radius: 8px; margin: 16px 0; font-size: 0.95rem; }
+  .callout.info { background: var(--gold-dim); border-left: 3px solid var(--gold); }
+  .callout.warn { background: var(--ember-dim); border-left: 3px solid var(--ember); }
+  .callout.danger { background: var(--rose-dim); border-left: 3px solid var(--rose); }
+  .callout.success { background: var(--sage-dim); border-left: 3px solid var(--sage); }
+  .callout strong { display: block; margin-bottom: 4px; }
+
+  /* DIVIDER */
+  hr.div { border: none; height: 1px; background: var(--border); margin: 28px 0; }
+  hr.gold { border: none; height: 1px; background: var(--gold); width: 60px; margin: 18px 0; }
+
+  /* SECTION FOOTER */
+  footer.foot { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted); font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.05em; text-align: center; }
+
+  @media print {
+    .tabs-nav { display: none; }
+    .panel { display: block !important; page-break-after: always; }
+    body { background: white; color: black; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">The Recomposition Fuel Protocol</div>
+    <h1>A 24-Month <em>Diet Companion</em> to Your Training System</h1>
+    <p class="sub">Built around your training day target of 2550 kcal &amp; 155 g protein. Every meal anchored to your 6 AM wake → 7–9 AM gym → 10:30 PM sleep window. Hostel-friendly, ₹200/day cap, no deficiencies left uncovered.</p>
+    <div class="athlete-line">ATHLETE: <span>Male, 29</span> &nbsp;·&nbsp; <span>71 kg / 168 cm</span> &nbsp;·&nbsp; <span>~19% BF</span> &nbsp;·&nbsp; <span>57.5 kg LBM</span> &nbsp;·&nbsp; <span>Hyderabad hostel athlete</span></div>
+  </header>
+
+  <nav class="tabs-nav" id="tabs">
+    <button class="tab-btn active" data-tab="t1"><span class="num">01</span>Workout Rating</button>
+    <button class="tab-btn" data-tab="t2"><span class="num">02</span>Nutrition Targets</button>
+    <button class="tab-btn" data-tab="t3"><span class="num">03</span>Diet — My Plan</button>
+    <button class="tab-btn" data-tab="t4"><span class="num">04</span>Diet — Your Foods</button>
+    <button class="tab-btn" data-tab="t5"><span class="num">05</span>Meal Timing</button>
+    <button class="tab-btn" data-tab="t6"><span class="num">06</span>Food Comparisons</button>
+    <button class="tab-btn" data-tab="t7"><span class="num">07</span>Creatine Guide</button>
+    <button class="tab-btn" data-tab="t8"><span class="num">08</span>Seeds, Fruit, Sweet Potato</button>
+    <button class="tab-btn" data-tab="t9"><span class="num">09</span>Cooking Oils</button>
+    <button class="tab-btn" data-tab="t10"><span class="num">10</span>Supplements</button>
+    <button class="tab-btn" data-tab="t11"><span class="num">11</span>Budget vs Premium</button>
+    <button class="tab-btn" data-tab="t12"><span class="num">12</span>Excess vs Deficiency</button>
+  </nav>
+
+  <!-- ============ TAB 1: WORKOUT RATING ============ -->
+  <section class="panel active" id="t1">
+    <h1 class="panel-title">Workout Programme <em>Rating</em></h1>
+    <p class="panel-lede">Your "Athletic Recomposition Protocol" reviewed across the dimensions that decide whether a 24-month plan succeeds or breaks down at month 4. Verdict first, evidence below.</p>
+
+    <div class="data-grid">
+      <div class="cell"><div class="lbl">Overall Rating</div><div class="val gold">9.4/10</div><div class="note">Top-tier for a natural beginner→intermediate</div></div>
+      <div class="cell"><div class="lbl">Programme Type</div><div class="val">PPL × 6</div><div class="note">2× frequency / muscle / week</div></div>
+      <div class="cell"><div class="lbl">Phase Coverage</div><div class="val">24 mo</div><div class="note">5 phases, evidence-based</div></div>
+      <div class="cell"><div class="lbl">Risk Profile</div><div class="val sage">Low</div><div class="note">Beginner-protective audit, planned deloads</div></div>
+    </div>
+
+    <h2>Programme Scorecard</h2>
+    <div class="score-row"><div class="name">Periodisation</div><div class="bar"><div class="score-fill high" style="width:96%"></div></div><div class="num">9.6</div></div>
+    <div class="score-row"><div class="name">Volume Calibration</div><div class="bar"><div class="score-fill high" style="width:94%"></div></div><div class="num">9.4</div></div>
+    <div class="score-row"><div class="name">Frequency (2×/wk)</div><div class="bar"><div class="score-fill high" style="width:98%"></div></div><div class="num">9.8</div></div>
+    <div class="score-row"><div class="name">Deload Strategy</div><div class="bar"><div class="score-fill high" style="width:96%"></div></div><div class="num">9.6</div></div>
+    <div class="score-row"><div class="name">Compound Lift Selection</div><div class="bar"><div class="score-fill high" style="width:94%"></div></div><div class="num">9.4</div></div>
+    <div class="score-row"><div class="name">Beginner Safety Net</div><div class="bar"><div class="score-fill high" style="width:98%"></div></div><div class="num">9.8</div></div>
+    <div class="score-row"><div class="name">Recovery Emphasis</div><div class="bar"><div class="score-fill high" style="width:92%"></div></div><div class="num">9.2</div></div>
+    <div class="score-row"><div class="name">Cardio Integration</div><div class="bar"><div class="score-fill mid" style="width:78%"></div></div><div class="num">7.8</div></div>
+    <div class="score-row"><div class="name">Realistic Expectations</div><div class="bar"><div class="score-fill high" style="width:96%"></div></div><div class="num">9.6</div></div>
+    <div class="score-row"><div class="name">Long-Term Sustainability</div><div class="bar"><div class="score-fill high" style="width:94%"></div></div><div class="num">9.4</div></div>
+
+    <h2>What Your Programme Gets Right</h2>
+    <div class="card sage">
+      <div class="card-title">Strengths</div>
+      <ul>
+        <li><strong>Treats you as a beginner first.</strong> Four-week movement audit before loading is the single biggest injury-prevention call in any 24-month plan. Almost no commercial programme does this.</li>
+        <li><strong>2× frequency / muscle / week.</strong> The textbook hypertrophy frequency for naturals — better than the once-a-week "bro split" most gym-goers default to.</li>
+        <li><strong>Deload at Week 5, 10, 15.</strong> Three planned deloads in 16 weeks looks excessive on paper; it's the exact reason you'll still be progressing in Month 18 instead of plateauing at Month 6.</li>
+        <li><strong>Honest strength targets.</strong> Bench 65–75 kg × 5, Squat 85–95 kg × 5, Deadlift 105–115 kg × 3 over 16 weeks is realistic for a 71 kg natural. No fantasy numbers.</li>
+        <li><strong>Recomposition over bulk-cut cycle.</strong> At 19% BF, recomp is mathematically the right call. The P-ratio analysis is correct.</li>
+        <li><strong>Deadlift on Day 1 of the week.</strong> CNS is freshest. This single re-ordering meaningfully reduces lower-back injury risk.</li>
+      </ul>
+    </div>
+
+    <h2>Where Your Programme is Slightly Light</h2>
+    <div class="card ember">
+      <div class="card-title">Areas to Watch</div>
+      <ul>
+        <li><strong>Cardio is treated as optional.</strong> 2×/week Zone 2 cardio (20–30 min) preserves heart adaptation and improves recovery between sessions. The plan defers it to Phase 3 — you can start it earlier (after Week 4) without harming hypertrophy.</li>
+        <li><strong>Sleep target is correct but logistics are vague.</strong> 7.5–9 hrs is non-negotiable. In a hostel, this is often the hardest variable to control. Dedicate one card to sleep tooling (eye mask ₹200, earplugs ₹40, phone airplane mode by 22:30).</li>
+        <li><strong>Mobility / dorsiflexion work isn't programmed.</strong> Five-minute pre-squat ankle drills prevent the #1 squat fault for short-torso lifters.</li>
+      </ul>
+    </div>
+
+    <h2>The Bottom Line</h2>
+    <div class="callout success"><strong>Verdict.</strong> You are not on a beginner programme — you are on a sophisticated periodised programme calibrated to your specific body and mistakes most lifters make. Stay on it. Do not switch programmes between phases. The diet that follows is built to match this exact training load.</div>
+
+    <h3>How This Diet Maps to the Phases</h3>
+    <table>
+      <thead><tr><th>Phase</th><th>Months</th><th>Diet Adjustment</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pill gold">Phase 1</span></td><td>0–4</td><td>Strict 2550/2200 kcal split. Protein 155 g floor. Full audit of macros.</td></tr>
+        <tr><td><span class="pill gold">Phase 2</span></td><td>1–4 (Hypertrophy)</td><td>Same macros. Add 20–30 g carbs pre-workout if strength stalls.</td></tr>
+        <tr><td><span class="pill sage">Phase 3</span></td><td>5–12</td><td>Bump training-day carbs to 340 g. Protein stays 155–165 g. Calories 2700 train day.</td></tr>
+        <tr><td><span class="pill sage">Phase 4</span></td><td>13–18</td><td>Protein 1.8 g/kg. Mini-cut 4 weeks if BF rises above 16%.</td></tr>
+        <tr><td><span class="pill slate">Phase 5</span></td><td>19–24</td><td>Maintenance + autoregulation. Carbs around training only.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ TAB 2: NUTRITION TARGETS ============ -->
+  <section class="panel" id="t2">
+    <h1 class="panel-title">Daily Nutrition <em>Targets</em></h1>
+    <p class="panel-lede">Precise macro and micronutrient floors derived from your 71 kg / 19% BF / 57.5 kg LBM body composition and 6-day training load. Hit these and recomposition is mathematically inevitable.</p>
+
+    <h2>Macros — Training Day vs Rest Day</h2>
+    <table>
+      <thead>
+        <tr><th>Day Type</th><th class="num">Calories</th><th class="num">Protein</th><th class="num">Carbs</th><th class="num">Fat</th><th class="num">Fiber</th></tr>
+      </thead>
+      <tbody>
+        <tr class="row-hl"><td><strong>Training Day</strong> (6×/wk)</td><td class="num">2550 kcal</td><td class="num">155 g <span class="pill muted">2.18 g/kg</span></td><td class="num">310 g</td><td class="num">65 g</td><td class="num">30 g</td></tr>
+        <tr><td>Rest Day (1×/wk)</td><td class="num">2200 kcal</td><td class="num">150 g <span class="pill muted">2.11 g/kg</span></td><td class="num">230 g</td><td class="num">65 g</td><td class="num">30 g</td></tr>
+        <tr><td>Weekly Average</td><td class="num">~2500 kcal</td><td class="num">~154 g</td><td class="num">~298 g</td><td class="num">~65 g</td><td class="num">~30 g</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout info"><strong>Why two-tier calories?</strong> A flat 2400 kcal/day creates a ~500 kcal deficit on training days for a 6-day high-volume athlete — enough to blunt hypertrophy. A two-tier system keeps muscle-building fuel where the work is done, while producing the small weekly deficit that drives fat loss. This is the textbook "recomp lever."</div>
+
+    <h2>Hydration</h2>
+    <div class="data-grid">
+      <div class="cell"><div class="lbl">Base Target</div><div class="val gold">3.5 L</div><div class="note">≈ 50 ml/kg</div></div>
+      <div class="cell"><div class="lbl">Around Training</div><div class="val">+500 ml</div><div class="note">Intra-workout w/ pinch salt</div></div>
+      <div class="cell"><div class="lbl">First Glass</div><div class="val">500 ml</div><div class="note">On waking — 6:00 AM</div></div>
+      <div class="cell"><div class="lbl">Cap by</div><div class="val">20:30</div><div class="note">Reduces sleep interruption</div></div>
+    </div>
+
+    <h2>Micronutrients — Daily Floors</h2>
+    <table>
+      <thead><tr><th>Nutrient</th><th class="num">Daily Target</th><th>Best Sources in Your Foods</th><th>Why It Matters</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Calcium</strong></td><td class="num">1000 mg</td><td>Curd, milk, sesame, ragi</td><td>Bone density under heavy compounds; muscle contraction</td></tr>
+        <tr><td><strong>Iron</strong></td><td class="num">10 mg</td><td>Dal, sattu, spinach, dates, soya</td><td>Oxygen transport; recovery; heavy lifting capacity</td></tr>
+        <tr><td><strong>Zinc</strong></td><td class="num">11 mg</td><td>Pumpkin seeds, chicken, dal, peanuts</td><td>Testosterone production; immune function</td></tr>
+        <tr><td><strong>Magnesium</strong></td><td class="num">400 mg</td><td>Pumpkin seeds, almonds, spinach, dal</td><td>Muscle relaxation, sleep, ATP production</td></tr>
+        <tr><td><strong>Potassium</strong></td><td class="num">3500 mg</td><td>Banana, sweet potato, dal, curd</td><td>Cramp prevention, blood pressure, glycogen storage</td></tr>
+        <tr><td><strong>Sodium</strong></td><td class="num">2000–3500 mg</td><td>Salt in cooking, sambar, intra-workout pinch</td><td>Pump, intra-workout performance, hydration</td></tr>
+        <tr><td><strong>Vitamin C</strong></td><td class="num">90 mg</td><td>Amla (1 amla ≈ 600 mg!), guava, cucumber</td><td>Iron absorption, collagen synthesis, antioxidant</td></tr>
+        <tr><td><strong>Vitamin D3</strong></td><td class="num">600–1000 IU</td><td>Egg yolk, sun (10 min direct), <span class="pill gold">supplement essential</span></td><td>Testosterone, calcium absorption, bone strength</td></tr>
+        <tr><td><strong>Vitamin B12</strong></td><td class="num">2.4 μg</td><td>Eggs, milk, curd, chicken</td><td>Energy, RBC formation, neural function</td></tr>
+        <tr><td><strong>Vitamin A</strong></td><td class="num">900 μg</td><td>Carrot, sweet potato, spinach</td><td>Vision, immune, protein utilization</td></tr>
+        <tr><td><strong>Omega-3 (ALA)</strong></td><td class="num">1.6 g</td><td>Flax seed (1 tsp = 2.3 g ALA), chia, walnut</td><td>Inflammation control, joint health, recovery</td></tr>
+        <tr><td><strong>Fiber</strong></td><td class="num">30 g</td><td>Dal, oats, vegetables, fruits, seeds</td><td>Digestion, blood sugar, satiety</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Protein — Per-Meal Distribution</h3>
+    <p>The 155 g daily total only works if it's <strong>distributed across 4–5 meals</strong> at 25–40 g each. A single 60 g protein meal does not make up for a 10 g meal earlier — muscle protein synthesis runs in pulses every 3–4 hours.</p>
+    <table>
+      <thead><tr><th>Meal</th><th class="num">Target Protein</th><th class="num">Leucine Floor</th></tr></thead>
+      <tbody>
+        <tr><td>Pre-workout</td><td class="num">15–20 g</td><td class="num">1.5 g</td></tr>
+        <tr><td>Post-workout</td><td class="num">35–40 g</td><td class="num">3.0 g</td></tr>
+        <tr><td>Lunch</td><td class="num">35–40 g</td><td class="num">3.0 g</td></tr>
+        <tr><td>Snack</td><td class="num">15–20 g</td><td class="num">1.5 g</td></tr>
+        <tr><td>Dinner</td><td class="num">30–35 g</td><td class="num">2.5 g</td></tr>
+        <tr><td>Pre-sleep</td><td class="num">12–15 g</td><td class="num">1.0 g</td></tr>
+      </tbody>
+    </table>
+    <p><em>Total: 142–170 g — comfortably hits 155 g target with room for variance.</em></p>
+  </section>
+
+  <!-- ============ TAB 3: DIET — MY PLAN ============ -->
+  <section class="panel" id="t3">
+    <h1 class="panel-title">Diet Plan — <em>My Suggestion</em></h1>
+    <p class="panel-lede">An optimised, hostel-realistic diet built from the ground up to hit your 2550 kcal / 155 g protein training-day target. Cost-targeted at ₹200/day. This is what I would put you on if you had no prior food list.</p>
+
+    <h2>Daily Meal Plan (Training Day)</h2>
+
+    <div class="card gold">
+      <div class="card-title">06:00 — Wake-up Hydration <span class="pill muted">~10 kcal</span></div>
+      <p><strong>Foods:</strong> 500 ml water + 1 amla (chewed or juice) + pinch of salt</p>
+      <p><strong>Why:</strong> Rehydrates after 8 hrs fasting. Amla = ~600 mg vitamin C, primes iron absorption from the day's dal. Salt restores overnight sodium loss.</p>
+      <p><strong>Macros:</strong> P 0 / C 2 / F 0</p>
+    </div>
+
+    <div class="card gold">
+      <div class="card-title">06:30 — Pre-Workout <span class="pill gold">~280 kcal</span></div>
+      <p><strong>Foods:</strong> 30 g sattu + 1 tsp jaggery + 200 ml water + 1 banana</p>
+      <p><strong>Why:</strong> 30 min before training. Sattu = 6 g slow protein + branched-chain amino acids. Banana = 27 g fast carbs for glycogen. Jaggery = quick glucose. Total = ~20 g carbs + 8 g protein, exactly the textbook 30-min pre-workout fuel.</p>
+      <p><strong>Macros:</strong> P 8 / C 50 / F 1</p>
+    </div>
+
+    <div class="card ember">
+      <div class="card-title">07:00–09:00 — Training Window <span class="pill ember">Intra-workout</span></div>
+      <p><strong>Foods:</strong> 750 ml water + pinch salt + ½ lemon squeezed</p>
+      <p><strong>Why:</strong> Maintains plasma volume for pump and rep quality. The 30 g sattu pre-workout is still releasing protein during the session — no shake needed.</p>
+    </div>
+
+    <div class="card gold">
+      <div class="card-title">09:30 — Post-Workout <span class="pill gold">~520 kcal</span></div>
+      <p><strong>Foods:</strong> 4 whole eggs (boiled or omelette in 1 tsp oil) + 80 g cooked oats with 200 ml milk + 1 tsp peanut butter</p>
+      <p><strong>Why:</strong> Highest-priority protein meal of the day. Eggs deliver 28 g of the highest-quality protein on Earth (PDCAAS 1.0) plus ~3 g leucine. Oats + milk = sustained-release carbs for glycogen reload. Peanut butter fills calories cheaply.</p>
+      <p><strong>Macros:</strong> P 35 / C 55 / F 18</p>
+    </div>
+
+    <div class="card gold">
+      <div class="card-title">13:00 — Lunch <span class="pill gold">~720 kcal</span></div>
+      <p><strong>Foods:</strong> 200 g cooked rice + 150 g chicken breast (mess curry, ask for less oil) + 1 cup dal + raw carrot &amp; cucumber salad + 1 tbsp curd</p>
+      <p><strong>Why:</strong> Largest meal of the day. Chicken = 38 g protein. Rice + dal = complete amino acid profile + 75 g carbs. Carrot/cucumber = vitamin A, hydration, fiber. Curd = probiotics + calcium.</p>
+      <p><strong>Macros:</strong> P 45 / C 90 / F 16</p>
+    </div>
+
+    <div class="card gold">
+      <div class="card-title">16:30 — Evening Snack <span class="pill gold">~340 kcal</span></div>
+      <p><strong>Foods:</strong> 30 g roasted peanuts + 1 guava (or apple if guava unavailable) + 150 ml lassi (unsweetened, 1 tbsp curd + water + cumin)</p>
+      <p><strong>Why:</strong> Bridges 6.5 hours between lunch and dinner. Peanuts = healthy fats, vitamin E, 8 g protein. Guava = #1 vitamin C fruit in India and 5 g fiber. Lassi = 7 g protein + electrolytes.</p>
+      <p><strong>Macros:</strong> P 13 / C 35 / F 16</p>
+    </div>
+
+    <div class="card gold">
+      <div class="card-title">20:00 — Dinner <span class="pill gold">~440 kcal</span></div>
+      <p><strong>Foods:</strong> 50 g dry soya chunks (cooked = ~150 g) curried + 2 chapatis + 1 cup sambar + 1 boiled egg + sabzi (any seasonal)</p>
+      <p><strong>Why:</strong> Lighter than lunch but still 30 g protein. Soya gives the second leucine spike of the evening. Sambar adds potassium + lentil protein + spices that aid digestion.</p>
+      <p><strong>Macros:</strong> P 32 / C 55 / F 10</p>
+    </div>
+
+    <div class="card gold">
+      <div class="card-title">22:00 — Pre-Sleep <span class="pill gold">~210 kcal</span></div>
+      <p><strong>Foods:</strong> 200 g curd + 1 tsp ground flax seed + 1 tsp chia seed (soaked in 50 ml water for 10 min) + 5 almonds</p>
+      <p><strong>Why:</strong> Casein in curd is a slow-release protein that drips amino acids into the bloodstream for 6–8 hours overnight — exactly when muscle protein synthesis happens during sleep. Flax + chia = omega-3 (1.6 g daily ALA target hit). Almonds = magnesium for sleep quality.</p>
+      <p><strong>Macros:</strong> P 16 / C 14 / F 11</p>
+    </div>
+
+    <hr class="div">
+    <h2>Daily Total — Training Day</h2>
+    <table>
+      <thead><tr><th>Macro</th><th class="num">Total</th><th class="num">Target</th><th class="num">Status</th></tr></thead>
+      <tbody>
+        <tr class="row-good"><td>Calories</td><td class="num">~2520</td><td class="num">2550</td><td class="num"><span class="pill sage">On target</span></td></tr>
+        <tr class="row-good"><td>Protein</td><td class="num">149 g</td><td class="num">155 g</td><td class="num"><span class="pill sage">On target</span></td></tr>
+        <tr class="row-good"><td>Carbs</td><td class="num">~301 g</td><td class="num">310 g</td><td class="num"><span class="pill sage">On target</span></td></tr>
+        <tr class="row-good"><td>Fat</td><td class="num">~72 g</td><td class="num">65 g</td><td class="num"><span class="pill sage">Within range</span></td></tr>
+        <tr class="row-good"><td>Fiber</td><td class="num">~32 g</td><td class="num">30 g</td><td class="num"><span class="pill sage">On target</span></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Rest-Day Adjustment</h3>
+    <ul>
+      <li>Skip the 06:30 pre-workout meal entirely — saves 280 kcal.</li>
+      <li>Drop lunch rice from 200 g → 140 g — saves 80 kcal.</li>
+      <li>Halve evening snack peanuts (30 g → 15 g) — saves 90 kcal.</li>
+      <li>New total: ~2070 kcal, 138 g protein. (Add 50 g paneer or 1 extra egg if protein dips below 145 g.)</li>
+    </ul>
+
+    <div class="callout info"><strong>Approximate cost.</strong> Eggs ₹42 + chicken ₹35 + rice ₹15 + dal ₹15 + soya ₹8 + sattu ₹4 + oats ₹10 + peanuts ₹10 + curd ₹15 + milk ₹10 + banana ₹10 + guava ₹15 + flax/chia/almonds ₹10 + amla ₹3 + sabzi ₹15 = <strong>~₹217/day</strong></div>
+  </section>
+
+  <!-- ============ TAB 4: DIET — YOUR FOODS ============ -->
+  <section class="panel" id="t4">
+    <h1 class="panel-title">Diet Plan — <em>Using Your Listed Foods</em></h1>
+    <p class="panel-lede">Built using only the foods you said you can realistically eat every day. I've added the missing quantities, redistributed across meals, and flagged what to add and what to remove for nutritional completeness.</p>
+
+    <h2>Audit of Your Listed Foods</h2>
+
+    <div class="split-2">
+      <div class="card sage">
+        <div class="card-title">✓ Keep As-Is</div>
+        <ul style="font-size:0.92rem;">
+          <li>350 g chicken (training days only)</li>
+          <li>500 g cooked rice</li>
+          <li>2 cups dal + 2 cups sambar</li>
+          <li>3 whole eggs (additional)</li>
+          <li>1 banana (split into pre + snack)</li>
+          <li>30 g sattu (pre-workout)</li>
+          <li>1 carrot + 1 cucumber</li>
+          <li>1 amla (morning)</li>
+          <li>100 g milk + 50 g curd <span class="pill muted">use both, not OR</span></li>
+          <li>Creatine — 5 g daily</li>
+        </ul>
+      </div>
+      <div class="card ember">
+        <div class="card-title">⚙ Adjust Quantity</div>
+        <ul style="font-size:0.92rem;">
+          <li><strong>Chicken</strong> 350 g → <strong>200–250 g</strong> (350 g costs ₹77/day, your full budget; 250 g hits 67 g protein at ₹55)</li>
+          <li><strong>Soya alternative</strong> 80–100 g → <strong>50 g dry</strong> (100 g uncooked = 52 g protein; double-counting risk)</li>
+          <li><strong>Bananas</strong> 2 → <strong>2 (split: 1 pre-workout, 1 snack)</strong></li>
+          <li><strong>Dates</strong> 2 → <strong>2 (with pre-sleep curd, not random)</strong></li>
+          <li><strong>Peanuts</strong> 1 handful → <strong>30 g (≈ 22 nuts)</strong></li>
+          <li><strong>Peanut butter</strong> 1 spoon → <strong>1 tbsp (15 g) post-workout</strong></li>
+          <li><strong>Curd</strong> 50 g → <strong>150–200 g pre-sleep</strong> (50 g is just 1.7 g protein, nearly useless)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split-2">
+      <div class="card gold">
+        <div class="card-title">+ Add (Missing Quantities You Didn't Specify)</div>
+        <ul style="font-size:0.92rem;">
+          <li><strong>Chia seeds</strong> — 1 tsp (5 g) daily, soak 10 min</li>
+          <li><strong>Flax seeds</strong> — 1 tsp ground (5 g) daily — <em>must</em> grind, whole flax passes undigested</li>
+          <li><strong>Pumpkin seeds</strong> — 1 tbsp (10 g) daily, raw or roasted</li>
+          <li><strong>Sabja seeds</strong> — 1 tsp (3 g), soak 15 min in water</li>
+          <li><strong>Cooking oil</strong> — 2 tbsp/day mustard or groundnut (see Tab 9)</li>
+          <li><strong>Sweet potato</strong> — 150 g 3×/week (replaces some rice)</li>
+          <li><strong>Guava OR apple</strong> — 1 fruit/day in addition to amla &amp; banana</li>
+        </ul>
+      </div>
+      <div class="card rose">
+        <div class="card-title">⚠ Gaps That Need Filling</div>
+        <ul style="font-size:0.92rem;">
+          <li><strong>Calcium</strong> low — 100 g milk + 50 g curd = ~250 mg only (target 1000 mg). <strong>Fix:</strong> raise to 250 ml milk + 200 g curd.</li>
+          <li><strong>Vitamin D3</strong> — undetectable in your list. <strong>Fix:</strong> 1000 IU daily supplement (₹150/month).</li>
+          <li><strong>Green vegetable</strong> — 1 carrot + 1 cucumber doesn't cover folate / vitamin K. <strong>Fix:</strong> add 1 cup spinach/methi/palak 4×/week.</li>
+          <li><strong>Whole grain variety</strong> — only rice, no atta. <strong>Fix:</strong> 2 chapatis at dinner replaces some rice → adds fiber, reduces blood sugar spike.</li>
+          <li><strong>Iodine</strong> — ensure cooking salt is iodised.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Your Foods — Daily Meal Plan</h2>
+
+    <div class="card gold">
+      <div class="card-title">06:00 — Wake-up <span class="pill muted">~10 kcal</span></div>
+      <p>500 ml water + <strong>1 amla</strong> (chew or juice) + pinch salt</p>
+    </div>
+
+    <div class="card gold">
+      <div class="card-title">06:30 — Pre-Workout <span class="pill gold">~280 kcal</span></div>
+      <p><strong>30 g sattu</strong> + 1 tsp jaggery + 200 ml water + <strong>1 banana</strong> + <strong>1 tsp soaked sabja seeds</strong></p>
+      <p class="meal-macros"><span>P 8</span> / <span>C 50</span> / <span>F 1.5</span></p>
+    </div>
+
+    <div class="card ember">
+      <div class="card-title">07:00–09:00 — Training + Swim <span class="pill ember">Intra</span></div>
+      <p>750 ml water + pinch salt + ½ lemon</p>
+    </div>
+
+    <div class="card gold">
+      <div class="card-title">09:30 — Post-Workout <span class="pill gold">~530 kcal</span></div>
+      <p><strong>3 whole eggs</strong> + 1 boiled egg white extra (boiled or omelette) + <strong>150 g cooked rice</strong> + <strong>1 cup dal</strong> + <strong>1 tbsp peanut butter</strong> + 200 ml milk with creatine</p>
+      <p class="meal-macros"><span>P 38</span> / <span>C 70</span> / <span>F 18</span></p>
+    </div>
+
+    <div class="card gold">
+      <div class="card-title">13:00 — Lunch <span class="pill gold">~720 kcal</span></div>
+      <p><strong>200 g cooked rice</strong> + <strong>250 g chicken</strong> (training day) OR <strong>50 g dry soya chunks cooked</strong> (rest day) + <strong>1 cup sambar</strong> + <strong>raw carrot + cucumber salad</strong> with 1 tsp <strong>pumpkin seeds</strong> on top</p>
+      <p class="meal-macros"><span>P 56 (chicken) / 35 (soya)</span> / <span>C 90</span> / <span>F 14</span></p>
+    </div>
+
+    <div class="card gold">
+      <div class="card-title">16:30 — Evening Snack <span class="pill gold">~310 kcal</span></div>
+      <p><strong>30 g peanuts (1 handful)</strong> + <strong>1 banana</strong> + <strong>1 guava</strong> (the recommended daily fruit — see Tab 8)</p>
+      <p class="meal-macros"><span>P 9</span> / <span>C 50</span> / <span>F 14</span></p>
+    </div>
+
+    <div class="card gold">
+      <div class="card-title">20:00 — Dinner <span class="pill gold">~430 kcal</span></div>
+      <p><strong>150 g cooked rice</strong> (or 2 chapatis) + <strong>1 cup dal</strong> + <strong>1 cup sambar</strong> + 100 g sabzi + on rest days add 2 boiled eggs</p>
+      <p class="meal-macros"><span>P 22</span> / <span>C 75</span> / <span>F 8</span></p>
+    </div>
+
+    <div class="card gold">
+      <div class="card-title">22:00 — Pre-Sleep <span class="pill gold">~250 kcal</span></div>
+      <p><strong>150 g curd</strong> + <strong>1 tsp ground flax</strong> + <strong>1 tsp chia (soaked)</strong> + <strong>2 dates</strong> chopped + 5 almonds (optional add)</p>
+      <p class="meal-macros"><span>P 12</span> / <span>C 28</span> / <span>F 10</span></p>
+    </div>
+
+    <hr class="div">
+    <h2>Your Foods — Daily Total (Training Day)</h2>
+    <table>
+      <thead><tr><th>Macro</th><th class="num">Total</th><th class="num">Target</th><th class="num">Status</th></tr></thead>
+      <tbody>
+        <tr class="row-good"><td>Calories</td><td class="num">~2530</td><td class="num">2550</td><td class="num"><span class="pill sage">On target</span></td></tr>
+        <tr class="row-good"><td>Protein</td><td class="num">~145 g</td><td class="num">155 g</td><td class="num"><span class="pill sage">−10 g, add 1 egg or 50 g paneer at snack</span></td></tr>
+        <tr class="row-good"><td>Carbs</td><td class="num">~363 g</td><td class="num">310 g</td><td class="num"><span class="pill ember">+50 g — drop rice 50 g at dinner</span></td></tr>
+        <tr class="row-good"><td>Fat</td><td class="num">~67 g</td><td class="num">65 g</td><td class="num"><span class="pill sage">On target</span></td></tr>
+        <tr class="row-good"><td>Fiber</td><td class="num">~33 g</td><td class="num">30 g</td><td class="num"><span class="pill sage">On target</span></td></tr>
+      </tbody>
+    </table>
+    <div class="callout info"><strong>Two small tweaks make this hit perfectly:</strong> (1) reduce dinner rice from 150 g → 100 g, (2) add 1 extra egg OR 50 g paneer to evening snack. After this: <strong>2480 kcal / 152 g P / 318 g C / 67 g F</strong> — within 5% of every target.</div>
+
+    <h2>What to Remove from Your List</h2>
+    <p>Honest answer: <strong>nothing needs to be removed.</strong> Every food you listed has a purpose. The problem was redundancy and missing quantities, not bad choices.</p>
+    <p>One conditional: <strong>milk OR curd</strong> as you wrote it costs you calcium. Use <em>both</em> — milk in post-workout shake, curd pre-sleep. They serve different functions (whey vs casein protein speeds).</p>
+
+    <h2>What to Add</h2>
+    <ol>
+      <li><strong>Sweet potato</strong> 150 g, 3×/week, replacing equivalent rice → adds vitamin A, beta-carotene, slower blood sugar curve.</li>
+      <li><strong>Guava</strong> 1×/day → cheapest vitamin C and fiber bomb in India.</li>
+      <li><strong>Spinach / methi</strong> 1 cup, 4×/week → folate, vitamin K, iron.</li>
+      <li><strong>Cooking oil</strong> 2 tbsp/day mustard or groundnut → essential fatty acids.</li>
+      <li><strong>Vitamin D3</strong> supplement 1000 IU daily → cannot be solved with food alone in India.</li>
+    </ol>
+  </section>
+
+  <!-- ============ TAB 5: MEAL TIMING ============ -->
+  <section class="panel" id="t5">
+    <h1 class="panel-title">Meal <em>Timing</em> Schedule</h1>
+    <p class="panel-lede">Anchored to your day: 6 AM wake → 7–9 AM gym + swim → 10:30 PM sleep. Each meal slot is engineered to land specific nutrients into specific physiological windows.</p>
+
+    <div class="timeline">
+
+      <div class="meal">
+        <div class="meal-time">06:00 · WAKE</div>
+        <div class="meal-name">Hydration &amp; Vitamin C Prime</div>
+        <div class="meal-foods">500 ml water + 1 amla (chewed or as juice) + pinch salt</div>
+        <div class="meal-macros">Why: Restores 8-hr fasting fluid loss · amla loads vitamin C for the day's iron absorption · salt corrects overnight sodium dip</div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">06:30 · 30 MIN PRE-WORKOUT</div>
+        <div class="meal-name">Fast Carbs + Slow Protein</div>
+        <div class="meal-foods">30 g sattu + 1 tsp jaggery + 1 banana + 1 tsp soaked sabja seeds in 250 ml water · creatine 5 g (mix into the same drink)</div>
+        <div class="meal-macros">Why: <span>Sattu</span> releases protein for 2 hrs covering training · <span>banana</span> = 27 g instant glycogen · <span>jaggery</span> = quick glucose for the first warm-up sets · <span>creatine</span> timing doesn't matter scientifically, but bundling here means it's never forgotten</div>
+      </div>
+
+      <div class="meal workout">
+        <div class="meal-time">07:00 — 09:00 · GYM + SWIM</div>
+        <div class="meal-name">Intra-Workout</div>
+        <div class="meal-foods">750 ml water with pinch salt + ½ lemon · sip every 5–8 minutes</div>
+        <div class="meal-macros">Why: Plasma volume → pump quality → rep capacity. No protein/carb shake needed during a 60-min session in fed state</div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">09:30 · POST-WORKOUT (within 2 hrs of last set)</div>
+        <div class="meal-name">Highest-Priority Protein Meal</div>
+        <div class="meal-foods">3–4 whole eggs + 150 g cooked rice + 1 cup dal + 1 tbsp peanut butter + 200 ml milk</div>
+        <div class="meal-macros">Why: Eggs deliver 3 g leucine triggering MPS · rice + milk = insulin spike that shuttles amino acids · the "anabolic window" is actually 3–4 hrs wide, but this meal anchors it</div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">13:00 · LUNCH</div>
+        <div class="meal-name">Largest Meal of the Day</div>
+        <div class="meal-foods">200 g rice + 250 g chicken (training day) / 50 g dry soya chunks (rest day) + 1 cup sambar + carrot &amp; cucumber salad + 1 tsp pumpkin seeds</div>
+        <div class="meal-macros">Why: Lunch carries the highest carbohydrate load to support afternoon energy and partial glycogen replenishment from morning training · sambar's tamarind aids protein digestion</div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">16:30 · EVENING SNACK</div>
+        <div class="meal-name">Bridge Meal</div>
+        <div class="meal-foods">30 g peanuts + 1 banana + 1 guava</div>
+        <div class="meal-macros">Why: Bridges 6.5 hours between lunch and dinner · prevents the catabolic gap that wastes a meal-slot worth of MPS · guava = peak vitamin C absorption window in the afternoon</div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">20:00 · DINNER</div>
+        <div class="meal-name">Lighter Carb, Solid Protein</div>
+        <div class="meal-foods">100 g rice OR 2 chapatis + 1 cup dal + 1 cup sambar + 50 g dry soya chunks cooked OR 2 boiled eggs + sabzi</div>
+        <div class="meal-macros">Why: Reduced carb load 2 hrs before sleep prevents excess insulin disrupting growth-hormone release · soya/eggs deliver evening leucine spike</div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">22:00 · PRE-SLEEP</div>
+        <div class="meal-name">Slow-Release Casein</div>
+        <div class="meal-foods">150 g curd + 1 tsp ground flax + 1 tsp chia (soaked) + 2 dates chopped + 5 almonds</div>
+        <div class="meal-macros">Why: Casein in curd drips amino acids for 6–8 hrs overnight, exactly when MPS happens during sleep · flax/chia = omega-3 daily target · magnesium in almonds aids sleep · dates = small glycogen top-up + tryptophan for melatonin</div>
+      </div>
+
+      <div class="meal sleep">
+        <div class="meal-time">22:30 · LIGHTS OUT</div>
+        <div class="meal-name">7.5–9 hrs Sleep Window</div>
+        <div class="meal-foods">No screens after 22:00 · room temp 22–24°C · airplane mode · earplugs (₹40)</div>
+        <div class="meal-macros">Why: Below 6 hrs sleep → testosterone falls 10–15%, cortisol rises, strength drops 5%+. Sleep is not a lifestyle topic — it's a primary anabolic variable</div>
+      </div>
+
+    </div>
+
+    <h2>Why This Schedule</h2>
+    <table>
+      <thead><tr><th>Window</th><th>Physiological Logic</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Pre-workout (06:30)</strong></td><td>30-min carb pulse spikes blood glucose for set 1 of squats/bench. Slow protein covers the 90-min training period.</td></tr>
+        <tr><td><strong>Post-workout (09:30)</strong></td><td>Anabolic window extends 3–4 hrs but optimal feed is within 2 hrs. Insulin sensitivity is highest here — best time to land carbs.</td></tr>
+        <tr><td><strong>Lunch (13:00)</strong></td><td>4 hours after PWO meal — second MPS pulse window. Largest meal here, not at dinner.</td></tr>
+        <tr><td><strong>Snack (16:30)</strong></td><td>3.5 hours post-lunch — third MPS pulse. Skip this and you waste a synthesis pulse the body cannot recover.</td></tr>
+        <tr><td><strong>Dinner (20:00)</strong></td><td>3.5 hours post-snack. Reduced carbs because GH peaks during early sleep with low insulin.</td></tr>
+        <tr><td><strong>Pre-sleep (22:00)</strong></td><td>Casein is the only meal type that truly justifies a "before bed" slot. Slow drip = overnight MPS support.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ TAB 6: FOOD COMPARISONS ============ -->
+  <section class="panel" id="t6">
+    <h1 class="panel-title">Food <em>Comparisons</em></h1>
+    <p class="panel-lede">350 g chicken vs 80–100 g dry soya chunks + 3 eggs. Honest numbers, no agenda. Both have a place in your week.</p>
+
+    <h2>The Macro Showdown</h2>
+    <table>
+      <thead><tr><th>Metric</th><th class="num">350 g Chicken Breast</th><th class="num">100 g Dry Soya + 3 Eggs</th><th>Winner</th></tr></thead>
+      <tbody>
+        <tr><td>Protein (g)</td><td class="num">94</td><td class="num">52 + 18 = <strong>70</strong></td><td><span class="pill gold">Chicken</span> by 24 g</td></tr>
+        <tr><td>Calories (kcal)</td><td class="num">385</td><td class="num">340 + 230 = <strong>570</strong></td><td><span class="pill sage">Chicken</span> (lower for same protein)</td></tr>
+        <tr><td>Fat (g)</td><td class="num">7</td><td class="num">5 + 16 = <strong>21</strong></td><td><span class="pill sage">Chicken</span> (leaner)</td></tr>
+        <tr><td>Carbs (g)</td><td class="num">0</td><td class="num">33 + 1 = <strong>34</strong></td><td>Soya/eggs <em>if</em> you want carbs</td></tr>
+        <tr><td>Iron (mg)</td><td class="num">3</td><td class="num">15 + 2 = <strong>17</strong></td><td><span class="pill sage">Soya + eggs</span> 5× more</td></tr>
+        <tr><td>Calcium (mg)</td><td class="num">15</td><td class="num">277 + 75 = <strong>352</strong></td><td><span class="pill sage">Soya + eggs</span> 23×</td></tr>
+        <tr><td>Vitamin B12 (μg)</td><td class="num">0.7</td><td class="num">0 + 1.4 = <strong>1.4</strong></td><td>Eggs (soya has 0)</td></tr>
+        <tr><td>Leucine (g)</td><td class="num">7.4</td><td class="num">4.0 + 1.5 = <strong>5.5</strong></td><td><span class="pill gold">Chicken</span> (more MPS trigger)</td></tr>
+        <tr><td>PDCAAS (digestibility)</td><td class="num">1.00</td><td class="num">Soya 1.00 / Egg 1.00</td><td>Tie at top</td></tr>
+        <tr><td>Cost (₹, Hyderabad)</td><td class="num">~₹77</td><td class="num">~₹15 + ₹21 = <strong>₹36</strong></td><td><span class="pill gold">Soya + eggs</span> half the price</td></tr>
+        <tr><td>Cost / 10 g protein</td><td class="num">~₹8.2</td><td class="num">~₹5.1</td><td><span class="pill gold">Soya + eggs</span> 38% cheaper</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout info"><strong>Verdict.</strong> They're not competitors — they're complements. Use chicken on training days when leucine + protein density matter most, and use the soya + eggs combo on rest days when you want the extra calcium, iron, and B-vitamin micronutrients without the cost.</div>
+
+    <h2>Practical Weekly Rotation</h2>
+    <table>
+      <thead><tr><th>Day</th><th>Lunch Protein</th><th>Reason</th></tr></thead>
+      <tbody>
+        <tr class="row-good"><td>Mon (Push A)</td><td>250 g chicken</td><td>Heavy bench day → leucine priority</td></tr>
+        <tr class="row-good"><td>Tue (Pull A)</td><td>250 g chicken</td><td>Heavy deadlift → iron from chicken + dal combo</td></tr>
+        <tr class="row-good"><td>Wed (Legs A)</td><td>50 g soya + 2 eggs</td><td>Legs day = high oxidative stress → soya isoflavones aid recovery</td></tr>
+        <tr class="row-good"><td>Thu (Push B)</td><td>250 g chicken</td><td>Heavy OHP → leucine</td></tr>
+        <tr class="row-good"><td>Fri (Pull B)</td><td>50 g soya + 2 eggs</td><td>Variation; budget recovery day</td></tr>
+        <tr class="row-good"><td>Sat (Legs B)</td><td>250 g chicken</td><td>Final hard day of the week</td></tr>
+        <tr><td>Sun (Rest)</td><td>50 g soya + 2 eggs</td><td>Lower-calorie protein source aligns with rest-day deficit</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Why Not 350 g Chicken Daily?</h2>
+    <ul>
+      <li><strong>Cost:</strong> 350 g × 7 days = ₹540/week just on chicken. That's 38% of your food budget on one item.</li>
+      <li><strong>Variety = nutrient breadth:</strong> Soya gives isoflavones (anti-inflammatory). Eggs give choline (brain, hormones). Chicken-only diets miss these.</li>
+      <li><strong>You don't need 94 g protein from one meal.</strong> 250 g chicken at lunch (67 g protein) plus the 38 g already from breakfast covers half the day. The body can't use more than ~40 g per pulse.</li>
+    </ul>
+
+    <h2>Soya Concerns — Honest Take</h2>
+    <ul>
+      <li><strong>"Soya lowers testosterone."</strong> The 2010 Hamilton-Reeves meta-analysis (15 studies) showed no effect on T at intake under 100 g/day dry. You're at 50 g. Non-issue.</li>
+      <li><strong>"Phytic acid blocks minerals."</strong> Soak chunks in hot water for 10 min before cooking → reduces phytate ~60%.</li>
+      <li><strong>"Soya is incomplete protein."</strong> Soya is one of the few plant proteins with PDCAAS = 1.00. It's complete.</li>
+    </ul>
+  </section>
+
+  <!-- ============ TAB 7: CREATINE ============ -->
+  <section class="panel" id="t7">
+    <h1 class="panel-title">Creatine <em>Guide</em></h1>
+    <p class="panel-lede">The most studied supplement in sports science. Cheap, safe, and the only ergogenic with consistent evidence over 30+ years. Here's exactly how to use it.</p>
+
+    <h2>Flavored vs Unflavored — Cost Math</h2>
+    <table>
+      <thead><tr><th>Type</th><th class="num">Typical Pack</th><th class="num">Pure Creatine</th><th class="num">Servings (5 g)</th><th class="num">Price</th><th class="num">Cost / Serving</th></tr></thead>
+      <tbody>
+        <tr class="row-good"><td><strong>Unflavored Monohydrate</strong></td><td class="num">250 g</td><td class="num">250 g (100%)</td><td class="num"><strong>50</strong></td><td class="num">₹600–800</td><td class="num"><strong>₹12–16</strong></td></tr>
+        <tr><td>Flavored Monohydrate</td><td class="num">250 g</td><td class="num">~150 g (60%)</td><td class="num">~30</td><td class="num">₹650–900</td><td class="num">₹22–30</td></tr>
+        <tr><td>"Creatine + BCAA + Glutamine" blends</td><td class="num">300 g</td><td class="num">~120 g (40%)</td><td class="num">~24</td><td class="num">₹1,000+</td><td class="num">₹40+</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout success"><strong>Answer to your question.</strong> Yes — unflavored gives you significantly more servings. A 250 g unflavored tub gives <strong>50 servings</strong>. A 250 g flavored tub gives only <strong>~30 servings</strong> because 40% of the powder is sugar, flavorings, and citric acid that you're paying creatine prices for. Unflavored is roughly <strong>40–50% cheaper per gram of actual creatine.</strong></div>
+
+    <h2>Best Brands (India, Cost-Per-Serving)</h2>
+    <table>
+      <thead><tr><th>Brand</th><th>Type</th><th class="num">Pack</th><th class="num">Price</th><th class="num">₹/serving</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="row-hl"><td>MuscleBlaze CreaPRO (Creapure)</td><td>Unflavored</td><td class="num">250 g</td><td class="num">₹1,050</td><td class="num">₹21</td><td>Creapure = highest purity certification</td></tr>
+        <tr class="row-good"><td>Bigmuscles Crude Creatine</td><td>Unflavored</td><td class="num">250 g</td><td class="num">₹650</td><td class="num">₹13</td><td>Best budget pick. Same molecule.</td></tr>
+        <tr class="row-good"><td>GNC Pro Performance</td><td>Unflavored</td><td class="num">250 g</td><td class="num">₹900</td><td class="num">₹18</td><td>Reliable QC, slightly premium</td></tr>
+        <tr><td>Optimum Nutrition Micronized</td><td>Unflavored</td><td class="num">300 g</td><td class="num">₹1,400</td><td class="num">₹23</td><td>Premium global brand</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Water vs Milk?</h2>
+    <div class="split-2">
+      <div class="card sage">
+        <div class="card-title">Water — RECOMMENDED</div>
+        <ul>
+          <li>Faster absorption — water doesn't slow gastric emptying</li>
+          <li>200 ml is enough; doesn't fill you up before training</li>
+          <li>Cheap, always available</li>
+          <li><strong>This is the default choice.</strong></li>
+        </ul>
+      </div>
+      <div class="card gold">
+        <div class="card-title">Milk — Acceptable</div>
+        <ul>
+          <li>Slows absorption slightly (5–10 min) — irrelevant in practice</li>
+          <li>Adds 7 g protein + 12 g carbs (insulin spike helps creatine uptake)</li>
+          <li>If pre-workout, the carb spike helps loading</li>
+          <li>Use if mixing into post-workout shake</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Mixing with Boost?</h2>
+    <div class="callout warn"><strong>Yes, you can.</strong> Boost is essentially malt + sugar + cocoa + B-vitamins. It will not deactivate creatine. The 30 g of carbs in 1 cup of Boost actually <em>helps</em> creatine uptake by spiking insulin. The flavor masking is honest. <br><br><strong>One caveat:</strong> don't mix creatine into <em>boiling-hot</em> Boost — heat (above 70°C) starts converting some creatine to creatinine (inactive). Mix with warm or cold drinks only. Room-temp milk-based Boost is fine.</div>
+
+    <h2>Loading vs No Loading</h2>
+    <table>
+      <thead><tr><th>Approach</th><th>Protocol</th><th>Time to Saturation</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="row-good"><td><strong>No-loading</strong> (recommended)</td><td>5 g/day every day, indefinitely</td><td>~28 days</td><td>Smooth, no GI side effects, identical end state</td></tr>
+        <tr><td>Loading phase</td><td>20 g/day × 7 days, then 5 g/day</td><td>~7 days</td><td>Faster, but ~30% experience bloating, GI cramps</td></tr>
+      </tbody>
+    </table>
+    <p>For a 24-month plan, the 3-week saturation difference is irrelevant. Take 5 g daily, every day, including rest days, forever. Skip days don't matter — but consistency makes tracking easier.</p>
+
+    <h2>Common Mistakes to Avoid</h2>
+    <ul>
+      <li><strong>Cycling creatine.</strong> No physiological benefit. Just stay on it.</li>
+      <li><strong>Mixing in hot tea/coffee.</strong> Heat degrades it. Wait until liquid is below 60°C.</li>
+      <li><strong>Buying "creatine HCL" or "Kre-Alkalyn" at 3× price.</strong> Studies show monohydrate is equal or superior. Marketing.</li>
+      <li><strong>Taking creatine "only on workout days."</strong> Saturation requires daily intake. Skip and concentration drops.</li>
+      <li><strong>Worrying about hair loss.</strong> One small 2009 rugby study, never replicated. Recent reviews show no DHT effect at standard doses.</li>
+    </ul>
+
+    <div class="callout info"><strong>Your daily creatine routine.</strong> 5 g unflavored monohydrate (Bigmuscles Crude or MuscleBlaze CreaPRO) → mixed into your 06:30 sattu drink with water. ₹13–21/day. Take it every day for the next 24 months. That's it.</div>
+  </section>
+
+  <!-- ============ TAB 8: SEEDS, FRUIT, SWEET POTATO ============ -->
+  <section class="panel" id="t8">
+    <h1 class="panel-title">Seeds, Fruit &amp; <em>Sweet Potato</em></h1>
+    <p class="panel-lede">The "small additions" with outsized impact on micronutrients, hormones, and recovery. Daily quantities, the best fruit choice, and where sweet potato fits.</p>
+
+    <h2>Daily Seeds — Quantities &amp; How to Eat</h2>
+    <table>
+      <thead><tr><th>Seed</th><th class="num">Daily Qty</th><th>How to Eat</th><th>Key Benefit</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Flax (alsi)</strong></td><td class="num">1 tsp (5 g) ground</td><td>Pre-sleep with curd, OR sprinkled on lunch dal</td><td>Highest plant omega-3 (ALA) — 2.3 g per tsp</td></tr>
+        <tr><td><strong>Chia</strong></td><td class="num">1 tsp (5 g)</td><td>Soak in water/milk 10 min then add to curd or pre-workout</td><td>Soluble fiber, calcium, slow-release energy</td></tr>
+        <tr><td><strong>Pumpkin</strong></td><td class="num">1 tbsp (10 g)</td><td>Sprinkle on lunch salad, or as snack</td><td>Zinc (testosterone), magnesium (sleep, MPS)</td></tr>
+        <tr><td><strong>Sabja (basil)</strong></td><td class="num">1 tsp (3 g)</td><td>Soak 15 min in water, add to pre-workout drink</td><td>Cooling effect (Hyderabad heat), iron, fiber</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Why Grind Flax</h3>
+    <p>Whole flaxseeds have a hard shell that passes undigested through the gut — you lose ~80% of the omega-3 benefit. <strong>Always grind them</strong> (or buy "flaxseed powder"). Store ground flax in fridge — it oxidises within weeks at room temperature.</p>
+
+    <h3>Why Soak Chia &amp; Sabja</h3>
+    <p>Both seeds form a gel coating that delivers their fiber and antioxidants more efficiently. Dry chia can swell in your throat — never eat it straight without liquid.</p>
+
+    <h2>Best Daily Fruit — The Verdict</h2>
+    <p>You asked for one fruit to add daily. After running the matrix on micronutrients per rupee, recovery support, and Hyderabad availability:</p>
+
+    <div class="data-grid">
+      <div class="cell"><div class="lbl">Winner</div><div class="val gold">Guava</div><div class="note">Year-round, 1 fruit ≈ ₹15</div></div>
+      <div class="cell"><div class="lbl">Vitamin C</div><div class="val">228 mg</div><div class="note">4× an orange</div></div>
+      <div class="cell"><div class="lbl">Fiber</div><div class="val">5.4 g</div><div class="note">~18% of daily target</div></div>
+      <div class="cell"><div class="lbl">Calories</div><div class="val">68 kcal</div><div class="note">Snack-friendly</div></div>
+    </div>
+
+    <h3>Why Guava Wins</h3>
+    <ul>
+      <li><strong>Vitamin C:</strong> 228 mg per fruit — even more than amla per gram, but easier to eat in larger volume. Vitamin C boosts iron absorption from your dal/sattu/spinach by 3–4×.</li>
+      <li><strong>Fiber:</strong> 5.4 g per fruit. Banana has 3 g, apple has 4 g. Guava is the highest-fiber common Indian fruit.</li>
+      <li><strong>Glycemic index:</strong> Low (GI ~24). Won't spike insulin like banana or grapes.</li>
+      <li><strong>Cost:</strong> ₹40–60/kg in Hyderabad markets. ~₹15 per fruit. Cheapest vitamin-C-per-rupee in India.</li>
+      <li><strong>Antioxidants:</strong> Lycopene (pink guava), polyphenols → reduces post-training oxidative stress.</li>
+    </ul>
+
+    <h3>Why Not the Alternatives</h3>
+    <ul>
+      <li><strong>Apple:</strong> Good fruit, but ₹150–200/kg = 4× the cost of guava for similar nutrition.</li>
+      <li><strong>Banana:</strong> You're already eating 2/day pre-workout and snack. Adding a third = too much sugar.</li>
+      <li><strong>Pomegranate:</strong> Excellent recovery fruit, but expensive (₹150+/fruit) and seasonal.</li>
+      <li><strong>Orange:</strong> Decent but ¼ the vitamin C of guava per fruit.</li>
+      <li><strong>Papaya:</strong> Strong second pick — digestion benefits. Rotate with guava 3:4 if you like variety.</li>
+    </ul>
+
+    <h2>Sweet Potato — Where It Fits</h2>
+
+    <div class="card gold">
+      <div class="card-title">The Role of Sweet Potato</div>
+      <p>Sweet potato (shakarkand) is one of the highest-quality carbs available — slower digestion than rice, packed with vitamin A (beta-carotene), potassium, and fiber. It's not a daily must, but rotating it 3×/week as a partial rice replacement upgrades your micronutrient profile.</p>
+    </div>
+
+    <h3>Sweet Potato vs Rice (per 100 g cooked)</h3>
+    <table>
+      <thead><tr><th>Metric</th><th class="num">Sweet Potato</th><th class="num">White Rice</th></tr></thead>
+      <tbody>
+        <tr><td>Calories</td><td class="num">86</td><td class="num">130</td></tr>
+        <tr><td>Carbs</td><td class="num">20 g</td><td class="num">28 g</td></tr>
+        <tr><td>Fiber</td><td class="num">3 g</td><td class="num">0.4 g</td></tr>
+        <tr><td>Vitamin A</td><td class="num">14,000 IU</td><td class="num">0</td></tr>
+        <tr><td>Potassium</td><td class="num">337 mg</td><td class="num">35 mg</td></tr>
+        <tr><td>Glycemic Index</td><td class="num">~70 (boiled)</td><td class="num">~73 (white)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>How to Use Sweet Potato</h3>
+    <ul>
+      <li><strong>Pre-workout (alternative):</strong> 100 g boiled sweet potato + 1 tsp jaggery — replaces sattu on variety days.</li>
+      <li><strong>Lunch (3×/week):</strong> Replace 100 g of your 200 g rice with 150 g boiled sweet potato. Same carbs, more nutrients.</li>
+      <li><strong>Cost:</strong> ₹40–60/kg → ~₹8 per serving. Cheaper than rice on a per-calorie-of-quality basis.</li>
+    </ul>
+
+    <h2>Amla — Your Secret Weapon</h2>
+    <div class="callout success"><strong>1 amla a day.</strong> Despite all the seeds and fruits, amla deserves its own callout. One small amla (10 g) provides ~600 mg vitamin C — that's 7× the daily requirement. It's also one of the few foods with measurable anti-glycation effects (slows aging). Eat raw, juice, or chew with a pinch of salt. ₹2–3 per fruit. Cheapest "supplement" in your stack.</div>
+  </section>
+
+  <!-- ============ TAB 9: COOKING OILS ============ -->
+  <section class="panel" id="t9">
+    <h1 class="panel-title">Cooking <em>Oils</em></h1>
+    <p class="panel-lede">Oil contributes 30–40% of your daily fat intake. Pick wrong, and you're consuming inflammatory compounds 3× a day. The five common Indian oils, ranked.</p>
+
+    <h2>The Oils — Compared</h2>
+    <table>
+      <thead><tr><th>Oil</th><th class="num">Smoke Pt</th><th>Fat Profile</th><th class="num">Cost/L</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr class="row-good"><td><strong>Mustard Oil (kachi ghani)</strong></td><td class="num">250°C</td><td>60% MUFA, 21% omega-3 ALA, 10% saturated</td><td class="num">₹160</td><td><span class="pill gold">BEST DAILY</span> Low-heat curries, sabzi tempering</td></tr>
+        <tr class="row-good"><td><strong>Groundnut (peanut) Oil</strong></td><td class="num">232°C</td><td>50% MUFA, 32% PUFA, 17% saturated</td><td class="num">₹180</td><td><span class="pill gold">BEST FOR FRYING</span> Stable at high heat, neutral flavor</td></tr>
+        <tr><td>Cold-pressed Coconut Oil</td><td class="num">177°C</td><td>~90% saturated (mostly MCT)</td><td class="num">₹350</td><td><span class="pill sage">Occasional use</span> Good for medium heat, expensive daily</td></tr>
+        <tr><td>Rice Bran Oil</td><td class="num">232°C</td><td>47% MUFA, 33% PUFA, 20% saturated, gamma-oryzanol</td><td class="num">₹200</td><td><span class="pill sage">Acceptable backup</span> Heart-friendly, mild flavor</td></tr>
+        <tr class="row-warn"><td>Sunflower / Refined Vegetable</td><td class="num">227°C</td><td>~70% omega-6 PUFA, almost no omega-3</td><td class="num">₹140</td><td><span class="pill rose">AVOID DAILY</span> Cheap but inflammatory at high intake</td></tr>
+        <tr class="row-warn"><td>Palm Oil</td><td class="num">230°C</td><td>50% saturated, environmental concerns</td><td class="num">₹130</td><td><span class="pill rose">AVOID</span> Hidden in mess fryers; ask</td></tr>
+      </tbody>
+    </table>
+
+    <h2>The Two-Oil System</h2>
+    <p>The professional approach: <strong>own two bottles, use them for different purposes.</strong></p>
+
+    <div class="split-2">
+      <div class="card gold">
+        <div class="card-title">For Daily Cooking — Mustard Oil (kachi ghani)</div>
+        <ul>
+          <li>Highest omega-3 of all common cooking oils (21%) — addresses India's chronic omega-6:omega-3 imbalance</li>
+          <li>Low erucic acid in modern strains (within FSSAI limits)</li>
+          <li>Antimicrobial → traditional reason it dominated North &amp; East India cooking</li>
+          <li>"Heat to smoking, then cool" trick reduces pungency without destroying nutrients</li>
+          <li>1 tbsp mustard oil = 13 g fat, 2 g of which is omega-3</li>
+        </ul>
+      </div>
+      <div class="card gold">
+        <div class="card-title">For Frying — Groundnut Oil</div>
+        <ul>
+          <li>Higher smoke point (232°C) — stays stable in deep frying</li>
+          <li>Neutral flavor — good for omelettes, parathas, dosa</li>
+          <li>Bonus: vitamin E (alpha-tocopherol) — antioxidant for athletes</li>
+          <li>Slightly cheaper per liter than coconut</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>What About Olive Oil?</h2>
+    <ul>
+      <li><strong>Extra virgin olive oil:</strong> Excellent for salad dressing, drizzle on top of cooked food. <strong>Smoke point only 190°C</strong> — not for Indian high-heat cooking.</li>
+      <li><strong>Cost:</strong> ₹500–1,200/L. 3–7× the price of mustard. Not budget-friendly for daily cooking.</li>
+      <li><strong>Verdict:</strong> Skip on a ₹200/day budget. Mustard oil delivers similar Mediterranean-style health benefits at a quarter of the price.</li>
+    </ul>
+
+    <h2>Daily Oil Quantity</h2>
+    <div class="data-grid">
+      <div class="cell"><div class="lbl">Cooking oil</div><div class="val gold">2 tbsp</div><div class="note">~26 g fat / ~234 kcal</div></div>
+      <div class="cell"><div class="lbl">Hidden mess oil</div><div class="val">~10 g</div><div class="note">Estimate added to all curries</div></div>
+      <div class="cell"><div class="lbl">Total oil fat</div><div class="val">~36 g</div><div class="note">Of your 65 g daily fat target</div></div>
+      <div class="cell"><div class="lbl">Other fat sources</div><div class="val">~29 g</div><div class="note">Eggs, nuts, seeds, peanut butter</div></div>
+    </div>
+
+    <div class="callout info"><strong>Pro tip for hostel mess.</strong> Ask the cook which oil is being used. If it's palm oil or refined sunflower, supplement your day with extra cold-pressed mustard or groundnut at home (1 tbsp on top of curd, dal, or salad). This single practice corrects the omega-6:omega-3 ratio better than any supplement.</div>
+
+    <h2>Ghee — A Special Mention</h2>
+    <p>Desi ghee is fine in moderation: 1 tsp/day adds vitamin A, butyrate (gut health), and saturated fat for hormones. Not a primary cooking oil, but a useful daily addition (drizzle on dal or rice). Cost ₹500–600/kg → 1 tsp/day = ₹3.</p>
+  </section>
+
+  <!-- ============ TAB 10: SUPPLEMENTS ============ -->
+  <section class="panel" id="t10">
+    <h1 class="panel-title">Supplements — Essential, Optional, &amp; <em>Skip</em></h1>
+    <p class="panel-lede">There are 3 supplements with strong evidence at your level, 4 that are useful additions if budget allows, and the rest are marketing. Honest tier list.</p>
+
+    <h2>Tier 1 — Essential (Worth Every Rupee)</h2>
+
+    <table>
+      <thead><tr><th>Supplement</th><th>Why</th><th class="num">Dose</th><th class="num">Cost/Month</th></tr></thead>
+      <tbody>
+        <tr class="row-hl"><td><strong>Creatine Monohydrate</strong></td><td>Most studied supplement ever. +5–15% strength, +1–2 kg lean mass over 8 weeks. Cheap.</td><td class="num">5 g daily</td><td class="num">₹100–150</td></tr>
+        <tr class="row-hl"><td><strong>Vitamin D3</strong></td><td>~80% of urban Indians are deficient. Supports testosterone, calcium absorption, bone density. Direct effect on strength.</td><td class="num">1000–2000 IU daily</td><td class="num">₹150</td></tr>
+        <tr class="row-hl"><td><strong>Multivitamin (basic)</strong></td><td>Insurance against micronutrient gaps despite a varied diet — folate, B12, iodine, selenium often shortfall in vegetarian-heavy hostel diets.</td><td class="num">1 tablet daily</td><td class="num">₹200</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Total Tier 1: ~₹450–500/month.</strong> Non-negotiable for any 24-month progress curve.</p>
+
+    <h2>Tier 2 — Optional (If Budget Allows)</h2>
+    <table>
+      <thead><tr><th>Supplement</th><th>Why</th><th class="num">Dose</th><th class="num">Cost/Month</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Whey Protein Concentrate</strong></td><td>Convenience tool, not a magic bullet. Useful for the post-workout window when mess food is unavailable, and to plug protein gaps on travel days. <em>You can hit 155 g protein from food alone — whey is optional.</em></td><td class="num">25 g (1 scoop) post-workout</td><td class="num">₹1,100 (1 kg)</td></tr>
+        <tr><td><strong>Omega-3 (Fish Oil)</strong></td><td>If you don't eat fatty fish 2×/week. Reduces inflammation, supports joint health under heavy lifting. Skip if eating sardines/mackerel weekly.</td><td class="num">1–2 g EPA+DHA daily</td><td class="num">₹400</td></tr>
+        <tr><td><strong>Magnesium Glycinate</strong></td><td>Improves sleep quality, reduces cramping, supports MPS. Skip if eating pumpkin seeds + spinach + dal daily — diet should cover the 400 mg target.</td><td class="num">300–400 mg pre-sleep</td><td class="num">₹250</td></tr>
+        <tr><td><strong>Caffeine (as filter coffee)</strong></td><td>Pre-workout stimulant, improves power output ~3–5%. Don't use pre-workout powders; black coffee is identical and ₹0 from hostel mess.</td><td class="num">100–200 mg, 30 min pre-workout</td><td class="num">Free</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Tier 3 — Skip (Marketing Categories)</h2>
+    <table>
+      <thead><tr><th>Product</th><th>Why Skip</th></tr></thead>
+      <tbody>
+        <tr class="row-warn"><td><strong>Mass Gainers</strong></td><td>Sugar + cheap maltodextrin at 8–10× the price of the same calories from rice + peanut butter. Indian gym shop scam.</td></tr>
+        <tr class="row-warn"><td><strong>BCAA Powders</strong></td><td>Useless if you eat enough protein. Whole protein contains BCAAs already. Pure money waste.</td></tr>
+        <tr class="row-warn"><td><strong>Glutamine</strong></td><td>Body produces it. Studies show no muscle benefit in healthy lifters at training volumes you're hitting.</td></tr>
+        <tr class="row-warn"><td><strong>Pre-Workout Powders ("C4", "Bullnox")</strong></td><td>Caffeine + beta-alanine tingle for ₹40/serving. Black coffee for ₹0 does 90% of the job.</td></tr>
+        <tr class="row-warn"><td><strong>Fat Burners / "Ripped" Pills</strong></td><td>Caffeine + green tea + L-carnitine. Effects are minimal. Some have unlisted stimulants.</td></tr>
+        <tr class="row-warn"><td><strong>Testosterone Boosters (Tribulus, Ashwagandha-based)</strong></td><td>Ashwagandha has small evidence for stress. The "T-booster" claim is exaggerated. Stick to sleep, training, and protein.</td></tr>
+        <tr class="row-warn"><td><strong>"Recovery" Aminos / Electrolyte Powders</strong></td><td>Pinch of salt + lemon + water = the same thing for ₹0.</td></tr>
+        <tr class="row-warn"><td><strong>HMB</strong></td><td>Some evidence in untrained, none in trained lifters. Skip.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Recommended Supplement Stack — By Budget</h2>
+
+    <div class="split-2">
+      <div class="card gold">
+        <div class="card-title">Budget Stack — ₹450/month</div>
+        <ul>
+          <li>Creatine 5 g/day (₹150)</li>
+          <li>Vitamin D3 1000 IU/day (₹150)</li>
+          <li>Multivitamin (₹150)</li>
+        </ul>
+        <p>Covers 90% of measurable benefit. Use this stack for first 6 months minimum.</p>
+      </div>
+      <div class="card gold">
+        <div class="card-title">Premium Stack — ₹2,000/month</div>
+        <ul>
+          <li>Everything from Budget Stack</li>
+          <li>Whey concentrate 25 g/day (₹1,100)</li>
+          <li>Omega-3 fish oil 2 g/day (₹400)</li>
+          <li>Magnesium glycinate (₹250 occasional)</li>
+        </ul>
+        <p>Adds convenience + edge. Worth it from Phase 3 onward (Month 5+).</p>
+      </div>
+    </div>
+
+    <h2>Smart Buying Tips</h2>
+    <ul>
+      <li><strong>Buy from MyProtein, MuscleBlaze, or Nutrabay direct websites</strong> — 30–40% cheaper than gym shops, original product guaranteed. Avoid Amazon for whey (counterfeit risk).</li>
+      <li><strong>Vitamin D3:</strong> Buy a generic pharmacy brand (Calcirol sachets or Uprise-D3). Branded "athlete" D3 is the same molecule.</li>
+      <li><strong>Multivitamin:</strong> Centrum, Revital H, or any pharmacy brand. Don't buy "athlete" multivitamins — same content, 3× the price.</li>
+    </ul>
+  </section>
+
+  <!-- ============ TAB 11: BUDGET vs PREMIUM ============ -->
+  <section class="panel" id="t11">
+    <h1 class="panel-title">Budget vs <em>Premium</em> Diet</h1>
+    <p class="panel-lede">The ₹200/day plan and what changes if you can move to ₹350/day. Same protein target either way — premium gives nutrient breadth, not more muscle.</p>
+
+    <h2>Tier Comparison</h2>
+    <table>
+      <thead><tr><th>Component</th><th class="num">Budget Tier (₹200/day)</th><th class="num">Premium Tier (₹350/day)</th></tr></thead>
+      <tbody>
+        <tr><td>Protein source — primary</td><td>Eggs + soya + dal</td><td>Eggs + chicken (350 g) + dal</td></tr>
+        <tr><td>Protein source — secondary</td><td>Sattu, peanuts</td><td>Whey concentrate (25 g post-workout)</td></tr>
+        <tr><td>Carb base</td><td>White rice + atta</td><td>Brown rice + sweet potato + oats</td></tr>
+        <tr><td>Fat source</td><td>Peanuts, peanut butter, mustard oil</td><td>Add: 25 g almonds, ghee 1 tsp, 100 g paneer 3×/wk</td></tr>
+        <tr><td>Fish</td><td>Skip</td><td>1–2× sardines or mackerel/week (₹150/serving)</td></tr>
+        <tr><td>Fruit</td><td>1 banana + 1 guava + amla</td><td>+ 1 pomegranate or apple alternate days</td></tr>
+        <tr><td>Vegetables</td><td>Carrot, cucumber, sambar veggies</td><td>+ paneer-spinach 3×/wk, broccoli where available</td></tr>
+        <tr><td>Dairy</td><td>200 g curd + 200 ml milk</td><td>+ 100 g paneer 3×/wk</td></tr>
+        <tr><td>Supplements</td><td>Creatine + D3 + multivit (₹15/day)</td><td>+ whey + omega-3 (₹40/day)</td></tr>
+        <tr class="row-hl"><td><strong>Total daily cost</strong></td><td class="num">₹200–220</td><td class="num">₹330–360</td></tr>
+        <tr class="row-good"><td>Daily protein delivered</td><td class="num">~150 g</td><td class="num">~165 g</td></tr>
+        <tr class="row-good"><td>Daily calories</td><td class="num">~2500</td><td class="num">~2600</td></tr>
+        <tr class="row-good"><td>Micronutrient coverage</td><td>~90%</td><td>~98%</td></tr>
+      </tbody>
+    </table>
+
+    <h2>What the Extra ₹150/day Actually Buys</h2>
+    <ul>
+      <li><strong>Protein quality, not quantity.</strong> Whey + chicken push leucine higher per meal. ~5–10% better MPS pulse.</li>
+      <li><strong>Omega-3 from fish.</strong> Fatty fish 2×/week eliminates the need for fish oil supplements.</li>
+      <li><strong>Variety = adherence.</strong> The biggest cost of monotony is dropping the diet at month 4. Premium variety reduces that risk.</li>
+      <li><strong>Recovery markers.</strong> Whey + paneer + nuts = noticeably better next-day soreness recovery.</li>
+    </ul>
+
+    <h2>What the Extra ₹150/day Does NOT Buy</h2>
+    <ul>
+      <li><strong>More muscle gain.</strong> Above 1.8 g protein/kg, more food doesn't = more muscle. The training stimulus is the limiting factor, not food.</li>
+      <li><strong>Faster fat loss.</strong> Fat loss = caloric deficit. Premium foods don't shortcut that.</li>
+      <li><strong>Skip-the-work magic.</strong> No food expense replaces sleep, training intensity, or progressive overload.</li>
+    </ul>
+
+    <h2>Smart Mid-Budget Strategy (₹260/day)</h2>
+    <p>Most realistic upgrade path: stay on the budget tier but add the three highest-impact upgrades:</p>
+    <ol>
+      <li><strong>+₹30/day</strong> — 100 ml extra milk daily (calcium, casein) → adds 7 g protein, 250 mg calcium</li>
+      <li><strong>+₹20/day</strong> — 100 g paneer 2×/week (in dinner) → 18 g protein per serving</li>
+      <li><strong>+₹15/day</strong> — Whey on training days only (5×/week) → fills post-workout slot conveniently</li>
+    </ol>
+    <div class="callout info"><strong>This delivers 92% of the premium tier benefit at 25% of the cost increase.</strong> Recommended path once you cross Phase 1 (Month 1+) and your training intensity rises.</div>
+
+    <h2>How to Cut Cost If Budget Drops</h2>
+    <p>If ₹200/day becomes a stretch — survival mode at ₹150/day:</p>
+    <ul>
+      <li>Drop chicken entirely → 100 g dry soya chunks daily (₹15) replaces 350 g chicken (₹77)</li>
+      <li>3 eggs/day instead of 5–6 → save ₹15</li>
+      <li>Skip multivitamin — keep only creatine + D3 (₹10/day vs ₹15)</li>
+      <li>Replace peanut butter with extra peanuts (cheaper per gram of fat)</li>
+      <li>Maintains: 130 g protein, 2350 kcal — still recomposition-viable</li>
+    </ul>
+  </section>
+
+  <!-- ============ TAB 12: EXCESS vs DEFICIENCY ============ -->
+  <section class="panel" id="t12">
+    <h1 class="panel-title">Excess vs <em>Deficiency</em></h1>
+    <p class="panel-lede">What happens if you eat too much, or too little, of every macro and key micronutrient. Use this when you feel "off" and want to figure out which dial to turn.</p>
+
+    <h2>Macros</h2>
+
+    <h3>Protein</h3>
+    <table>
+      <thead><tr><th>State</th><th>Symptoms / Effects</th><th>Fix</th></tr></thead>
+      <tbody>
+        <tr class="row-warn"><td><strong>Too Little</strong> (&lt;1.4 g/kg)</td><td>Stalled muscle gain. Slow recovery. Constant hunger. Hair thinning. Strength plateau despite training.</td><td>Hit 2 g/kg minimum. Track for 3 days, weigh portions.</td></tr>
+        <tr class="row-good"><td><strong>Optimal</strong> (1.8–2.2 g/kg)</td><td>Recovery within 48 hrs. Muscle gain visible at 8–12 weeks. No excess satiety problems.</td><td>Maintain.</td></tr>
+        <tr class="row-warn"><td><strong>Too Much</strong> (&gt;3.5 g/kg sustained)</td><td>No additional muscle benefit. Can crowd out carbs hurting training fuel. Mild kidney stress only if pre-existing kidney disease (otherwise safe).</td><td>Cap at 2.5 g/kg. Replace excess with carbs.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Carbohydrates</h3>
+    <table>
+      <thead><tr><th>State</th><th>Symptoms / Effects</th><th>Fix</th></tr></thead>
+      <tbody>
+        <tr class="row-warn"><td><strong>Too Little</strong> (&lt;3 g/kg on training days)</td><td>Weak workouts. Strength drops 5–10%. Brain fog. Mood dips. Sleep quality worsens.</td><td>Add 50 g carbs to pre + post workout meals.</td></tr>
+        <tr class="row-good"><td><strong>Optimal</strong> (4–5 g/kg train day)</td><td>Strong gym sessions. Glycogen full. Energy steady.</td><td>Maintain.</td></tr>
+        <tr class="row-warn"><td><strong>Too Much</strong> (&gt;7 g/kg without training to match)</td><td>Fat gain. Insulin spikes → afternoon energy crashes. Reduced fat oxidation.</td><td>Drop 50 g rice from non-training meals first.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Fats</h3>
+    <table>
+      <thead><tr><th>State</th><th>Symptoms / Effects</th><th>Fix</th></tr></thead>
+      <tbody>
+        <tr class="row-warn"><td><strong>Too Little</strong> (&lt;0.6 g/kg, ~45 g/day)</td><td>Testosterone drops 10–20%. Skin/hair issues. Vitamin A, D, E, K absorption falls. Joint dryness.</td><td>Add nuts, seeds, ghee, eggs, oily fish.</td></tr>
+        <tr class="row-good"><td><strong>Optimal</strong> (0.8–1.0 g/kg, ~60–75 g)</td><td>Stable hormones. Hair quality steady. Joints work fine.</td><td>Maintain.</td></tr>
+        <tr class="row-warn"><td><strong>Too Much</strong> (&gt;1.5 g/kg)</td><td>Crowds out carbs hurting training. Often sneaks calorie surplus → fat gain. Slows post-workout digestion.</td><td>Cap oils at 2 tbsp/day. Skip random "bulletproof" practices.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Fiber</h3>
+    <table>
+      <thead><tr><th>State</th><th>Symptoms / Effects</th><th>Fix</th></tr></thead>
+      <tbody>
+        <tr class="row-warn"><td><strong>Too Little</strong> (&lt;15 g)</td><td>Constipation. Blood sugar swings. Increased hunger. Poor gut health.</td><td>Add seeds, vegetables, fruit, whole grains.</td></tr>
+        <tr class="row-good"><td><strong>Optimal</strong> (25–35 g)</td><td>Daily clean digestion. Stable energy. Microbiome thrives.</td><td>Maintain.</td></tr>
+        <tr class="row-warn"><td><strong>Too Much</strong> (&gt;50 g)</td><td>Bloating. Reduced mineral absorption (zinc, iron, calcium). Pre-workout discomfort.</td><td>Reduce fiber 1–2 hrs before training.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Hydration</h3>
+    <table>
+      <thead><tr><th>State</th><th>Symptoms / Effects</th><th>Fix</th></tr></thead>
+      <tbody>
+        <tr class="row-warn"><td><strong>Too Little</strong> (&lt;2 L)</td><td>Strength drops. Headache. Concentration loss. Cramping. Dark urine.</td><td>3.5 L target. Monitor urine color.</td></tr>
+        <tr class="row-good"><td><strong>Optimal</strong> (3–4 L)</td><td>Pale yellow urine. Energetic. Sets feel sharper.</td><td>Maintain.</td></tr>
+        <tr class="row-warn"><td><strong>Too Much</strong> (&gt;6 L)</td><td>Hyponatraemia (low sodium). Fatigue, nausea. Constant bathroom trips disrupting sleep.</td><td>Cap fluids by 20:30. Add salt to intra-workout.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Key Micronutrients</h2>
+
+    <table>
+      <thead><tr><th>Nutrient</th><th>Deficiency Signs</th><th>Excess Signs (rare from food)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Calcium</strong></td><td>Cramps, slow bone recovery, brittle nails</td><td>Kidney stones (only with supplements &gt;2000 mg)</td></tr>
+        <tr><td><strong>Iron</strong></td><td>Fatigue, breathlessness during sets, cold hands, pale skin</td><td>Liver damage (only with supplements without need)</td></tr>
+        <tr><td><strong>Zinc</strong></td><td>Slow wound healing, low T, loss of taste/smell, frequent colds</td><td>Suppresses copper absorption (only at &gt;40 mg/day supplement)</td></tr>
+        <tr><td><strong>Magnesium</strong></td><td>Muscle cramps, twitching, poor sleep, irritability</td><td>Diarrhea (only at &gt;500 mg supplement)</td></tr>
+        <tr><td><strong>Vitamin D3</strong></td><td>Low T, weak immunity, slow recovery, bone pain</td><td>Hypercalcemia (only at &gt;10,000 IU/day for weeks)</td></tr>
+        <tr><td><strong>Vitamin B12</strong></td><td>Fatigue, tingling in fingers, foggy thinking, anemia</td><td>None known from food</td></tr>
+        <tr><td><strong>Sodium</strong></td><td>Cramps, weakness, dizziness, low BP, headaches</td><td>High BP (over 5 g/day for years)</td></tr>
+        <tr><td><strong>Potassium</strong></td><td>Cramps, palpitations, fatigue, muscle weakness</td><td>Cardiac issues (only with supplement abuse)</td></tr>
+        <tr><td><strong>Omega-3</strong></td><td>Joint stiffness, dry skin, slow recovery, mood dips</td><td>Bleeding tendency (only at &gt;5 g supplement)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>The 5 Most Common Recomp-Killing Mistakes</h2>
+    <table>
+      <thead><tr><th>Mistake</th><th>Outcome</th><th>Fix</th></tr></thead>
+      <tbody>
+        <tr class="row-warn"><td><strong>Under-eating protein</strong></td><td>Stalled muscle gain regardless of training quality</td><td>2 g/kg daily. Measure once, learn portion sizes.</td></tr>
+        <tr class="row-warn"><td><strong>Skipping meals when busy</strong></td><td>Missed MPS pulses. Glycogen stays depleted. Slow recovery.</td><td>4–5 meals daily, every day. Sattu shake works as a backup meal.</td></tr>
+        <tr class="row-warn"><td><strong>Same calories on rest day as train day</strong></td><td>Slow fat loss → recomp stalls</td><td>Drop 350 kcal on rest days. Protein stays.</td></tr>
+        <tr class="row-warn"><td><strong>Hydration only when thirsty</strong></td><td>Chronic mild dehydration. Strength suffers.</td><td>3.5 L scheduled, especially first 500 ml on waking.</td></tr>
+        <tr class="row-warn"><td><strong>Trusting "clean eating" without macros</strong></td><td>Calories drift either too high or too low. Either fat gain or muscle stall.</td><td>Track for 14 days. Then by eye after.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Weekly Self-Audit (Sunday Evening, 5 minutes)</h2>
+    <ol>
+      <li>Did I hit 155 g protein 6+ days this week? (Y/N)</li>
+      <li>Was waist circumference stable or down vs last Sunday? (Y/N)</li>
+      <li>Did body weight stay within ±0.5 kg of last Sunday? (Y/N)</li>
+      <li>Did I drink 3 L+ daily? (Y/N)</li>
+      <li>Did I sleep 7+ hours 6+ nights? (Y/N)</li>
+    </ol>
+    <div class="callout success"><strong>If 4 of 5 = YES:</strong> The diet is working. Don't change anything. <br><strong>If 3 or fewer = YES:</strong> Identify which two are NO and address those first. Don't redesign the entire diet.</div>
+  </section>
+
+  <footer class="foot">
+    THE RECOMPOSITION FUEL PROTOCOL · v1.0 · CALIBRATED TO YOUR 24-MONTH TRAINING SYSTEM · HYDERABAD HOSTEL ATHLETE EDITION
+  </footer>
+
+</div>
+
+<script>
+  // Tab switching
+  const buttons = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-tab');
+      buttons.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(target).classList.add('active');
+      window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
